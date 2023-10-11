@@ -8,7 +8,6 @@
 #ifndef PROJECT1_SUDOKULIB_MAINFRAME_H
 #define PROJECT1_SUDOKULIB_MAINFRAME_H
 
-#include <wx/osx/frame.h>
 
 class MainFrame : public wxFrame {
 private:
