@@ -11,7 +11,7 @@
  */
 void MainFrame::Initialize()
 {
-    Create(nullptr, wxID_ANY, L"Sudoku",
+    Create(nullptr, wxID_ANY, L"Action Sudoku",
            wxDefaultPosition,  wxSize( 1000,800 ));
 
 }
