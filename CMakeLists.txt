@@ -20,3 +20,6 @@ add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SOURCE_FILES})
 
 # Link required libraries to the executable
 target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/images/
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/images/)
