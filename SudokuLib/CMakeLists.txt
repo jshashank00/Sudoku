@@ -3,7 +3,9 @@ project(SudokuLib)
 set(SOURCE_FILES MainFrame.cpp MainFrame.h
         pch.h
         SudokuView.cpp
-        SudokuView.h)
+        SudokuView.h
+        Sudoku.cpp
+        Sudoku.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

@@ -17,6 +17,9 @@ bool SudokuApp::OnInit()
     if (!wxApp::OnInit())
         return false;
 
+    // Add image type handlers
+    wxInitAllImageHandlers();
+
     auto frame = new MainFrame();
     frame->Initialize();
     frame->Show(true);
