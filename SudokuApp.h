@@ -8,11 +8,13 @@
 #ifndef PROJECT1_CSE335__SUDOKUAPP_H
 #define PROJECT1_CSE335__SUDOKUAPP_H
 
-class SudokuApp
-{
+#include <wx/wx.h>
+
+class SudokuApp : public wxApp {
 private:
 
 public:
+    bool OnInit() override;
 
 };
 
