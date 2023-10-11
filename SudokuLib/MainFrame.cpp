@@ -12,8 +12,8 @@
  */
 void MainFrame::Initialize()
 {
-    Create(nullptr, wxID_ANY, L"Sudoku",
-           wxDefaultPosition,  wxSize( 1000,800 ));
+    Create(nullptr, wxID_ANY, L"Action Sudoku",
+           wxDefaultPosition,  wxSize( 950,750 ));
 
     // Create a sizer that will lay out child windows vertically
     // one above each other
