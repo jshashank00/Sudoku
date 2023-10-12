@@ -5,7 +5,9 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         SudokuView.cpp
         SudokuView.h
         Sudoku.cpp
-        Sudoku.h)
+        Sudoku.h
+        Item.cpp
+        Item.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
