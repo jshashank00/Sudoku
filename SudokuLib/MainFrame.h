@@ -15,6 +15,8 @@ private:
 public:
     void Initialize();
 
+    void OnExit(wxCommandEvent &event);
+    void OnAbout(wxCommandEvent &event);
 };
 
 #endif //PROJECT1_SUDOKULIB_MAINFRAME_H
