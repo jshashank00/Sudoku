@@ -13,7 +13,9 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Digit.cpp
         Digit.h
         Given.cpp
-        Given.h)
+        Given.h
+        Sparty.cpp
+        Sparty.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
