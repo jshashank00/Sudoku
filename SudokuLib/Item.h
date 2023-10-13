@@ -16,10 +16,6 @@ class Sudoku;
  */
 class Item
 {
-protected:
-    /// The game the item is in
-    Item(Sudoku *sudoku, const std::wstring &filename);
-
 private:
     /// The item image
     std::unique_ptr<wxImage> mItemImage;
@@ -59,6 +55,9 @@ public:
 
     bool HitTest(int x, int y);
     void XmlLoad(wxXmlNode *node);
+
+    /// The game the item is in
+    Item(Sudoku *sudoku, const std::wstring &filename);
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H

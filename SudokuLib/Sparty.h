@@ -17,7 +17,7 @@ class Sparty : public Item
 private:
 
 public:
-
+    Sparty(Sudoku *sudoku);
 };
 
 #endif //PROJECT1_SUDOKULIB_SPARTY_H
