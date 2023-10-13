@@ -8,6 +8,7 @@
 #ifndef PROJECT1_SUDOKULIB_ITEM_H
 #define PROJECT1_SUDOKULIB_ITEM_H
 
+#include <wx/xml/xml.h>
 class Sudoku;
 
 /**
@@ -55,6 +56,9 @@ public:
     * @param y Y location in pixels
     */
     virtual void SetLocation(double x, double y) { mX = x; mY = y; }
+
+    bool HitTest(int x, int y);
+    void XmlLoad(wxXmlNode *node);
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H

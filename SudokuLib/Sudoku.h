@@ -19,8 +19,12 @@ private:
 
 public:
     Sudoku();
+    std::shared_ptr<Item> HitTest(int x, int y);
     void OnDraw(wxDC *dc);
     void Add(std::shared_ptr<Item> item);
+    void Clear();
+    void Load(const wxString &filename);
+    void XmlItem(wxXmlNode *node);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

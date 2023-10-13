@@ -13,4 +13,6 @@
 #include <wx/wx.h>
 #endif
 
+#include <wx/xml/xml.h>
+
 #endif //PROJECT1_SUDOKULIB_PCH_H
