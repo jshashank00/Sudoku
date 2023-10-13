@@ -7,7 +7,13 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Sudoku.cpp
         Sudoku.h
         Item.cpp
-        Item.h)
+        Item.h
+        Number.cpp
+        Number.h
+        Digit.cpp
+        Digit.h
+        Given.cpp
+        Given.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
