@@ -17,13 +17,13 @@ Sudoku::Sudoku()
 
     // Create a sparty
     // This creates a shared pointer to sparty
-    shared_ptr<Item> sparty = make_shared<Sparty>(this);
-
-    // Set the location
-    sparty->SetLocation(100, 100);
-
-    // Add to the list of fish.
-    mItems.push_back(sparty);
+//    shared_ptr<Item> sparty = make_shared<Sparty>(this);
+//
+//    // Set the location
+//    sparty->SetLocation(100, 100);
+//
+//    // Add to the list of fish.
+//    mItems.push_back(sparty);
 }
 
 
