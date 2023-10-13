@@ -25,6 +25,7 @@ public:
     void Clear();
     void Load(const wxString &filename);
     void XmlItem(wxXmlNode *node);
+    void XmlDeclaration(wxXmlNode *node);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

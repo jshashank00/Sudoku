@@ -85,7 +85,10 @@ void Sudoku::Load(const wxString &filename)
 
     // Get the XML document root node
     auto root = xmlDoc.GetRoot();
-
+    auto width = root->GetAttribute(L"width");
+    auto height = root->GetAttribute(L"height");
+    auto tileWidth = root->GetAttribute(L"tilewidth");
+    auto tileHeight = root->GetAttribute(L"tileheight");
     //
     // Traverse the children of the root
     // node of the XML document in memory!!!!
@@ -93,7 +96,11 @@ void Sudoku::Load(const wxString &filename)
     auto node = root->GetChildren();
     for( ; node; node=node->GetNext())
     {
-        if (node->GetName() == L"description")
+        if (node->GetName() == L"declarations")
+        {
+            XmlDeclaration(node);
+        }
+        if (node->GetName() == L"items")
         {
             XmlItem(node);
         }
@@ -106,6 +113,27 @@ void Sudoku::Load(const wxString &filename)
  * @param node XML node
  */
 void Sudoku::XmlItem(wxXmlNode *node)
+{
+    // A pointer for the item we are loading
+    shared_ptr<Item> item;
+
+    // We have an item. What type?
+    auto givenID = node->GetAttribute(L"given id");
+    auto width = node->GetAttribute(L"width");
+    auto height = node->GetAttribute(L"height");
+    auto image = node->GetAttribute(L"value");
+    if (item != nullptr)
+    {
+        Add(item);
+        item->XmlLoad(node);
+    }
+}
+
+/**
+ * Handle a node of type declaration.
+ * @param node XML node
+ */
+void Sudoku::XmlDeclaration(wxXmlNode *node)
 {
     // A pointer for the item we are loading
     shared_ptr<Item> item;
