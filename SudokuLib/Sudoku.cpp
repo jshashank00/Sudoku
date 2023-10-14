@@ -6,6 +6,8 @@
 #include "pch.h"
 #include "Sudoku.h"
 #include "Sparty.h"
+#include <wx/graphics.h>
+
 using namespace std;
 
 /**

@@ -7,6 +7,8 @@
 #include "SudokuView.h"
 #include "Sudoku.h"
 #include <wx/dcbuffer.h>
+#include <wx/graphics.h>
+
 
 /**
  * Initialize the aquarium view class.
