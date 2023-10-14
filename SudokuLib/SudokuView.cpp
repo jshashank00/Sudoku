@@ -17,8 +17,6 @@ void SudokuView::Initialize(wxFrame* parent)
     SetBackgroundStyle(wxBG_STYLE_PAINT);
     Bind(wxEVT_PAINT, &SudokuView::OnPaint, this);
     Bind(wxEVT_LEFT_DOWN, &SudokuView::OnLeftDown, this);
-    Bind(wxEVT_LEFT_UP, &SudokuView::OnLeftUp, this);
-    Bind(wxEVT_MOTION, &SudokuView::OnMouseMove, this);
 
 }
 
@@ -43,41 +41,9 @@ void SudokuView::OnPaint(wxPaintEvent& event)
  */
 void SudokuView::OnLeftDown(wxMouseEvent &event)
 {
-    mGrabbedItem = mSudoku.HitTest(event.GetX(), event.GetY()); //add hit test capability here
+    const std::vector<std::shared_ptr<Item>> &items = mSudoku.GetItems();
+
+    items.front()->SetLocation(event.GetX(), event.GetY());
+    Refresh();
 }
 
-/**
-* Handle the left mouse button down event
-* @param event
-*/
-void SudokuView::OnLeftUp(wxMouseEvent &event)
-{
-    OnMouseMove(event);
-}
-
-/**
-* Handle the left mouse button down event
-* @param event
-*/
-void SudokuView::OnMouseMove(wxMouseEvent &event)
-{
-    // See if an item is currently being moved by the mouse
-    if (mGrabbedItem != nullptr)
-    {
-        // If an item is being moved, we only continue to
-        // move it while the left button is down.
-        if (event.LeftIsDown())
-        {
-            mGrabbedItem->SetLocation(event.GetX(), event.GetY());
-        }
-        else
-        {
-            // When the left button is released, we release the
-            // item.
-            mGrabbedItem = nullptr;
-        }
-
-        // Force the screen to redraw
-        Refresh();
-    }
-}

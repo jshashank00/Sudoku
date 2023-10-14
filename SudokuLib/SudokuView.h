@@ -9,20 +9,17 @@
 #define PROJECT1_SUDOKULIB_SUDOKUVIEW_H
 
 #include "Sudoku.h"
+#include "Sparty.h"
 
 class SudokuView: public wxWindow {
 private:
     Sudoku mSudoku;
     void OnPaint(wxPaintEvent& event);
-
-    /// Any item we are currently dragging
-    std::shared_ptr<Item> mGrabbedItem;
 public:
     void Initialize(wxFrame* parent);
-
     void OnLeftDown(wxMouseEvent &event);
-    void OnLeftUp(wxMouseEvent &event);
-    void OnMouseMove(wxMouseEvent &event);
+
+    void OnTimer(wxTimerEvent &event);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKUVIEW_H

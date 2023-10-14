@@ -26,6 +26,14 @@ Sudoku::Sudoku()
     mItems.push_back(sparty);
 }
 
+/**
+ * Getter for mItems
+ * @return mItems
+ */
+const std::vector<std::shared_ptr<Item>>& Sudoku::GetItems() const
+{
+    return mItems;
+}
 
 /**  Test an x,y click location to see if it clicked
 * on some item in the game.

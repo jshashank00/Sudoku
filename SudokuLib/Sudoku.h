@@ -9,6 +9,7 @@
 #define PROJECT1_SUDOKULIB_SUDOKU_H
 
 #include "Item.h"
+#include "Sparty.h"
 
 class Sudoku {
 private:
@@ -16,6 +17,8 @@ private:
 
     /// All the items in our game
     std::vector<std::shared_ptr<Item>> mItems;
+
+    std::shared_ptr<Item> mSparty;
 
 public:
     Sudoku();
@@ -26,6 +29,11 @@ public:
     void Load(const wxString &filename);
     void XmlItem(wxXmlNode *node);
     void XmlDeclaration(wxXmlNode *node);
+    /**
+     * getter for mItems
+     * @return list of items in game
+     */
+    const std::vector<std::shared_ptr<Item>>& GetItems() const;
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H
