@@ -60,7 +60,7 @@ std::shared_ptr<Item> Sudoku::HitTest(int x, int y)
 void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
     // Determine the size of the playing area in virtual pixels (up to you)
-    int pixelWidth = 950;
+    int pixelWidth = 988;
     int pixelHeight = 750;
 
     // Calculate the scaling factors
