@@ -15,9 +15,15 @@
 class Sparty : public Item
 {
 private:
+    /// The item image
+    std::unique_ptr<wxImage> mItemImage;
 
+    /// The bitmap to display for the item
+    std::unique_ptr<wxBitmap> mItemBitmap;
 public:
     Sparty(Sudoku *sudoku);
+
+    void Draw(wxDC *dc);
 };
 
 #endif //PROJECT1_SUDOKULIB_SPARTY_H

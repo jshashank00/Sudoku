@@ -44,7 +44,7 @@ public:
     double GetY() const { return mY; }
 
 
-    void Draw(wxDC *dc);
+    virtual void Draw(wxDC *dc);
 
     /**
     * Set the item location

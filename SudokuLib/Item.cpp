@@ -17,7 +17,6 @@ Item::Item(Sudoku *sudoku, const std::wstring &filename) : mSudoku(sudoku)
 {
     mItemImage = make_unique<wxImage> (filename, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
-
 }
 
 /**

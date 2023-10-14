@@ -20,6 +20,9 @@ const double HeadbuttTime = 0.5;
 /// Sparty filename
 const wstring SpartyImageName = L"images/sparty-1.png";
 
+/// Sparty filename
+const wstring SpartyImageMouthName = L"images/sparty-2.png";
+
 /**
  * Constructor
  * @param sudoku The sudoku game we are in
@@ -28,4 +31,16 @@ const wstring SpartyImageName = L"images/sparty-1.png";
 Sparty::Sparty(Sudoku *sudoku) :
     Item(sudoku, SpartyImageName)
 {
+    mItemImage = make_unique<wxImage> (SpartyImageMouthName, wxBITMAP_TYPE_ANY);
+    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+}
+
+void Sparty::Draw(wxDC *dc)
+{
+    Item::Draw(dc);
+    double wid = mItemBitmap->GetWidth();
+    double hit = mItemBitmap->GetHeight();
+    dc->DrawBitmap(*mItemBitmap,
+                   int(GetX() - wid / 2),
+                   int(GetY() - hit / 2));
 }
