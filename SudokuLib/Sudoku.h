@@ -20,10 +20,14 @@ private:
 
     std::shared_ptr<Item> mSparty;
 
+    double mScale = 0;
+    double mXOffset = 0.0;
+    double mYOffset = 0.0;
+
 public:
     Sudoku();
     std::shared_ptr<Item> HitTest(int x, int y);
-    void OnDraw(wxDC *dc);
+    void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Add(std::shared_ptr<Item> item);
     void Clear();
     void Load(const wxString &filename);

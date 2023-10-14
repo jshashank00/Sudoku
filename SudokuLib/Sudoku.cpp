@@ -15,14 +15,14 @@ Sudoku::Sudoku()
 {
     mBackground = make_unique<wxBitmap>(L"images/background.png", wxBITMAP_TYPE_ANY);
 
-    // Create a sparty
+     //Create a sparty
     // This creates a shared pointer to sparty
     shared_ptr<Item> sparty = make_shared<Sparty>(this);
 
     // Set the location
     sparty->SetLocation(100, 100);
 
-    // Add to the list of fish.
+    // Add to the list
     mItems.push_back(sparty);
 }
 
@@ -57,22 +57,34 @@ std::shared_ptr<Item> Sudoku::HitTest(int x, int y)
  * Draw the game
  * @param dc The device context to draw on
  */
-void Sudoku::OnDraw(wxDC *dc)
+void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    dc->DrawBitmap(*mBackground, 0, 0);
+    // Determine the size of the playing area in virtual pixels (up to you)
+    int pixelWidth = 950;
+    int pixelHeight = 750;
 
-    wxFont font(wxSize(0, 20),
-                wxFONTFAMILY_SWISS,
-                wxFONTSTYLE_NORMAL,
-                wxFONTWEIGHT_NORMAL);
-    for(auto item : mItems)
-    {
-        item->Draw(dc);
+    // Calculate the scaling factors
+    double scaleX = double(width) / double(pixelWidth);
+    double scaleY = double(height) / double(pixelHeight);
+    mScale = std::min(scaleX, scaleY);
+
+    // Calculate the offsets for centering the content
+    mXOffset = (width - pixelWidth * mScale) / 2.0;
+    mYOffset = (height - pixelHeight * mScale) / 2.0;
+
+    graphics->PushState();
+
+    graphics->Translate(mXOffset, mYOffset);
+    graphics->Scale(mScale, mScale);
+
+    // Draw the background image
+    if (mBackground) {
+        graphics->DrawBitmap(*mBackground, 0, 0, pixelWidth, pixelHeight);
     }
-//    dc->SetFont(font);
-//    dc->SetTextForeground(wxColour(0, 64, 0));
-//    dc->DrawText(L"Under the Sea!", 10, 10);
+
+    graphics->PopState();
 }
+
 
 /**
 * Add an item to the aquarium
@@ -118,6 +130,10 @@ void Sudoku::Load(const wxString &filename)
         if (node->GetName() == L"declarations")
         {
             XmlDeclaration(node);
+        }
+        if (node->GetName() == L"items")
+        {
+            XmlItem(node);
         }
     }
 
@@ -174,3 +190,5 @@ void Sudoku::Clear()
 {
     mItems.clear();
 }
+
+
