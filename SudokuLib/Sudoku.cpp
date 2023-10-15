@@ -158,8 +158,43 @@ void Sudoku::Load(const wxString &filename)
         {
             XmlItem(node);
         }
+        if (node->GetName() == L"game")
+        {
+            XmlGame(node);
+        }
     }
 
+}
+
+/**
+ * Handle a node of type game.
+ * @param node XML node
+ */
+void Sudoku::XmlGame(wxXmlNode *node)
+{
+    // A pointer for the item we are loading
+    shared_ptr<Item> item;
+    for( ; node; node=node->GetNext())
+    {
+        if(node->GetName() == L"col")
+        {
+            auto givenID = node->GetAttribute(L"col");
+        }
+        else if(node->GetName() == L"row")
+        {
+            auto width = node->GetAttribute(L"row");
+        }
+        else
+        {
+
+        }
+    }
+
+    if (item != nullptr)
+    {
+        Add(item);
+        item->XmlLoad(node);
+    }
 }
 
 /**
@@ -207,7 +242,7 @@ void Sudoku::XmlDeclaration(wxXmlNode *node)
 /**
 *  Clear the city data.
 *
-* Deletes all known items in the city.
+* Deletes all known items in the game.
 */
 void Sudoku::Clear()
 {

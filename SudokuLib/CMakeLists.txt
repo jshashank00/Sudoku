@@ -23,7 +23,9 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Grid.cpp
         Grid.h
         Xray.h
-        Xray.cpp)
+        Xray.cpp
+        LevelLoad.cpp
+        LevelLoad.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

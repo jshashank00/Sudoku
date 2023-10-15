@@ -40,6 +40,7 @@ public:
      */
     const std::vector<std::shared_ptr<Item>>& GetItems() const;
     void Update(double elapsed);
+    void XmlGame(wxXmlNode *node);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H
