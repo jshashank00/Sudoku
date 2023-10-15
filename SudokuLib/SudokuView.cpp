@@ -5,11 +5,14 @@
 
 #include "pch.h"
 #include "SudokuView.h"
+#include "Sudoku.h"
 #include <wx/dcbuffer.h>
 #include "Scoreboard.h"
+#include <wx/graphics.h>
 
 /// Frame duration
 const int FrameDuration = 30;
+
 
 /**
  * Initialize the aquarium view class.
@@ -17,7 +20,10 @@ const int FrameDuration = 30;
  */
 void SudokuView::Initialize(wxFrame* parent)
 {
-    Create(parent, wxID_ANY);
+    //wxFrame *mainFrame = nullptr;
+    Create(parent, wxID_ANY,
+           wxDefaultPosition, wxDefaultSize,
+           wxFULL_REPAINT_ON_RESIZE);
     SetBackgroundStyle(wxBG_STYLE_PAINT);
     Bind(wxEVT_PAINT, &SudokuView::OnPaint, this);
     Bind(wxEVT_LEFT_DOWN, &SudokuView::OnLeftDown, this);
@@ -49,11 +55,23 @@ void SudokuView::OnPaint(wxPaintEvent& event)
     mSudoku.Update(elapsed);
 
     wxAutoBufferedPaintDC dc(this);
-    wxBrush background(*wxWHITE);
+
+    wxBrush background(*wxBLACK);
     dc.SetBackground(background);
     dc.Clear();
 
-    mSudoku.OnDraw(&dc);
+    // Create a graphics context
+    auto gc =
+        std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
+
+    // Tell the game class to draw
+    wxRect rect = GetRect();
+    mSudoku.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
+}
+
+void SudokuView::OnSize(wxSizeEvent& event) {
+    Refresh();
+    event.Skip();
 }
 
 /**

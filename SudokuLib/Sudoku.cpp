@@ -7,6 +7,8 @@
 #include "Sudoku.h"
 #include "Sparty.h"
 #include "Scoreboard.h"
+#include <wx/graphics.h>
+
 using namespace std;
 
 /**
@@ -24,7 +26,7 @@ Sudoku::Sudoku()
     // Set the location
     sparty->SetLocation(100, 100);
 
-    // Add to the list of fish.
+    // Add to the list
     mItems.push_back(sparty);
     mItems.push_back(scoreboard);
 }
@@ -60,8 +62,32 @@ std::shared_ptr<Item> Sudoku::HitTest(int x, int y)
  * Draw the game
  * @param dc The device context to draw on
  */
-void Sudoku::OnDraw(wxDC *dc)
+void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
+    // Determine the size of the playing area in virtual pixels (up to you)
+    int pixelWidth = 988;
+    int pixelHeight = 750;
+
+    // Calculate the scaling factors
+    double scaleX = double(width) / double(pixelWidth);
+    double scaleY = double(height) / double(pixelHeight);
+    mScale = std::min(scaleX, scaleY);
+
+    // Calculate the offsets for centering the content
+    mXOffset = (width - pixelWidth * mScale) / 2.0;
+    mYOffset = (height - pixelHeight * mScale) / 2.0;
+
+    graphics->PushState();
+
+    graphics->Translate(mXOffset, mYOffset);
+    graphics->Scale(mScale, mScale);
+
+    // Draw the background image
+    if (mBackground) {
+        graphics->DrawBitmap(*mBackground, 0, 0, pixelWidth, pixelHeight);
+    }
+
+    /*
     dc->DrawBitmap(*mBackground, 0, 0);
 
     wxFont font(wxSize(0, 20),
@@ -72,7 +98,10 @@ void Sudoku::OnDraw(wxDC *dc)
     {
         item->Draw(dc);
     }
+     */
+    graphics->PopState();
 }
+
 
 /**
 * Add an item to the game
@@ -118,6 +147,10 @@ void Sudoku::Load(const wxString &filename)
         if (node->GetName() == L"declarations")
         {
             XmlDeclaration(node);
+        }
+        if (node->GetName() == L"items")
+        {
+            XmlItem(node);
         }
     }
 

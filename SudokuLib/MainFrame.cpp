@@ -76,3 +76,4 @@ void MainFrame::OnAbout(wxCommandEvent& event)
                  wxOK | wxICON_INFORMATION,
                  this);
 }
+

@@ -30,6 +30,8 @@ public:
     void Initialize(wxFrame* parent);
     void OnLeftDown(wxMouseEvent &event);
     void OnTimer(wxTimerEvent &event);
+    void OnSize(wxSizeEvent& event);
+
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKUVIEW_H
