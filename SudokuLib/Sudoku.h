@@ -18,6 +18,7 @@ private:
     /// All the items in our game
     std::vector<std::shared_ptr<Item>> mItems;
 
+    /// Sparty for this game
     std::shared_ptr<Item> mSparty;
 
 public:
@@ -34,6 +35,7 @@ public:
      * @return list of items in game
      */
     const std::vector<std::shared_ptr<Item>>& GetItems() const;
+    void Update(double elapsed);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

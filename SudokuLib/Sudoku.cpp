@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "Sudoku.h"
 #include "Sparty.h"
+#include "Scoreboard.h"
 using namespace std;
 
 /**
@@ -18,12 +19,14 @@ Sudoku::Sudoku()
     // Create a sparty
     // This creates a shared pointer to sparty
     shared_ptr<Item> sparty = make_shared<Sparty>(this);
+    shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
 
     // Set the location
     sparty->SetLocation(100, 100);
 
     // Add to the list of fish.
     mItems.push_back(sparty);
+    mItems.push_back(scoreboard);
 }
 
 /**
@@ -69,13 +72,10 @@ void Sudoku::OnDraw(wxDC *dc)
     {
         item->Draw(dc);
     }
-//    dc->SetFont(font);
-//    dc->SetTextForeground(wxColour(0, 64, 0));
-//    dc->DrawText(L"Under the Sea!", 10, 10);
 }
 
 /**
-* Add an item to the aquarium
+* Add an item to the game
  * @param item New item to add
 */
 void Sudoku::Add(std::shared_ptr<Item> item)
@@ -173,4 +173,16 @@ void Sudoku::XmlDeclaration(wxXmlNode *node)
 void Sudoku::Clear()
 {
     mItems.clear();
+}
+
+/**
+ * Handle updates for animation
+ * @param elapsed The time since the last update
+ */
+void Sudoku::Update(double elapsed)
+{
+    for (auto item : mItems)
+    {
+        item->Update(elapsed);
+    }
 }

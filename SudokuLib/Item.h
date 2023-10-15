@@ -56,8 +56,17 @@ public:
     bool HitTest(int x, int y);
     void XmlLoad(wxXmlNode *node);
 
-    /// The game the item is in
+    /// Constructor
     Item(Sudoku *sudoku, const std::wstring &filename);
+
+    ///Constructor
+    Item(Sudoku *sudoku);
+
+    /**
+     * Handle updates for animation
+     * @param elapsed The time since the last update
+     */
+    virtual void Update(double elapsed) {}
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H

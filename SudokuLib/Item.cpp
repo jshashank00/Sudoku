@@ -19,6 +19,11 @@ Item::Item(Sudoku *sudoku, const std::wstring &filename) : mSudoku(sudoku)
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
 
+Item::Item(Sudoku *sudoku) : mSudoku(sudoku)
+{
+
+}
+
 /**
  * Test to see if we hit this object with a mouse.
  * @param x X position to test
