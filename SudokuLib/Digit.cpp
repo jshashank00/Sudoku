@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "Digit.h"
+#include <wx/graphics.h>
 
 using namespace std;
 

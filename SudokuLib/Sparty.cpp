@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "Sparty.h"
+#include <wx/graphics.h>
 
 using namespace std;
 
