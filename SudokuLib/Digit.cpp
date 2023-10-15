@@ -19,10 +19,10 @@ Digit::Digit(Sudoku *sudoku) :
 
 void Digit::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    Number::Draw(graphics, width, height);
-    double wid = mNumberBitmap->GetWidth();
-    double hit = mNumberBitmap->GetHeight();
-    graphics->DrawBitmap(*mNumberBitmap,
-                         int(GetX() - wid / 2),
-                         int(GetY() - hit / 2), width, height);
+//    Number::Draw(graphics, width, height);
+//    double wid = mNumberBitmap->GetWidth();
+//    double hit = mNumberBitmap->GetHeight();
+//    graphics->DrawBitmap(*mNumberBitmap,
+//                         int(GetX() - wid / 2),
+//                         int(GetY() - hit / 2), width, height);
 }

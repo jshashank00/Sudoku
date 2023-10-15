@@ -37,10 +37,10 @@ Sparty::Sparty(Sudoku *sudoku) :
 
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    Item::Draw(graphics, width, height);
-    double wid = mItemBitmap->GetWidth();
-    double hit = mItemBitmap->GetHeight();
-    graphics->DrawBitmap(*mItemBitmap,
-                   int(GetX() - wid / 2),
-                   int(GetY() - hit / 2), width, height);
+//    Item::Draw(graphics, width, height);
+//    double wid = mItemBitmap->GetWidth();
+//    double hit = mItemBitmap->GetHeight();
+//    graphics->DrawBitmap(*mItemBitmap,
+//                   int(GetX() - wid / 2),
+//                   int(GetY() - hit / 2), width, height);
 }
