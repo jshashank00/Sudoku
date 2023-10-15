@@ -7,7 +7,11 @@
 #include "SudokuView.h"
 #include "Sudoku.h"
 #include <wx/dcbuffer.h>
+#include "Scoreboard.h"
 #include <wx/graphics.h>
+
+/// Frame duration
+const int FrameDuration = 30;
 
 
 /**
@@ -23,7 +27,18 @@ void SudokuView::Initialize(wxFrame* parent)
     SetBackgroundStyle(wxBG_STYLE_PAINT);
     Bind(wxEVT_PAINT, &SudokuView::OnPaint, this);
     Bind(wxEVT_LEFT_DOWN, &SudokuView::OnLeftDown, this);
+    Bind(wxEVT_TIMER, &SudokuView::OnTimer, this);
+    mTimer.SetOwner(this);
+    mTimer.Start(FrameDuration);
+}
 
+/**
+* Event Handler for the timer message
+* @param event
+*/
+void SudokuView::OnTimer(wxTimerEvent& event)
+{
+    Refresh();
 }
 
 /**
@@ -32,6 +47,13 @@ void SudokuView::Initialize(wxFrame* parent)
  */
 void SudokuView::OnPaint(wxPaintEvent& event)
 {
+    // Compute the time that has elapsed
+    // since the last call to OnPaint.
+    auto newTime = mStopWatch.Time();
+    auto elapsed = (double)(newTime - mTime) * 0.001;
+    mTime = newTime;
+    mSudoku.Update(elapsed);
+
     wxAutoBufferedPaintDC dc(this);
 
     wxBrush background(*wxBLACK);

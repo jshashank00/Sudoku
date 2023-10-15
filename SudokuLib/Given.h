@@ -22,6 +22,7 @@ private:
 
 public:
 
+
 };
 
 #endif //PROJECT1_SUDOKULIB_GIVEN_H

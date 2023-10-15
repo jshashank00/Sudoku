@@ -10,10 +10,21 @@
 
 #include "Sudoku.h"
 #include "Sparty.h"
+#include "Scoreboard.h"
 
 class SudokuView: public wxWindow {
 private:
     Sudoku mSudoku;
+
+    /// Timer for the scoreboard
+    wxTimer mTimer;
+
+    /// Stopwatch used to measure elapsed time
+    wxStopWatch mStopWatch;
+
+    /// The last stopwatch time
+    long mTime = 0;
+
     void OnPaint(wxPaintEvent& event);
 public:
     void Initialize(wxFrame* parent);

@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "Item.h"
 #include "Sudoku.h"
+#include <wx/graphics.h>
 using namespace std;
 
 /**
@@ -17,6 +18,11 @@ Item::Item(Sudoku *sudoku, const std::wstring &filename) : mSudoku(sudoku)
 {
     mItemImage = make_unique<wxImage> (filename, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+}
+
+Item::Item(Sudoku *sudoku) : mSudoku(sudoku)
+{
+
 }
 
 /**
@@ -67,11 +73,11 @@ void Item::XmlLoad(wxXmlNode *node)
  * Draw an item
  * @param dc Device context to draw on
  */
-void Item::Draw(wxDC *dc)
+void Item::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
-    dc->DrawBitmap(*mItemBitmap,
+    graphics->DrawBitmap(*mItemBitmap,
                    int(GetX() - wid / 2),
-                   int(GetY() - hit / 2));
+                   int(GetY() - hit / 2), width, height);
 }

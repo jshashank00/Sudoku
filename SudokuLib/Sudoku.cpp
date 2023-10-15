@@ -6,6 +6,9 @@
 #include "pch.h"
 #include "Sudoku.h"
 #include "Sparty.h"
+#include "Scoreboard.h"
+#include "Number.h"
+#include "Digit.h"
 #include <wx/graphics.h>
 
 using namespace std;
@@ -17,15 +20,20 @@ Sudoku::Sudoku()
 {
     mBackground = make_unique<wxBitmap>(L"images/background.png", wxBITMAP_TYPE_ANY);
 
-     //Create a sparty
+    // Create a sparty
     // This creates a shared pointer to sparty
     shared_ptr<Item> sparty = make_shared<Sparty>(this);
+    shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
+    shared_ptr<Number> num = make_shared<Digit>(this);
 
     // Set the location
     sparty->SetLocation(100, 100);
+    num->SetLocation(200, 100);
 
     // Add to the list
     mItems.push_back(sparty);
+    mItems.push_back(scoreboard);
+    mItems.push_back(num);
 }
 
 /**
@@ -84,12 +92,25 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
         graphics->DrawBitmap(*mBackground, 0, 0, pixelWidth, pixelHeight);
     }
 
+    /*
+    dc->DrawBitmap(*mBackground, 0, 0);
+
+    wxFont font(wxSize(0, 20),
+                wxFONTFAMILY_SWISS,
+                wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_NORMAL);
+    */
+    for(auto item : mItems)
+    {
+        item->Draw(graphics, pixelWidth, pixelHeight);
+    }
+
     graphics->PopState();
 }
 
 
 /**
-* Add an item to the aquarium
+* Add an item to the game
  * @param item New item to add
 */
 void Sudoku::Add(std::shared_ptr<Item> item)
@@ -193,4 +214,14 @@ void Sudoku::Clear()
     mItems.clear();
 }
 
-
+/**
+ * Handle updates for animation
+ * @param elapsed The time since the last update
+ */
+void Sudoku::Update(double elapsed)
+{
+    for (auto item : mItems)
+    {
+        item->Update(elapsed);
+    }
+}

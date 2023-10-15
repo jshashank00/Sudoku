@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "Sparty.h"
+#include <wx/graphics.h>
 
 using namespace std;
 
@@ -35,12 +36,12 @@ Sparty::Sparty(Sudoku *sudoku) :
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
 
-void Sparty::Draw(wxDC *dc)
+void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    Item::Draw(dc);
-    double wid = mItemBitmap->GetWidth();
-    double hit = mItemBitmap->GetHeight();
-    dc->DrawBitmap(*mItemBitmap,
-                   int(GetX() - wid / 2),
-                   int(GetY() - hit / 2));
+//    Item::Draw(graphics, width, height);
+//    double wid = mItemBitmap->GetWidth();
+//    double hit = mItemBitmap->GetHeight();
+//    graphics->DrawBitmap(*mItemBitmap,
+//                   int(GetX() - wid / 2),
+//                   int(GetY() - hit / 2), width, height);
 }
