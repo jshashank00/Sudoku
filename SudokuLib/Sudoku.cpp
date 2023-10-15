@@ -94,11 +94,12 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
                 wxFONTFAMILY_SWISS,
                 wxFONTSTYLE_NORMAL,
                 wxFONTWEIGHT_NORMAL);
+    */
     for(auto item : mItems)
     {
-        item->Draw(dc);
+        item->Draw(graphics, pixelWidth, pixelHeight);
     }
-     */
+
     graphics->PopState();
 }
 

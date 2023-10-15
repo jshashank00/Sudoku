@@ -23,7 +23,7 @@ private:
 public:
     Sparty(Sudoku *sudoku);
 
-    void Draw(wxDC *dc);
+    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 };
 
 #endif //PROJECT1_SUDOKULIB_SPARTY_H

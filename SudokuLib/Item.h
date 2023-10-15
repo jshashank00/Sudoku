@@ -44,7 +44,7 @@ public:
     double GetY() const { return mY; }
 
 
-    virtual void Draw(wxDC *dc);
+    virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     /**
     * Set the item location

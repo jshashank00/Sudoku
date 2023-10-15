@@ -26,13 +26,13 @@ Scoreboard::Scoreboard(Sudoku *sudoku) : Item(sudoku)
  * Draw the scoreboard
  * @param dc Device context to draw on
  */
-void Scoreboard::Draw(wxDC *dc)
+void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
     wxFont font(wxSize(0, ScoreboardTextSize),
                 wxFONTFAMILY_SWISS,
                 wxFONTSTYLE_NORMAL,
                 wxFONTWEIGHT_NORMAL);
-    dc->SetFont(font);
+    graphics->SetFont(font, *wxWHITE);
 
     time_t current = time(0);
     time_t diff =  current - now;
@@ -47,6 +47,6 @@ void Scoreboard::Draw(wxDC *dc)
     string str = std::to_string(ltm->tm_min) + ":" + secStr;
 
 
-    dc->DrawText(str, 10, 10);
+    graphics->DrawText(str, 10, 10);
 }
 
