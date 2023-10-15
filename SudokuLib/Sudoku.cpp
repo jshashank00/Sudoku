@@ -7,6 +7,8 @@
 #include "Sudoku.h"
 #include "Sparty.h"
 #include "Scoreboard.h"
+#include "Number.h"
+#include "Digit.h"
 #include <wx/graphics.h>
 
 using namespace std;
@@ -22,13 +24,16 @@ Sudoku::Sudoku()
     // This creates a shared pointer to sparty
     shared_ptr<Item> sparty = make_shared<Sparty>(this);
     shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
+    shared_ptr<Number> num = make_shared<Digit>(this);
 
     // Set the location
     sparty->SetLocation(100, 100);
+    num->SetLocation(200, 100);
 
     // Add to the list
     mItems.push_back(sparty);
     mItems.push_back(scoreboard);
+    mItems.push_back(num);
 }
 
 /**
