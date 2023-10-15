@@ -8,7 +8,6 @@
 #ifndef PROJECT1_SUDOKULIB_GRID_H
 #define PROJECT1_SUDOKULIB_GRID_H
 
-#include "Sudoku.h"
 /**
  * Base class for the grid in our game
  */
