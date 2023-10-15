@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "Scoreboard.h"
 #include <ctime>
+#include <wx/graphics.h>
 using namespace std;
 
 /// Size of the scoreboard text in virtual pixels

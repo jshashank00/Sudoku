@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "Item.h"
 #include "Sudoku.h"
+#include <wx/graphics.h>
 using namespace std;
 
 /**
