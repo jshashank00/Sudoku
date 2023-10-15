@@ -17,7 +17,11 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Sparty.cpp
         Sparty.h
         Scoreboard.cpp
-        Scoreboard.h)
+        Scoreboard.h
+        GridTile.cpp
+        GridTile.h
+        Grid.cpp
+        Grid.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
