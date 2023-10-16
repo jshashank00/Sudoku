@@ -36,8 +36,8 @@ Sudoku::Sudoku()
     sparty->SetLocation(100, 100);
     num->SetLocation(200, 100);
     xray->SetLocation(50, 0);
-    pumpkin->SetLocation(400, 0);
-    cauldron->SetLocation(600, 0);
+    pumpkin->SetLocation(204, 176);
+    cauldron->SetLocation(220, 215);
 
     // Add to the list
     mItems.push_back(sparty);
