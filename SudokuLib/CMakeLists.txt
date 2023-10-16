@@ -25,7 +25,11 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Xray.h
         Xray.cpp
         LevelLoad.cpp
-        LevelLoad.h)
+        LevelLoad.h
+        Container.cpp
+        Container.h
+        Level.cpp
+        Level.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
