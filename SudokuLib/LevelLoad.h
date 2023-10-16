@@ -14,7 +14,7 @@ class LevelLoad
 {
 private:
     /// the sudoku game we are in
-    Sudoku mSudoku;
+    Sudoku *mSudoku;
 
 public:
     void Load(const wxString &filename);

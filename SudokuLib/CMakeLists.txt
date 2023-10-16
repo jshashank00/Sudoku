@@ -32,8 +32,8 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Level.h
         Background.cpp
         Background.h
-        Declarations.h
-        Declarations.cpp
+        Declaration.h
+        Declaration.cpp
         Pumpkin.cpp
         Pumpkin.h
         Container.cpp
