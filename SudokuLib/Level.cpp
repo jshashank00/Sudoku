@@ -8,4 +8,4 @@
 using namespace std;
 
 /// Level 2 background filename
-const wstring Background2ImageName = L"images/background2.png";
+const wstring BackgroundImageName = L"images/background2.png";

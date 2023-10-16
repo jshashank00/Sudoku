@@ -10,6 +10,8 @@
 #include "Number.h"
 #include "Digit.h"
 #include "Xray.h"
+#include "Pumpkin.h"
+#include "Cauldron.h"
 #include <wx/graphics.h>
 
 using namespace std;
@@ -27,17 +29,23 @@ Sudoku::Sudoku()
     shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
     shared_ptr<Number> num = make_shared<Digit>(this);
     shared_ptr<Item> xray = make_shared<Xray>(this);
+    shared_ptr<Item> pumpkin = make_shared<Pumpkin>(this);
+    shared_ptr<Item> cauldron = make_shared<Cauldron>(this);
 
     // Set the location
     sparty->SetLocation(100, 100);
     num->SetLocation(200, 100);
     xray->SetLocation(50, 0);
+    pumpkin->SetLocation(400, 0);
+    cauldron->SetLocation(600, 0);
 
     // Add to the list
     mItems.push_back(sparty);
     mItems.push_back(scoreboard);
     mItems.push_back(num);
     mItems.push_back(xray);
+    mItems.push_back(pumpkin);
+    mItems.push_back(cauldron);
 }
 
 /**

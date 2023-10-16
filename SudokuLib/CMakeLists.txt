@@ -26,14 +26,16 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Xray.cpp
         LevelLoad.cpp
         LevelLoad.h
-        Container.cpp
-        Container.h
+        Cauldron.cpp
+        Cauldron.h
         Level.cpp
         Level.h
         Background.cpp
         Background.h
         Declarations.h
-        Declarations.cpp)
+        Declarations.cpp
+        Pumpkin.cpp
+        Pumpkin.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
