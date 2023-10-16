@@ -35,7 +35,9 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Declarations.h
         Declarations.cpp
         Pumpkin.cpp
-        Pumpkin.h)
+        Pumpkin.h
+        Container.cpp
+        Container.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
