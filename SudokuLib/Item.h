@@ -29,6 +29,11 @@ private:
     /// Item location
     double mX = 0;
     double mY = 0;
+    double mCol = 0;
+    double mRow = 0;
+
+    /// Item id
+    wxString mID;
 
 public:
     /**

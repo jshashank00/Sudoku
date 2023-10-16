@@ -5,6 +5,11 @@
 
 #include "pch.h"
 #include "LevelLoad.h"
+#include "Given.h"
+#include "Digit.h"
+#include "Sparty.h"
+#include "Xray.h"
+#include "Background.h"
 
 using namespace std;
 
@@ -79,27 +84,27 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     {
         if(node->GetName() == L"given")
         {
-            auto itemID = node->GetAttribute(L"id");
+//            item = make_shared<Given>(this);
         }
         else if(node->GetName() == L"digit")
         {
-            auto row = node->GetAttribute(L"row");
+//            item = make_shared<Digit>(this);
         }
         else if (node->GetName() == L"sparty")
         {
-
+//            item = make_shared<Sparty>(this);
         }
         else if (node->GetName() == L"background")
         {
-
+//            item = make_shared<Background>(this);
         }
         else if (node->GetName() == L"xray")
         {
-
+//             item = make_shared<Xray>(this);
         }
         else if (node->GetName() == L"container")
         {
-
+            XmlContainer(node);
         }
     }
     if (item != nullptr)
@@ -116,20 +121,46 @@ void LevelLoad::XmlItem(wxXmlNode *node)
 void LevelLoad::XmlDeclaration(wxXmlNode *node)
 {
     // A pointer for the item we are loading
-    shared_ptr<Item> item;
+//    shared_ptr<Declaration> dec;
 
-    // We have an item. What type?
-    auto givenID = node->GetAttribute(L"given id");
-    auto width = node->GetAttribute(L"width");
-    auto height = node->GetAttribute(L"height");
-    auto image = node->GetAttribute(L"value");
-    if (item != nullptr)
+    for( ; node; node=node->GetNext())
     {
-        mSudoku.Add(item);
-        item->XmlLoad(node);
+        if(node->GetName() == L"given")
+        {
+//            dec = make_shared<Given>(this);
+        }
+        else if(node->GetName() == L"digit")
+        {
+//            dec = make_shared<Digit>(this);
+        }
+        else if (node->GetName() == L"sparty")
+        {
+//            item = make_shared<Sparty>(this);
+        }
+        else if (node->GetName() == L"background")
+        {
+//            item = make_shared<Background>(this);
+        }
+        else if (node->GetName() == L"xray")
+        {
+//             item = make_shared<Xray>(this);
+        }
+        else if (node->GetName() == L"container")
+        {
+            XmlContainer(node);
+        }
     }
+//    if (item != nullptr)
+//    {
+//        mSudoku.Add(item);
+//        item->XmlLoad(node);
+//    }
 }
 
+/**
+ * Handle a node of type container.
+ * @param node XML node
+ */
 void LevelLoad::XmlContainer(wxXmlNode *node)
 {
 

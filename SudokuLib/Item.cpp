@@ -66,7 +66,9 @@ bool Item::HitTest(int x, int y)
  */
 void Item::XmlLoad(wxXmlNode *node)
 {
-
+    mID = node->GetAttribute(L"id", L"0");
+    node->GetAttribute(L"col", L"0").ToDouble(&mCol);
+    node->GetAttribute(L"row", L"0").ToDouble(&mRow);
 }
 
 /**

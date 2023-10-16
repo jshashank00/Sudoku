@@ -13,7 +13,7 @@
 class LevelLoad
 {
 private:
-
+    /// the sudoku game we are in
     Sudoku mSudoku;
 
 public:
