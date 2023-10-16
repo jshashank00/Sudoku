@@ -7,8 +7,11 @@
 #include "Sudoku.h"
 #include "Sparty.h"
 #include "Scoreboard.h"
-#include "Number.h"
 #include "Digit.h"
+#include "Given.h"
+#include "Xray.h"
+#include "Pumpkin.h"
+#include "Cauldron.h"
 #include <wx/graphics.h>
 
 using namespace std;
@@ -24,16 +27,29 @@ Sudoku::Sudoku()
     // This creates a shared pointer to sparty
     shared_ptr<Item> sparty = make_shared<Sparty>(this);
     shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
-    shared_ptr<Number> num = make_shared<Digit>(this);
+    shared_ptr<Item> digit = make_shared<Digit>(this);
+    shared_ptr<Item> given = make_shared<Given>(this);
+    shared_ptr<Item> xray = make_shared<Xray>(this);
+    shared_ptr<Item> pumpkin = make_shared<Pumpkin>(this);
+    shared_ptr<Item> cauldron = make_shared<Cauldron>(this);
+
 
     // Set the location
     sparty->SetLocation(100, 100);
-    num->SetLocation(200, 100);
+    digit->SetLocation(200, 100);
+    given->SetLocation(270, 175 );
+    xray->SetLocation(50, 0);
+    pumpkin->SetLocation(400, 0);
+    cauldron->SetLocation(600, 0);
 
     // Add to the list
     mItems.push_back(sparty);
     mItems.push_back(scoreboard);
-    mItems.push_back(num);
+    mItems.push_back(digit);
+    mItems.push_back(given);
+    mItems.push_back(xray);
+    mItems.push_back(pumpkin);
+    mItems.push_back(cauldron);
 }
 
 std::shared_ptr<Item> Sudoku::GetSparty()
@@ -117,128 +133,8 @@ void Sudoku::Add(std::shared_ptr<Item> item)
     mItems.push_back(item);
 }
 
-/**  Load the city from a level XML file.
-*
-* Opens the XML file and reads the nodes, creating items as appropriate.
-*
-* @param filename The filename of the file to load the city from.
-*/
-void Sudoku::Load(const wxString &filename)
-{
-    wxXmlDocument xmlDoc;
-    if(!xmlDoc.Load(filename))
-    {
-        wxMessageBox(L"Unable to load Sudoku file");
-        return;
-    }
-
-    // Once we know it is open, clear the existing data
-    Clear();
-
-    // Get the XML document root node
-    auto root = xmlDoc.GetRoot();
-    auto width = root->GetAttribute(L"width");
-    auto height = root->GetAttribute(L"height");
-    auto tileWidth = root->GetAttribute(L"tilewidth");
-    auto tileHeight = root->GetAttribute(L"tileheight");
-    //
-    // Traverse the children of the root
-    // node of the XML document in memory!!!!
-    //
-    auto node = root->GetChildren();
-    for( ; node; node=node->GetNext())
-    {
-        if (node->GetName() == L"declarations")
-        {
-            XmlDeclaration(node);
-        }
-        if (node->GetName() == L"items")
-        {
-            XmlItem(node);
-        }
-        if (node->GetName() == L"game")
-        {
-            XmlGame(node);
-        }
-    }
-
-}
-
 /**
- * Handle a node of type game.
- * @param node XML node
- */
-void Sudoku::XmlGame(wxXmlNode *node)
-{
-    // A pointer for the item we are loading
-    shared_ptr<Item> item;
-    for( ; node; node=node->GetNext())
-    {
-        if(node->GetName() == L"col")
-        {
-            auto givenID = node->GetAttribute(L"col");
-        }
-        else if(node->GetName() == L"row")
-        {
-            auto width = node->GetAttribute(L"row");
-        }
-        else
-        {
-
-        }
-    }
-
-    if (item != nullptr)
-    {
-        Add(item);
-        item->XmlLoad(node);
-    }
-}
-
-/**
- * Handle a node of type item.
- * @param node XML node
- */
-void Sudoku::XmlItem(wxXmlNode *node)
-{
-    // A pointer for the item we are loading
-    shared_ptr<Item> item;
-
-    // We have an item. What type?
-    auto givenID = node->GetAttribute(L"given id");
-    auto width = node->GetAttribute(L"width");
-    auto height = node->GetAttribute(L"height");
-    auto image = node->GetAttribute(L"value");
-    if (item != nullptr)
-    {
-        Add(item);
-        item->XmlLoad(node);
-    }
-}
-
-/**
- * Handle a node of type declaration.
- * @param node XML node
- */
-void Sudoku::XmlDeclaration(wxXmlNode *node)
-{
-    // A pointer for the item we are loading
-    shared_ptr<Item> item;
-
-    // We have an item. What type?
-    auto givenID = node->GetAttribute(L"given id");
-    auto width = node->GetAttribute(L"width");
-    auto height = node->GetAttribute(L"height");
-    auto image = node->GetAttribute(L"value");
-    if (item != nullptr)
-    {
-        Add(item);
-        item->XmlLoad(node);
-    }
-}
-
-/**
-*  Clear the city data.
+*  Clear the level data.
 *
 * Deletes all known items in the game.
 */

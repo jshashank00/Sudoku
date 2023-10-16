@@ -9,12 +9,11 @@
 #define PROJECT1_SUDOKULIB_DIGIT_H
 
 #include "Item.h"
-#include "Number.h"
 
 /**
  * Class to represent a Digit Item
  */
-class Digit : public Number
+class Digit : public Item
 {
 private:
     /// The item image

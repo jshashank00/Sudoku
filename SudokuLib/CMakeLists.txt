@@ -8,8 +8,6 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Sudoku.h
         Item.cpp
         Item.h
-        Number.cpp
-        Number.h
         Digit.cpp
         Digit.h
         Given.cpp
@@ -26,10 +24,18 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Xray.cpp
         LevelLoad.cpp
         LevelLoad.h
-        Container.cpp
-        Container.h
+        Cauldron.cpp
+        Cauldron.h
         Level.cpp
-        Level.h)
+        Level.h
+        Background.cpp
+        Background.h
+        Declarations.h
+        Declarations.cpp
+        Pumpkin.cpp
+        Pumpkin.h
+        Container.cpp
+        Container.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

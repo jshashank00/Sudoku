@@ -8,7 +8,8 @@
 #ifndef PROJECT1_SUDOKULIB_CONTAINER_H
 #define PROJECT1_SUDOKULIB_CONTAINER_H
 
-class Container
+#include "Item.h"
+class Container : Item
 {
 private:
 
