@@ -7,8 +7,8 @@
 #include "Sudoku.h"
 #include "Sparty.h"
 #include "Scoreboard.h"
-#include "Number.h"
 #include "Digit.h"
+#include "Given.h"
 #include "Xray.h"
 #include "Pumpkin.h"
 #include "Cauldron.h"
@@ -27,14 +27,17 @@ Sudoku::Sudoku()
     // This creates a shared pointer to sparty
     shared_ptr<Item> sparty = make_shared<Sparty>(this);
     shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
-    shared_ptr<Number> num = make_shared<Digit>(this);
+    shared_ptr<Item> digit = make_shared<Digit>(this);
+    shared_ptr<Item> given = make_shared<Given>(this);
     shared_ptr<Item> xray = make_shared<Xray>(this);
     shared_ptr<Item> pumpkin = make_shared<Pumpkin>(this);
     shared_ptr<Item> cauldron = make_shared<Cauldron>(this);
 
+
     // Set the location
     sparty->SetLocation(100, 100);
-    num->SetLocation(200, 100);
+    digit->SetLocation(200, 100);
+    given->SetLocation(270, 175 );
     xray->SetLocation(50, 0);
     pumpkin->SetLocation(400, 0);
     cauldron->SetLocation(600, 0);
@@ -42,7 +45,8 @@ Sudoku::Sudoku()
     // Add to the list
     mItems.push_back(sparty);
     mItems.push_back(scoreboard);
-    mItems.push_back(num);
+    mItems.push_back(digit);
+    mItems.push_back(given);
     mItems.push_back(xray);
     mItems.push_back(pumpkin);
     mItems.push_back(cauldron);

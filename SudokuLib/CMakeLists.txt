@@ -8,8 +8,6 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Sudoku.h
         Item.cpp
         Item.h
-        Number.cpp
-        Number.h
         Digit.cpp
         Digit.h
         Given.cpp
