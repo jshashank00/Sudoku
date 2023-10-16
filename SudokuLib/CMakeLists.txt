@@ -29,7 +29,9 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Container.cpp
         Container.h
         Level.cpp
-        Level.h)
+        Level.h
+        Background.cpp
+        Background.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
