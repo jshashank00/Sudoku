@@ -9,6 +9,7 @@
 #include "Scoreboard.h"
 #include "Number.h"
 #include "Digit.h"
+#include "Xray.h"
 #include <wx/graphics.h>
 
 using namespace std;
@@ -25,15 +26,18 @@ Sudoku::Sudoku()
     shared_ptr<Item> sparty = make_shared<Sparty>(this);
     shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
     shared_ptr<Number> num = make_shared<Digit>(this);
+    shared_ptr<Item> xray = make_shared<Xray>(this);
 
     // Set the location
     sparty->SetLocation(100, 100);
     num->SetLocation(200, 100);
+    xray->SetLocation(50, 0);
 
     // Add to the list
     mItems.push_back(sparty);
     mItems.push_back(scoreboard);
     mItems.push_back(num);
+    mItems.push_back(xray);
 }
 
 /**
