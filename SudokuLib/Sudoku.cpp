@@ -92,14 +92,6 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
         graphics->DrawBitmap(*mBackground, 0, 0, pixelWidth, pixelHeight);
     }
 
-    /*
-    dc->DrawBitmap(*mBackground, 0, 0);
-
-    wxFont font(wxSize(0, 20),
-                wxFONTFAMILY_SWISS,
-                wxFONTSTYLE_NORMAL,
-                wxFONTWEIGHT_NORMAL);
-    */
     for(auto item : mItems)
     {
         item->Draw(graphics, pixelWidth, pixelHeight);
