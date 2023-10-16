@@ -32,6 +32,7 @@ public:
     void OnTimer(wxTimerEvent &event);
     void OnSize(wxSizeEvent& event);
 
+    void OnSpace(wxKeyEvent &event);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKUVIEW_H

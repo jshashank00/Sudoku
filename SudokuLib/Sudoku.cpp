@@ -36,6 +36,12 @@ Sudoku::Sudoku()
     mItems.push_back(num);
 }
 
+std::shared_ptr<Item> Sudoku::GetSparty()
+{
+    return mSparty;
+}
+
+
 /**
  * Getter for mItems
  * @return mItems
