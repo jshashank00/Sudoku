@@ -31,16 +31,14 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Add(std::shared_ptr<Item> item);
     void Clear();
-    void Load(const wxString &filename);
-    void XmlItem(wxXmlNode *node);
-    void XmlDeclaration(wxXmlNode *node);
+
     /**
      * getter for mItems
      * @return list of items in game
      */
     const std::vector<std::shared_ptr<Item>>& GetItems() const;
     void Update(double elapsed);
-    void XmlGame(wxXmlNode *node);
+
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H
