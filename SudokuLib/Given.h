@@ -9,12 +9,11 @@
 #define PROJECT1_SUDOKULIB_GIVEN_H
 
 #include "Item.h"
-#include "Number.h"
 
 /**
  * Class to represent a Given number
  */
-class Given : public Number
+class Given : public Item
 {
 private:
     /// The number image

@@ -37,6 +37,12 @@ public:
      * @return list of items in game
      */
     const std::vector<std::shared_ptr<Item>>& GetItems() const;
+    /**
+     * getter for sparty
+     * @return pointer to sparty
+     */
+    std::shared_ptr<Item> GetSparty();
+
     void Update(double elapsed);
 
 };
