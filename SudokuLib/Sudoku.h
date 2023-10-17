@@ -25,6 +25,10 @@ private:
     double mXOffset = 0.0;
     double mYOffset = 0.0;
 
+    wxStopWatch mStopWatch;
+    double mElapsedTime = 0.0; // To track the elapsed time
+    double mTime = 0.0;
+
 public:
     Sudoku();
     std::shared_ptr<Item> HitTest(int x, int y);
