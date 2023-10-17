@@ -85,7 +85,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     {
         if(node->GetName() == L"given")
         {
-//            item = make_shared<Given>(mSudoku);
+            item = make_shared<Given>(mSudoku);
         }
         else if(node->GetName() == L"digit")
         {

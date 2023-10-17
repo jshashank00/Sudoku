@@ -8,7 +8,12 @@
 #ifndef PROJECT1_SUDOKULIB_BACKGROUND_H
 #define PROJECT1_SUDOKULIB_BACKGROUND_H
 
-class Background
+#include "Item.h"
+
+/**
+ * Class to represent a Background
+ */
+class Background : public Item
 {
 private:
 
