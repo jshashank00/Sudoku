@@ -86,16 +86,16 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     {
         if(childNode->GetName() == L"given")
         {
-//            item = make_shared<Given>(mSudoku);
-//            item->XmlLoad(node);
+            auto item = make_shared<Given>(mSudoku);
+            item->XmlLoad(node);
         }
         else if(childNode->GetName() == L"digit")
         {
-//            item = make_shared<Digit>(mSudoku);
+            auto item = make_shared<Digit>(mSudoku);
         }
         else if (childNode->GetName() == L"sparty")
         {
-//            item = make_shared<Sparty>(mSudoku);
+            auto item = make_shared<Sparty>(mSudoku);
         }
         else if (childNode->GetName() == L"background")
         {
@@ -103,7 +103,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         }
         else if (childNode->GetName() == L"xray")
         {
-//             item = make_shared<Xray>(mSudoku);
+            auto item = make_shared<Xray>(mSudoku);
         }
         else if (childNode->GetName() == L"container")
         {
@@ -112,8 +112,8 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     }
     if (item != nullptr)
     {
-//        mSudoku->Add(item);
-//        item->XmlLoad(node);
+        mSudoku->Add(item);
+        item->XmlLoad(node);
     }
 }
 
