@@ -30,7 +30,7 @@ Sudoku::Sudoku()
     mBackground = make_unique<wxBitmap>(background, wxBITMAP_TYPE_ANY);
     // Create a sparty
     // This creates a shared pointer to sparty
-    shared_ptr<Item> sparty = make_shared<Sparty>(this);
+    mSparty = make_shared<Sparty>(this);
     shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
     shared_ptr<Item> digit = make_shared<Digit>(this);
     shared_ptr<Item> given = make_shared<Given>(this);
@@ -40,7 +40,7 @@ Sudoku::Sudoku()
 
 
     // Set the location
-    sparty->SetLocation(100, 100);
+    mSparty->SetLocation(100, 100);
     digit->SetLocation(200, 100);
     given->SetLocation(270, 175 );
     xray->SetLocation(50, 0);
@@ -48,7 +48,7 @@ Sudoku::Sudoku()
     cauldron->SetLocation(220, 215);
 
     // Add to the list
-    mItems.push_back(sparty);
+    mItems.push_back(mSparty);
     mItems.push_back(scoreboard);
     mItems.push_back(digit);
     mItems.push_back(given);
@@ -57,6 +57,10 @@ Sudoku::Sudoku()
     mItems.push_back(cauldron);
 }
 
+/**
+ * Getter for mSparty
+ * @return mSparty
+ */
 std::shared_ptr<Item> Sudoku::GetSparty()
 {
     return mSparty;
