@@ -12,6 +12,7 @@
 #include "Background.h"
 #include "Declaration.h"
 
+
 using namespace std;
 
 /**  Load the level from a level XML file.
@@ -20,7 +21,7 @@ using namespace std;
 *
 * @param filename The filename of the file to load the city from.
 */
-void LevelLoad::Load(const wxString &filename)
+LevelLoad::LevelLoad(const wxString &filename)
 {
     wxXmlDocument xmlDoc;
     if(!xmlDoc.Load(filename))
@@ -34,10 +35,10 @@ void LevelLoad::Load(const wxString &filename)
 
     // Get the XML document root node
     auto root = xmlDoc.GetRoot();
-    auto width = root->GetAttribute(L"width");
-    auto height = root->GetAttribute(L"height");
-    auto tileWidth = root->GetAttribute(L"tilewidth");
-    auto tileHeight = root->GetAttribute(L"tileheight");
+    mWidth = root->GetAttribute(L"width");
+    mHeight = root->GetAttribute(L"height");
+    mTileWidth = root->GetAttribute(L"tilewidth");
+    mTileHeight = root->GetAttribute(L"tileheight");
     //
     // Traverse the children of the root
     // node of the XML document in memory!!!!
@@ -67,9 +68,9 @@ void LevelLoad::Load(const wxString &filename)
  */
 void LevelLoad::XmlGame(wxXmlNode *node)
 {
-    auto col = node->GetAttribute(L"col");
-    auto row = node->GetAttribute(L"row");
-    auto solution = node->GetNodeContent();
+    mCol = node->GetAttribute(L"col");
+    mRow = node->GetAttribute(L"row");
+    mSolution = node->GetNodeContent();
 }
 
 /**
@@ -80,38 +81,39 @@ void LevelLoad::XmlItem(wxXmlNode *node)
 {
     // A pointer for the item we are loading
     shared_ptr<Item> item;
-
-    for( ; node; node=node->GetNext())
+    auto childNode = node->GetChildren();
+    for( ; childNode; childNode=childNode->GetNext())
     {
-        if(node->GetName() == L"given")
+        if(childNode->GetName() == L"given")
         {
-            item = make_shared<Given>(mSudoku);
+//            item = make_shared<Given>(mSudoku);
+//            item->XmlLoad(node);
         }
-        else if(node->GetName() == L"digit")
+        else if(childNode->GetName() == L"digit")
         {
-            item = make_shared<Digit>(mSudoku);
+//            item = make_shared<Digit>(mSudoku);
         }
-        else if (node->GetName() == L"sparty")
+        else if (childNode->GetName() == L"sparty")
         {
-            item = make_shared<Sparty>(mSudoku);
+//            item = make_shared<Sparty>(mSudoku);
         }
-        else if (node->GetName() == L"background")
+        else if (childNode->GetName() == L"background")
         {
 //            item = make_shared<Background>(this);
         }
-        else if (node->GetName() == L"xray")
+        else if (childNode->GetName() == L"xray")
         {
-             item = make_shared<Xray>(mSudoku);
+//             item = make_shared<Xray>(mSudoku);
         }
-        else if (node->GetName() == L"container")
+        else if (childNode->GetName() == L"container")
         {
             XmlContainer(node);
         }
     }
     if (item != nullptr)
     {
-        mSudoku->Add(item);
-        item->XmlLoad(node);
+//        mSudoku->Add(item);
+//        item->XmlLoad(node);
     }
 }
 
@@ -123,30 +125,31 @@ void LevelLoad::XmlDeclaration(wxXmlNode *node)
 {
     // A pointer for the item we are loading
     shared_ptr<Declaration> dec;
-
-    for( ; node; node=node->GetNext())
+    auto childNode = node->GetChildren();
+    for( ; childNode; childNode=childNode->GetNext())
     {
-        if(node->GetName() == L"given")
+        if(childNode->GetName() == L"given")
         {
 //            dec = make_shared<Given>(this);
         }
-        else if(node->GetName() == L"digit")
+        else if(childNode->GetName() == L"digit")
         {
 //            dec = make_shared<Digit>(this);
         }
-        else if (node->GetName() == L"sparty")
+        else if (childNode->GetName() == L"sparty")
         {
 //            item = make_shared<Sparty>(this);
         }
-        else if (node->GetName() == L"background")
+        else if (childNode->GetName() == L"background")
         {
+            mBackground = childNode->GetAttribute(L"image");
 //            item = make_shared<Background>(this);
         }
-        else if (node->GetName() == L"xray")
+        else if (childNode->GetName() == L"xray")
         {
 //             item = make_shared<Xray>(this);
         }
-        else if (node->GetName() == L"container")
+        else if (childNode->GetName() == L"container")
         {
             XmlContainer(node);
         }
