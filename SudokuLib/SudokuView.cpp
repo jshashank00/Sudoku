@@ -15,7 +15,7 @@ const int FrameDuration = 30;
 
 
 /**
- * Initialize the aquarium view class.
+ * Initialize the sudoku view class.
  * @param parent The parent window for this class
  */
 void SudokuView::Initialize(wxFrame* parent)
@@ -28,6 +28,7 @@ void SudokuView::Initialize(wxFrame* parent)
     Bind(wxEVT_PAINT, &SudokuView::OnPaint, this);
     Bind(wxEVT_LEFT_DOWN, &SudokuView::OnLeftDown, this);
     Bind(wxEVT_TIMER, &SudokuView::OnTimer, this);
+    Bind(wxEVT_CHAR, &SudokuView::OnSpace, this);
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
 }
@@ -81,8 +82,15 @@ void SudokuView::OnSize(wxSizeEvent& event) {
 void SudokuView::OnLeftDown(wxMouseEvent &event)
 {
     const std::vector<std::shared_ptr<Item>> &items = mSudoku.GetItems();
-
     items.front()->SetLocation(event.GetX(), event.GetY());
     Refresh();
 }
 
+void SudokuView::OnSpace(wxKeyEvent &event)
+{
+    wxChar uc = event.GetUnicodeKey();
+    if (uc == 32)
+    {
+        std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+    }
+}
