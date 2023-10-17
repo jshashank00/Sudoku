@@ -33,10 +33,10 @@ void LevelLoad::Load(const wxString &filename)
 
     // Get the XML document root node
     auto root = xmlDoc.GetRoot();
-    auto width = root->GetAttribute(L"width");
-    auto height = root->GetAttribute(L"height");
-    auto tileWidth = root->GetAttribute(L"tilewidth");
-    auto tileHeight = root->GetAttribute(L"tileheight");
+    mWidth = root->GetAttribute(L"width");
+    mHeight = root->GetAttribute(L"height");
+    mTileWidth = root->GetAttribute(L"tilewidth");
+    mTileHeight = root->GetAttribute(L"tileheight");
     //
     // Traverse the children of the root
     // node of the XML document in memory!!!!

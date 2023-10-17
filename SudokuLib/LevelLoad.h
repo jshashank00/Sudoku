@@ -15,6 +15,10 @@ class LevelLoad
 private:
     /// the sudoku game we are in
     Sudoku mSudoku;
+    wxString mWidth;
+    wxString mHeight;
+    wxString mTileWidth;
+    wxString mTileHeight;
 
 public:
     void Load(const wxString &filename);
