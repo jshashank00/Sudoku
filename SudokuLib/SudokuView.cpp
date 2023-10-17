@@ -81,11 +81,18 @@ void SudokuView::OnSize(wxSizeEvent& event) {
  */
 void SudokuView::OnLeftDown(wxMouseEvent &event)
 {
-    const std::vector<std::shared_ptr<Item>> &items = mSudoku.GetItems();
-    items.front()->SetLocation(event.GetX(), event.GetY());
-    Refresh();
+    std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+    if (sparty)
+    {
+        sparty->SetLocation(event.GetX(), event.GetY());
+        Refresh();
+    }
 }
 
+/**
+ * Handle the sparty mouth move
+ * @param event
+ */
 void SudokuView::OnSpace(wxKeyEvent &event)
 {
     wxChar uc = event.GetUnicodeKey();

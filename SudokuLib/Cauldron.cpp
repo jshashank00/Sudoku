@@ -11,13 +11,21 @@ using namespace std;
 /// Cauldron filename
 const wstring CauldronImageName = L"images/cauldron.png";
 
-
+/**
+ * Cauldron constructor
+ * @param sudoku
+ */
 Cauldron::Cauldron(Sudoku* sudoku) : Item(sudoku, CauldronImageName) {
     mItemImage = make_unique<wxImage>(CauldronImageName, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
 
-
+/**
+ * Draw the cauldron
+ * @param graphics
+ * @param width width of area to draw in
+ * @param height height of area to draw in
+ */
 void Cauldron::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
     double wid = mItemBitmap->GetWidth();
