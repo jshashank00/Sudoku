@@ -10,6 +10,7 @@
 #include "Sparty.h"
 #include "Xray.h"
 #include "Background.h"
+#include "Declaration.h"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ void LevelLoad::Load(const wxString &filename)
     }
 
     // Once we know it is open, clear the existing data
-    mSudoku.Clear();
+    mSudoku->Clear();
 
     // Get the XML document root node
     auto root = xmlDoc.GetRoot();
@@ -84,15 +85,15 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     {
         if(node->GetName() == L"given")
         {
-//            item = make_shared<Given>(this);
+            item = make_shared<Given>(mSudoku);
         }
         else if(node->GetName() == L"digit")
         {
-//            item = make_shared<Digit>(this);
+            item = make_shared<Digit>(mSudoku);
         }
         else if (node->GetName() == L"sparty")
         {
-//            item = make_shared<Sparty>(this);
+            item = make_shared<Sparty>(mSudoku);
         }
         else if (node->GetName() == L"background")
         {
@@ -100,7 +101,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         }
         else if (node->GetName() == L"xray")
         {
-//             item = make_shared<Xray>(this);
+             item = make_shared<Xray>(mSudoku);
         }
         else if (node->GetName() == L"container")
         {
@@ -109,7 +110,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     }
     if (item != nullptr)
     {
-        mSudoku.Add(item);
+        mSudoku->Add(item);
         item->XmlLoad(node);
     }
 }
@@ -121,7 +122,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
 void LevelLoad::XmlDeclaration(wxXmlNode *node)
 {
     // A pointer for the item we are loading
-//    shared_ptr<Declaration> dec;
+    shared_ptr<Declaration> dec;
 
     for( ; node; node=node->GetNext())
     {
