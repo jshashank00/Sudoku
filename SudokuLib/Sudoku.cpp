@@ -12,6 +12,7 @@
 #include "Xray.h"
 #include "Pumpkin.h"
 #include "Cauldron.h"
+#include "MessageBoard.h"
 #include <wx/graphics.h>
 #include "LevelLoad.h"
 
@@ -37,7 +38,7 @@ Sudoku::Sudoku()
     shared_ptr<Item> xray = make_shared<Xray>(this);
     shared_ptr<Item> pumpkin = make_shared<Pumpkin>(this);
     shared_ptr<Item> cauldron = make_shared<Cauldron>(this);
-
+    shared_ptr<Item> board = make_shared<MessageBoard>(this);
 
     // Set the location
     mSparty->SetLocation(100, 100);
@@ -46,15 +47,16 @@ Sudoku::Sudoku()
     xray->SetLocation(50, 0);
     pumpkin->SetLocation(204, 176);
     cauldron->SetLocation(220, 215);
+    board->SetLocation(494, 375);
 
     // Add to the list
-
     mItems.push_back(scoreboard);
     mItems.push_back(digit);
     mItems.push_back(given);
     mItems.push_back(xray);
     mItems.push_back(pumpkin);
     mItems.push_back(cauldron);
+    mItems.push_back(board);
     mItems.push_back(mSparty);
 }
 
@@ -101,6 +103,11 @@ std::shared_ptr<Item> Sudoku::HitTest(int x, int y)
  */
 void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
+    auto newTime = mStopWatch.Time();
+    auto elapsed = (double)(newTime - mTime) * 0.001;
+    mTime = newTime;
+    mElapsedTime += elapsed;
+
     // Determine the size of the playing area in virtual pixels (up to you)
     int pixelWidth = 988;
     int pixelHeight = 750;

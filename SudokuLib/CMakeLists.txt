@@ -35,7 +35,16 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Pumpkin.cpp
         Pumpkin.h
         Container.cpp
-        Container.h)
+        Container.h
+        MessageBoard.cpp
+        MessageBoard.h
+        SpartyDec.cpp
+        SpartyDec.h
+        NumberDec.cpp
+        NumberDec.h
+        XrayDec.cpp
+        XrayDec.h
+)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
