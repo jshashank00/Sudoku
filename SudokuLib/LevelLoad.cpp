@@ -21,7 +21,7 @@ using namespace std;
 *
 * @param filename The filename of the file to load the city from.
 */
-LevelLoad::LevelLoad(const wxString &filename)
+LevelLoad::LevelLoad(const wxString &filename, Sudoku * sudoku) :mSudoku(sudoku)
 {
     wxXmlDocument xmlDoc;
     if(!xmlDoc.Load(filename))

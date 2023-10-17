@@ -45,6 +45,7 @@ public:
 
     void Update(double elapsed);
 
+    void SetLocation(wxMouseEvent &event);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

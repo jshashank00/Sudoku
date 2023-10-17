@@ -84,7 +84,7 @@ void SudokuView::OnLeftDown(wxMouseEvent &event)
     std::shared_ptr<Item> sparty = mSudoku.GetSparty();
     if (sparty)
     {
-        sparty->SetLocation(event.GetX(), event.GetY());
+        mSudoku.SetLocation(event);
         Refresh();
     }
 }

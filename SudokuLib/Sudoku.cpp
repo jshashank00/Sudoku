@@ -25,7 +25,7 @@ Sudoku::Sudoku()
 
     //mBackground = make_unique<wxBitmap>(L"images/background.png", wxBITMAP_TYPE_ANY);
     wxString level1 = "levels/level1.xml";
-    LevelLoad level(level1);
+    LevelLoad level(level1, this);
     wxString background = "images/" + level.GetBackground();
     mBackground = make_unique<wxBitmap>(background, wxBITMAP_TYPE_ANY);
     // Create a sparty
@@ -48,13 +48,14 @@ Sudoku::Sudoku()
     cauldron->SetLocation(220, 215);
 
     // Add to the list
-    mItems.push_back(mSparty);
+
     mItems.push_back(scoreboard);
     mItems.push_back(digit);
     mItems.push_back(given);
     mItems.push_back(xray);
     mItems.push_back(pumpkin);
     mItems.push_back(cauldron);
+    mItems.push_back(mSparty);
 }
 
 /**
@@ -130,7 +131,14 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
 
     graphics->PopState();
 }
+void Sudoku::SetLocation(wxMouseEvent &event){
 
+    int xLoc = (event.GetX() - mXOffset) / mScale;
+    int yLoc = (event.GetY() - mYOffset) / mScale;
+
+ //Convert to virtual pixels and set Location
+    mSparty->SetLocation(xLoc, yLoc);
+}
 
 /**
 * Add an item to the game
