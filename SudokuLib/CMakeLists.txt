@@ -44,6 +44,8 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         NumberDec.h
         XrayDec.cpp
         XrayDec.h
+        BackgroundDec.cpp
+        BackgroundDec.h
 )
 
 set(wxBUILD_PRECOMP OFF)
