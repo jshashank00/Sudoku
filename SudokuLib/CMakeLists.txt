@@ -38,6 +38,12 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Container.h
         MessageBoard.cpp
         MessageBoard.h
+        SpartyDec.cpp
+        SpartyDec.h
+        NumberDec.cpp
+        NumberDec.h
+        XrayDec.cpp
+        XrayDec.h
 )
 
 set(wxBUILD_PRECOMP OFF)

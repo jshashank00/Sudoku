@@ -33,6 +33,7 @@ public:
     void OnSize(wxSizeEvent& event);
 
     void OnSpace(wxKeyEvent &event);
+    void Stop(){mTimer.Stop();}
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKUVIEW_H

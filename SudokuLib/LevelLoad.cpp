@@ -21,7 +21,7 @@ using namespace std;
 *
 * @param filename The filename of the file to load the city from.
 */
-LevelLoad::LevelLoad(const wxString &filename)
+LevelLoad::LevelLoad(const wxString &filename, Sudoku * sudoku) :mSudoku(sudoku)
 {
     wxXmlDocument xmlDoc;
     if(!xmlDoc.Load(filename))
@@ -86,16 +86,16 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     {
         if(childNode->GetName() == L"given")
         {
-            auto item = make_shared<Given>(mSudoku);
-            item->XmlLoad(node);
+//            item = make_shared<Given>(mSudoku);
+//            item->XmlLoad(node);
         }
         else if(childNode->GetName() == L"digit")
         {
-            auto item = make_shared<Digit>(mSudoku);
+//            item = make_shared<Digit>(mSudoku);
         }
         else if (childNode->GetName() == L"sparty")
         {
-            auto item = make_shared<Sparty>(mSudoku);
+//            item = make_shared<Sparty>(mSudoku);
         }
         else if (childNode->GetName() == L"background")
         {
@@ -103,7 +103,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         }
         else if (childNode->GetName() == L"xray")
         {
-            auto item = make_shared<Xray>(mSudoku);
+//             item = make_shared<Xray>(mSudoku);
         }
         else if (childNode->GetName() == L"container")
         {
@@ -112,8 +112,8 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     }
     if (item != nullptr)
     {
-        mSudoku->Add(item);
-        item->XmlLoad(node);
+//        mSudoku->Add(item);
+//        item->XmlLoad(node);
     }
 }
 
