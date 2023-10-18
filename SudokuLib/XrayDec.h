@@ -12,9 +12,11 @@
 class XrayDec : public Declaration
 {
 private:
-
+    wxString mImage;
+    int mCapacity;
 public:
 
+    void XmlLoad(wxXmlNode *node);
 };
 
 #endif //PROJECT1_SUDOKULIB_XRAYDEC_H
