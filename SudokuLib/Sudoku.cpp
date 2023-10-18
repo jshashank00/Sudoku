@@ -29,6 +29,9 @@ Sudoku::Sudoku()
     LevelLoad level(level1, this);
     shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
     mItems.push_back(scoreboard);
+    shared_ptr<Item> board = make_shared<MessageBoard>(this);
+    board->SetLocation(494, 375);
+    mItems.push_back(board);
     //wxString background = "images/" + level.GetBackground();
     //mBackground = make_unique<wxBitmap>(background, wxBITMAP_TYPE_ANY);
     // Create a sparty
