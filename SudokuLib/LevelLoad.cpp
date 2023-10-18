@@ -85,11 +85,12 @@ void LevelLoad::XmlItem(wxXmlNode *node)
 {
     // A pointer for the item we are loading
     shared_ptr<Item> item;
+    wxXmlNode* decNode;
     auto itemNode = node->GetChildren();
     for( ; itemNode; itemNode=itemNode->GetNext())
     {
         wxString id = itemNode->GetAttribute(L"id");
-        wxXmlNode* decNode = mMap.find(id)->second;
+        decNode = mMap.find(id)->second;
         if(itemNode->GetName() == L"given")
         {
 
@@ -100,6 +101,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
             item = make_shared<Given>(mSudoku);
             mSudoku->Add(item);
             item->XmlLoad(itemNode, decNode);
+
             //mSudoku->Add(item);
 //            item->XmlLoad(node);
         }
@@ -109,6 +111,10 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         }
         else if (itemNode->GetName() == L"sparty")
         {
+            item = make_shared<Sparty>(mSudoku);
+            mSudoku->Add(item);
+            mSudoku->SetSparty(item);
+            item->XmlLoad(itemNode, decNode);
 //            item = make_shared<Sparty>(mSudoku);
         }
         else if (itemNode->GetName() == L"background")
@@ -117,6 +123,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         }
         else if (itemNode->GetName() == L"xray")
         {
+            item = make_shared<Xray>(mSudoku);
 //             item = make_shared<Xray>(mSudoku);
         }
         else if (itemNode->GetName() == L"container")
@@ -126,10 +133,8 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     }
     if (item != nullptr)
     {
-        //mSudoku->Add(item);
-        //item->XmlLoad(itemNode, decNode);
-        // Get Declaration node from map
-        //item->XmlLoad(node);//, mMap.find(id)->second);
+//        mSudoku->Add(item);
+//        item->XmlLoad(itemNode, decNode);
     }
 }
 

@@ -46,6 +46,8 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         XrayDec.h
         BackgroundDec.cpp
         BackgroundDec.h
+        LevelVisitor.cpp
+        LevelVisitor.h
 )
 
 set(wxBUILD_PRECOMP OFF)
