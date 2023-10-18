@@ -16,5 +16,6 @@
  */
 void BackgroundDec::XmlLoad(wxXmlNode *node)
 {
+    Declaration::XmlLoad(node);
     mImage = node->GetAttribute(L"image",L"0");
 }
