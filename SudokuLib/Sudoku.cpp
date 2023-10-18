@@ -142,7 +142,8 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
 
     graphics->PopState();
 }
-void Sudoku::SetLocation(wxMouseEvent &event){
+void Sudoku::SetLocation(wxMouseEvent &event)
+{
 
     int xLoc = (event.GetX() - mXOffset) / mScale;
     int yLoc = (event.GetY() - mYOffset) / mScale;
@@ -181,4 +182,9 @@ void Sudoku::Update(double elapsed)
     {
         item->Update(elapsed);
     }
+}
+
+void Sudoku::SetSparty(shared_ptr<Item> sparty)
+{
+    mSparty = sparty;
 }
