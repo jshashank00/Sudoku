@@ -105,6 +105,9 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         }
         else if(itemNode->GetName() == L"digit")
         {
+            item = make_shared<Digit>(mSudoku);
+            mSudoku->Add(item);
+            item->XmlLoad(itemNode, decNode);
 //            item = make_shared<Digit>(mSudoku);
         }
         else if (itemNode->GetName() == L"sparty")

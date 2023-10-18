@@ -27,6 +27,8 @@ Sudoku::Sudoku()
     mBackground = make_unique<wxBitmap>(L"images/background.png", wxBITMAP_TYPE_ANY);
     wxString level1 = "levels/level1.xml";
     LevelLoad level(level1, this);
+    shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
+    mItems.push_back(scoreboard);
     //wxString background = "images/" + level.GetBackground();
     //mBackground = make_unique<wxBitmap>(background, wxBITMAP_TYPE_ANY);
     // Create a sparty

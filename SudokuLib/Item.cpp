@@ -79,6 +79,8 @@ void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declar
     itemNode->GetAttribute(L"row", L"0").ToDouble(&mRow);
     decNode->GetAttribute(L"width", L"0").ToDouble(&mWidth);
     decNode->GetAttribute(L"height", L"0").ToDouble(&mHeight);
+    mX = (mCol+.85) * 48;
+    mY = (((mRow+2.8)-1) * 48) - mHeight;
 }
 
 /**
