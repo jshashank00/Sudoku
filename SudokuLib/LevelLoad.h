@@ -13,7 +13,7 @@
 class LevelLoad
 {
 private:
-    Sudoku *mSudoku; ///< the sudoku game we are in
+    Sudoku *mSudoku = nullptr; ///< the sudoku game we are in
     wxString mWidth; ///< the width of the playing area
     wxString mHeight; ///< the height of the playing area
     wxString mTileWidth; ///< the width of the tile
@@ -25,7 +25,7 @@ private:
     wxString mBackground; ///<background file image name
 
 public:
-    LevelLoad(const wxString &filename);
+    LevelLoad(const wxString &filename, Sudoku * sudoku);
     void XmlItem(wxXmlNode *node);
     void XmlDeclaration(wxXmlNode *node);
     void XmlGame(wxXmlNode *node);

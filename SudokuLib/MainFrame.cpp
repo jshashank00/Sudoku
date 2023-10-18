@@ -21,11 +21,11 @@ void MainFrame::Initialize()
     auto sizer = new wxBoxSizer( wxVERTICAL );
 
     // Create the view class object as a child of MainFrame
-    auto sudokuView = new SudokuView();
-    sudokuView->Initialize(this);
+    mSudokuView = new SudokuView();
+    mSudokuView->Initialize(this);
 
     // Add it to the sizer
-    sizer->Add(sudokuView,1, wxEXPAND | wxALL );
+    sizer->Add(mSudokuView,1, wxEXPAND | wxALL );
 
     // Set the sizer for this frame
     SetSizer( sizer );
@@ -57,6 +57,7 @@ void MainFrame::Initialize()
     SetMenuBar( menuBar );
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
     Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
+    Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
 
 }
 
@@ -75,5 +76,11 @@ void MainFrame::OnAbout(wxCommandEvent& event)
                  L"About Sudoku",
                  wxOK | wxICON_INFORMATION,
                  this);
+}
+
+void MainFrame::OnClose(wxCloseEvent& event){
+    mSudokuView -> Stop();
+    Destroy();
+
 }
 
