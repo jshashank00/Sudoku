@@ -29,6 +29,7 @@ void SudokuView::Initialize(wxFrame* parent)
     Bind(wxEVT_LEFT_DOWN, &SudokuView::OnLeftDown, this);
     Bind(wxEVT_TIMER, &SudokuView::OnTimer, this);
     Bind(wxEVT_CHAR, &SudokuView::OnSpace, this);
+    Bind(wxEVT_CHAR, &SudokuView::OnBKey, this);
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
 }
@@ -97,6 +98,16 @@ void SudokuView::OnSpace(wxKeyEvent &event)
 {
     wxChar uc = event.GetUnicodeKey();
     if (uc == 32)
+    {
+        std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+    }
+}
+
+
+void SudokuView::OnBKey(wxKeyEvent &event)
+{
+    wxChar uc = event.GetUnicodeKey();
+    if (uc == 98)
     {
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
     }
