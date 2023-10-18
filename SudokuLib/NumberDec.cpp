@@ -7,7 +7,7 @@
 #include "NumberDec.h"
 
 /**
- * Load the attributes for an item node.
+ * Load the attributes for a declaration node.
  *
  * This is the  base class version that loads the attributes
  * common to number declarations.
