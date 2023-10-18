@@ -25,12 +25,13 @@ Sudoku::Sudoku()
 {
 
     mBackground = make_unique<wxBitmap>(L"images/background.png", wxBITMAP_TYPE_ANY);
-    //wxString level1 = "levels/level1.xml";
-    //LevelLoad level(level1, this);
+    wxString level1 = "levels/level1.xml";
+    LevelLoad level(level1, this);
     //wxString background = "images/" + level.GetBackground();
     //mBackground = make_unique<wxBitmap>(background, wxBITMAP_TYPE_ANY);
     // Create a sparty
     // This creates a shared pointer to sparty
+    /**
     mSparty = make_shared<Sparty>(this);
     shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
     shared_ptr<Item> digit = make_shared<Digit>(this);
@@ -58,6 +59,7 @@ Sudoku::Sudoku()
     mItems.push_back(cauldron);
     mItems.push_back(board);
     mItems.push_back(mSparty);
+     */
 }
 
 /**
@@ -153,7 +155,7 @@ void Sudoku::SetLocation(wxMouseEvent &event){
 */
 void Sudoku::Add(std::shared_ptr<Item> item)
 {
-    item->SetLocation(100, 200);
+    //item->SetLocation(100, 200);
     mItems.push_back(item);
 }
 

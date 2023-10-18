@@ -85,43 +85,51 @@ void LevelLoad::XmlItem(wxXmlNode *node)
 {
     // A pointer for the item we are loading
     shared_ptr<Item> item;
-    wxString id;
-    auto childNode = node->GetChildren();
-    for( ; childNode; childNode=childNode->GetNext())
+    auto itemNode = node->GetChildren();
+    for( ; itemNode; itemNode=itemNode->GetNext())
     {
-
-        id = childNode->GetAttribute(L"id");
-        if(childNode->GetName() == L"given")
+        wxString id = itemNode->GetAttribute(L"id");
+        wxXmlNode* decNode = mMap.find(id)->second;
+        if(itemNode->GetName() == L"given")
         {
+
+            //wxString mImage = decNode->GetAttribute(L"image");
+            //int value;
+            //decNode->GetAttribute(L"value", L"0").ToInt(&value);
+
             item = make_shared<Given>(mSudoku);
+            mSudoku->Add(item);
+            item->XmlLoad(itemNode, decNode);
+            //mSudoku->Add(item);
 //            item->XmlLoad(node);
         }
-        else if(childNode->GetName() == L"digit")
+        else if(itemNode->GetName() == L"digit")
         {
 //            item = make_shared<Digit>(mSudoku);
         }
-        else if (childNode->GetName() == L"sparty")
+        else if (itemNode->GetName() == L"sparty")
         {
 //            item = make_shared<Sparty>(mSudoku);
         }
-        else if (childNode->GetName() == L"background")
+        else if (itemNode->GetName() == L"background")
         {
 //            item = make_shared<Background>(this);
         }
-        else if (childNode->GetName() == L"xray")
+        else if (itemNode->GetName() == L"xray")
         {
 //             item = make_shared<Xray>(mSudoku);
         }
-        else if (childNode->GetName() == L"container")
+        else if (itemNode->GetName() == L"container")
         {
             XmlContainer(node);
         }
     }
     if (item != nullptr)
     {
-        mSudoku->Add(item);
+        //mSudoku->Add(item);
+        //item->XmlLoad(itemNode, decNode);
         // Get Declaration node from map
-        item->XmlLoad(node, mMap.find(id)->second);
+        //item->XmlLoad(node);//, mMap.find(id)->second);
     }
 }
 
@@ -140,27 +148,31 @@ void LevelLoad::XmlDeclaration(wxXmlNode *node)
         id = childNode->GetAttribute(L"id");
         if(childNode->GetName() == L"given")
         {
-              dec = make_shared<NumberDec>();
+              //dec = make_shared<NumberDec>();
+              mMap.insert({id, childNode});
               //dec->XmlLoad(childNode);
 //              mMap.insert({id, dec});
         }
         else if(childNode->GetName() == L"digit")
         {
-            dec = make_shared<NumberDec>();
+            mMap.insert({id, childNode});
+            //dec = make_shared<NumberDec>();
             //dec->XmlLoad(childNode);
 //            id = childNode->GetAttribute(L"id");
 //            mMap.insert({id, dec});
         }
         else if (childNode->GetName() == L"sparty")
         {
-            dec = make_shared<SpartyDec>();
+            mMap.insert({id, childNode});
+            //dec = make_shared<SpartyDec>();
 //            dec->XmlLoad(childNode);
 //            id = childNode->GetAttribute(L"id");
 //            mMap.insert({id, dec});
         }
         else if (childNode->GetName() == L"background")
         {
-            dec = make_shared<BackgroundDec>();
+            mMap.insert({id, childNode});
+            //dec = make_shared<BackgroundDec>();
             mBackground = childNode->GetAttribute(L"image");
 //            item = make_shared<Background>();
             //dec->XmlLoad(childNode);
@@ -169,7 +181,8 @@ void LevelLoad::XmlDeclaration(wxXmlNode *node)
         }
         else if (childNode->GetName() == L"xray")
         {
-             dec = make_shared<XrayDec>();
+            mMap.insert({id, childNode});
+             //dec = make_shared<XrayDec>();
                //dec->XmlLoad(childNode);
 //            id = childNode->GetAttribute(L"id");
 //            mMap.insert({id, dec});
@@ -178,12 +191,6 @@ void LevelLoad::XmlDeclaration(wxXmlNode *node)
         {
             XmlContainer(node);
         }
-    }
-    if (dec != nullptr)
-    {
-        mMap.insert({id, dec});
-        dec->XmlLoad(node);
-
     }
 }
 

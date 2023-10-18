@@ -32,11 +32,15 @@ private:
     double mY = 0;
     double mCol = 0;
     double mRow = 0;
+    double mWidth; ///<Width of the image
+    double mHeight; ///<Height of the image
 
     /// Item id
-    wxString mID;
+    //wxString mID;
 
 public:
+    void SetImage(const wxString &filename);
+
     /**
      * The X location of the item
      * @return X location in pixels
@@ -60,7 +64,7 @@ public:
     virtual void SetLocation(double x, double y) { mX = x; mY = y; }
 
     bool HitTest(int x, int y);
-    void XmlLoad(wxXmlNode *node);
+    virtual void XmlLoad(wxXmlNode *node, wxXmlNode *decNode);
 
     /// Constructor
     Item(Sudoku *sudoku, const std::wstring &filename);
@@ -73,7 +77,7 @@ public:
      * @param elapsed The time since the last update
      */
     virtual void Update(double elapsed) {}
-    void XmlLoad(wxXmlNode *node, std::shared_ptr<Declaration> decNode);
+    //void XmlLoad(wxXmlNode *node, std::shared_ptr<Declaration> decNode);
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H
