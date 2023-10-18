@@ -16,6 +16,7 @@
  */
 void NumberDec::XmlLoad(wxXmlNode *node)
 {
+    Declaration::XmlLoad(node);
     mImage = node->GetAttribute(L"image",L"0");
     node->GetAttribute(L"value", L"0").ToInt(&mValue);
 }
