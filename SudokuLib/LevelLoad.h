@@ -28,7 +28,8 @@ private:
     wxString mBackground; ///<background file image name
 
     ///Initialize the map id->DeclarationObject
-    std::map <wxString, std::shared_ptr<Declaration>> mMap;
+    //std::map <wxString, std::shared_ptr<Declaration>> mMap;
+    std::map <wxString, wxXmlNode*> mMap;
 
 public:
     LevelLoad(const wxString &filename, Sudoku * sudoku);

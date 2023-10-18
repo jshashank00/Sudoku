@@ -22,11 +22,13 @@ private:
     /// The bitmap to display for the number
     std::unique_ptr<wxBitmap> mGivenBitmap;
 
+    int mValue;
+
 public:
     Given(Sudoku *sudoku);
     void Draw(std::shared_ptr<wxGraphicsContext>, int width, int height);
 
-
+    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode);
 };
 
 #endif //PROJECT1_SUDOKULIB_GIVEN_H

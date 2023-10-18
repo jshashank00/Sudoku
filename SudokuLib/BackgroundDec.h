@@ -14,7 +14,7 @@ class BackgroundDec : public Declaration
 private:
     wxString mImage;
 public:
-
+    BackgroundDec(){};
     void XmlLoad(wxXmlNode *node);
 };
 

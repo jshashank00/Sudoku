@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "Item.h"
 #include "Sudoku.h"
+#include "Declaration.h"
 #include <wx/graphics.h>
 using namespace std;
 
@@ -16,9 +17,16 @@ using namespace std;
  */
 Item::Item(Sudoku *sudoku, const std::wstring &filename) : mSudoku(sudoku)
 {
+    //mItemImage = make_unique<wxImage> (filename, wxBITMAP_TYPE_ANY);
+    //mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+}
+
+void Item::SetImage(const wxString &filename)
+{
     mItemImage = make_unique<wxImage> (filename, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
+
 
 Item::Item(Sudoku *sudoku) : mSudoku(sudoku)
 {
@@ -64,11 +72,15 @@ bool Item::HitTest(int x, int y)
  *
  * @param node The Xml node we are loading the item from
  */
-void Item::XmlLoad(wxXmlNode *node)
+void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declaration> decNode)
 {
-    mID = node->GetAttribute(L"id", L"0");
-    node->GetAttribute(L"col", L"0").ToDouble(&mCol);
-    node->GetAttribute(L"row", L"0").ToDouble(&mRow);
+    //mID = node->GetAttribute(L"id", L"0");
+    itemNode->GetAttribute(L"col", L"0").ToDouble(&mCol);
+    itemNode->GetAttribute(L"row", L"0").ToDouble(&mRow);
+    decNode->GetAttribute(L"width", L"0").ToDouble(&mWidth);
+    decNode->GetAttribute(L"height", L"0").ToDouble(&mHeight);
+    mX = (mCol+.85) * 48;
+    mY = (((mRow+2.8)-1) * 48) - mHeight;
 }
 
 /**

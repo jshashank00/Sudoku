@@ -50,6 +50,8 @@ public:
     void Update(double elapsed);
 
     void SetLocation(wxMouseEvent &event);
+    void SetSparty(std::shared_ptr<Item> sparty);
+
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H
