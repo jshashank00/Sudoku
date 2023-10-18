@@ -35,19 +35,25 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, in
                 wxFONTWEIGHT_NORMAL);
     graphics->SetFont(font, *wxWHITE);
 
+    static bool delayElapsed = false;
+    static time_t startTime = time(0);
     time_t current = time(0);
-    time_t diff =  current - now;
-    tm* ltm = localtime(&diff);
+    time_t elapsed = current - startTime;
 
-    string secStr = std::to_string(ltm->tm_sec);
-    if (secStr.length() == 1)
-    {
-        secStr = "0" + secStr;
+    if (elapsed > 3 && !delayElapsed) {
+        delayElapsed = true;
+        startTime = current;
     }
 
-    string str = std::to_string(ltm->tm_min) + ":" + secStr;
+    if (delayElapsed) {
+        int minutes = elapsed / 60;
+        int seconds = elapsed % 60;
 
+        std::string timeStr = std::to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + std::to_string(seconds);
 
-    graphics->DrawText(str, 10, 10);
+        graphics->DrawText(timeStr, 10, 10);
+    }
 }
+
+
 
