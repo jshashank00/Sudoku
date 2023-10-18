@@ -3,4 +3,5 @@
  * @author Tess Murphy
  */
 
+#include "pch.h"
 #include "Background.h"

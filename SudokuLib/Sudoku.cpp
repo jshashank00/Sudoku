@@ -24,11 +24,11 @@ using namespace std;
 Sudoku::Sudoku()
 {
 
-    //mBackground = make_unique<wxBitmap>(L"images/background.png", wxBITMAP_TYPE_ANY);
-    wxString level1 = "levels/level1.xml";
-    LevelLoad level(level1, this);
-    wxString background = "images/" + level.GetBackground();
-    mBackground = make_unique<wxBitmap>(background, wxBITMAP_TYPE_ANY);
+    mBackground = make_unique<wxBitmap>(L"images/background.png", wxBITMAP_TYPE_ANY);
+    //wxString level1 = "levels/level1.xml";
+    //LevelLoad level(level1, this);
+    //wxString background = "images/" + level.GetBackground();
+    //mBackground = make_unique<wxBitmap>(background, wxBITMAP_TYPE_ANY);
     // Create a sparty
     // This creates a shared pointer to sparty
     mSparty = make_shared<Sparty>(this);

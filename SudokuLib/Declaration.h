@@ -12,8 +12,8 @@
 class Declaration
 {
 private:
-    double mWidth;
-    double mHeight;
+    double mWidth; ///<Width of the image
+    double mHeight; ///<Height of the image
 
 public:
     Declaration();

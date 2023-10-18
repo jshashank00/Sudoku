@@ -11,6 +11,7 @@
 #include "Xray.h"
 #include "Background.h"
 #include "Declaration.h"
+#include "SpartyDec.h"
 
 
 using namespace std;
@@ -144,8 +145,8 @@ void LevelLoad::XmlDeclaration(wxXmlNode *node)
         }
         else if (childNode->GetName() == L"sparty")
         {
-//            item = make_shared<Sparty>();
-            //dec->XmlLoad(childNode);
+            dec = make_shared<SpartyDec>();
+            dec->XmlLoad(childNode);
             wxString id = childNode->GetAttribute("id");
             mMap.insert({id, dec});
         }
