@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "Item.h"
 #include "Sudoku.h"
+#include "Declaration.h"
 #include <wx/graphics.h>
 using namespace std;
 
@@ -64,7 +65,7 @@ bool Item::HitTest(int x, int y)
  *
  * @param node The Xml node we are loading the item from
  */
-void Item::XmlLoad(wxXmlNode *node)
+void Item::XmlLoad(wxXmlNode *node, shared_ptr<Declaration> decNode)
 {
     mID = node->GetAttribute(L"id", L"0");
     node->GetAttribute(L"col", L"0").ToDouble(&mCol);

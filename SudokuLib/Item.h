@@ -10,6 +10,7 @@
 
 #include <wx/xml/xml.h>
 class Sudoku;
+class Declaration;
 
 /**
  * Base class for any item in our game
@@ -72,6 +73,7 @@ public:
      * @param elapsed The time since the last update
      */
     virtual void Update(double elapsed) {}
+    void XmlLoad(wxXmlNode *node, std::shared_ptr<Declaration> decNode);
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H
