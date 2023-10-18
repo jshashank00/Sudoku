@@ -9,6 +9,9 @@
 #define PROJECT1_SUDOKULIB_LEVELLOAD_H
 
 #include "Sudoku.h"
+#include "Declaration.h"
+#include <map>
+#include <string>
 
 class LevelLoad
 {
@@ -23,6 +26,9 @@ private:
     wxString mSolution; ///< the solution
 
     wxString mBackground; ///<background file image name
+
+    ///Initialize the map id->DeclarationObject
+    std::map <wxString, std::shared_ptr<Declaration>> mMap;
 
 public:
     LevelLoad(const wxString &filename);

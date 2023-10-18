@@ -12,15 +12,12 @@
 class Declaration
 {
 private:
-    int mWidth;
-    int mHeight;
-    wxString mImage;
-    int mValue;
+    double mWidth;
+    double mHeight;
 
 public:
     Declaration();
-
-    void XmlLoad(wxXmlNode *node);
+    virtual void XmlLoad(wxXmlNode *node);
 };
 
 #endif //PROJECT1_SUDOKULIB_DECLARATION_H

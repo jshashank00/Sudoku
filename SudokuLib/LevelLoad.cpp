@@ -130,24 +130,39 @@ void LevelLoad::XmlDeclaration(wxXmlNode *node)
     {
         if(childNode->GetName() == L"given")
         {
-//            dec = make_shared<Given>(this);
+              //dec = make_shared<Number>();
+              //dec->XmlLoad(childNode);
+              wxString id = childNode->GetAttribute("id");
+              mMap.insert({id, dec});
         }
         else if(childNode->GetName() == L"digit")
         {
-//            dec = make_shared<Digit>(this);
+//            dec = make_shared<Number>();
+            //dec->XmlLoad(childNode);
+            wxString id = childNode->GetAttribute("id");
+            mMap.insert({id, dec});
         }
         else if (childNode->GetName() == L"sparty")
         {
-//            item = make_shared<Sparty>(this);
+//            item = make_shared<Sparty>();
+            //dec->XmlLoad(childNode);
+            wxString id = childNode->GetAttribute("id");
+            mMap.insert({id, dec});
         }
         else if (childNode->GetName() == L"background")
         {
             mBackground = childNode->GetAttribute(L"image");
-//            item = make_shared<Background>(this);
+//            item = make_shared<Background>();
+            //dec->XmlLoad(childNode);
+            wxString id = childNode->GetAttribute("id");
+            mMap.insert({id, dec});
         }
         else if (childNode->GetName() == L"xray")
         {
-//             item = make_shared<Xray>(this);
+//             item = make_shared<Xray>();
+               //dec->XmlLoad(childNode);
+            wxString id = childNode->GetAttribute("id");
+            mMap.insert({id, dec});
         }
         else if (childNode->GetName() == L"container")
         {
