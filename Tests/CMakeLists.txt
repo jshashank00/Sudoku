@@ -4,6 +4,8 @@ set(TEST_FILES
     gtest_main.cpp
     EmptyTest.cpp
         SudokuTest.cpp
+        ItemTest.cpp
+        XmlTest.cpp
 )
 
 # Get Google Tests
