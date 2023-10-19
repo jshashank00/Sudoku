@@ -127,6 +127,8 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         else if (itemNode->GetName() == L"xray")
         {
             item = make_shared<Xray>(mSudoku);
+            mSudoku->Add(item);
+            item->XmlLoad(itemNode, decNode);
 //             item = make_shared<Xray>(mSudoku);
         }
         else if (itemNode->GetName() == L"container")

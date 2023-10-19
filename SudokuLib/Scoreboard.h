@@ -12,8 +12,6 @@
 class Scoreboard : public Item
 {
 private:
-    /// Current time
-    time_t now = time(0);
 
 public:
     Scoreboard(Sudoku *sudoku);

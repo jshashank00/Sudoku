@@ -51,7 +51,7 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, in
 
         std::string timeStr = std::to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + std::to_string(seconds);
 
-        graphics->DrawText(timeStr, 10, 10);
+        graphics->DrawText(timeStr, ScoreboardTopLeft.x, ScoreboardTopLeft.y);
     }
 }
 
