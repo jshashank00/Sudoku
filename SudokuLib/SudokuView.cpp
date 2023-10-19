@@ -28,8 +28,7 @@ void SudokuView::Initialize(wxFrame* parent)
     Bind(wxEVT_PAINT, &SudokuView::OnPaint, this);
     Bind(wxEVT_LEFT_DOWN, &SudokuView::OnLeftDown, this);
     Bind(wxEVT_TIMER, &SudokuView::OnTimer, this);
-    Bind(wxEVT_CHAR, &SudokuView::OnSpace, this);
-    Bind(wxEVT_CHAR, &SudokuView::OnBKey, this);
+    Bind(wxEVT_CHAR, &SudokuView::OnKey, this);
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
 }
@@ -91,25 +90,10 @@ void SudokuView::OnLeftDown(wxMouseEvent &event)
 }
 
 /**
- * Handle the sparty mouth move
- * @param event
- */
-void SudokuView::OnSpace(wxKeyEvent &event)
-{
-    wxChar uc = event.GetUnicodeKey();
-    if (uc == ' ')
-    {
-        std::shared_ptr<Item> sparty = mSudoku.GetSparty();
-        std::shared_ptr<Sparty> spartyD = std::dynamic_pointer_cast<Sparty>(sparty);
-        spartyD->ToggleMouthMove();
-    }
-}
-
-/**
  * Sparty Headbutt
  * @param event
  */
-void SudokuView::OnBKey(wxKeyEvent &event)
+void SudokuView::OnKey(wxKeyEvent &event)
 {
     wxChar uc = event.GetUnicodeKey();
     if (uc == 98)
@@ -117,5 +101,12 @@ void SudokuView::OnBKey(wxKeyEvent &event)
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
         std::shared_ptr<Sparty> spartyD = std::dynamic_pointer_cast<Sparty>(sparty);
         spartyD->ToggleHeadButt();
+    }
+
+    else if (uc == 32)
+    {
+        std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+        std::shared_ptr<Sparty> spartyD = std::dynamic_pointer_cast<Sparty>(sparty);
+        spartyD->ToggleMouthMove();
     }
 }

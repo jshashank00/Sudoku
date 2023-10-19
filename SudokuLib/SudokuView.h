@@ -32,8 +32,7 @@ public:
     void OnTimer(wxTimerEvent &event);
     void OnSize(wxSizeEvent& event);
 
-    void OnSpace(wxKeyEvent &event);
-    void OnBKey(wxKeyEvent &event);
+    void OnKey(wxKeyEvent &event);
     void Stop(){mTimer.Stop();}
 };
 

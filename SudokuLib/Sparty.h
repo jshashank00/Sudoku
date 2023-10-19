@@ -28,11 +28,17 @@ private:
     /// The bitmap to display for the item
     std::unique_ptr<wxBitmap> mHeadBitmap;
 
-    bool mIsHeadButting = false; // To track if headbutt is activated
+    /// To track if headbutt is activated
+    bool mIsHeadButting = false;
+
+    /// Headbutt animation time
     double mHeadbuttElapsedTime = 0.0;
 
     /// track if sparty is eating
     bool mIsMouthMoving = false;
+
+    /// eating animation time
+    double mMouthElapsedTime = 0.0;
 
     double mFront;  ///<
     double mHeadPivotAngle; ///< for headbutting

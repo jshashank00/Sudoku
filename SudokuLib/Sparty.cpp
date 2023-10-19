@@ -37,17 +37,29 @@ Sparty::Sparty(Sudoku *sudoku) :
 //    sudoku->SetSparty(this);
 }
 
+/**
+ * Function for handling Headbutt motion
+ */
 void Sparty::ToggleHeadButt()
 {
     mIsHeadButting = !mIsHeadButting;
     mHeadbuttElapsedTime = 0.0;
 }
 
+/**
+ * Function for handling Eating motion
+ */
 void Sparty::ToggleMouthMove()
 {
     mIsMouthMoving = !mIsMouthMoving;
 }
 
+/**
+ * Draw items on screen
+ * @param graphics
+ * @param width width of the item
+ * @param height height of the item
+ */
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
     //Item::Draw(graphics, 100, 100);
@@ -60,12 +72,27 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     if (mIsMouthMoving)
     {
-        //double absMouthPivotX = GetX() - wid / 2 + mMouthPivotX;
-       // double absMouthPivotY = GetY() - hit / 2 + mMouthPivotY;
+        double absMouthPivotX = GetX() - wid / 2 + mMouthPivotX;
+       double absMouthPivotY = GetY() - hit / 2 + mMouthPivotY;
         graphics->PushState();
-        graphics->Translate(mMouthPivotX, mMouthPivotY);  // Move to the rotation pivot for mouth
-        graphics->Rotate(mMouthPivotAngle);                   // Apply rotation for mouth
-        graphics->Translate(-mMouthPivotX, -mMouthPivotY); // Move back from the rotation pivot for mouth
+
+        double progress = mMouthElapsedTime / EatingTime;
+
+        if(progress < 0.5)
+        {
+            progress = progress * 2;
+        }
+        else
+        {
+            progress = 2 - progress * 2;
+        }
+        double angle = mMouthPivotAngle * progress;
+        graphics->DrawBitmap(*mHeadBitmap,
+                             int(GetX() - Hwid / 2),
+                             int(GetY() - Hhit / 2), wid, hit);
+        graphics->Translate(absMouthPivotX, absMouthPivotY);
+        graphics->Rotate(angle);
+        graphics->Translate(-absMouthPivotX, -absMouthPivotY);
         graphics->DrawBitmap(*mItemBitmap,
                              int(GetX() - wid / 2),
                              int(GetY() - hit / 2), wid, hit);
@@ -79,16 +106,13 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         graphics->PushState();
         double progress = mHeadbuttElapsedTime / HeadbuttTime;
 
-        // Determine if we are in the forward or backward phase of the headbutt
         if(progress < 0.5)
         {
-            // Forward phase
-            progress = progress * 2; // scale to [0, 1]
+            progress = progress * 2;
         }
         else
         {
-            // Backward phase
-            progress = 2 - progress * 2; // scale to [1, 0]
+            progress = 2 - progress * 2;
         }
         double angle = mHeadPivotAngle * progress;
         graphics->Translate(absPivotX, absPivotY);
@@ -114,15 +138,29 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     }
 }
 
-void Sparty::Update(double deltaTime)
+/**
+ * Update sparty animations
+ * @param elapsed time for animations
+ */
+void Sparty::Update(double elapsed)
 {
     if (mIsHeadButting)
     {
-        mHeadbuttElapsedTime += deltaTime;
+        mHeadbuttElapsedTime += elapsed;
         if (mHeadbuttElapsedTime > HeadbuttTime)
         {
             mIsHeadButting = false;
             mHeadbuttElapsedTime = 0.0;
+        }
+    }
+
+    if (mIsMouthMoving)
+    {
+        mMouthElapsedTime += elapsed;
+        if (mMouthElapsedTime > HeadbuttTime)
+        {
+            mIsMouthMoving = false;
+            mMouthElapsedTime = 0.0;
         }
     }
 }
@@ -152,6 +190,7 @@ void Sparty::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Decl
     decNode->GetAttribute(L"head-pivot-angle").ToDouble(&mHeadPivotAngle);
     decNode->GetAttribute(L"head-pivot-x").ToDouble(&mHeadPivotX);
     decNode->GetAttribute(L"head-pivot-y").ToDouble(&mHeadPivotY);
+    decNode->GetAttribute(L"mouth-pivot-angle").ToDouble(&mMouthPivotAngle);
     decNode->GetAttribute(L"mouth-pivot-x").ToDouble(&mMouthPivotX);
     decNode->GetAttribute(L"mouth-pivot-y").ToDouble(&mMouthPivotY);
     decNode->GetAttribute(L"target-x").ToDouble(&mTargetX);
