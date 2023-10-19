@@ -99,14 +99,12 @@ void SudokuView::OnKey(wxKeyEvent &event)
     if (uc == 98)
     {
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
-        std::shared_ptr<Sparty> spartyD = std::dynamic_pointer_cast<Sparty>(sparty);
-        spartyD->ToggleHeadButt();
+        sparty->HeadButt();
     }
 
     else if (uc == 32)
     {
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
-        std::shared_ptr<Sparty> spartyD = std::dynamic_pointer_cast<Sparty>(sparty);
-        spartyD->ToggleMouthMove();
+        sparty->MouthMove();
     }
 }

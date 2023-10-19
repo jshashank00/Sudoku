@@ -77,6 +77,16 @@ public:
      * @param elapsed The time since the last update
      */
     virtual void Update(double elapsed) {}
+
+    /**
+     * Handle the Mouth movement
+     */
+    virtual void MouthMove() {}
+
+    /**
+     * Handle the headbutt movement
+     */
+    virtual void HeadButt() {}
     //void XmlLoad(wxXmlNode *node, std::shared_ptr<Declaration> decNode);
 };
 

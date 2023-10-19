@@ -57,9 +57,9 @@ public:
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode);
-    void ToggleHeadButt();
+    void HeadButt() override;
     void Update(double deltaTime);
-    void ToggleMouthMove();
+    void MouthMove() override;
 };
 
 #endif //PROJECT1_SUDOKULIB_SPARTY_H

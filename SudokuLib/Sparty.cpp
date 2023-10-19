@@ -40,7 +40,7 @@ Sparty::Sparty(Sudoku *sudoku) :
 /**
  * Function for handling Headbutt motion
  */
-void Sparty::ToggleHeadButt()
+void Sparty::HeadButt()
 {
     mIsHeadButting = !mIsHeadButting;
     mHeadbuttElapsedTime = 0.0;
@@ -49,7 +49,7 @@ void Sparty::ToggleHeadButt()
 /**
  * Function for handling Eating motion
  */
-void Sparty::ToggleMouthMove()
+void Sparty::MouthMove()
 {
     mIsMouthMoving = !mIsMouthMoving;
 }
@@ -62,13 +62,10 @@ void Sparty::ToggleMouthMove()
  */
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    //Item::Draw(graphics, 100, 100);
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
     double Hwid = mHeadBitmap->GetWidth();
     double Hhit = mHeadBitmap->GetHeight();
-
-
 
     if (mIsMouthMoving)
     {
