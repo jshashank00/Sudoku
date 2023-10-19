@@ -97,18 +97,25 @@ void SudokuView::OnLeftDown(wxMouseEvent &event)
 void SudokuView::OnSpace(wxKeyEvent &event)
 {
     wxChar uc = event.GetUnicodeKey();
-    if (uc == 32)
+    if (uc == ' ')
     {
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+        std::shared_ptr<Sparty> spartyD = std::dynamic_pointer_cast<Sparty>(sparty);
+        spartyD->ToggleMouthMove();
     }
 }
 
-
+/**
+ * Sparty Headbutt
+ * @param event
+ */
 void SudokuView::OnBKey(wxKeyEvent &event)
 {
     wxChar uc = event.GetUnicodeKey();
     if (uc == 98)
     {
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+        std::shared_ptr<Sparty> spartyD = std::dynamic_pointer_cast<Sparty>(sparty);
+        spartyD->ToggleHeadButt();
     }
 }
