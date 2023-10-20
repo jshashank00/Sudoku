@@ -93,24 +93,16 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         decNode = mMap.find(id)->second;
         if(itemNode->GetName() == L"given")
         {
-
-            //wxString mImage = decNode->GetAttribute(L"image");
-            //int value;
-            //decNode->GetAttribute(L"value", L"0").ToInt(&value);
-
             item = make_shared<Given>(mSudoku);
             mSudoku->Add(item);
             item->XmlLoad(itemNode, decNode);
-
-            //mSudoku->Add(item);
-//            item->XmlLoad(node);
         }
         else if(itemNode->GetName() == L"digit")
         {
             item = make_shared<Digit>(mSudoku);
             mSudoku->Add(item);
             item->XmlLoad(itemNode, decNode);
-//            item = make_shared<Digit>(mSudoku);
+
         }
         else if (itemNode->GetName() == L"sparty")
         {
@@ -118,18 +110,16 @@ void LevelLoad::XmlItem(wxXmlNode *node)
             mSudoku->Add(item);
             mSudoku->SetSparty(item);
             item->XmlLoad(itemNode, decNode);
-//            item = make_shared<Sparty>(mSudoku);
         }
         else if (itemNode->GetName() == L"background")
         {
-//            item = make_shared<Background>(this);
+
         }
         else if (itemNode->GetName() == L"xray")
         {
             item = make_shared<Xray>(mSudoku);
             mSudoku->Add(item);
             item->XmlLoad(itemNode, decNode);
-//             item = make_shared<Xray>(mSudoku);
         }
         else if (itemNode->GetName() == L"container")
         {
@@ -156,50 +146,13 @@ void LevelLoad::XmlDeclaration(wxXmlNode *node)
     for( ; childNode; childNode=childNode->GetNext())
     {
         id = childNode->GetAttribute(L"id");
-        if(childNode->GetName() == L"given")
-        {
-              //dec = make_shared<NumberDec>();
-              mMap.insert({id, childNode});
-              //dec->XmlLoad(childNode);
-//              mMap.insert({id, dec});
-        }
-        else if(childNode->GetName() == L"digit")
-        {
-            mMap.insert({id, childNode});
-            //dec = make_shared<NumberDec>();
-            //dec->XmlLoad(childNode);
-//            id = childNode->GetAttribute(L"id");
-//            mMap.insert({id, dec});
-        }
-        else if (childNode->GetName() == L"sparty")
-        {
-            mMap.insert({id, childNode});
-            //dec = make_shared<SpartyDec>();
-//            dec->XmlLoad(childNode);
-//            id = childNode->GetAttribute(L"id");
-//            mMap.insert({id, dec});
-        }
-        else if (childNode->GetName() == L"background")
-        {
-            mMap.insert({id, childNode});
-            //dec = make_shared<BackgroundDec>();
-            mBackground = childNode->GetAttribute(L"image");
-//            item = make_shared<Background>();
-            //dec->XmlLoad(childNode);
-//            id = childNode->GetAttribute(L"id");
-//            mMap.insert({id, dec});
-        }
-        else if (childNode->GetName() == L"xray")
-        {
-            mMap.insert({id, childNode});
-             //dec = make_shared<XrayDec>();
-               //dec->XmlLoad(childNode);
-//            id = childNode->GetAttribute(L"id");
-//            mMap.insert({id, dec});
-        }
-        else if (childNode->GetName() == L"container")
+        if (childNode->GetName() == L"container")
         {
             XmlContainer(node);
+        }
+        else
+        {
+            mMap.insert({id, childNode});
         }
     }
 }
