@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "Sparty.h"
+#include "SudokuView.h"
 #include <wx/graphics.h>
 
 using namespace std;
@@ -52,6 +53,29 @@ void Sparty::HeadButt()
 void Sparty::MouthMove()
 {
     mIsMouthMoving = !mIsMouthMoving;
+}
+/**
+ * Sparty Hit Test
+ */
+
+bool Sparty::HitTest(int x, int y)
+{
+    double wid = 96;
+    double hit = 96;
+
+
+    double testX = x - GetX() + wid / 2;
+    double testY = y - GetY() + hit / 2;
+
+    // Test to see if x, y are in the image
+    if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+    {
+        // Outside Image
+        return false;
+    }
+
+
+    return !mHeadImage->IsTransparent((int)testX, (int)testY);
 }
 
 /**
@@ -141,6 +165,7 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
  */
 void Sparty::Update(double elapsed)
 {
+
     if (mIsHeadButting)
     {
         mHeadbuttElapsedTime += elapsed;
