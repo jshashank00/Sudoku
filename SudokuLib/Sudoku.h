@@ -28,6 +28,8 @@ private:
     wxStopWatch mStopWatch;
     double mElapsedTime = 0.0; // To track the elapsed time
     double mTime = 0.0;
+    double mSpartyTargetX; // Store the target X coordinate for Sparty
+    double mSpartyTargetY; // Store the target Y coordinate for Sparty
 
 public:
     Sudoku();
@@ -46,6 +48,14 @@ public:
      * @return pointer to sparty
      */
     std::shared_ptr<Item> GetSparty();
+
+    double GetSpartyTargetX() const {
+        return mSpartyTargetX;
+    }
+
+    double GetSpartyTargetY() const {
+        return mSpartyTargetY;
+    }
 
     void Update(double elapsed);
 

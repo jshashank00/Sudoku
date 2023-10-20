@@ -28,7 +28,7 @@ void SudokuView::Initialize(wxFrame* parent)
     Bind(wxEVT_PAINT, &SudokuView::OnPaint, this);
     Bind(wxEVT_LEFT_DOWN, &SudokuView::OnLeftDown, this);
     Bind(wxEVT_TIMER, &SudokuView::OnTimer, this);
-    Bind(wxEVT_CHAR, &SudokuView::OnSpace, this);
+    Bind(wxEVT_CHAR, &SudokuView::OnKey, this);
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
 }
@@ -90,14 +90,21 @@ void SudokuView::OnLeftDown(wxMouseEvent &event)
 }
 
 /**
- * Handle the sparty mouth move
+ * Sparty Headbutt
  * @param event
  */
-void SudokuView::OnSpace(wxKeyEvent &event)
+void SudokuView::OnKey(wxKeyEvent &event)
 {
     wxChar uc = event.GetUnicodeKey();
-    if (uc == 32)
+    if (uc == 98)
     {
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+        sparty->HeadButt();
+    }
+
+    else if (uc == 32)
+    {
+        std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+        sparty->MouthMove();
     }
 }

@@ -53,6 +53,11 @@ public:
      */
     double GetY() const { return mY; }
 
+    /**
+     * The Game
+     * @return mSudoku
+     */
+    Sudoku * GetSudoku() {return mSudoku;}
 
     virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
@@ -63,7 +68,7 @@ public:
     */
     virtual void SetLocation(double x, double y) { mX = x; mY = y; }
 
-    bool HitTest(int x, int y);
+    virtual bool HitTest(int x, int y);
     virtual void XmlLoad(wxXmlNode *node, wxXmlNode *decNode);
 
     /// Constructor
@@ -77,6 +82,16 @@ public:
      * @param elapsed The time since the last update
      */
     virtual void Update(double elapsed) {}
+
+    /**
+     * Handle the Mouth movement
+     */
+    virtual void MouthMove() {}
+
+    /**
+     * Handle the headbutt movement
+     */
+    virtual void HeadButt() {}
     //void XmlLoad(wxXmlNode *node, std::shared_ptr<Declaration> decNode);
 };
 
