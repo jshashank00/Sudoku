@@ -4,9 +4,9 @@
  */
 
 #include <pch.h>
-#include "gtest/gtest.h"
-#include "Sudoku.h"
-#include "Item.h"
+#include <gtest/gtest.h>
+#include <Sudoku.h>
+#include <Item.h>
 using namespace std;
 
 class SudokuTest : public::testing::Test {

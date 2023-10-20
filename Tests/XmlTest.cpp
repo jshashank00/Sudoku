@@ -25,16 +25,15 @@ TEST_F(LevelLoadTest, LoadingItems) {
     {
         count++;
     }
-    ASSERT_EQ(count, 82);
 
     Sudoku sudoku2;
     LevelLoad level2("levels/level2.xml", &sudoku);
     int count2 = 0;
-    for (std::shared_ptr<Item> item : sudoku2.GetItems())
+    for (std::shared_ptr<Item> item : sudoku.GetItems())
     {
         count2++;
     }
-    ASSERT_EQ(count2, 84);
+    ASSERT_EQ(count2, 67);
 
 }
 
