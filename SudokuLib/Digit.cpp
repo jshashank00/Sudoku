@@ -18,15 +18,15 @@ Digit::Digit(Sudoku *sudoku) :
     mNumberBitmap = make_unique<wxBitmap>(*mNumberImage);
 }
 
-void Digit::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
-{
-    //Item::Draw(graphics, width, height);
-    double wid = mNumberBitmap->GetWidth();
-    double hit = mNumberBitmap->GetHeight();
-    graphics->DrawBitmap(*mNumberBitmap,
-                         int(GetX() - wid / 2),
-                         int(GetY() - hit / 2), 50, 50);
-}
+//void Digit::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
+//{
+//    //Item::Draw(graphics, width, height);
+//    double wid = mNumberBitmap->GetWidth();
+//    double hit = mNumberBitmap->GetHeight();
+//    graphics->DrawBitmap(*mNumberBitmap,
+//                         int(GetX() - wid / 2),
+//                         int(GetY() - hit / 2), 50, 50);
+//}
 
 /**
  * Load the attributes for an item node.

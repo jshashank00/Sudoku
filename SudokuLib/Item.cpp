@@ -80,8 +80,8 @@ void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declar
     itemNode->GetAttribute(L"row", L"0").ToDouble(&mRow);
     decNode->GetAttribute(L"width", L"0").ToDouble(&mWidth);
     decNode->GetAttribute(L"height", L"0").ToDouble(&mHeight);
-    mX = (mCol+.85) * 48;
-    mY = (((mRow+2.8)-1) * 48) - mHeight;
+    mX = (mCol) * 48;
+    mY = (((mRow)-1) * 48);
 }
 
 /**
@@ -90,9 +90,10 @@ void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declar
  */
 void Item::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
+    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
     graphics->DrawBitmap(*mItemBitmap,
-                   int(GetX() - wid / 2),
-                   int(GetY() - hit / 2), width, height);
+                         mX,
+                         mY, mWidth, mHeight);
 }

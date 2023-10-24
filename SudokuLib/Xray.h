@@ -26,8 +26,16 @@ private:
 
 
 public:
+    Xray() = delete;
+
+    /// Copy constructor (disabled)
+    Xray(const Xray &) = delete;
+
+    /// Assignment operator
+    void operator=(const Xray &) = delete;
+
     Xray(Sudoku* sudoku); // Add width and height parameters
-    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
+//    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode);
 };
 
