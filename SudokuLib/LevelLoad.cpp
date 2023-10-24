@@ -175,18 +175,21 @@ void LevelLoad::XmlContainerItem(wxXmlNode *node)
     wxXmlNode* decNode;
     wxString id = node->GetAttribute(L"id");
     decNode = mMap.find(id)->second;
-    container->XmlLoad(node, decNode, mTileHeight);
+    container->XmlLoadBack(node, decNode, mTileHeight);
 
 //    node->GetAttribute(L"image");
     auto childNode = node->GetChildren();
     for( ; childNode; childNode=childNode->GetNext())
     {
-        wxString image = "images/" + decNode->GetAttribute(L"image",L"0");
-        wxString digitID = childNode->GetAttribute(L"id");
-        decNode = mMap.find(digitID)->second;
-        item = make_shared<Digit>(mSudoku, image);
-        mSudoku->Add(item);
-        item->XmlLoad(childNode, decNode, mTileHeight);
+        if (childNode->GetName() == L"digit")
+        {
+            wxString digitID = childNode->GetAttribute(L"id");
+            decNode = mMap.find(digitID)->second;
+            wxString image = "images/" + decNode->GetAttribute(L"image", L"0");
+            item = make_shared<Digit>(mSudoku, image);
+            mSudoku->Add(item);
+            item->XmlLoad(childNode, decNode, mTileHeight);
+        }
     }
 }
 

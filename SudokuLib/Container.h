@@ -12,11 +12,11 @@
 class Container : public Item
 {
 private:
-    /// front image of the container
-    wxString mFront;
+
 public:
     Container(Sudoku* sudoku);
-    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
+    void XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
+    void XmlLoadFront(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
 };
 
 #endif //PROJECT1_SUDOKULIB_CONTAINER_H
