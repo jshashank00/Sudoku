@@ -30,9 +30,9 @@ Container::Container(Sudoku *sudoku) : Item(sudoku)
  *
  * @param node The Xml node we are loading the item from
  */
-void Container::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declaration> decNode)
+void Container::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double height)//, shared_ptr<Declaration> decNode)
 {
-    Item::XmlLoad(itemNode, decNode);
+    Item::XmlLoad(itemNode, decNode, height);
     wxString image = decNode->GetAttribute(L"image",L"0");
     mFront = decNode->GetAttribute(L"front", L"0");
     image = "images/" + image;

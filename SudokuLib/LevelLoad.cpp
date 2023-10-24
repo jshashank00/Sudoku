@@ -181,7 +181,7 @@ void LevelLoad::XmlContainerItem(wxXmlNode *node)
     wxXmlNode* decNode;
     wxString id = node->GetAttribute(L"id");
     decNode = mMap.find(id)->second;
-    container->XmlLoad(node, decNode);
+    container->XmlLoad(node, decNode, mTileHeight);
 
 //    node->GetAttribute(L"image");
     auto childNode = node->GetChildren();
@@ -191,7 +191,7 @@ void LevelLoad::XmlContainerItem(wxXmlNode *node)
         decNode = mMap.find(digitID)->second;
         item = make_shared<Digit>(mSudoku);
         mSudoku->Add(item);
-        item->XmlLoad(childNode, decNode);
+        item->XmlLoad(childNode, decNode, mTileHeight);
     }
 }
 
