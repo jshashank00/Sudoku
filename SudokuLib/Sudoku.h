@@ -61,6 +61,7 @@ public:
 
     void SetLocation(wxMouseEvent &event);
     void SetSparty(std::shared_ptr<Item> sparty);
+    void ChooseLevel(wxString level);
 
 };
 

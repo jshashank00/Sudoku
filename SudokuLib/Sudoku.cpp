@@ -191,3 +191,8 @@ void Sudoku::SetSparty(shared_ptr<Item> sparty)
 {
     mSparty = sparty;
 }
+
+void Sudoku::ChooseLevel(wxString levelToLoad)
+{
+    LevelLoad level(levelToLoad, this);
+}

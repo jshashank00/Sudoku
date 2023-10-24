@@ -4,11 +4,13 @@
  */
 
 #include "pch.h"
+#include "ids.h"
 #include "SudokuView.h"
 #include "Sudoku.h"
 #include <wx/dcbuffer.h>
 #include "Scoreboard.h"
 #include <wx/graphics.h>
+#include "LevelLoad.h"
 
 /// Frame duration
 const int FrameDuration = 30;
@@ -25,10 +27,17 @@ void SudokuView::Initialize(wxFrame* parent)
            wxDefaultPosition, wxDefaultSize,
            wxFULL_REPAINT_ON_RESIZE);
     SetBackgroundStyle(wxBG_STYLE_PAINT);
+
     Bind(wxEVT_PAINT, &SudokuView::OnPaint, this);
     Bind(wxEVT_LEFT_DOWN, &SudokuView::OnLeftDown, this);
     Bind(wxEVT_TIMER, &SudokuView::OnTimer, this);
     Bind(wxEVT_CHAR, &SudokuView::OnKey, this);
+
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnLevel0, this, IDM_LEVELO);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnLevel1, this, IDM_LEVEL1);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnLevel2, this, IDM_LEVEL2);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnLevel3, this, IDM_LEVEL3);
+
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
 }
@@ -107,4 +116,32 @@ void SudokuView::OnKey(wxKeyEvent &event)
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
         sparty->MouthMove();
     }
+}
+
+void SudokuView::OnLevel0(wxCommandEvent& event)
+{
+    wxString level0 = "levels/level0.xml";
+    mSudoku.ChooseLevel(level0);
+//    LevelLoad level(level1, mSudoku);
+}
+
+void SudokuView::OnLevel1(wxCommandEvent& event)
+{
+    wxString level1 = "levels/level1.xml";
+    mSudoku.ChooseLevel(level1);
+//    LevelLoad level(level1, mSudoku);
+}
+
+void SudokuView::OnLevel2(wxCommandEvent& event)
+{
+    wxString level2 = "levels/level2.xml";
+    mSudoku.ChooseLevel(level2);
+//    LevelLoad level(level1, mSudoku);
+}
+
+void SudokuView::OnLevel3(wxCommandEvent& event)
+{
+    wxString level3 = "levels/level3.xml";
+    mSudoku.ChooseLevel(level3);
+//    LevelLoad level(level1, mSudoku);
 }

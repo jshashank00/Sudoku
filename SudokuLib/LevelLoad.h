@@ -16,7 +16,7 @@
 class LevelLoad
 {
 private:
-    Sudoku *mSudoku = nullptr; ///< the sudoku game we are in
+    Sudoku * mSudoku = nullptr; ///< the sudoku game we are in
     wxString mWidth; ///< the width of the playing area
     wxString mHeight; ///< the height of the playing area
     wxString mTileWidth; ///< the width of the tile

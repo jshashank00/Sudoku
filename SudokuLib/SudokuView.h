@@ -34,6 +34,11 @@ public:
 
     void OnKey(wxKeyEvent &event);
     void Stop(){mTimer.Stop();}
+
+    void OnLevel0(wxCommandEvent& event);
+    void OnLevel1(wxCommandEvent& event);
+    void OnLevel2(wxCommandEvent& event);
+    void OnLevel3(wxCommandEvent& event);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKUVIEW_H
