@@ -9,7 +9,6 @@
 #include "Digit.h"
 #include "Sparty.h"
 #include "Xray.h"
-#include "Background.h"
 #include "Container.h"
 
 
@@ -123,12 +122,9 @@ void LevelLoad::XmlItem(wxXmlNode *node)
                 mSudoku->SetPixelWidth(wxAtoi(decNode->GetAttribute(L"width", L"0")));
                 backgroundThere = true;
             }
-            item = make_shared<Background>(mSudoku, image, mPixelWidth, mPixelHeight );
+            item = make_shared<Item>(mSudoku, image);//, mPixelWidth, mPixelHeight );
             mSudoku->Add(item);
             item->XmlLoad(itemNode, decNode, mTileHeight);
-            //mBackgroundImage = decNode->GetAttribute(L"image");
-            //decNode->GetAttribute(L"width", L"0").ToDouble(&mWidthBackground);
-            //decNode->GetAttribute(L"height", L"0").ToDouble(&mHeightBackground);
         }
         else if (itemNode->GetName() == L"xray")
         {

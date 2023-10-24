@@ -22,8 +22,6 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Xray.cpp
         LevelLoad.cpp
         LevelLoad.h
-        Background.cpp
-        Background.h
         Container.cpp
         Container.h
         MessageBoard.cpp
