@@ -13,7 +13,7 @@ class Scoreboard : public Item
 {
 private:
 
-    time_t gameStartTime; // Member variable to store the game start time
+    time_t gameStartTime; /// >Member variable to store the game start time
 
 public:
     Scoreboard(Sudoku *sudoku);
@@ -30,7 +30,6 @@ public:
         int minutes = timeInfo->tm_min;
         int seconds = timeInfo->tm_sec;
 
-        // Format the time as "minutes:seconds"
         std::string timeStr = std::to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + std::to_string(seconds);
 
         return timeStr;
