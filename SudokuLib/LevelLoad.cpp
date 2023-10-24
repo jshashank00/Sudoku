@@ -15,6 +15,7 @@
 #include "BackgroundDec.h"
 #include "NumberDec.h"
 #include "XrayDec.h"
+#include "Container.h"
 
 
 using namespace std;
@@ -130,7 +131,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         }
         else if (itemNode->GetName() == L"container")
         {
-            XmlContainer(node);
+            XmlContainerItem(itemNode);
         }
     }
     if (item != nullptr)
@@ -153,14 +154,15 @@ void LevelLoad::XmlDeclaration(wxXmlNode *node)
     for( ; childNode; childNode=childNode->GetNext())
     {
         id = childNode->GetAttribute(L"id");
-        if (childNode->GetName() == L"container")
-        {
-            XmlContainer(node);
-        }
-        else
-        {
-            mMap.insert({id, childNode});
-        }
+        mMap.insert({id, childNode});
+//        if (childNode->GetName() == L"container")
+//        {
+////            XmlContainerDec(node);
+//        }
+//        else
+//        {
+//            mMap.insert({id, childNode});
+//        }
     }
 }
 
@@ -168,8 +170,29 @@ void LevelLoad::XmlDeclaration(wxXmlNode *node)
  * Handle a node of type container.
  * @param node XML node
  */
-void LevelLoad::XmlContainer(wxXmlNode *node)
+void LevelLoad::XmlContainerItem(wxXmlNode *node)
 {
+    // A pointer for the item we are loading
+    shared_ptr<Item> item;
+    shared_ptr<Container> container;
+    container = make_shared<Container>(mSudoku);
+    mSudoku->Add(container);
 
+    wxXmlNode* decNode;
+    wxString id = node->GetAttribute(L"id");
+    decNode = mMap.find(id)->second;
+    container->XmlLoad(node, decNode);
+
+//    node->GetAttribute(L"image");
+    auto childNode = node->GetChildren();
+    for( ; childNode; childNode=childNode->GetNext())
+    {
+        wxString digitID = childNode->GetAttribute(L"id");
+        decNode = mMap.find(digitID)->second;
+        item = make_shared<Digit>(mSudoku);
+        mSudoku->Add(item);
+        item->XmlLoad(childNode, decNode);
+    }
 }
+
 

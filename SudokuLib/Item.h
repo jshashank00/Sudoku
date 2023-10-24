@@ -37,6 +37,8 @@ private:
 
     /// Item id
     //wxString mID;
+protected:
+
 
 public:
     void SetImage(const wxString &filename);

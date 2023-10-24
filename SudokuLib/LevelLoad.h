@@ -38,7 +38,8 @@ public:
     void XmlItem(wxXmlNode *node);
     void XmlDeclaration(wxXmlNode *node);
     void XmlGame(wxXmlNode *node);
-    void XmlContainer(wxXmlNode *node);
+    void XmlContainerItem(wxXmlNode *node);
+    void XmlContainerDec(wxXmlNode *node);
 
     wxString GetBackgroundImage() { return mBackgroundImage; }
 

@@ -23,15 +23,15 @@ Given::Given(Sudoku *sudoku) : Item(sudoku)
 
 }
 
-void Given::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
-{
-    //Item::Draw(graphics, width, height);
-    double wid = mGivenBitmap->GetWidth();
-    double hit = mGivenBitmap->GetHeight();
-    graphics->DrawBitmap(*mGivenBitmap,
-                         int(GetX() - wid / 2),
-                         int(GetY() - hit / 2), 48, 48);
-}
+//void Given::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
+//{
+//    //Item::Draw(graphics, width, height);
+//    double wid = mGivenBitmap->GetWidth();
+//    double hit = mGivenBitmap->GetHeight();
+//    graphics->DrawBitmap(*mGivenBitmap,
+//                         int(GetX() - wid / 2),
+//                         int(GetY() - hit / 2), 48, 48);
+//}
 
 /**
  * Load the attributes for an item node.
