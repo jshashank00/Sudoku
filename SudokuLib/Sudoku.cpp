@@ -23,7 +23,7 @@ using namespace std;
  */
 Sudoku::Sudoku()
 {
-    wxString level1 = "levels/level2.xml";
+    wxString level1 = "levels/level1.xml";
     LevelLoad level(level1, this);
 
     mPixelWidth = level.PixelWidth();

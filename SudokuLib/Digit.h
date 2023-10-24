@@ -16,17 +16,10 @@
 class Digit : public Item
 {
 private:
-    /// The item image
-    std::unique_ptr<wxImage> mNumberImage;
-
-    /// The bitmap to display for the item
-    std::unique_ptr<wxBitmap> mNumberBitmap;
-
     int mValue;
 
 public:
     Digit(Sudoku *sudoku);
-//    void Draw(std::shared_ptr<wxGraphicsContext>, int width, int height);
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight);
 
 };
