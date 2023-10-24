@@ -119,13 +119,11 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         {
             if (!backgroundThere)
             {
-//                int * height;
 //                int * width;
-//                decNode->GetAttribute(L"height", L"0").ToInt(height);
-//                decNode->GetAttribute(L"width", L"0").ToInt(width);
-//                mSudoku->SetPixelHeight(*height);
-//                mSudoku->SetPixelWidth(*width);
-//                backgroundThere = true;
+//                wxAtoi(decNode->GetAttribute(L"height", L"0"));
+                mSudoku->SetPixelHeight(wxAtoi(decNode->GetAttribute(L"height", L"0")));
+                mSudoku->SetPixelWidth(wxAtoi(decNode->GetAttribute(L"width", L"0")));
+                backgroundThere = true;
             }
             item = make_shared<Background>(mSudoku);
             mSudoku->Add(item);
