@@ -15,7 +15,7 @@ using namespace std;
 class SudokuTest : public::testing::Test {
 protected:
     /**
-    *  Populate an aquarium with all types
+    *  Populate a game with all types
     */
     void PopulateDiffTypes(Sudoku *sudoku)
     {
@@ -42,16 +42,17 @@ TEST_F(SudokuTest, Construct){
 
 TEST_F(SudokuTest, Clear)
 {
-    // Create an aquarium
+    // Create a game
     Sudoku sudoku;
 
-    // Populate aquarium
+    // Populate game
     PopulateDiffTypes(&sudoku);
 
     sudoku.Clear();
 
-    // Assert empty aquarium
+    // Assert empty game
     ASSERT_EQ(sudoku.HitTest(100,200), nullptr);
     ASSERT_EQ(sudoku.HitTest(400,400), nullptr);
     ASSERT_EQ(sudoku.HitTest(600,100), nullptr);
 }
+
