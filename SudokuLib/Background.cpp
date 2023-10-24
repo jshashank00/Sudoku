@@ -8,20 +8,20 @@
 #include <wx/graphics.h>
 using namespace std;
 
-const wstring imageName = L"images/background.png";
+//const wstring imageName = L"images/background.png";
 
-Background::Background(Sudoku* sudoku, double width, double height) : Item(sudoku, imageName) {
-    mPixelWidth = width;
-    mPixelHeight = height;
-    mItemImage = make_unique<wxImage>(imageName, wxBITMAP_TYPE_ANY);
-    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+Background::Background(Sudoku* sudoku) : Item(sudoku) {
+//    mPixelWidth = width;
+//    mPixelHeight = height;
+//    mItemImage = make_unique<wxImage>(imageName, wxBITMAP_TYPE_ANY);
+//    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
 
 
-void Background::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
-{
-    graphics->DrawBitmap(*mItemImage, 0, 0 ,mPixelWidth, mPixelHeight);
-}
+//void Background::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
+//{
+//    graphics->DrawBitmap(*mItemImage, 0, 0 ,mPixelWidth, mPixelHeight);
+//}
 
 /**
  * Load the attributes for an item node.
@@ -38,6 +38,6 @@ void Background::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHei
     wxString image = decNode->GetAttribute(L"image",L"0");
     image = "images/" + image;
     Item::SetImage(image);
-    mItemImage = make_unique<wxImage> (image, wxBITMAP_TYPE_ANY);
-    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+//    mItemImage = make_unique<wxImage> (image, wxBITMAP_TYPE_ANY);
+//    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }

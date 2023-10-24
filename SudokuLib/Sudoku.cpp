@@ -23,7 +23,7 @@ using namespace std;
  */
 Sudoku::Sudoku()
 {
-    wxString level1 = "levels/level1.xml";
+    wxString level1 = "levels/level2.xml";
     LevelLoad level(level1, this);
 
     mPixelWidth = level.PixelWidth();
@@ -164,6 +164,16 @@ void Sudoku::Update(double elapsed)
 void Sudoku::SetSparty(shared_ptr<Item> sparty)
 {
     mSparty = sparty;
+}
+
+void Sudoku::SetPixelHeight(int height)
+{
+    mPixelHeight = height;
+}
+
+void Sudoku::SetPixelWidth(int wid)
+{
+    mPixelWidth = wid;
 }
 
 void Sudoku::ChooseLevel(wxString levelToLoad)

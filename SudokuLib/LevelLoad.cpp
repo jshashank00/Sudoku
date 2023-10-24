@@ -89,6 +89,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     // A pointer for the item we are loading
     shared_ptr<Item> item;
     wxXmlNode* decNode;
+    bool backgroundThere = false;
     auto itemNode = node->GetChildren();
     for( ; itemNode; itemNode=itemNode->GetNext())
     {
@@ -116,8 +117,18 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         }
         else if (itemNode->GetName() == L"background")
         {
-            item = make_shared<Background>(mSudoku, mPixelWidth, mPixelHeight );
-            mSudoku->AddFront(item);
+            if (!backgroundThere)
+            {
+//                int * height;
+//                int * width;
+//                decNode->GetAttribute(L"height", L"0").ToInt(height);
+//                decNode->GetAttribute(L"width", L"0").ToInt(width);
+//                mSudoku->SetPixelHeight(*height);
+//                mSudoku->SetPixelWidth(*width);
+//                backgroundThere = true;
+            }
+            item = make_shared<Background>(mSudoku);
+            mSudoku->Add(item);
             item->XmlLoad(itemNode, decNode, mTileHeight);
             //mBackgroundImage = decNode->GetAttribute(L"image");
             //decNode->GetAttribute(L"width", L"0").ToDouble(&mWidthBackground);
