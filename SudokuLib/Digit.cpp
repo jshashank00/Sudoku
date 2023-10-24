@@ -37,9 +37,9 @@ Digit::Digit(Sudoku *sudoku) :
  *
  * @param node The Xml node we are loading the item from
  */
-void Digit::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declaration> decNode)
+void Digit::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {
-    Item::XmlLoad(itemNode, decNode);
+    Item::XmlLoad(itemNode, decNode, tileHeight);
     wxString image = decNode->GetAttribute(L"image",L"0");
     image = "images/" + image;
     Item::SetImage(image);

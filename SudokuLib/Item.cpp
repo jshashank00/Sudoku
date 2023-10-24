@@ -17,8 +17,6 @@ using namespace std;
  */
 Item::Item(Sudoku *sudoku, const std::wstring &filename) : mSudoku(sudoku)
 {
-    //mItemImage = make_unique<wxImage> (filename, wxBITMAP_TYPE_ANY);
-    //mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
 
 void Item::SetImage(const wxString &filename)
@@ -73,15 +71,15 @@ bool Item::HitTest(int x, int y)
  *
  * @param node The Xml node we are loading the item from
  */
-void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declaration> decNode)
+void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {
     //mID = node->GetAttribute(L"id", L"0");
     itemNode->GetAttribute(L"col", L"0").ToDouble(&mCol);
     itemNode->GetAttribute(L"row", L"0").ToDouble(&mRow);
     decNode->GetAttribute(L"width", L"0").ToDouble(&mWidth);
     decNode->GetAttribute(L"height", L"0").ToDouble(&mHeight);
-    mX = (mCol) * 48;
-    mY = (((mRow)-1) * 48);
+    mX = (mCol) * tileHeight;
+    mY = ((mRow-1) * tileHeight) - mHeight;
 }
 
 /**

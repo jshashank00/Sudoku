@@ -23,48 +23,17 @@ using namespace std;
  */
 Sudoku::Sudoku()
 {
-
-    mBackground = make_unique<wxBitmap>(L"images/background.png", wxBITMAP_TYPE_ANY);
-    wxString level1 = "levels/level1.xml";
+    wxString level1 = "levels/level2.xml";
     LevelLoad level(level1, this);
+
+    mPixelWidth = level.PixelWidth();
+    mPixelHeight = level.PixelHeight();
+
     shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
     mItems.push_back(scoreboard);
     shared_ptr<Item> board = make_shared<MessageBoard>(this);
     board->SetLocation(494, 375);
     mItems.push_back(board);
-    //wxString background = "images/" + level.GetBackground();
-    //mBackground = make_unique<wxBitmap>(background, wxBITMAP_TYPE_ANY);
-    // Create a sparty
-    // This creates a shared pointer to sparty
-    /**
-    mSparty = make_shared<Sparty>(this);
-    shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
-    shared_ptr<Item> digit = make_shared<Digit>(this);
-    shared_ptr<Item> given = make_shared<Given>(this);
-    shared_ptr<Item> xray = make_shared<Xray>(this);
-    shared_ptr<Item> pumpkin = make_shared<Pumpkin>(this);
-    shared_ptr<Item> cauldron = make_shared<Cauldron>(this);
-    shared_ptr<Item> board = make_shared<MessageBoard>(this);
-
-    // Set the location
-    mSparty->SetLocation(100, 100);
-    digit->SetLocation(200, 100);
-    given->SetLocation(270, 175 );
-    xray->SetLocation(50, 0);
-    pumpkin->SetLocation(204, 176);
-    cauldron->SetLocation(220, 215);
-    board->SetLocation(494, 375);
-
-    // Add to the list
-    mItems.push_back(scoreboard);
-    mItems.push_back(digit);
-    mItems.push_back(given);
-    mItems.push_back(xray);
-    mItems.push_back(pumpkin);
-    mItems.push_back(cauldron);
-    mItems.push_back(board);
-    mItems.push_back(mSparty);
-     */
 }
 
 /**
@@ -115,18 +84,15 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
     mTime = newTime;
     mElapsedTime += elapsed;
 
-    // Determine the size of the playing area in virtual pixels (up to you)
-    int pixelWidth = 988;
-    int pixelHeight = 750;
 
     // Calculate the scaling factors
-    double scaleX = double(width) / double(pixelWidth);
-    double scaleY = double(height) / double(pixelHeight);
+    double scaleX = double(width) / double(mPixelWidth);
+    double scaleY = double(height) / double(mPixelHeight);
     mScale = std::min(scaleX, scaleY);
 
     // Calculate the offsets for centering the content
-    mXOffset = (width - pixelWidth * mScale) / 2.0;
-    mYOffset = (height - pixelHeight * mScale) / 2.0;
+    mXOffset = (width - mPixelWidth * mScale) / 2.0;
+    mYOffset = (height - mPixelHeight * mScale) / 2.0;
 
     graphics->PushState();
 
@@ -134,13 +100,13 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
     graphics->Scale(mScale, mScale);
 
     // Draw the background image
-    if (mBackground) {
-        graphics->DrawBitmap(*mBackground, 0, 0, pixelWidth, pixelHeight);
-    }
+    //if (mBackground) {
+    //    graphics->DrawBitmap(*mBackground, 0, 0 ,mPixelWidth, mPixelHeight);
+    //}
 
     for(auto item : mItems)
     {
-        item->Draw(graphics, pixelWidth, pixelHeight);
+        item->Draw(graphics, mPixelWidth, mPixelHeight);
     }
 
     graphics->PopState();
@@ -161,8 +127,16 @@ void Sudoku::SetLocation(wxMouseEvent &event)
 */
 void Sudoku::Add(std::shared_ptr<Item> item)
 {
-    //item->SetLocation(100, 200);
     mItems.push_back(item);
+}
+
+/**
+* Add an item to the game
+ * @param item New item to add
+*/
+void Sudoku::AddFront(std::shared_ptr<Item> item)
+{
+    mItems.insert(mItems.begin(), item);
 }
 
 /**

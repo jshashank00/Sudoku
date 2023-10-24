@@ -57,11 +57,11 @@ private:
 public:
     Sparty(Sudoku *sudoku);
 
-    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
+    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height) override;
 
-    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode);
+    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight) override;
     void HeadButt() override;
-    void Update(double deltaTime);
+    void Update(double deltaTime) override;
     void MouthMove() override;
     bool HitTest(int x, int y) override;
 };

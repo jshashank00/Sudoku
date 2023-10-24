@@ -24,7 +24,7 @@ public:
 
     Container(Sudoku* sudoku);
 //    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
-    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode);
+    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
 };
 
 #endif //PROJECT1_SUDOKULIB_CONTAINER_H
