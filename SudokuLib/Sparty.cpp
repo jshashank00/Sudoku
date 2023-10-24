@@ -19,12 +19,6 @@ const double EatingTime = 0.5;
 /// The time for a headbutt cycle in seconds
 const double HeadbuttTime = 0.5;
 
-/// Sparty filename
-//const wstring SpartyImageName = L"images/sparty-1.png";
-
-/// Sparty filename
-//const wstring SpartyImageMouthName = L"images/sparty-2.png";
-
 /**
  * Constructor
  * @param sudoku The sudoku game we are in
@@ -33,9 +27,6 @@ const double HeadbuttTime = 0.5;
 Sparty::Sparty(Sudoku *sudoku) :
     Item(sudoku)
 {
-//    mItemImage = make_unique<wxImage> (SpartyImageMouthName, wxBITMAP_TYPE_ANY);
-//    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
-//    sudoku->SetSparty(this);
 }
 
 /**

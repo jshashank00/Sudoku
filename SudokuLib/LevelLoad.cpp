@@ -10,11 +10,6 @@
 #include "Sparty.h"
 #include "Xray.h"
 #include "Background.h"
-#include "Declaration.h"
-#include "SpartyDec.h"
-#include "BackgroundDec.h"
-#include "NumberDec.h"
-#include "XrayDec.h"
 #include "Container.h"
 
 
@@ -94,29 +89,32 @@ void LevelLoad::XmlItem(wxXmlNode *node)
     {
         wxString id = itemNode->GetAttribute(L"id");
         decNode = mMap.find(id)->second;
-        if(itemNode->GetName() == L"given")
+
+        wxString image = "images/" + decNode->GetAttribute(L"image",L"0");
+
+        if (itemNode->GetName() == L"given")
         {
-            item = make_shared<Given>(mSudoku);
+            item = make_shared<Given>(mSudoku, image);
             mSudoku->Add(item);
             item->XmlLoad(itemNode, decNode, mTileHeight);
         }
-        else if(itemNode->GetName() == L"digit")
+        else if (itemNode->GetName() == L"digit")
         {
-            item = make_shared<Digit>(mSudoku);
+            item = make_shared<Digit>(mSudoku, image);
             mSudoku->Add(item);
             item->XmlLoad(itemNode, decNode, mTileHeight);
 
         }
         else if (itemNode->GetName() == L"sparty")
         {
-            item = make_shared<Sparty>(mSudoku );
+            item = make_shared<Sparty>(mSudoku);
             mSudoku->Add(item);
             mSudoku->SetSparty(item);
             item->XmlLoad(itemNode, decNode, mTileHeight);
         }
         else if (itemNode->GetName() == L"background")
         {
-            item = make_shared<Background>(mSudoku, mPixelWidth, mPixelHeight );
+            item = make_shared<Background>(mSudoku, image, mPixelWidth, mPixelHeight );
             mSudoku->AddFront(item);
             item->XmlLoad(itemNode, decNode, mTileHeight);
             //mBackgroundImage = decNode->GetAttribute(L"image");
@@ -148,21 +146,12 @@ void LevelLoad::XmlItem(wxXmlNode *node)
 void LevelLoad::XmlDeclaration(wxXmlNode *node)
 {
     // A pointer for the item we are loading
-    shared_ptr<Declaration> dec;
     wxString id;
     auto childNode = node->GetChildren();
     for( ; childNode; childNode=childNode->GetNext())
     {
         id = childNode->GetAttribute(L"id");
         mMap.insert({id, childNode});
-//        if (childNode->GetName() == L"container")
-//        {
-////            XmlContainerDec(node);
-//        }
-//        else
-//        {
-//            mMap.insert({id, childNode});
-//        }
     }
 }
 
@@ -187,9 +176,10 @@ void LevelLoad::XmlContainerItem(wxXmlNode *node)
     auto childNode = node->GetChildren();
     for( ; childNode; childNode=childNode->GetNext())
     {
+        wxString image = "images/" + decNode->GetAttribute(L"image",L"0");
         wxString digitID = childNode->GetAttribute(L"id");
         decNode = mMap.find(digitID)->second;
-        item = make_shared<Digit>(mSudoku);
+        item = make_shared<Digit>(mSudoku, image);
         mSudoku->Add(item);
         item->XmlLoad(childNode, decNode, mTileHeight);
     }

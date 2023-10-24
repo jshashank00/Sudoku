@@ -25,8 +25,8 @@ private:
     double mPixelWidth;
     double mPixelHeight;
 public:
-    Background(Sudoku *sudoku, double width, double height);
-    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight);
+    Background(Sudoku *sudoku, const wxString &filename, double width, double height);
+    //void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight);
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 };
 

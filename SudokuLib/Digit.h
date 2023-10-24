@@ -19,9 +19,8 @@ private:
     int mValue;
 
 public:
-    Digit(Sudoku *sudoku);
+    Digit(Sudoku *sudoku, const wxString &filename);
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight);
-
 };
 
 #endif //PROJECT1_SUDOKULIB_DIGIT_H

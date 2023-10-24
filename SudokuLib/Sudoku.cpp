@@ -10,8 +10,6 @@
 #include "Digit.h"
 #include "Given.h"
 #include "Xray.h"
-#include "Pumpkin.h"
-#include "Cauldron.h"
 #include "MessageBoard.h"
 #include <wx/graphics.h>
 #include "LevelLoad.h"
@@ -23,7 +21,7 @@ using namespace std;
  */
 Sudoku::Sudoku()
 {
-    wxString level1 = "levels/level1.xml";
+    wxString level1 = "levels/level2.xml";
     LevelLoad level(level1, this);
 
     mPixelWidth = level.PixelWidth();

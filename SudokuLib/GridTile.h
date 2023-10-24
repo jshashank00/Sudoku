@@ -12,8 +12,7 @@
  * Tile in playing area grid
  */
 ///
-#include "Grid.h"
-class GridTile: public Grid
+class GridTile
 {
 private:
     /// member variable to keep track of column in grid

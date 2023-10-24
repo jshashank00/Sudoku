@@ -10,7 +10,6 @@
 
 #include <wx/xml/xml.h>
 class Sudoku;
-class Declaration;
 
 /**
  * Base class for any item in our game
@@ -74,7 +73,7 @@ public:
     virtual void XmlLoad(wxXmlNode *node, wxXmlNode *decNode, double tileHeight);
 
     /// Constructor
-    Item(Sudoku *sudoku, const std::wstring &filename);
+    Item(Sudoku *sudoku, const wxString &filename);
 
     ///Constructor
     Item(Sudoku *sudoku);

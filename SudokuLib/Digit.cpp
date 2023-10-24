@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Digit::Digit(Sudoku *sudoku) : Item(sudoku)
+Digit::Digit(Sudoku *sudoku, const wxString &filename) : Item(sudoku, filename)
 {
 }
 
@@ -25,9 +25,5 @@ Digit::Digit(Sudoku *sudoku) : Item(sudoku)
 void Digit::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {
     Item::XmlLoad(itemNode, decNode, tileHeight);
-    wxString image = decNode->GetAttribute(L"image",L"0");
-    image = "images/" + image;
-    Item::SetImage(image);
     decNode->GetAttribute(L"value", L"0").ToInt(&mValue);
-
 }

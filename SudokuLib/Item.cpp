@@ -6,7 +6,6 @@
 #include "pch.h"
 #include "Item.h"
 #include "Sudoku.h"
-#include "Declaration.h"
 #include <wx/graphics.h>
 using namespace std;
 
@@ -15,8 +14,10 @@ using namespace std;
  * @param sudoku
  * @param filename
  */
-Item::Item(Sudoku *sudoku, const std::wstring &filename) : mSudoku(sudoku)
+Item::Item(Sudoku *sudoku, const wxString &filename) : mSudoku(sudoku)
 {
+    mItemImage = make_unique<wxImage> (filename, wxBITMAP_TYPE_ANY);
+    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
 
 void Item::SetImage(const wxString &filename)
@@ -28,7 +29,6 @@ void Item::SetImage(const wxString &filename)
 
 Item::Item(Sudoku *sudoku) : mSudoku(sudoku)
 {
-
 }
 
 /**
@@ -88,7 +88,6 @@ void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//
  */
 void Item::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
     graphics->DrawBitmap(*mItemBitmap,

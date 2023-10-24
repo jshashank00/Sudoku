@@ -18,34 +18,16 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Scoreboard.h
         GridTile.cpp
         GridTile.h
-        Grid.cpp
-        Grid.h
         Xray.h
         Xray.cpp
         LevelLoad.cpp
         LevelLoad.h
-        Cauldron.cpp
-        Cauldron.h
-        Level.cpp
-        Level.h
         Background.cpp
         Background.h
-        Declaration.h
-        Declaration.cpp
-        Pumpkin.cpp
-        Pumpkin.h
         Container.cpp
         Container.h
         MessageBoard.cpp
         MessageBoard.h
-        SpartyDec.cpp
-        SpartyDec.h
-        NumberDec.cpp
-        NumberDec.h
-        XrayDec.cpp
-        XrayDec.h
-        BackgroundDec.cpp
-        BackgroundDec.h
         LevelVisitor.cpp
         LevelVisitor.h
 )

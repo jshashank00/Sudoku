@@ -16,18 +16,10 @@
 class Given : public Item
 {
 private:
-    /// The number image
-    std::unique_ptr<wxImage> mGivenImage;
-
-    /// The bitmap to display for the number
-    std::unique_ptr<wxBitmap> mGivenBitmap;
-
     int mValue;
 
 public:
-    Given(Sudoku *sudoku);
-//    void Draw(std::shared_ptr<wxGraphicsContext>, int width, int height);
-
+    Given(Sudoku *sudoku, const wxString &filename);
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight);
 };
 

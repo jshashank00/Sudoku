@@ -11,16 +11,6 @@ Container::Container(Sudoku *sudoku) : Item(sudoku)
 {
 }
 
-//void Container::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
-//{
-//    //Item::Draw(graphics, width, height);
-//    double wid = mItemBitmap->GetWidth();
-//    double hit = mItemBitmap->GetHeight();
-//    graphics->DrawBitmap(*mItemBitmap,
-//                         int(GetX() - wid / 2),
-//                         int(GetY() - hit / 2), 48, 48);
-//}
-
 /**
  * Load the attributes for an item node.
  *
@@ -37,6 +27,4 @@ void Container::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double height)/
     mFront = decNode->GetAttribute(L"front", L"0");
     image = "images/" + image;
     Item::SetImage(image);
-    mItemImage = make_unique<wxImage> (image, wxBITMAP_TYPE_ANY);
-    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }

@@ -9,7 +9,6 @@
 #define PROJECT1_SUDOKULIB_LEVELLOAD_H
 
 #include "Sudoku.h"
-#include "Declaration.h"
 #include <map>
 #include <string>
 
