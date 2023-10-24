@@ -14,6 +14,11 @@ using namespace std;
  * @param sudoku
  * @param filename
  */
+
+Item::Item(Sudoku *sudoku) : mSudoku(sudoku)
+{
+}
+
 Item::Item(Sudoku *sudoku, const wxString &filename) : mSudoku(sudoku)
 {
     mItemImage = make_unique<wxImage> (filename, wxBITMAP_TYPE_ANY);
@@ -27,9 +32,6 @@ void Item::SetImage(const wxString &filename)
 }
 
 
-Item::Item(Sudoku *sudoku) : mSudoku(sudoku)
-{
-}
 
 /**
  * Test to see if we hit this object with a mouse.

@@ -40,7 +40,7 @@ public:
     void XmlContainerItem(wxXmlNode *node);
     void XmlContainerDec(wxXmlNode *node);
 
-    wxString GetBackgroundImage() { return mBackgroundImage; }
+    //wxString GetBackgroundImage() { return mBackgroundImage; }
 
     int PixelWidth() { return mWidth * mTileWidth;; }
     int PixelHeight() { return mHeight * mTileHeight;; }

@@ -35,7 +35,16 @@ TEST_F(LevelLoadTest, LoadingItems) {
         count2++;
     }
     ASSERT_EQ(count2, 87);
-
 }
 
+TEST_F(LevelLoadTest, Pixels){
+    Sudoku sudoku;
+    LevelLoad level("levels/level1.xml", &sudoku);
+    ASSERT_EQ(720, level.PixelHeight());
+    ASSERT_EQ(960, level.PixelWidth());
 
+    Sudoku sudoku2;
+    LevelLoad level2("levels/level2.xml", &sudoku);
+    ASSERT_EQ(960, level2.PixelHeight());
+    ASSERT_EQ(1440, level2.PixelWidth());
+}
