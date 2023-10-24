@@ -164,6 +164,16 @@ void Sudoku::SetSparty(shared_ptr<Item> sparty)
     mSparty = sparty;
 }
 
+void Sudoku::SetPixelHeight(int height)
+{
+    mPixelHeight = height;
+}
+
+void Sudoku::SetPixelWidth(int wid)
+{
+    mPixelWidth = wid;
+}
+
 void Sudoku::ChooseLevel(wxString levelToLoad)
 {
     LevelLoad level(levelToLoad, this);

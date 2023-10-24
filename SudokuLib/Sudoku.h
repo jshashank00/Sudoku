@@ -64,6 +64,8 @@ public:
 
     void SetLocation(wxMouseEvent &event);
     void SetSparty(std::shared_ptr<Item> sparty);
+    void SetPixelWidth(int wid);
+    void SetPixelHeight(int height);
     void ChooseLevel(wxString level);
 
     void AddFront(std::shared_ptr<Item> item);
