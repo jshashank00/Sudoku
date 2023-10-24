@@ -28,6 +28,8 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         MessageBoard.h
         LevelVisitor.cpp
         LevelVisitor.h
+        SolveLoad.cpp
+        SolveLoad.h
 )
 
 set(wxBUILD_PRECOMP OFF)

@@ -26,6 +26,7 @@ private:
     long mTime = 0;
 
     void OnPaint(wxPaintEvent& event);
+
 public:
     void Initialize(wxFrame* parent);
     void OnLeftDown(wxMouseEvent &event);
@@ -39,6 +40,7 @@ public:
     void OnLevel1(wxCommandEvent& event);
     void OnLevel2(wxCommandEvent& event);
     void OnLevel3(wxCommandEvent& event);
+    void OnSolve(wxCommandEvent& event);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKUVIEW_H

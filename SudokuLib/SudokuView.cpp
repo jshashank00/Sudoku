@@ -11,6 +11,7 @@
 #include "Scoreboard.h"
 #include <wx/graphics.h>
 #include "LevelLoad.h"
+#include "SolveLoad.h"
 
 /// Frame duration
 const int FrameDuration = 30;
@@ -37,6 +38,7 @@ void SudokuView::Initialize(wxFrame* parent)
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnLevel1, this, IDM_LEVEL1);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnLevel2, this, IDM_LEVEL2);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnLevel3, this, IDM_LEVEL3);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnSolve, this, IDM_SOLVE);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -144,4 +146,11 @@ void SudokuView::OnLevel3(wxCommandEvent& event)
     wxString level3 = "levels/level3.xml";
     mSudoku.ChooseLevel(level3);
 //    LevelLoad level(level1, mSudoku);
+}
+
+void SudokuView::OnSolve(wxCommandEvent& event)
+{
+    wxString level1 = "levels/level1.xml";
+    mSudoku.Solve(level1);
+    Refresh();
 }

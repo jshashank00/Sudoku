@@ -67,6 +67,7 @@ public:
     void SetPixelWidth(int wid);
     void SetPixelHeight(int height);
     void ChooseLevel(wxString level);
+    void Solve(wxString solve);
 
     void AddFront(std::shared_ptr<Item> item);
 };

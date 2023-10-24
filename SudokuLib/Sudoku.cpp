@@ -13,6 +13,7 @@
 #include "MessageBoard.h"
 #include <wx/graphics.h>
 #include "LevelLoad.h"
+#include "SolveLoad.h"
 
 using namespace std;
 
@@ -177,4 +178,9 @@ void Sudoku::SetPixelWidth(int wid)
 void Sudoku::ChooseLevel(wxString levelToLoad)
 {
     LevelLoad level(levelToLoad, this);
+}
+
+void Sudoku::Solve(wxString levelToSolve)
+{
+    SolveLoad solve(levelToSolve, this);
 }
