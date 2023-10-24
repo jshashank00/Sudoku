@@ -28,7 +28,7 @@ public:
     Given(Sudoku *sudoku);
     void Draw(std::shared_ptr<wxGraphicsContext>, int width, int height);
 
-    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode);
+    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight);
 };
 
 #endif //PROJECT1_SUDOKULIB_GIVEN_H

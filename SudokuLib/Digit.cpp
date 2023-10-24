@@ -14,13 +14,10 @@ const std::wstring DigitImageName = L"images/0b.png";
 Digit::Digit(Sudoku *sudoku) :
     Item(sudoku, DigitImageName)
 {
-    mNumberImage = make_unique<wxImage> (DigitImageName, wxBITMAP_TYPE_ANY);
-    mNumberBitmap = make_unique<wxBitmap>(*mNumberImage);
 }
 
 void Digit::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    //Item::Draw(graphics, width, height);
     double wid = mNumberBitmap->GetWidth();
     double hit = mNumberBitmap->GetHeight();
     graphics->DrawBitmap(*mNumberBitmap,
@@ -37,9 +34,9 @@ void Digit::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int hei
  *
  * @param node The Xml node we are loading the item from
  */
-void Digit::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declaration> decNode)
+void Digit::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {
-    Item::XmlLoad(itemNode, decNode);
+    Item::XmlLoad(itemNode, decNode, tileHeight);
     wxString image = decNode->GetAttribute(L"image",L"0");
     image = "images/" + image;
     Item::SetImage(image);

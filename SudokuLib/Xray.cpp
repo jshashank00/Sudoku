@@ -35,9 +35,9 @@ void Xray::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int heig
  *
  * @param node The Xml node we are loading the item from
  */
-void Xray::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declaration> decNode)
+void Xray::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {
-    Item::XmlLoad(itemNode, decNode);
+    Item::XmlLoad(itemNode, decNode, tileHeight);
     wxString image = decNode->GetAttribute(L"image",L"0");
     image = "images/" + image;
     Item::SetImage(image);

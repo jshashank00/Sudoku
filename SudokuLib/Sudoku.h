@@ -31,6 +31,9 @@ private:
     double mSpartyTargetX; // Store the target X coordinate for Sparty
     double mSpartyTargetY; // Store the target Y coordinate for Sparty
 
+    int mPixelWidth;
+    int mPixelHeight;
+
 public:
     Sudoku();
     std::shared_ptr<Item> HitTest(int x, int y);
@@ -62,6 +65,7 @@ public:
     void SetLocation(wxMouseEvent &event);
     void SetSparty(std::shared_ptr<Item> sparty);
 
+    void AddFront(std::shared_ptr<Item> item);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

@@ -39,10 +39,12 @@ LevelLoad::LevelLoad(const wxString &filename, Sudoku * sudoku) :mSudoku(sudoku)
 
     // Get the XML document root node
     auto root = xmlDoc.GetRoot();
-    mWidth = root->GetAttribute(L"width");
-    mHeight = root->GetAttribute(L"height");
-    mTileWidth = root->GetAttribute(L"tilewidth");
-    mTileHeight = root->GetAttribute(L"tileheight");
+    root->GetAttribute(L"width").ToDouble(&mWidth);
+    root->GetAttribute(L"height").ToDouble(&mHeight);
+    root->GetAttribute(L"tilewidth").ToDouble(&mTileWidth);
+    root->GetAttribute(L"tileheight").ToDouble(&mTileHeight);
+    mPixelWidth = mWidth * mTileWidth;
+    mPixelHeight = mHeight * mTileHeight;
     //
     // Traverse the children of the root
     // node of the XML document in memory!!!!
@@ -95,31 +97,36 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         {
             item = make_shared<Given>(mSudoku);
             mSudoku->Add(item);
-            item->XmlLoad(itemNode, decNode);
+            item->XmlLoad(itemNode, decNode, mTileHeight);
         }
         else if(itemNode->GetName() == L"digit")
         {
             item = make_shared<Digit>(mSudoku);
             mSudoku->Add(item);
-            item->XmlLoad(itemNode, decNode);
+            item->XmlLoad(itemNode, decNode, mTileHeight);
 
         }
         else if (itemNode->GetName() == L"sparty")
         {
-            item = make_shared<Sparty>(mSudoku);
+            item = make_shared<Sparty>(mSudoku );
             mSudoku->Add(item);
             mSudoku->SetSparty(item);
-            item->XmlLoad(itemNode, decNode);
+            item->XmlLoad(itemNode, decNode, mTileHeight);
         }
         else if (itemNode->GetName() == L"background")
         {
-
+            item = make_shared<Background>(mSudoku, mPixelWidth, mPixelHeight );
+            mSudoku->AddFront(item);
+            item->XmlLoad(itemNode, decNode, mTileHeight);
+            //mBackgroundImage = decNode->GetAttribute(L"image");
+            //decNode->GetAttribute(L"width", L"0").ToDouble(&mWidthBackground);
+            //decNode->GetAttribute(L"height", L"0").ToDouble(&mHeightBackground);
         }
         else if (itemNode->GetName() == L"xray")
         {
             item = make_shared<Xray>(mSudoku);
             mSudoku->Add(item);
-            item->XmlLoad(itemNode, decNode);
+            item->XmlLoad(itemNode, decNode, mTileHeight);
         }
         else if (itemNode->GetName() == L"container")
         {

@@ -69,7 +69,7 @@ public:
     virtual void SetLocation(double x, double y) { mX = x; mY = y; }
 
     virtual bool HitTest(int x, int y);
-    virtual void XmlLoad(wxXmlNode *node, wxXmlNode *decNode);
+    virtual void XmlLoad(wxXmlNode *node, wxXmlNode *decNode, double tileHeight);
 
     /// Constructor
     Item(Sudoku *sudoku, const std::wstring &filename);

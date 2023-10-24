@@ -196,9 +196,9 @@ void Sparty::Update(double elapsed)
  *
  * @param node The Xml node we are loading the item from
  */
-void Sparty::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode)//, shared_ptr<Declaration> decNode)
+void Sparty::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {
-    Item::XmlLoad(itemNode, decNode);
+    Item::XmlLoad(itemNode, decNode, tileHeight);
     mImage1 = decNode->GetAttribute(L"image1",L"0");
     mImage2 = decNode->GetAttribute(L"image2",L"0");
     mImage1 = "images/" + mImage1;
