@@ -16,7 +16,7 @@ protected:
     void SetUp() override {
         // Create instances of Sudoku and Scoreboard
         sudoku = new Sudoku();
-        sudoku->ChooseLevel("levels/level1.xml");
+        sudoku->ChooseLevel("levels/level2.xml");
         scoreboard = new Scoreboard(sudoku);
     }
 
