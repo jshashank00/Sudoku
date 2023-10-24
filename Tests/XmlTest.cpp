@@ -25,7 +25,7 @@ TEST_F(LevelLoadTest, LoadingItems) {
     {
         count++;
     }
-    ASSERT_EQ(count, 83);
+    ASSERT_EQ(count, 84);
 
     Sudoku sudoku2;
     LevelLoad level2("levels/level2.xml", &sudoku);
@@ -34,7 +34,7 @@ TEST_F(LevelLoadTest, LoadingItems) {
     {
         count2++;
     }
-    ASSERT_EQ(count2, 67);
+    ASSERT_EQ(count2, 87);
 
 }
 
