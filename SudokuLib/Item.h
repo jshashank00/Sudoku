@@ -94,6 +94,9 @@ public:
      */
     virtual void HeadButt() {}
     //void XmlLoad(wxXmlNode *node, std::shared_ptr<Declaration> decNode);
+    virtual bool IsDigit() const {
+        return false;
+    }
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H

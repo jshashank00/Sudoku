@@ -182,39 +182,27 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 
 bool Sudoku::Eater(Item *eater)
 {
-    // Check if eater is null
-    if (eater == nullptr) {
-        // Handle the case where eater is null
-        return false; // or some appropriate action
-    }
-
-    // Create a vector to store items to remove
-    std::vector<std::shared_ptr<Item>> itemsToRemove;
-
-    // Iterate through mItems
-    for (auto it = mItems.begin(); it != mItems.end();)
+    for(auto other : mItems)
     {
-        // Avoid comparing to the eater
-        if (it->get() == eater) {
-            ++it;
+        // Do not compare to ourselves
+        if (other.get() == eater) {
             continue;
         }
 
-        // Check for collision
-        if ((*it)->HitTest(static_cast<int>(eater->GetX()), static_cast<int>(eater->GetY())))
+        if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && other->IsDigit())
         {
-            itemsToRemove.push_back(*it);
-            it = mItems.erase(it); // Remove the item from mItems and update the iterator
+            auto loc = find(begin(mItems), end(mItems), other);
+            if (loc != end(mItems))
+            {
+                mItems.erase(loc);
+            }
+
+            return true;
         }
-        else {
-            ++it;
-        }
+
     }
-
-    // Return true if any items were removed
-    return !itemsToRemove.empty();
+    return false;
 }
-
 
 void Sudoku::Solve(wxString levelToSolve)
 {
