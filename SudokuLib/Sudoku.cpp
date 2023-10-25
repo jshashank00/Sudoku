@@ -192,12 +192,17 @@ bool Sudoku::Eater(Item *eater)
 
         if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && other->IsDigit())
         {
+            mEatenItem = other;
+            mXrayItemsList.push_back(other); //add digit to
             auto loc = find(begin(mItems), end(mItems), other);
             if (loc != end(mItems))
             {
                 mItems.erase(loc);
             }
 
+            if (mEatenItem) {
+                //Draw item in xray
+            }
             return true;
         }
 

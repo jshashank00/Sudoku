@@ -178,6 +178,7 @@ void LevelLoad::XmlContainerItem(wxXmlNode *node)
     container->XmlLoadBack(node, decNode, mTileHeight);
 
 //    node->GetAttribute(L"image");
+    mContainers.push_back(container);
     auto childNode = node->GetChildren();
     for( ; childNode; childNode=childNode->GetNext())
     {
@@ -189,8 +190,11 @@ void LevelLoad::XmlContainerItem(wxXmlNode *node)
             item = make_shared<Digit>(mSudoku, image);
             mSudoku->Add(item);
             item->XmlLoad(childNode, decNode, mTileHeight);
+            container->AddItem(item);
         }
     }
 }
 
-
+const std::vector<std::shared_ptr<Container>>& LevelLoad::GetContainers() const {
+    return mContainers;
+}

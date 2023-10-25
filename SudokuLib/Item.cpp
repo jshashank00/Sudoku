@@ -17,6 +17,7 @@ using namespace std;
 
 Item::Item(Sudoku *sudoku) : mSudoku(sudoku)
 {
+    mIsInContainer = false;
 }
 
 Item::Item(Sudoku *sudoku, const wxString &filename) : mSudoku(sudoku)

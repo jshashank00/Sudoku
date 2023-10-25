@@ -19,10 +19,15 @@ private:
     /// All the items in our game
     std::vector<std::shared_ptr<Item>> mItems;
 
+    /// Items currently in xray
+    std::vector<std::shared_ptr<Item>> mXrayItemsList;
+
     /// Sparty for this game
     std::shared_ptr<Item> mSparty;
 
     std::shared_ptr<Scoreboard> mScoreboard;
+
+    std::shared_ptr<Item> mEatenItem;
 
     double mScale = 0;
     double mXOffset = 0.0;

@@ -9,6 +9,7 @@
 #define PROJECT1_SUDOKULIB_LEVELLOAD_H
 
 #include "Sudoku.h"
+#include "Container.h"
 #include <map>
 #include <string>
 
@@ -32,6 +33,9 @@ private:
     ///Initialize the map id->DeclarationObject
     std::map <wxString, wxXmlNode*> mMap;
 
+    ///List of containers
+    std::vector<std::shared_ptr<Container>> mContainers;
+
 public:
     LevelLoad(const wxString &filename, Sudoku * sudoku);
     void XmlItem(wxXmlNode *node);
@@ -50,6 +54,7 @@ public:
     double GetTileWidth() { return mTileWidth; }
     double GetTileHeight() { return mTileHeight; }
      */
+    const std::vector<std::shared_ptr<Container>> &GetContainers() const;
 };
 
 #endif //PROJECT1_SUDOKULIB_LEVELLOAD_H

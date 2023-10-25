@@ -44,3 +44,12 @@ void Container::XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double heig
 //    image = "images/" + image;
 //    Item::SetImage(image);
 //}
+
+void Container::AddItem(std::shared_ptr<Item> item) {
+    mContainedItems.push_back(item);
+    item->SetInContainer(true); // Mark the item as being in a container
+}
+
+const std::vector<std::shared_ptr<Item>>& Container::GetContainedItems() const {
+    return mContainedItems;
+}
