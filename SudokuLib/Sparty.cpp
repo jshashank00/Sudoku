@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "Sparty.h"
+#include "Sudoku.h"
 #include "SudokuView.h"
 #include <wx/graphics.h>
 
@@ -156,7 +157,6 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
  */
 void Sparty::Update(double elapsed)
 {
-
     if (mIsHeadButting)
     {
         mHeadbuttElapsedTime += elapsed;
@@ -175,6 +175,9 @@ void Sparty::Update(double elapsed)
             mIsMouthMoving = false;
             mMouthElapsedTime = 0.0;
         }
+        (GetSudoku()->Eater(this));
+
+
     }
 }
 

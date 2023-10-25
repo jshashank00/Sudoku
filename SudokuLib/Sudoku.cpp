@@ -180,6 +180,42 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
     LevelLoad level(levelToLoad, this);
 }
 
+bool Sudoku::Eater(Item *eater)
+{
+    // Check if eater is null
+    if (eater == nullptr) {
+        // Handle the case where eater is null
+        return false; // or some appropriate action
+    }
+
+    // Create a vector to store items to remove
+    std::vector<std::shared_ptr<Item>> itemsToRemove;
+
+    // Iterate through mItems
+    for (auto it = mItems.begin(); it != mItems.end();)
+    {
+        // Avoid comparing to the eater
+        if (it->get() == eater) {
+            ++it;
+            continue;
+        }
+
+        // Check for collision
+        if ((*it)->HitTest(static_cast<int>(eater->GetX()), static_cast<int>(eater->GetY())))
+        {
+            itemsToRemove.push_back(*it);
+            it = mItems.erase(it); // Remove the item from mItems and update the iterator
+        }
+        else {
+            ++it;
+        }
+    }
+
+    // Return true if any items were removed
+    return !itemsToRemove.empty();
+}
+
+
 void Sudoku::Solve(wxString levelToSolve)
 {
     SolveLoad solve(levelToSolve, this);

@@ -70,6 +70,7 @@ public:
     void Solve(wxString solve);
 
     void AddFront(std::shared_ptr<Item> item);
+    bool Eater(Item *eater);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H
