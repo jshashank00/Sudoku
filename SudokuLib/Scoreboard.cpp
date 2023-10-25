@@ -19,7 +19,7 @@ const wxPoint ScoreboardTopLeft(10, 10);
  * Constructor
  * @param sudoku The game the scoreboard is in
  */
-Scoreboard::Scoreboard(Sudoku *sudoku) : Item(sudoku)
+Scoreboard::Scoreboard(Sudoku *sudoku) //: Item(sudoku)
 {
 }
 
@@ -55,6 +55,20 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, in
     }
 }
 
+std::string GetTime() {
+    time_t rawTime;
+    struct tm* timeInfo;
 
+    // Get the current time
+    time(&rawTime);
+    timeInfo = localtime(&rawTime);
+
+    int minutes = timeInfo->tm_min;
+    int seconds = timeInfo->tm_sec;
+
+    std::string timeStr = std::to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + std::to_string(seconds);
+
+    return timeStr;
+}
 
 

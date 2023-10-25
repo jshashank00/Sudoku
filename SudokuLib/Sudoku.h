@@ -10,6 +10,7 @@
 
 #include "Item.h"
 #include "Sparty.h"
+#include "Scoreboard.h"
 
 class Sudoku {
 private:
@@ -20,6 +21,8 @@ private:
 
     /// Sparty for this game
     std::shared_ptr<Item> mSparty;
+
+    std::shared_ptr<Scoreboard> mScoreboard;
 
     double mScale = 0;
     double mXOffset = 0.0;

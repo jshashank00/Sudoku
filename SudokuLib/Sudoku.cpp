@@ -28,8 +28,8 @@ Sudoku::Sudoku()
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
 
-    shared_ptr<Item> scoreboard = make_shared<Scoreboard>(this);
-    mItems.push_back(scoreboard);
+    mScoreboard = make_shared<Scoreboard>(this);
+    //mItems.push_back(scoreboard);
     shared_ptr<Item> board = make_shared<MessageBoard>(this);
     board->SetLocation(494, 375);
     mItems.push_back(board);
@@ -107,6 +107,7 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
     {
         item->Draw(graphics, mPixelWidth, mPixelHeight);
     }
+    mScoreboard->Draw(graphics, mPixelWidth, mPixelHeight);
 
     graphics->PopState();
 }
