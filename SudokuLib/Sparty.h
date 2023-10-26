@@ -38,7 +38,7 @@ private:
     bool mIsMouthMoving = false;
 
     /// track if sparty is moving
-    bool mMovement = false;
+    bool mIsMoving = false;
 
     /// eating animation time
     double mMouthElapsedTime = 0.0;
@@ -64,6 +64,7 @@ public:
     void Update(double deltaTime) override;
     void MouthMove() override;
     bool HitTest(int x, int y) override;
+    void SetTargetLocation(int x, int y);
 };
 
 #endif //PROJECT1_SUDOKULIB_SPARTY_H

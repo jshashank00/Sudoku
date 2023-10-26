@@ -95,6 +95,8 @@ public:
      */
     virtual void MouthMove() {}
 
+    virtual void SetTargetLocation(int xLoc, int yLoc) {}
+
     /**
      * Handle the headbutt movement
      */

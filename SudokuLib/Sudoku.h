@@ -76,7 +76,11 @@ public:
     void SetPixelHeight(int height);
     void ChooseLevel(wxString level);
     void Solve(wxString solve);
-
+    double GetXOffset() const { return mXOffset; }
+    double GetYOffset() const { return mYOffset; }
+    double GetScale() const { return mScale; }
+    double GetPixelWidth() const { return mPixelWidth; }
+    double GetPixelHeight() const { return mPixelHeight; }
     void AddFront(std::shared_ptr<Item> item);
     bool Eater(Item *eater);
 };
