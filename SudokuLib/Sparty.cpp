@@ -107,9 +107,7 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
             progress = 2 - progress * 2;
         }
         double angle = mMouthPivotAngle * progress;
-        graphics->DrawBitmap(*mHeadBitmap,
-                             int(GetX() - Hwid / 2),
-                             int(GetY() - Hhit / 2), wid, hit);
+
         graphics->Translate(absMouthPivotX, absMouthPivotY);
         graphics->Rotate(angle);
         graphics->Translate(-absMouthPivotX, -absMouthPivotY);
@@ -117,6 +115,9 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
                              int(GetX() - wid / 2),
                              int(GetY() - hit / 2), wid, hit);
         graphics->PopState();
+        graphics->DrawBitmap(*mHeadBitmap,
+                             int(GetX() - wid / 2),
+                             int(GetY() - hit / 2), wid, hit);
     }
 
     else if (mIsHeadButting)
