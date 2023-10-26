@@ -22,6 +22,8 @@ private:
 
     /// capacity of numbers xray can hold
     int mCapacity;
+    /// numbers added to xray
+    int totalNumbers;
 
 
 

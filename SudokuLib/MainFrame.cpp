@@ -1,6 +1,6 @@
 /**
  * @file MainFrame.cpp
- * @author Ishita Saripalle
+ * @author Shashank Jayaram
  */
 
 #include "pch.h"

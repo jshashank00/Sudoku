@@ -1,6 +1,6 @@
 /**
  * @file DigitVisitor.h
- * @author shash
+ * @author Shashank Jayaram
  *
  *
  */

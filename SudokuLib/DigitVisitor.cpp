@@ -1,6 +1,6 @@
 /**
  * @file DigitVisitor.cpp
- * @author shash
+ * @author Shashank Jayaram
  */
 
 #include "DigitVisitor.h"

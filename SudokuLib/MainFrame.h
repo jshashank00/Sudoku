@@ -1,6 +1,6 @@
 /**
  * @file MainFrame.h
- * @author Ishita Saripalle
+ * @author Shashank Jayaram
  *
  * The top-level (main) frame of the application
  */
