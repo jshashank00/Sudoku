@@ -29,10 +29,10 @@ Sudoku::Sudoku()
     mPixelHeight = level.PixelHeight();
 
     mScoreboard = make_shared<Scoreboard>(this);
-    //mItems.push_back(scoreboard);
-    shared_ptr<Item> board = make_shared<MessageBoard>(this);
-    board->SetLocation(494, 375);
-    mItems.push_back(board);
+    mScoreboard->StartClock();
+    //shared_ptr<Item> board = make_shared<MessageBoard>(this);
+    //board->SetLocation(494, 375);
+    //mItems.push_back(board);
 }
 
 /**
@@ -179,6 +179,7 @@ void Sudoku::SetPixelWidth(int wid)
 void Sudoku::ChooseLevel(wxString levelToLoad)
 {
     LevelLoad level(levelToLoad, this);
+    mScoreboard->StartClock();
 }
 
 bool Sudoku::Eater(Item *eater)

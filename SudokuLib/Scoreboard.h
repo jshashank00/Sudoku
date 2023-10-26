@@ -13,13 +13,14 @@ class Scoreboard //: public Item
 {
 private:
 
-    time_t gameStartTime; /// >Member variable to store the game start time
+    time_t mStartTime; /// >Member variable to store the level start time
 
 public:
     Scoreboard(Sudoku *sudoku);
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     std::string GetTime();
+    void StartClock();
 };
 
 #endif //PROJECT1_SUDOKULIB_SCOREBOARD_H

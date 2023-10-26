@@ -24,6 +24,14 @@ Scoreboard::Scoreboard(Sudoku *sudoku) //: Item(sudoku)
 }
 
 /**
+ * Restart the clock for each level
+ */
+void Scoreboard::StartClock()
+{
+    mStartTime = time(0);
+};
+
+/**
  * Draw the scoreboard
  * @param dc Device context to draw on
  */
@@ -36,13 +44,12 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, in
     graphics->SetFont(font, *wxWHITE);
 
     static bool delayElapsed = false;
-    static time_t startTime = time(0);
     time_t current = time(0);
-    time_t elapsed = current - startTime;
+    time_t elapsed = current - mStartTime;
 
     if (elapsed > 3 && !delayElapsed) {
         delayElapsed = true;
-        startTime = current;
+        mStartTime = current;
     }
 
     if (delayElapsed) {
