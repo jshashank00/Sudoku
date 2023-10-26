@@ -234,7 +234,7 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
             continue;
         }
         // if other hit test and iscontainer()
-        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()) && other->IsDigit())
+        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()))
         {
             // find container
             // get container list of items
