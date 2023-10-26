@@ -17,7 +17,7 @@
 class DigitVisitor
 {
 private:
-    bool DigitCheck;
+bool DigitCheck;
 
 public:
     DigitVisitor() : DigitCheck(false) {}
@@ -35,4 +35,5 @@ public:
 
     }
 };
+
 #endif //PROJECT1_SUDOKULIB_DIGITVISITOR_H
