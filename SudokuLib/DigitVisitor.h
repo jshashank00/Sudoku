@@ -33,6 +33,6 @@ public:
     {
         return DigitCheck;
 
-    };
-}
+    }
+};
 #endif //PROJECT1_SUDOKULIB_DIGITVISITOR_H
