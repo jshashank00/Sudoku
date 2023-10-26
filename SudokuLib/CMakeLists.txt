@@ -30,6 +30,7 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         LevelVisitor.h
         SolveLoad.cpp
         SolveLoad.h
+        ItemVisitor.h
 )
 
 set(wxBUILD_PRECOMP OFF)

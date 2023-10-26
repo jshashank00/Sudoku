@@ -64,7 +64,12 @@ public:
     void Update(double deltaTime) override;
     void MouthMove() override;
     bool HitTest(int x, int y) override;
-    void SetTargetLocation(int x, int y);
+    void SetTargetLocation(int x, int y) override;
+    /**
+    * Accept a visitor
+    * @param visitor The visitor we accept
+    */
+    void Accept(ItemVisitor* visitor) override { visitor->VisitSparty(this); }
 };
 
 #endif //PROJECT1_SUDOKULIB_SPARTY_H

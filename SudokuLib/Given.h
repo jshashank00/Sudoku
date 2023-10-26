@@ -20,7 +20,12 @@ private:
 
 public:
     Given(Sudoku *sudoku, const wxString &filename);
-    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight);
+    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight) override;
+    /**
+    * Accept a visitor
+    * @param visitor The visitor we accept
+    */
+    void Accept(ItemVisitor* visitor) override { visitor->VisitGiven(this); }
 };
 
 #endif //PROJECT1_SUDOKULIB_GIVEN_H

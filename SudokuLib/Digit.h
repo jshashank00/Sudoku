@@ -24,7 +24,13 @@ public:
     bool IsDigit() const override {
         return true;
     }
-    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight);
+    void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight) override;
+
+    /**
+    * Accept a visitor
+    * @param visitor The visitor we accept
+    */
+    void Accept(ItemVisitor* visitor) override { visitor->VisitDigit(this); }
 };
 
 #endif //PROJECT1_SUDOKULIB_DIGIT_H

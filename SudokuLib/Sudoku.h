@@ -83,6 +83,7 @@ public:
     double GetPixelHeight() const { return mPixelHeight; }
     void AddFront(std::shared_ptr<Item> item);
     bool Eater(Item *eater);
+    void Accept(ItemVisitor *visitor);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

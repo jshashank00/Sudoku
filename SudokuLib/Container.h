@@ -20,6 +20,11 @@ public:
     void XmlLoadFront(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
     void AddItem(std::shared_ptr<Item> item);
     const std::vector<std::shared_ptr<Item>> &GetContainedItems() const;
+    /**
+    * Accept a visitor
+    * @param visitor The visitor we accept
+    */
+    void Accept(ItemVisitor* visitor) override { visitor->VisitContainer(this); }
 };
 
 #endif //PROJECT1_SUDOKULIB_CONTAINER_H

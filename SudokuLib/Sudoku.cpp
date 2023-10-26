@@ -219,3 +219,15 @@ void Sudoku::Solve(wxString levelToSolve)
 {
     SolveLoad solve(levelToSolve, this);
 }
+
+/**
+ * Accept a visitor for the collection
+ * @param visitor The visitor for the collection
+ */
+void Sudoku::Accept(ItemVisitor* visitor)
+{
+    for (auto item : mItems)
+    {
+        item->Accept(visitor);
+    }
+}

@@ -9,6 +9,7 @@
 #define PROJECT1_SUDOKULIB_ITEM_H
 
 #include <wx/xml/xml.h>
+#include "ItemVisitor.h"
 class Sudoku;
 
 /**
@@ -109,6 +110,12 @@ public:
     ///Easy way to tell if sparty can eat a number or not
     void SetInContainer(bool isInContainer) { mIsInContainer = isInContainer; }
     bool IsInContainer() const { return mIsInContainer; }
+
+    /**
+     * Accept a visitor
+      * @param visitor The visitor we accept
+      */
+    virtual void Accept(ItemVisitor* visitor) {}
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H
