@@ -36,6 +36,12 @@ private:
 
     /// Item id
     //wxString mID;
+
+    /// variable to show if item is in container
+    bool mIsInContainer;
+
+    /// Items currently in container
+    std::vector<std::shared_ptr<Item>> mContainerItemsList;
 protected:
 
 
@@ -89,6 +95,8 @@ public:
      */
     virtual void MouthMove() {}
 
+    virtual void SetTargetLocation(int xLoc, int yLoc) {}
+
     /**
      * Handle the headbutt movement
      */
@@ -97,6 +105,10 @@ public:
     virtual bool IsDigit() const {
         return false;
     }
+
+    ///Easy way to tell if sparty can eat a number or not
+    void SetInContainer(bool isInContainer) { mIsInContainer = isInContainer; }
+    bool IsInContainer() const { return mIsInContainer; }
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H

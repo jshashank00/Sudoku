@@ -117,8 +117,12 @@ void Sudoku::SetLocation(wxMouseEvent &event)
     int xLoc = (event.GetX() - mXOffset) / mScale;
     int yLoc = (event.GetY() - mYOffset) / mScale;
 
- //Convert to virtual pixels and set Location
-    mSparty->SetLocation(xLoc, yLoc);
+    if (xLoc >= 48 && xLoc < mPixelWidth && yLoc >= 0 && yLoc < mPixelHeight)
+    {
+
+        //Convert to virtual pixels and set Location
+        mSparty->SetLocation(xLoc, yLoc);
+    }
 }
 
 /**
@@ -193,12 +197,17 @@ bool Sudoku::Eater(Item *eater)
 
         if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && other->IsDigit())
         {
+            mEatenItem = other;
+            mXrayItemsList.push_back(other); //add digit to
             auto loc = find(begin(mItems), end(mItems), other);
             if (loc != end(mItems))
             {
                 mItems.erase(loc);
             }
 
+            if (mEatenItem) {
+                //Draw item in xray
+            }
             return true;
         }
 

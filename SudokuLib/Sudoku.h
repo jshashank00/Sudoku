@@ -19,10 +19,15 @@ private:
     /// All the items in our game
     std::vector<std::shared_ptr<Item>> mItems;
 
+    /// Items currently in xray
+    std::vector<std::shared_ptr<Item>> mXrayItemsList;
+
     /// Sparty for this game
     std::shared_ptr<Item> mSparty;
 
     std::shared_ptr<Scoreboard> mScoreboard;
+
+    std::shared_ptr<Item> mEatenItem;
 
     double mScale = 0;
     double mXOffset = 0.0;
@@ -71,7 +76,11 @@ public:
     void SetPixelHeight(int height);
     void ChooseLevel(wxString level);
     void Solve(wxString solve);
-
+    double GetXOffset() const { return mXOffset; }
+    double GetYOffset() const { return mYOffset; }
+    double GetScale() const { return mScale; }
+    double GetPixelWidth() const { return mPixelWidth; }
+    double GetPixelHeight() const { return mPixelHeight; }
     void AddFront(std::shared_ptr<Item> item);
     bool Eater(Item *eater);
 };

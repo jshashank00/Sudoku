@@ -92,10 +92,22 @@ void SudokuView::OnSize(wxSizeEvent& event) {
  */
 void SudokuView::OnLeftDown(wxMouseEvent &event)
 {
+    double mXOffset = mSudoku.GetXOffset();
+    double mYOffset = mSudoku.GetYOffset();
+    double mScale = mSudoku.GetScale();
+    double mPixelWidth = mSudoku.GetPixelWidth();
+    double mPixelHeight = mSudoku.GetPixelHeight();
+
     std::shared_ptr<Item> sparty = mSudoku.GetSparty();
     if (sparty)
     {
-        mSudoku.SetLocation(event);
+        int xLoc = (event.GetX() - mXOffset) / mScale;
+        int yLoc = (event.GetY() - mYOffset) / mScale;
+
+        if (xLoc >= 48 && xLoc < mPixelWidth-48 && yLoc >= 0 && yLoc < mPixelHeight)
+        {
+            sparty->SetTargetLocation(xLoc, yLoc);
+        }
         Refresh();
     }
 }

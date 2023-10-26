@@ -70,6 +70,13 @@ bool Sparty::HitTest(int x, int y)
     return !mHeadImage->IsTransparent((int)testX, (int)testY);
 }
 
+void Sparty::SetTargetLocation(int x, int y)
+{
+    mTargetX = x;
+    mTargetY = y;
+    mIsMoving = true;
+}
+
 /**
  * Draw items on screen
  * @param graphics
@@ -178,6 +185,26 @@ void Sparty::Update(double elapsed)
         (GetSudoku()->Eater(this));
 
 
+    }
+
+    if (mIsMoving)
+    {
+        double dx = mTargetX - GetX();
+        double dy = mTargetY - GetY();
+
+        double distance = sqrt(dx * dx + dy * dy);
+
+        if (distance < MaxSpeed * elapsed)
+        {
+            SetLocation(mTargetX, mTargetY);
+            mIsMoving = false;
+        }
+        else
+        {
+            double moveX = dx / distance * MaxSpeed * elapsed;
+            double moveY = dy / distance * MaxSpeed * elapsed;
+            SetLocation(GetX() + moveX, GetY() + moveY);
+        }
     }
 }
 
