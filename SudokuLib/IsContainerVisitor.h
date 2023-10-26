@@ -17,8 +17,8 @@ class IsContainerVisitor: public ItemVisitor
 {
 public:
     /**
-    * Visit a TileLandable object
-    * @param land tile we are visiting
+    * Visit a Container object
+    * @param container item we are visiting
     */
     void VisitContainer(Container *container) override
     {
@@ -27,14 +27,14 @@ public:
 
     }
     /**
-    * Determine if tile is landable
-    * @return true is tile is landable, false otherwise
+    * Determine if item is a container
+    * @return true is item is a container, false otherwise
     */
     bool IsContainer() { return mIsContainer; }
 
     /**
-    * Determine if tile is landable
-    * @return TileLandable tile
+    * Determine if item is a container
+    * @return Container container
     */
     Container* GetContainer() {return mContainer; }
 
