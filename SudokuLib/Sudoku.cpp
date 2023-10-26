@@ -117,8 +117,12 @@ void Sudoku::SetLocation(wxMouseEvent &event)
     int xLoc = (event.GetX() - mXOffset) / mScale;
     int yLoc = (event.GetY() - mYOffset) / mScale;
 
- //Convert to virtual pixels and set Location
-    mSparty->SetLocation(xLoc, yLoc);
+    if (xLoc >= 48 && xLoc < mPixelWidth && yLoc >= 0 && yLoc < mPixelHeight)
+    {
+
+        //Convert to virtual pixels and set Location
+        mSparty->SetLocation(xLoc, yLoc);
+    }
 }
 
 /**
