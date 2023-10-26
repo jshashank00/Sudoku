@@ -5,6 +5,8 @@
 
 #include "pch.h"
 #include "MessageBoard.h"
+#include <ctime>
+#include <time.h>
 #include <wx/graphics.h>
 
 using namespace std;
@@ -13,8 +15,13 @@ using namespace std;
  * Constructor
  * @param sudoku The game the scoreboard is in
  */
-MessageBoard::MessageBoard(Sudoku *sudoku) : Item(sudoku)
+MessageBoard::MessageBoard(Sudoku *sudoku)
 {
+}
+
+void MessageBoard::MessageTimer()
+{
+    mStartTime = time(0);
 }
 
 /**
@@ -23,11 +30,11 @@ MessageBoard::MessageBoard(Sudoku *sudoku) : Item(sudoku)
  */
 void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
+    static bool delayElapsed = false;
     time_t current = time(0);
+    time_t elapsed = current - mStartTime;
 
-    double diff = difftime(current, now);
-
-    if (diff <= 3)
+    if (elapsed <= 3 && !delayElapsed)
     {
         // Set the font and color for the text
         wxFont font(wxSize(0, 24), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
@@ -36,10 +43,10 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         // Draw the white message board
         graphics->SetBrush(*wxWHITE_BRUSH);
 
-        int boardWidth = 400; // Adjust to your desired width
-        int boardHeight = 180; // Adjust to your desired height
-        int boardX = (width - boardWidth) / 2; // Center horizontally
-        int boardY = (height - boardHeight) / 2; // Center vertically
+        int boardWidth = 400;
+        int boardHeight = 180;
+        int boardX = (width - boardWidth) / 2;
+        int boardY = (height - boardHeight) / 2;
 
         graphics->DrawRectangle(boardX, boardY, boardWidth, boardHeight);
 
@@ -57,6 +64,7 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
 
         wxString messages[3] = { "space: Eat", "0-8: Regurgitate", "B: Headbutt" };
         boardY += levelTextHeight; // Move below "Level 1"
+
         for (const wxString& msg : messages)
         {
             graphics->GetTextExtent(msg, &levelTextWidth, &levelTextHeight);
@@ -64,7 +72,13 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
             boardY += levelTextHeight;
         }
     }
+    if (elapsed > 3  && delayElapsed)
+    {
+        delayElapsed = true;
+        mStartTime = current;
+    }
 }
+
 
 
 

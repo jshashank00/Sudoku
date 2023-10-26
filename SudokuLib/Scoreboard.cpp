@@ -47,14 +47,15 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, in
     time_t current = time(0);
     time_t elapsed = current - mStartTime;
 
-    if (elapsed > 3 && !delayElapsed) {
+    if (elapsed <= 3 && delayElapsed) {
         delayElapsed = true;
         mStartTime = current;
     }
 
-    if (delayElapsed) {
+    if (elapsed > 3 && !delayElapsed) {
         int minutes = elapsed / 60;
         int seconds = elapsed % 60;
+        seconds -= 4;
 
         std::string timeStr = std::to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + std::to_string(seconds);
 

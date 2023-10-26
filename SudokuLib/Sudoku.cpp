@@ -7,13 +7,14 @@
 #include "Sudoku.h"
 #include "Sparty.h"
 #include "Scoreboard.h"
+#include "MessageBoard.h"
 #include "Digit.h"
 #include "Given.h"
 #include "Xray.h"
-#include "MessageBoard.h"
 #include <wx/graphics.h>
 #include "LevelLoad.h"
 #include "SolveLoad.h"
+
 
 using namespace std;
 
@@ -28,11 +29,12 @@ Sudoku::Sudoku()
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
 
+    mMessageBoard = make_shared<MessageBoard>(this);
+    mMessageBoard->MessageTimer();
+
     mScoreboard = make_shared<Scoreboard>(this);
     mScoreboard->StartClock();
-    //shared_ptr<Item> board = make_shared<MessageBoard>(this);
-    //board->SetLocation(494, 375);
-    //mItems.push_back(board);
+
 }
 
 /**
@@ -107,10 +109,13 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
     {
         item->Draw(graphics, mPixelWidth, mPixelHeight);
     }
+
+    mMessageBoard->Draw(graphics, mPixelWidth, mPixelHeight);
     mScoreboard->Draw(graphics, mPixelWidth, mPixelHeight);
 
     graphics->PopState();
 }
+
 void Sudoku::SetLocation(wxMouseEvent &event)
 {
 
@@ -183,6 +188,7 @@ void Sudoku::SetPixelWidth(int wid)
 void Sudoku::ChooseLevel(wxString levelToLoad)
 {
     LevelLoad level(levelToLoad, this);
+    mMessageBoard->MessageTimer();
     mScoreboard->StartClock();
 }
 

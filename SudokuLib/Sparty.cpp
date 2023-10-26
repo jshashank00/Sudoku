@@ -20,6 +20,7 @@ const double EatingTime = 0.5;
 /// The time for a headbutt cycle in seconds
 const double HeadbuttTime = 0.5;
 
+
 /**
  * Constructor
  * @param sudoku The sudoku game we are in
@@ -93,7 +94,7 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     if (mIsMouthMoving)
     {
         double absMouthPivotX = GetX() - wid / 2 + mMouthPivotX;
-       double absMouthPivotY = GetY() - hit / 2 + mMouthPivotY;
+        double absMouthPivotY = GetY() - hit / 2 + mMouthPivotY;
         graphics->PushState();
 
         double progress = mMouthElapsedTime / EatingTime;
@@ -107,9 +108,7 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
             progress = 2 - progress * 2;
         }
         double angle = mMouthPivotAngle * progress;
-        graphics->DrawBitmap(*mHeadBitmap,
-                             int(GetX() - Hwid / 2),
-                             int(GetY() - Hhit / 2), wid, hit);
+
         graphics->Translate(absMouthPivotX, absMouthPivotY);
         graphics->Rotate(angle);
         graphics->Translate(-absMouthPivotX, -absMouthPivotY);
@@ -117,6 +116,9 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
                              int(GetX() - wid / 2),
                              int(GetY() - hit / 2), wid, hit);
         graphics->PopState();
+        graphics->DrawBitmap(*mHeadBitmap,
+                             int(GetX() - wid / 2),
+                             int(GetY() - hit / 2), wid, hit);
     }
 
     else if (mIsHeadButting)
@@ -147,6 +149,7 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
                              int(GetY() - Hhit / 2), wid, hit);
         graphics->PopState();
     }
+
     else
     {
         graphics->DrawBitmap(*mItemBitmap,
@@ -157,6 +160,7 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
                              int(GetY() - Hhit / 2), wid, hit);
     }
 }
+
 
 /**
  * Update sparty animations
@@ -183,8 +187,6 @@ void Sparty::Update(double elapsed)
             mMouthElapsedTime = 0.0;
         }
         (GetSudoku()->Eater(this));
-
-
     }
 
     if (mIsMoving)

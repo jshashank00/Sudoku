@@ -164,5 +164,4 @@ void SudokuView::OnSolve(wxCommandEvent& event)
 {
     wxString level1 = "levels/level1.xml";
     mSudoku.Solve(level1);
-    Refresh();
 }

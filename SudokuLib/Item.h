@@ -7,6 +7,7 @@
 
 #ifndef PROJECT1_SUDOKULIB_ITEM_H
 #define PROJECT1_SUDOKULIB_ITEM_H
+#include <memory>
 
 #include <wx/xml/xml.h>
 #include "ItemVisitor.h"
