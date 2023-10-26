@@ -4,9 +4,10 @@
  */
 
 #include "pch.h"
+#include <wx/dcbuffer.h>
 #include "SolveLoad.h"
 
-SolveLoad::SolveLoad(const wxString &filename, Sudoku * sudoku): mSudoku(sudoku)
+SolveLoad::SolveLoad(const wxString &filename, Sudoku * sudoku) :mSudoku(sudoku)
 {
     wxXmlDocument xmlDoc;
     if (!xmlDoc.Load(filename))
@@ -31,7 +32,34 @@ SolveLoad::SolveLoad(const wxString &filename, Sudoku * sudoku): mSudoku(sudoku)
  */
 void SolveLoad::XmlGame(wxXmlNode *node)
 {
-    mCol = node->GetAttribute(L"col");
-    mRow = node->GetAttribute(L"row");
-    mSolution = node->GetNodeContent();
+    mCol = node->GetAttribute(L"col"); // Convert column attribute to integer
+    mRow = node->GetAttribute(L"row"); // Convert row attribute to integer
+    wxString solution = node->GetNodeContent();
+
+    // Calculate the starting X and Y positions based on mCol and mRow
+    int x = wxAtoi(mCol) * 48;
+    int y = wxAtoi(mRow) * 48;
+
+    for (size_t i = 0; i < solution.length(); i++) {
+        wxString digit = solution.Mid(i, 1);
+
+        if (digit.IsNumber()) {
+            x += 48;
+
+            if (x >= (wxAtoi(mCol) + 9) * 48) {
+                x = wxAtoi(mCol) * 48;
+                y += 48;
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+

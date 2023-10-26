@@ -22,6 +22,7 @@ private:
 public:
     SolveLoad(const wxString &filename, Sudoku * sudoku);
     void XmlGame(wxXmlNode *node);
+    void UpdateGridCell(int x, int y, char value);
 
 };
 

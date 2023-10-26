@@ -69,7 +69,7 @@ bool Item::HitTest(int x, int y)
  * Load the attributes for an item node.
  *
  * This is the  base class version that loads the attributes
- * common to all items. Override this to load custom attributes
+ * common to all items. Override this to load custom battributes
  * for specific items.
  *
  * @param node The Xml node we are loading the item from

@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "Sparty.h"
 #include "Scoreboard.h"
+#include "MessageBoard.h"
 
 class Sudoku {
 private:
@@ -29,6 +30,9 @@ private:
 
     std::shared_ptr<Item> mEatenItem;
 
+    /// Message Board pointer
+    std::shared_ptr<MessageBoard> mMessageBoard;
+
     double mScale = 0;
     double mXOffset = 0.0;
     double mYOffset = 0.0;
@@ -41,6 +45,10 @@ private:
 
     int mPixelWidth;
     int mPixelHeight;
+
+    std::shared_ptr<wxGraphicsContext> mGraphics;
+    int mWidth;
+    int mHeight;
 
 public:
     Sudoku();
