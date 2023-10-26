@@ -14,6 +14,7 @@
 #include <wx/graphics.h>
 #include "LevelLoad.h"
 #include "SolveLoad.h"
+#include "DigitVisitor.h"
 
 
 using namespace std;
@@ -194,6 +195,8 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 
 bool Sudoku::Eater(Item *eater)
 {
+    DigitVisitor CheckDigit;
+    this -> Accept(&CheckDigit);
     for(auto other : mItems)
     {
         // Do not compare to ourselves
@@ -201,14 +204,15 @@ bool Sudoku::Eater(Item *eater)
             continue;
         }
 
-        if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && other->IsDigit())
+        if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && CheckDigit.DigitChecker())
         {
             mEatenItem = other;
             mXrayItemsList.push_back(other); //add digit to
             auto loc = find(begin(mItems), end(mItems), other);
             if (loc != end(mItems))
             {
-                mItems.erase(loc);
+                other->SetLocation(100,600);
+                //mItems.erase(loc);
             }
 
             if (mEatenItem) {
