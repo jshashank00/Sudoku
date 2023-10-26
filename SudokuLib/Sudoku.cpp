@@ -14,6 +14,7 @@
 #include <wx/graphics.h>
 #include "LevelLoad.h"
 #include "SolveLoad.h"
+#include "IsContainerVisitor.h"
 
 
 using namespace std;
@@ -230,7 +231,10 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
             continue;
         }
         // if other hit test and iscontainer()
-        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()) && other->IsDigit())
+
+        IsContainerVisitor visitor;
+        other->Accept(&visitor);
+        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()) && visitor.IsContainer())
         {
             // find container
             // get container list of items
@@ -238,14 +242,26 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
             // delete items from Container list
             // update items to random place on board
 
-            auto loc = find(begin(mItems), end(mItems), other);
-            if (loc != end(mItems))
+            Container * container = visitor.GetContainer();
+            for (auto item: container->GetContainedItems())
             {
-                mItems.erase(loc);
+                int x, y;
+                item->SetInContainer(false);
+                this->Add(item);
+                x = item->GetX() + 48;
+                y = item->GetY() + 48;
+                item->SetLocation(x, y);
+                container->GetContainedItems().erase(container->GetContainedItems().begin());
             }
-            if (mEatenItem) {
-                //Draw item in xray
-            }
+
+//            auto loc = find(begin(mItems), end(mItems), other);
+//            if (loc != end(mItems))
+//            {
+//                mItems.erase(loc);
+//            }
+//            if (mEatenItem) {
+//                //Draw item in xray
+//            }
             return true;
         }
 
