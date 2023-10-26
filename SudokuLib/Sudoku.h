@@ -93,6 +93,7 @@ public:
     bool Eater(Item *eater);
     bool HeadbuttContainer(Item *headbuttItem);
     void Accept(ItemVisitor *visitor);
+
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

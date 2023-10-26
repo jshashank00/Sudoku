@@ -15,6 +15,7 @@
 #include "LevelLoad.h"
 #include "SolveLoad.h"
 #include "IsContainerVisitor.h"
+#include "DigitVisitor.h"
 
 
 using namespace std;
@@ -231,10 +232,7 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
             continue;
         }
         // if other hit test and iscontainer()
-
-        IsContainerVisitor visitor;
-        other->Accept(&visitor);
-        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()) && visitor.IsContainer())
+        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()) && other->IsDigit())
         {
             // find container
             // get container list of items
@@ -242,26 +240,14 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
             // delete items from Container list
             // update items to random place on board
 
-            Container * container = visitor.GetContainer();
-            for (auto item: container->GetContainedItems())
+            auto loc = find(begin(mItems), end(mItems), other);
+            if (loc != end(mItems))
             {
-                int x, y;
-                item->SetInContainer(false);
-                this->Add(item);
-                x = item->GetX() + 48;
-                y = item->GetY() + 48;
-                item->SetLocation(x, y);
-                container->GetContainedItems().erase(container->GetContainedItems().begin());
+                mItems.erase(loc);
             }
-
-//            auto loc = find(begin(mItems), end(mItems), other);
-//            if (loc != end(mItems))
-//            {
-//                mItems.erase(loc);
-//            }
-//            if (mEatenItem) {
-//                //Draw item in xray
-//            }
+            if (mEatenItem) {
+                //Draw item in xray
+            }
             return true;
         }
 
