@@ -73,6 +73,10 @@ TEST(VisitorTest, Visitor)
         DigitVisitor visitor1;
         item->Accept(&visitor1);
         std::cout<<visitor1.IsDigit()<<std::endl;
+        if (visitor1.IsDigit())
+        {
+            std::cout<<visitor1.GetValue()<<std::endl;
+        }
 
     }
 

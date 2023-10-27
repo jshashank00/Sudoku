@@ -24,12 +24,15 @@ private:
     /// bool if the item is a digit
     bool mIsDigit = false;
 
+    Digit* mThisDigit;
+
 public:
     DigitVisitor() : DigitCheck(false) {}
 
 
     void VisitDigit(Digit* digit)
     {
+        mThisDigit = digit;
         DigitCheck = true;
         mIsDigit = true;
     }
@@ -38,6 +41,8 @@ public:
      * @return bool member variable
      */
     bool IsDigit() { return mIsDigit; }
+
+    int GetValue() { return mThisDigit->GetValue(); }
 
 
 

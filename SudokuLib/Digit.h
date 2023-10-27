@@ -19,6 +19,7 @@ private:
     int mValue;
 
 public:
+    int GetValue() { return mValue; }
     Digit(Sudoku *sudoku, const wxString &filename);
     // Override IsDigit to return true for digit items
 //    bool IsDigit() const override {
