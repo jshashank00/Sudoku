@@ -18,9 +18,12 @@ class DigitVisitor
 {
 private:
     bool DigitCheck;
+    bool mIsDigit = true;
 
 public:
     DigitVisitor() : DigitCheck(false) {}
+
+    bool IsDigit() { return mIsDigit; }
 
 //    void VisitDigit(Digit* digit) override
 //    {

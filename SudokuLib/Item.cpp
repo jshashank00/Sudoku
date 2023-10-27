@@ -47,7 +47,7 @@ bool Item::HitTest(int x, int y)
 
     // Make x and y relative to the top-left corner of the bitmap image
     // Subtracting the center makes x, y relative to the image center
-    // Adding half the size makes x, y relative to theimage top corner
+    // Adding half the size makes x, y relative to the image top corner
     double testX = x - GetX() + wid / 2;
     double testY = y - GetY() + hit / 2;
 
