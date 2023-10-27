@@ -11,7 +11,6 @@
 #include "Scoreboard.h"
 #include <wx/graphics.h>
 #include "LevelLoad.h"
-#include "SolveLoad.h"
 
 /// Frame duration
 const int FrameDuration = 30;

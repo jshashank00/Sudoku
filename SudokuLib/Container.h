@@ -19,7 +19,7 @@ public:
     void XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
     void XmlLoadFront(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
     void AddItem(std::shared_ptr<Item> item);
-    const std::vector<std::shared_ptr<Item>> &GetContainedItems() const;
+    std::vector<std::shared_ptr<Item>> GetContainedItems() const;
     /**
     * Accept a visitor
     * @param visitor The visitor we accept

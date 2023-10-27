@@ -21,9 +21,9 @@ private:
 public:
     Digit(Sudoku *sudoku, const wxString &filename);
     // Override IsDigit to return true for digit items
-    bool IsDigit() const override {
-        return true;
-    }
+//    bool IsDigit() const override {
+//        return true;
+//    }
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight) override;
 
     /**

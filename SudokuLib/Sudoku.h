@@ -46,9 +46,9 @@ private:
     int mPixelWidth;
     int mPixelHeight;
 
-    std::shared_ptr<wxGraphicsContext> mGraphics;
-    int mWidth;
-    int mHeight;
+    int mColumn;
+    int mRow;
+    wxString mSolution;
 
 public:
     Sudoku();
@@ -91,7 +91,9 @@ public:
     double GetPixelHeight() const { return mPixelHeight; }
     void AddFront(std::shared_ptr<Item> item);
     bool Eater(Item *eater);
+    bool HeadbuttContainer(Item *headbuttItem);
     void Accept(ItemVisitor *visitor);
+
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

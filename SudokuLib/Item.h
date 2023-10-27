@@ -104,9 +104,9 @@ public:
      */
     virtual void HeadButt() {}
     //void XmlLoad(wxXmlNode *node, std::shared_ptr<Declaration> decNode);
-    virtual bool IsDigit() const {
-        return false;
-    }
+//    virtual bool IsDigit() const {
+//        return false;
+//    }
 
     ///Easy way to tell if sparty can eat a number or not
     void SetInContainer(bool isInContainer) { mIsInContainer = isInContainer; }

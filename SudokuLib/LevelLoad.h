@@ -21,8 +21,8 @@ private:
     double mHeight; ///< the height of the playing area
     double mTileWidth; ///< the width of the tile
     double mTileHeight; ///< the width of the playing area
-    wxString mCol; ///< top left cell of the grid
-    wxString mRow; ///< the top left cell of the grid
+    int mCol; ///< top left cell of the grid
+    int mRow; ///< the top left cell of the grid
     wxString mSolution; ///< the solution
 
     wxString mBackgroundImage; ///<background file image name
@@ -46,8 +46,13 @@ public:
 
     //wxString GetBackgroundImage() { return mBackgroundImage; }
 
-    int PixelWidth() { return mWidth * mTileWidth;; }
-    int PixelHeight() { return mHeight * mTileHeight;; }
+    int PixelWidth() { return mWidth * mTileWidth; }
+    int PixelHeight() { return mHeight * mTileHeight; }
+
+    int Column() {return mCol;}
+    int Row() {return mRow;}
+    wxString Solution() {return mSolution;}
+
     /**
     double GetWidth() { return mWidth; }
     double GetHeight() { return mHeight; }

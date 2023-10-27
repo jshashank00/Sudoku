@@ -13,8 +13,10 @@
 #include "Xray.h"
 #include <wx/graphics.h>
 #include "LevelLoad.h"
-#include "SolveLoad.h"
-
+#include <wx/string.h>
+#include <iostream>
+#include <string>
+#include "DigitVisitor.h"
 
 using namespace std;
 
@@ -28,6 +30,10 @@ Sudoku::Sudoku()
 
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
+
+    mColumn = level.Column();
+    mRow = level.Row();
+    mSolution = level.Solution();
 
     mMessageBoard = make_shared<MessageBoard>(this);
     mMessageBoard->MessageTimer();
@@ -194,6 +200,8 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 
 bool Sudoku::Eater(Item *eater)
 {
+    DigitVisitor CheckDigit;
+    this -> Accept(&CheckDigit);
     for(auto other : mItems)
     {
         // Do not compare to ourselves
@@ -201,14 +209,15 @@ bool Sudoku::Eater(Item *eater)
             continue;
         }
 
-        if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && other->IsDigit())
+        if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && CheckDigit.DigitChecker())
         {
             mEatenItem = other;
             mXrayItemsList.push_back(other); //add digit to
             auto loc = find(begin(mItems), end(mItems), other);
             if (loc != end(mItems))
             {
-                mItems.erase(loc);
+                other->SetLocation(100,600);
+                //mItems.erase(loc);
             }
 
             if (mEatenItem) {
@@ -221,9 +230,56 @@ bool Sudoku::Eater(Item *eater)
     return false;
 }
 
+bool Sudoku::HeadbuttContainer(Item *sparty)
+{
+    for(auto other : mItems)
+    {
+        // Do not compare to ourselves
+        if (other.get() == sparty) {
+            continue;
+        }
+        // if other hit test and iscontainer()
+        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()))
+        {
+            // find container
+            // get container list of items
+            // go through items and change their member variable to !IsInContainer
+            // delete items from Container list
+            // update items to random place on board
+
+            auto loc = find(begin(mItems), end(mItems), other);
+            if (loc != end(mItems))
+            {
+                mItems.erase(loc);
+            }
+            if (mEatenItem) {
+                //Draw item in xray
+            }
+            return true;
+        }
+
+    }
+    return false;
+}
+
+
 void Sudoku::Solve(wxString levelToSolve)
 {
-    SolveLoad solve(levelToSolve, this);
+    std::vector<int> vector_solution;
+    std::string solution = std::string(mSolution.ToStdString());
+
+    for (int i = 0; i < solution.length(); i++) {
+        if (isdigit(solution[i])) {
+            int val = static_cast<int>(solution[i]);
+            vector_solution.push_back(val);
+        }
+    }
+
+    mItems[35]->SetLocation(4,3);
+//    for (auto &num : vector_solution) {
+//
+//    }
+
 }
 
 /**
