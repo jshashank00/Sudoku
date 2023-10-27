@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 #include "DigitVisitor.h"
+#include "GivenVisitor.h"
 
 using namespace std;
 
@@ -262,25 +263,52 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
     return false;
 }
 
-
 void Sudoku::Solve(wxString levelToSolve)
 {
     std::vector<int> vector_solution;
     std::string solution = std::string(mSolution.ToStdString());
 
-    for (int i = 0; i < solution.length(); i++) {
-        if (isdigit(solution[i])) {
-            int val = static_cast<int>(solution[i]);
+    for (int i = 0; i < solution.length(); i++)
+    {
+        if(isdigit(solution[i]))
+        {
+            int val = solution[i] - '0';  // Convert char to int
             vector_solution.push_back(val);
         }
     }
 
-    mItems[35]->SetLocation(4,3);
-//    for (auto &num : vector_solution) {
-//
-//    }
+    for (int i = 0; i < vector_solution.size(); i++)
+    {
+        int x = 45;
+        int y = 158;
+        int count = 0;
 
+        for (auto item : mItems)
+        {
+            DigitVisitor visitor1;
+            item->Accept(&visitor1);
+
+//            GivenVisitor visitor2;
+//            item->Accept(&visitor2);
+
+            if (visitor1.IsDigit())
+            {
+                if (visitor1.GetValue() == vector_solution[i])
+                {
+                    item->SetLocation(x, y);
+                }
+            }
+        }
+        count += 1;
+        x += 48;
+        if (count == 9) {
+            count = 0;
+            y -= 48;
+        }
+    }
 }
+
+
 
 /**
  * Accept a visitor for the collection

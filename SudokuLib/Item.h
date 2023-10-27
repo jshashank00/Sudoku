@@ -117,6 +117,9 @@ public:
       * @param visitor The visitor we accept
       */
     virtual void Accept(ItemVisitor* visitor) {}
+
+    double GetCol() {return mCol;}
+    double GetRow() {return mRow;}
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H
