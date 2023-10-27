@@ -46,9 +46,9 @@ private:
     int mPixelWidth;
     int mPixelHeight;
 
-    std::shared_ptr<wxGraphicsContext> mGraphics;
-    int mWidth;
-    int mHeight;
+    int mColumn;
+    int mRow;
+    wxString mSolution;
 
 public:
     Sudoku();
