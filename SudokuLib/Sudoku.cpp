@@ -13,9 +13,10 @@
 #include "Xray.h"
 #include <wx/graphics.h>
 #include "LevelLoad.h"
-#include "SolveLoad.h"
+#include <wx/string.h>
+#include <iostream>
+#include <string>
 #include "DigitVisitor.h"
-
 
 using namespace std;
 
@@ -29,6 +30,10 @@ Sudoku::Sudoku()
 
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
+
+    mColumn = level.Column();
+    mRow = level.Row();
+    mSolution = level.Solution();
 
     mMessageBoard = make_shared<MessageBoard>(this);
     mMessageBoard->MessageTimer();
@@ -260,7 +265,21 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
 
 void Sudoku::Solve(wxString levelToSolve)
 {
-    SolveLoad solve(levelToSolve, this);
+    std::vector<int> vector_solution;
+    std::string solution = std::string(mSolution.ToStdString());
+
+    for (int i = 0; i < solution.length(); i++) {
+        if (isdigit(solution[i])) {
+            int val = static_cast<int>(solution[i]);
+            vector_solution.push_back(val);
+        }
+    }
+
+    mItems[35]->SetLocation(4,3);
+//    for (auto &num : vector_solution) {
+//
+//    }
+
 }
 
 /**
