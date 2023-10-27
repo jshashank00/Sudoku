@@ -13,6 +13,7 @@
 #include <Container.h>
 #include <Xray.h>
 #include "LevelLoad.h"
+#include "DigitVisitor.h"
 
 class VisitorTest : public ItemVisitor
 {
@@ -40,12 +41,12 @@ public:
 };
 
 
-TEST(CityTest, Visitor)
+TEST(VisitorTest, Visitor)
 {
     Sudoku sudoku;
     LevelLoad level("levels/level1.xml", &sudoku);
 
-
+    /**
     VisitorTest visitor;
     sudoku.Accept(&visitor);
     std::cout<<visitor.mNumGivens;
@@ -65,5 +66,15 @@ TEST(CityTest, Visitor)
     std::cout<<visitor.mNumXray;
     ASSERT_EQ(1, visitor.mNumXray) <<
                                       L"Visitor number";
+    */
+
+    for (auto item : sudoku.GetItems())
+    {
+        DigitVisitor visitor1;
+        item->Accept(&visitor1);
+        std::cout<<visitor1.IsDigit()<<std::endl;
+
+    }
+
 
 }

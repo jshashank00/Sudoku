@@ -9,25 +9,37 @@
 #define PROJECT1_SUDOKULIB_DIGITVISITOR_H
 
 #include "ItemVisitor.h"
+#include "Digit.h"
+
 
 /**
  * Visits Digits
  */
 ///
-class DigitVisitor:public ItemVisitor
+class DigitVisitor : public ItemVisitor
 {
 private:
     bool DigitCheck;
-    bool mIsDigit = true;
+
+    /// bool if the item is a digit
+    bool mIsDigit = false;
 
 public:
     DigitVisitor() : DigitCheck(false) {}
 
-    void VisitDigit(Digit* digit) override
+
+    void VisitDigit(Digit* digit)
     {
         DigitCheck = true;
+        mIsDigit = true;
     }
+
+    /**
+     * @return bool member variable
+     */
     bool IsDigit() { return mIsDigit; }
+
+
 
 //    void VisitDigit(Digit* digit) override
 //    {
