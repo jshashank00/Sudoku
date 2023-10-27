@@ -10,6 +10,7 @@
 #include <memory>
 
 #include <wx/xml/xml.h>
+#include "ItemVisitor.h"
 class Sudoku;
 
 /**
@@ -103,13 +104,19 @@ public:
      */
     virtual void HeadButt() {}
     //void XmlLoad(wxXmlNode *node, std::shared_ptr<Declaration> decNode);
-    virtual bool IsDigit() const {
-        return false;
-    }
+//    virtual bool IsDigit() const {
+//        return false;
+//    }
 
     ///Easy way to tell if sparty can eat a number or not
     void SetInContainer(bool isInContainer) { mIsInContainer = isInContainer; }
     bool IsInContainer() const { return mIsInContainer; }
+
+    /**
+     * Accept a visitor
+      * @param visitor The visitor we accept
+      */
+    virtual void Accept(ItemVisitor* visitor) {}
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H

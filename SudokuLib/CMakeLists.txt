@@ -28,8 +28,13 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         MessageBoard.h
         LevelVisitor.cpp
         LevelVisitor.h
+        SolveLoad.cpp
+        SolveLoad.h
+        ItemVisitor.h
         DigitVisitor.cpp
         DigitVisitor.h
+        IsContainerVisitor.h
+        XrayVisitor.h
 )
 
 set(wxBUILD_PRECOMP OFF)

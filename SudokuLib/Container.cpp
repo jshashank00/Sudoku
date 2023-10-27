@@ -50,6 +50,6 @@ void Container::AddItem(std::shared_ptr<Item> item) {
     item->SetInContainer(true); // Mark the item as being in a container
 }
 
-const std::vector<std::shared_ptr<Item>>& Container::GetContainedItems() const {
+std::vector<std::shared_ptr<Item>> Container::GetContainedItems() const {
     return mContainedItems;
 }

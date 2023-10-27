@@ -176,6 +176,7 @@ void Sparty::Update(double elapsed)
             mIsHeadButting = false;
             mHeadbuttElapsedTime = 0.0;
         }
+        (GetSudoku()->HeadbuttContainer(this));
     }
 
     if (mIsMouthMoving)
