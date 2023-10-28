@@ -22,10 +22,12 @@ private:
 
     /// capacity of numbers xray can hold
     int mCapacity;
+
     /// numbers added to xray
-    int totalNumbers;
+    int mTotalNumbers;
 
-
+    ///List of items in the xray
+    std::vector<std::shared_ptr<Item>> mXrayItems;
 
 public:
     Xray() = delete;
@@ -44,6 +46,10 @@ public:
     * @param visitor The visitor we accept
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitXray(this); }
+
+    void AddItem(std::shared_ptr<Item> item);
+
+    std::vector<std::shared_ptr<Item>> GetXrayItems();
 };
 
 #endif //PROJECT1_SUDOKULIB_XRAY_H

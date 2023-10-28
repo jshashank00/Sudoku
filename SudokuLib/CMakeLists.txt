@@ -34,6 +34,7 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         XrayVisitor.h
         GivenVisitor.cpp
         GivenVisitor.h
+        XrayFinder.h
 )
 
 set(wxBUILD_PRECOMP OFF)

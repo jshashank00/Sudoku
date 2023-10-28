@@ -19,6 +19,7 @@
 #include "DigitVisitor.h"
 #include "IsContainerVisitor.h"
 #include "GivenVisitor.h"
+#include "XrayFinder.h"
 
 using namespace std;
 
@@ -203,6 +204,12 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 bool Sudoku::Eater(Item *eater)
 {
 
+    // find the x ray
+    XrayFinder xrayVisitor;
+    this->Accept(&xrayVisitor);
+    Xray * xray = xrayVisitor.GetXray();
+//    std::vector<std::shared_ptr<Item>> xrayItems = xray->GetXrayItems();
+
     for(auto other : mItems)
     {
         // Do not compare to ourselves
@@ -214,8 +221,9 @@ bool Sudoku::Eater(Item *eater)
         other->Accept(&visitor);
         if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && visitor.IsDigit())
         {
-            mEatenItem = other;
-            mXrayItemsList.push_back(other); //add digit to
+
+
+            xray->AddItem(other); //add digit to xray items
             auto loc = find(begin(mItems), end(mItems), other);
             if (loc != end(mItems))
             {
@@ -223,7 +231,7 @@ bool Sudoku::Eater(Item *eater)
                 //mItems.erase(loc);
             }
 
-            if (mEatenItem) {
+            if (other) {
                 //Draw item in xray
             }
             return true;
@@ -248,6 +256,7 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
 //        if (visitor.IsContainer()) {
 //            continue;
 //        }
+        other->HitTest((int)sparty->GetX(), (int)sparty->GetY());
         if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()) && visitor.IsContainer())
         {
             // find container
