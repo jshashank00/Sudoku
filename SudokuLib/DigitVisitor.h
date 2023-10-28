@@ -14,6 +14,7 @@
 
 /**
  * Visits Digits
+ *
  */
 ///
 class DigitVisitor : public ItemVisitor

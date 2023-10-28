@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 #include "DigitVisitor.h"
+#include "IsContainerVisitor.h"
 #include "GivenVisitor.h"
 
 using namespace std;
@@ -201,8 +202,7 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 
 bool Sudoku::Eater(Item *eater)
 {
-    DigitVisitor CheckDigit;
-    this -> Accept(&CheckDigit);
+
     for(auto other : mItems)
     {
         // Do not compare to ourselves
@@ -210,7 +210,9 @@ bool Sudoku::Eater(Item *eater)
             continue;
         }
 
-        if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && CheckDigit.DigitChecker())
+        DigitVisitor visitor;
+        other->Accept(&visitor);
+        if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && visitor.IsDigit())
         {
             mEatenItem = other;
             mXrayItemsList.push_back(other); //add digit to
@@ -236,11 +238,17 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
     for(auto other : mItems)
     {
         // Do not compare to ourselves
-        if (other.get() == sparty) {
+        if (other.get() == sparty)
+        {
             continue;
         }
-        // if other hit test and iscontainer()
-        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()))
+
+        IsContainerVisitor visitor;
+        other->Accept(&visitor);
+//        if (visitor.IsContainer()) {
+//            continue;
+//        }
+        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()) && visitor.IsContainer())
         {
             // find container
             // get container list of items
@@ -248,14 +256,18 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
             // delete items from Container list
             // update items to random place on board
 
-            auto loc = find(begin(mItems), end(mItems), other);
-            if (loc != end(mItems))
+            Container * container = visitor.GetContainer();
+            for (auto item: container->GetContainedItems())
             {
-                mItems.erase(loc);
+                int x, y;
+                item->SetInContainer(false);
+//                this->Add(item);
+                x = item->GetX() + 48;
+                y = item->GetY() + 48;
+                item->SetLocation(x, y);
+//                container->GetContainedItems().erase(container->GetContainedItems().begin());
             }
-            if (mEatenItem) {
-                //Draw item in xray
-            }
+
             return true;
         }
 
