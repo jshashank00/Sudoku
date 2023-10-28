@@ -29,7 +29,6 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         LevelVisitor.cpp
         LevelVisitor.h
         ItemVisitor.h
-        DigitVisitor.cpp
         DigitVisitor.h
         IsContainerVisitor.h
         XrayVisitor.h
