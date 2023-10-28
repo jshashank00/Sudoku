@@ -30,7 +30,7 @@ public:
     DigitVisitor() : DigitCheck(false) {}
 
 
-    void VisitDigit(Digit* digit)
+    void VisitDigit(Digit* digit) override
     {
         mThisDigit = digit;
         DigitCheck = true;

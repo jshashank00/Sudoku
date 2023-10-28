@@ -277,12 +277,16 @@ void Sudoku::Solve(wxString levelToSolve)
         }
     }
 
+    int x = 192;
+    int y = 144;
+    int count = 0;
+    int stop_count = 0;
     for (int i = 0; i < vector_solution.size(); i++)
     {
-        int x = 45;
-        int y = 158;
-        int count = 0;
-
+        if (stop_count == 50)
+        {
+            break;
+        }
         for (auto item : mItems)
         {
             DigitVisitor visitor1;
@@ -293,18 +297,36 @@ void Sudoku::Solve(wxString levelToSolve)
 
             if (visitor1.IsDigit())
             {
+                int value = visitor1.GetValue();
+                //int find = vector_solution[i];
                 if (visitor1.GetValue() == vector_solution[i])
                 {
                     item->SetLocation(x, y);
+                    stop_count++;
+                    mItems.push_back(item);
+                    auto loc = find(begin(mItems), end(mItems), item);
+                    if (loc != end(mItems))
+                    {
+                        mItems.erase(loc);
+                    }
+                    x = x + 48;
+                    count = count + 1;
+                    if (count == 9)
+                    {
+                        count = 0;
+                        y = y + 48;
+                        x = 192;
+                    }
+                    break;
                 }
             }
         }
-        count += 1;
-        x += 48;
-        if (count == 9) {
-            count = 0;
-            y -= 48;
-        }
+//        count += 1;
+//        x += 48;
+//        if (count == 9) {
+//            count = 0;
+//            y -= 48;
+//        }
     }
 }
 
