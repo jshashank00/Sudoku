@@ -94,6 +94,7 @@ public:
     bool HeadbuttContainer(Item *headbuttItem);
     void Accept(ItemVisitor *visitor);
 
+    bool TakenSquare(int x, int y);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

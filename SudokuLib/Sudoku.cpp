@@ -268,7 +268,7 @@ void Sudoku::Solve(wxString levelToSolve)
     std::vector<int> vector_solution;
     std::string solution = std::string(mSolution.ToStdString());
 
-    for (int i = 0; i < solution.length(); i++)
+    for(int i = 0; i < solution.length(); i++)
     {
         if(isdigit(solution[i]))
         {
@@ -281,52 +281,60 @@ void Sudoku::Solve(wxString levelToSolve)
     int y = 144;
     int count = 0;
     int stop_count = 0;
-    for (int i = 0; i < vector_solution.size(); i++)
+    for(int i = 0; i < vector_solution.size(); i++)
     {
-        if (stop_count == 50)
+        if(stop_count == 53)
         {
             break;
         }
-        for (auto item : mItems)
+        if(!TakenSquare(x, y))
         {
-            DigitVisitor visitor1;
-            item->Accept(&visitor1);
+
+            for(auto item : mItems)
+            {
+                DigitVisitor visitor1;
+                item->Accept(&visitor1);
 
 //            GivenVisitor visitor2;
 //            item->Accept(&visitor2);
 
-            if (visitor1.IsDigit())
-            {
-                int value = visitor1.GetValue();
-                //int find = vector_solution[i];
-                if (visitor1.GetValue() == vector_solution[i])
+                if(visitor1.IsDigit())
                 {
-                    item->SetLocation(x, y);
-                    stop_count++;
-                    mItems.push_back(item);
-                    auto loc = find(begin(mItems), end(mItems), item);
-                    if (loc != end(mItems))
+                    int value = visitor1.GetValue();
+                    //int find = vector_solution[i];
+                    if(visitor1.GetValue() == vector_solution[i])// && !(TakenSquare(item.get(), x, y)))
                     {
-                        mItems.erase(loc);
+                        item->SetLocation(x, y);
+                        stop_count++;
+                        mItems.push_back(item);
+                        auto loc = find(begin(mItems), end(mItems), item);
+                        if(loc != end(mItems))
+                        {
+                            mItems.erase(loc);
+                        }
+                        x = x + 48;
+                        count = count + 1;
+                        if(count == 9)
+                        {
+                            count = 0;
+                            y = y + 48;
+                            x = 192;
+                        }
+                        break;
                     }
-                    x = x + 48;
-                    count = count + 1;
-                    if (count == 9)
-                    {
-                        count = 0;
-                        y = y + 48;
-                        x = 192;
-                    }
-                    break;
                 }
             }
         }
-//        count += 1;
-//        x += 48;
-//        if (count == 9) {
-//            count = 0;
-//            y -= 48;
-//        }
+        else{
+            x = x + 48;
+            count = count + 1;
+            if(count == 9)
+            {
+                count = 0;
+                y = y + 48;
+                x = 192;
+            }
+        }
     }
 }
 
@@ -342,4 +350,27 @@ void Sudoku::Accept(ItemVisitor* visitor)
     {
         item->Accept(visitor);
     }
+}
+
+/**
+ * Test if a square is already taken
+ * @param item digit we want to place
+ * @param x location of where we want to put it
+ * @param y location of where we want to put it
+ */
+bool Sudoku::TakenSquare(int x, int y)
+{
+    for (auto item : mItems)
+    {
+        GivenVisitor visitor2;
+        item->Accept(&visitor2);
+        if (visitor2.IsGiven())
+        {
+            if (item->GetX() == x && item->GetY() == y)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }
