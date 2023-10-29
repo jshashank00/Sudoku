@@ -29,14 +29,17 @@ using namespace std;
  */
 Sudoku::Sudoku()
 {
+    wxString level0 = "levels/level0.xml";
     wxString level1 = "levels/level1.xml";
+    wxString level2 = "levels/level2.xml";
+    wxString level3 = "levels/level3.xml";
     LevelLoad level(level1, this);
 
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
 
-    mColumn = level.Column();
-    mRow = level.Row();
+//    mColumn = level.Column();
+//    mRow = level.Row();
     mSolution = level.Solution();
 
     mMessageBoard = make_shared<MessageBoard>(this);
@@ -126,6 +129,7 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
         }
     }
 
+    //wxString levelMessage;
     mMessageBoard->Draw(graphics, mPixelWidth, mPixelHeight);
     mScoreboard->Draw(graphics, mPixelWidth, mPixelHeight);
 

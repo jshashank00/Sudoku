@@ -161,6 +161,9 @@ void SudokuView::OnLevel3(wxCommandEvent& event)
 
 void SudokuView::OnSolve(wxCommandEvent& event)
 {
+    wxString level0 = "levels/level0.xml";
     wxString level1 = "levels/level1.xml";
+    wxString level2 = "levels/level2.xml";
+    wxString level3 = "levels/level3.xml";
     mSudoku.Solve(level1);
 }
