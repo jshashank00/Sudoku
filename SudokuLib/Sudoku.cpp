@@ -20,6 +20,7 @@
 #include "IsContainerVisitor.h"
 #include "GivenVisitor.h"
 #include "XrayFinder.h"
+#include <cstdlib>
 
 using namespace std;
 
@@ -284,10 +285,13 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
             Container * container = visitor.GetContainer();
             for (auto item: container->GetContainedItems())
             {
+                int randomY = (rand() % 150 + 100);
+                int randomX = rand() % 201 + (-100);
+
                 int x, y;
                 item->SetInContainer(false);
-                x = item->GetX();
-                y = item->GetY() - 100;
+                x = item->GetX() + randomX;
+                y = item->GetY() - randomY;
                 item->SetLocation(x, y);
 
 //                container->GetContainedItems().erase(container->GetContainedItems().begin());

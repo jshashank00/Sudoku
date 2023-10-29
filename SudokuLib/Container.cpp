@@ -72,3 +72,8 @@ void Container::AddItem(std::shared_ptr<Item> item) {
 std::vector<std::shared_ptr<Item>> Container::GetContainedItems() const {
     return mContainedItems;
 }
+
+void Container::Clear()
+{
+    mContainedItems.clear();
+}
