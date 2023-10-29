@@ -132,6 +132,17 @@ public:
     double GetItemHit() {return mHeight;}
 
     bool ContainerHitTest(int x, int y);
+
+    double GetWidth() const {
+
+        return mWidth;
+    }
+
+    double GetHeight() const {
+
+        return mHeight;
+    }
+
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H

@@ -43,6 +43,9 @@ Sudoku::Sudoku()
 
     mScoreboard = make_shared<Scoreboard>(this);
     mScoreboard->StartClock();
+    // Seed the random number generator
+    std::random_device rd;
+    mRandom.seed(rd());
 
 }
 
@@ -183,6 +186,10 @@ void Sudoku::SetSparty(shared_ptr<Item> sparty)
 {
     mSparty = sparty;
 }
+void Sudoku::SetXray(shared_ptr<Item> xray)
+{
+    mXray = xray;
+}
 
 void Sudoku::SetPixelHeight(int height)
 {
@@ -227,7 +234,15 @@ bool Sudoku::Eater(Item *eater)
             auto loc = find(begin(mItems), end(mItems), other);
             if (loc != end(mItems))
             {
-                other->SetLocation(100,600);
+                // Calculate the Xray's width and height
+                double xrayWidth = mXray->GetWidth();
+                double xrayHeight = mXray->GetHeight();
+
+                std::uniform_real_distribution<> distribution(0, xrayWidth);
+                std::uniform_real_distribution<> distribution2(550, 700);
+                mLocX = distribution(this->GetRandom());
+                mLocY = distribution2(this->GetRandom());
+                other->SetLocation(mLocX, mLocY);
                 //mItems.erase(loc);
             }
 
