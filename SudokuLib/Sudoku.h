@@ -24,7 +24,7 @@ private:
     /// Sparty for this game
     std::shared_ptr<Item> mSparty;
     /// Xray for this game
-    std::shared_ptr<Item> mXray;
+    std::shared_ptr<Xray> mXray;
 
 
     std::shared_ptr<Scoreboard> mScoreboard;
@@ -107,7 +107,8 @@ public:
     std::mt19937 &GetRandom() {return mRandom;}
 
     bool TakenSquare(int x, int y);
-    void SetXray(std::shared_ptr<Item> xray);
+    void SetXray(std::shared_ptr<Xray> xray);
+    void MoveDigit(int digit, int x, int y);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

@@ -186,7 +186,7 @@ void Sudoku::SetSparty(shared_ptr<Item> sparty)
 {
     mSparty = sparty;
 }
-void Sudoku::SetXray(shared_ptr<Item> xray)
+void Sudoku::SetXray(shared_ptr<Xray> xray)
 {
     mXray = xray;
 }
@@ -230,7 +230,7 @@ bool Sudoku::Eater(Item *eater)
         {
 
 
-            xray->AddItem(other); //add digit to xray items
+            mXray->AddItem(other); //add digit to xray items
             auto loc = find(begin(mItems), end(mItems), other);
             if (loc != end(mItems))
             {
@@ -408,4 +408,31 @@ bool Sudoku::TakenSquare(int x, int y)
         }
     }
     return false;
+}
+
+void Sudoku::MoveDigit(int digit, int x, int y)
+{
+    int row = (y - 120) / 48;
+    int col = (x - 168) / 48;
+    int center_x = 168 + col * 48 + 24;
+    int center_y = 120 + row * 48 + 24;
+
+    for (auto item : mXray->GetItems())
+    {
+        DigitVisitor visitor;
+        item->Accept(&visitor);
+        if(visitor.IsDigit())
+        {
+            if(visitor.GetValue() == digit)
+            {
+                if(!TakenSquare(center_x, center_y))
+                {
+                    item->SetLocation(center_x, center_y);
+                    mXray->RemoveDigit(item);
+                    mItems.push_back(item);
+                    break;
+                }
+            }
+        }
+    }
 }

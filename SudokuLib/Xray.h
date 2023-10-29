@@ -52,6 +52,7 @@ public:
     void AddItem(std::shared_ptr<Item> item);
 
     std::vector<std::shared_ptr<Item>> GetXrayItems();
+    void RemoveDigit(std::shared_ptr<Item> item);
 };
 
 #endif //PROJECT1_SUDOKULIB_XRAY_H

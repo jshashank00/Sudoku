@@ -50,7 +50,7 @@ void Xray::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//
 
 void Xray::AddItem(std::shared_ptr<Item> item) {
     // only add if there is room
-    if (mCapacity > mTotalNumbers)
+    if (mCapacity <= mTotalNumbers)
     {
         mXrayItems.push_back(item);
         item->SetInXray(true); // Mark the item as being in a container
@@ -62,4 +62,13 @@ void Xray::AddItem(std::shared_ptr<Item> item) {
 
 std::vector<std::shared_ptr<Item>> Xray::GetXrayItems() {
     return mXrayItems;
+}
+
+void Xray::RemoveDigit(std::shared_ptr<Item> item)
+{
+    auto loc = find(begin(mXrayItems), end(mXrayItems), item);
+    if (loc != end(mXrayItems))
+    {
+        mXrayItems.erase(loc);
+    }
 }

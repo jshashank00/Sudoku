@@ -25,7 +25,6 @@ private:
 public:
     Container(Sudoku* sudoku);
     void XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
-    void XmlLoadFront(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
     void AddItem(std::shared_ptr<Item> item);
     std::vector<std::shared_ptr<Item>> GetContainedItems() const;
     /**
@@ -33,7 +32,7 @@ public:
     * @param visitor The visitor we accept
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitContainer(this); }
-    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
+    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height) override;
 };
 
 #endif //PROJECT1_SUDOKULIB_CONTAINER_H

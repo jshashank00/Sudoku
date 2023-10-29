@@ -129,6 +129,11 @@ void SudokuView::OnKey(wxKeyEvent &event)
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
         sparty->MouthMove();
     }
+    else if(uc > 47 && uc < 58)
+    {
+        int digit = uc - 48;
+        mSudoku.MoveDigit(digit, event.GetX(), event.GetY());
+    }
 }
 
 void SudokuView::OnLevel0(wxCommandEvent& event)
