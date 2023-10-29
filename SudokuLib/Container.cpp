@@ -26,6 +26,24 @@ void Container::XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double heig
     wxString image = decNode->GetAttribute(L"image",L"0");
     image = "images/" + image;
     Item::SetImage(image);
+    wxString image1 = decNode->GetAttribute(L"front",L"0");
+    image1 = "images/" + image1;
+    mFrontImage = make_unique<wxImage> (image1, wxBITMAP_TYPE_ANY);
+    mFrontBitmap = make_unique<wxBitmap>(*mFrontImage);
+}
+
+void Container::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
+{
+    Item::Draw(graphics, width, height);
+    for (auto item : mContainedItems)
+    {
+        item->Draw(graphics, width, height);
+    }
+    double wid = mFrontBitmap->GetWidth();
+    double hit = mFrontBitmap->GetHeight();
+    graphics->DrawBitmap(*mFrontBitmap,
+                         this->GetX(),
+                         this->GetY(), 200, 200);
 }
 
 /**

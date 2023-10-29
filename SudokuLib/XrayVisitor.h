@@ -9,6 +9,9 @@
 #define PROJECT1_SUDOKULIB_XRAYVISITOR_H
 
 #include "ItemVisitor.h"
+#include "Item.h"
+#include "Xray.h"
+
 
 /**
  * Xray visitor
@@ -36,13 +39,16 @@ public:
     * Determine if tile is landable
     * @return TileLandable tile
     */
-    Container* GetContainer() {return mXray; }
+    //Container* GetContainer() {return mX5
+    std::vector<std::shared_ptr<Item>>& GetItems() { return mXray->GetItems(); }
+
+
 
 private:
     /// false if not container
     bool mIsXray = false;
 
     /// container we headbutt
-    Container* mXray;
+    Xray* mXray;
 };
 #endif //PROJECT1_SUDOKULIB_XRAYVISITOR_H
