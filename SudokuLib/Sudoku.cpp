@@ -120,7 +120,10 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
 
     for(auto item : mItems)
     {
-        item->Draw(graphics, mPixelWidth, mPixelHeight);
+        if (!item->IsInContainer())
+        {
+            item->Draw(graphics, mPixelWidth, mPixelHeight);
+        }
     }
 
     mMessageBoard->Draw(graphics, mPixelWidth, mPixelHeight);

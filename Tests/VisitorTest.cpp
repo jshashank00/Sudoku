@@ -12,8 +12,8 @@
 #include <Sparty.h>
 #include <Container.h>
 #include <Xray.h>
-#include "LevelLoad.h"
-#include "DigitVisitor.h"
+#include <LevelLoad.h>
+#include <DigitVisitor.h>
 
 class VisitorTest : public ItemVisitor
 {
