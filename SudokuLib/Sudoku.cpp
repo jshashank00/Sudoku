@@ -346,52 +346,58 @@ void Sudoku::Solve(wxString levelToSolve)
         {
             break;
         }
-        if (!TakenSquare(x, y))
+        else
         {
-
-            for (auto item : mItems)
+            if (!TakenSquare(x, y))
             {
-                DigitVisitor visitor1;
-                item->Accept(&visitor1);
 
-                if (visitor1.IsDigit())
+                for (auto item : mItems)
                 {
-                    int value = visitor1.GetValue();
-                    if (visitor1.GetValue() == vector_solution[i])
+                    DigitVisitor visitor1;
+                    item->Accept(&visitor1);
+
+                    if (visitor1.IsDigit())
                     {
-                        item->SetLocation(x, y);
-                        stop_count++;
-                        mItems.push_back(item);
-                        auto loc = find(begin(mItems), end(mItems), item);
-                        if (loc != end(mItems))
+                        if (visitor1.GetValue() == vector_solution[i])
                         {
-                            mItems.erase(loc);
+                            item->SetLocation(x, y);
+                            stop_count++;
+                            mItems.push_back(item);
+                            auto loc = find(begin(mItems), end(mItems), item);
+                            if(loc != end(mItems))
+                            {
+                                mItems.erase(loc);
+                            }
+                            x += 48;
+                            count += 1;
+                            if (count == 9)
+                            {
+                                count = 0;
+                                y += 48;
+                                x = original_x;
+                            }
+                            break;
                         }
-                        x = x + 48;
-                        count = count + 1;
-                        if (count == 9)
-                        {
-                            count = 0;
-                            y = y + 48;
-                            x = original_x;
-                        }
-                        break;
                     }
                 }
             }
-        }
-        else
-        {
-            x = x + 48;
-            count = count + 1;
-            if (count == 9)
+            else
             {
-                count = 0;
-                y = y + 48;
-                x = original_x;
+                x += 48;
+                count += 1;
+                if (count == 9)
+                {
+                    count = 0;
+                    y += 48;
+                    x = original_x;
+                }
             }
         }
     }
+//    wxFont font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+//    std::shared_ptr<wxGraphicsContext> graphics;
+//    graphics->SetFont(font, *wxGREEN); // Set the text color to green
+//    wxString levelMessage = "Level Complete!";
 }
 
 
@@ -429,3 +435,4 @@ bool Sudoku::TakenSquare(int x, int y)
     }
     return false;
 }
+
