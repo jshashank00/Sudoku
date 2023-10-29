@@ -53,7 +53,7 @@ void Xray::AddItem(std::shared_ptr<Item> item) {
     if (mCapacity > mTotalNumbers)
     {
         mXrayItems.push_back(item);
-        item->SetInContainer(true); // Mark the item as being in a container
+        item->SetInXray(true); // Mark the item as being in a container
         mTotalNumbers += 1; // update total numbers
     } else {
         // call message to say "I'm full" here

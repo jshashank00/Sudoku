@@ -12,6 +12,7 @@
 #include "Sparty.h"
 #include "Scoreboard.h"
 #include "MessageBoard.h"
+#include <random>
 
 class Sudoku {
 private:
@@ -22,6 +23,9 @@ private:
 
     /// Sparty for this game
     std::shared_ptr<Item> mSparty;
+    /// Xray for this game
+    std::shared_ptr<Item> mXray;
+
 
     std::shared_ptr<Scoreboard> mScoreboard;
 
@@ -32,6 +36,8 @@ private:
     double mXOffset = 0.0;
     double mYOffset = 0.0;
 
+    double mLocX;
+    double mLocY;
     wxStopWatch mStopWatch;
     double mElapsedTime = 0.0; // To track the elapsed time
     double mTime = 0.0;
@@ -40,10 +46,16 @@ private:
 
     int mPixelWidth;
     int mPixelHeight;
-
     int mColumn;
     int mRow;
     wxString mSolution;
+
+
+    std::shared_ptr<wxGraphicsContext> mGraphics;
+    int mWidth;
+    int mHeight;
+    /// Random number generator
+    std::mt19937 mRandom;
 
 public:
     Sudoku();
@@ -88,8 +100,14 @@ public:
     bool Eater(Item *eater);
     bool HeadbuttContainer(Item *headbuttItem);
     void Accept(ItemVisitor *visitor);
+    /**
+ * Get the random number generator
+ * @return Pointer to the random number generator
+ */
+    std::mt19937 &GetRandom() {return mRandom;}
 
     bool TakenSquare(int x, int y);
+    void SetXray(std::shared_ptr<Item> xray);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H
