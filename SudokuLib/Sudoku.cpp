@@ -120,7 +120,10 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
 
     for(auto item : mItems)
     {
-        item->Draw(graphics, mPixelWidth, mPixelHeight);
+        if (!item->IsInContainer())
+        {
+            item->Draw(graphics, mPixelWidth, mPixelHeight);
+        }
     }
 
     mMessageBoard->Draw(graphics, mPixelWidth, mPixelHeight);
@@ -309,76 +312,93 @@ void Sudoku::Solve(wxString levelToSolve)
     std::vector<int> vector_solution;
     std::string solution = std::string(mSolution.ToStdString());
 
-    for(int i = 0; i < solution.length(); i++)
+    for (int i = 0; i < solution.length(); i++)
     {
-        if(isdigit(solution[i]))
+        if (isdigit(solution[i]))
         {
             int val = solution[i] - '0';  // Convert char to int
             vector_solution.push_back(val);
         }
     }
 
-    int x = 192;
-    int y = 144;
+    int x;
+    int y;
+    int original_x;
     int count = 0;
     int stop_count = 0;
-    for(int i = 0; i < vector_solution.size(); i++)
+
+    for (auto item : mItems)
     {
-        if(stop_count == 53)
+        GivenVisitor visitor2;
+        item->Accept(&visitor2);
+        if (visitor2.IsGiven())
+        {
+            x = item->GetX();
+            y = item->GetY();
+            original_x = x;
+            break;
+        }
+    }
+
+    for (int i = 0; i < vector_solution.size(); i++)
+    {
+        if (stop_count == 53)
         {
             break;
         }
-        if(!TakenSquare(x, y))
+        else
         {
-
-            for(auto item : mItems)
+            if (!TakenSquare(x, y))
             {
-                DigitVisitor visitor1;
-                item->Accept(&visitor1);
 
-//            GivenVisitor visitor2;
-//            item->Accept(&visitor2);
-
-                if(visitor1.IsDigit())
+                for (auto item : mItems)
                 {
-                    int value = visitor1.GetValue();
-                    //int find = vector_solution[i];
-                    if(visitor1.GetValue() == vector_solution[i])// && !(TakenSquare(item.get(), x, y)))
+                    DigitVisitor visitor1;
+                    item->Accept(&visitor1);
+
+                    if (visitor1.IsDigit())
                     {
-                        item->SetLocation(x, y);
-                        stop_count++;
-                        mItems.push_back(item);
-                        auto loc = find(begin(mItems), end(mItems), item);
-                        if(loc != end(mItems))
+                        if (visitor1.GetValue() == vector_solution[i])
                         {
-                            mItems.erase(loc);
+                            item->SetLocation(x, y);
+                            stop_count++;
+                            mItems.push_back(item);
+                            auto loc = find(begin(mItems), end(mItems), item);
+                            if(loc != end(mItems))
+                            {
+                                mItems.erase(loc);
+                            }
+                            x += 48;
+                            count += 1;
+                            if (count == 9)
+                            {
+                                count = 0;
+                                y += 48;
+                                x = original_x;
+                            }
+                            break;
                         }
-                        x = x + 48;
-                        count = count + 1;
-                        if(count == 9)
-                        {
-                            count = 0;
-                            y = y + 48;
-                            x = 192;
-                        }
-                        break;
                     }
                 }
             }
-        }
-        else{
-            x = x + 48;
-            count = count + 1;
-            if(count == 9)
+            else
             {
-                count = 0;
-                y = y + 48;
-                x = 192;
+                x += 48;
+                count += 1;
+                if (count == 9)
+                {
+                    count = 0;
+                    y += 48;
+                    x = original_x;
+                }
             }
         }
     }
+//    wxFont font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+//    std::shared_ptr<wxGraphicsContext> graphics;
+//    graphics->SetFont(font, *wxGREEN); // Set the text color to green
+//    wxString levelMessage = "Level Complete!";
 }
-
 
 
 /**
@@ -415,3 +435,4 @@ bool Sudoku::TakenSquare(int x, int y)
     }
     return false;
 }
+
