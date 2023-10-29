@@ -42,8 +42,11 @@ private:
     /// variable to show if item is in container
     bool mIsInContainer;
 
-    /// Items currently in container
-    std::vector<std::shared_ptr<Item>> mContainerItemsList;
+    /// variable to show if item is in xray
+    bool mIsInXray;
+
+//    /// Items currently in container
+//    std::vector<std::shared_ptr<Item>> mContainerItemsList;
 protected:
 
 
@@ -112,6 +115,10 @@ public:
     void SetInContainer(bool isInContainer) { mIsInContainer = isInContainer; }
     bool IsInContainer() const { return mIsInContainer; }
 
+    ///Easy way to tell if sparty can eat a number or not
+    void SetInXray(bool isInXray) { mIsInXray = isInXray; }
+    bool IsInXray() const { return mIsInXray; }
+
     /**
      * Accept a visitor
       * @param visitor The visitor we accept
@@ -120,6 +127,9 @@ public:
 
     double GetCol() {return mCol;}
     double GetRow() {return mRow;}
+
+    double GetItemWid() {return mWidth;}
+    double GetItemHit() {return mHeight;}
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H

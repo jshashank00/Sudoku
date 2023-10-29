@@ -14,6 +14,11 @@ class Container : public Item
 private:
     ///List of items in the container
     std::vector<std::shared_ptr<Item>> mContainedItems;
+
+    /// front image filename
+    wxString mFrontImage;
+
+    wxString mBackImage;
 public:
     Container(Sudoku* sudoku);
     void XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
@@ -25,6 +30,7 @@ public:
     * @param visitor The visitor we accept
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitContainer(this); }
+    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height) override;
 };
 
 #endif //PROJECT1_SUDOKULIB_CONTAINER_H

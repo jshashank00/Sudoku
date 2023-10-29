@@ -219,7 +219,7 @@ bool Sudoku::Eater(Item *eater)
 
         DigitVisitor visitor;
         other->Accept(&visitor);
-        if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && visitor.IsDigit())
+        if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && visitor.IsDigit() && !other->IsInContainer() && !other->IsInXray())
         {
 
 

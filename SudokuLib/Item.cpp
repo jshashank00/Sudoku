@@ -91,8 +91,6 @@ void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//
  */
 void Item::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    double wid = mItemBitmap->GetWidth();
-    double hit = mItemBitmap->GetHeight();
     graphics->DrawBitmap(*mItemBitmap,
                          mX,
                          mY, mWidth, mHeight);
