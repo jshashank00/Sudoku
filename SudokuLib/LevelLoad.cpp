@@ -130,6 +130,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         {
             item = make_shared<Xray>(mSudoku);
             mSudoku->Add(item);
+            mSudoku->SetXray(item);
             item->XmlLoad(itemNode, decNode, mTileHeight);
         }
         else if (itemNode->GetName() == L"container")
