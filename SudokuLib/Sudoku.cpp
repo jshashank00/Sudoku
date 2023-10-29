@@ -445,12 +445,17 @@ bool Sudoku::TakenSquare(int x, int y)
 
 void Sudoku::MoveDigit(int digit, int x, int y)
 {
+    // find the x ray
+    XrayFinder xrayVisitor;
+    this->Accept(&xrayVisitor);
+    Xray * xray = xrayVisitor.GetXray();
+
     int row = (y - 120) / 48;
     int col = (x - 168) / 48;
     int center_x = 168 + col * 48 + 24;
     int center_y = 120 + row * 48 + 24;
 
-    for (auto item : mXray->GetItems())
+    for (auto item : xray->GetItems())
     {
         DigitVisitor visitor;
         item->Accept(&visitor);
@@ -461,7 +466,7 @@ void Sudoku::MoveDigit(int digit, int x, int y)
                 if(!TakenSquare(center_x, center_y))
                 {
                     item->SetLocation(center_x, center_y);
-                    mXray->RemoveDigit(item);
+                    xray->RemoveDigit(item);
                     mItems.push_back(item);
                     break;
                 }
