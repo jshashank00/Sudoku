@@ -23,9 +23,6 @@ private:
 
     /// Sparty for this game
     std::shared_ptr<Item> mSparty;
-    /// Xray for this game
-    std::shared_ptr<Item> mXray;
-
 
     std::shared_ptr<Scoreboard> mScoreboard;
 

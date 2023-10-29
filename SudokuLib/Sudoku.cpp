@@ -190,10 +190,10 @@ void Sudoku::SetSparty(shared_ptr<Item> sparty)
 {
     mSparty = sparty;
 }
-void Sudoku::SetXray(shared_ptr<Item> xray)
-{
-    mXray = xray;
-}
+//void Sudoku::SetXray(shared_ptr<Item> xray)
+//{
+//    mXray = xray;
+//}
 
 void Sudoku::SetPixelHeight(int height)
 {
@@ -239,8 +239,8 @@ bool Sudoku::Eater(Item *eater)
             if (loc != end(mItems))
             {
                 // Calculate the Xray's width and height
-                double xrayWidth = mXray->GetWidth();
-                double xrayHeight = mXray->GetHeight();
+                double xrayWidth = xray->GetWidth();
+                double xrayHeight = xray->GetHeight();
 
                 std::uniform_real_distribution<> distribution(0, xrayWidth);
                 std::uniform_real_distribution<> distribution2(550, 700);
