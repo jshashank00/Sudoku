@@ -31,6 +31,8 @@ public:
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitContainer(this); }
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height) override;
+
+    void Clear();
 };
 
 #endif //PROJECT1_SUDOKULIB_CONTAINER_H

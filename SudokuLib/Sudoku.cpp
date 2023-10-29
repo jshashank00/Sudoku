@@ -253,12 +253,12 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
 
         IsContainerVisitor visitor;
         other->Accept(&visitor);
-        if (visitor.IsContainer()) {
-            other->HitTest((int)sparty->GetX(), (int)sparty->GetY());
-        }
+//        if (visitor.IsContainer()) {
+//            other->ContainerHitTest((int)sparty->GetX(), (int)sparty->GetY());
+//        }
 
 
-        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()) && visitor.IsContainer())
+        if (other->ContainerHitTest((int)sparty->GetX(), (int)sparty->GetY()) && visitor.IsContainer())
         {
             // find container
             // get container list of items
@@ -271,11 +271,13 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
             {
                 int x, y;
                 item->SetInContainer(false);
-                x = item->GetX() + 10;
-                y = item->GetY() - 10;
+                x = item->GetX();
+                y = item->GetY() - 100;
                 item->SetLocation(x, y);
+
 //                container->GetContainedItems().erase(container->GetContainedItems().begin());
             }
+            container->Clear();
             return true;
         }
 

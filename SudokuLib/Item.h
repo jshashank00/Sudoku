@@ -130,6 +130,8 @@ public:
 
     double GetItemWid() {return mWidth;}
     double GetItemHit() {return mHeight;}
+
+    bool ContainerHitTest(int x, int y);
 };
 
 #endif //PROJECT1_SUDOKULIB_ITEM_H

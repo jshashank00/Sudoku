@@ -70,3 +70,13 @@ void Container::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int
                          this->GetX(),
                          this->GetY(), this->GetItemWid(), this->GetItemHit());
 }
+
+/**
+*  Clear the container data.
+*
+* Deletes all known items in the container
+*/
+void Container::Clear()
+{
+    mContainedItems.clear();
+}
