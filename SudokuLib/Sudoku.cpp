@@ -232,28 +232,29 @@ bool Sudoku::Eater(Item *eater)
         other->Accept(&visitor);
         if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && visitor.IsDigit() && !other->IsInContainer() && !other->IsInXray())
         {
-
-
-            xray->AddItem(other); //add digit to xray items
-            auto loc = find(begin(mItems), end(mItems), other);
-            if (loc != end(mItems))
+            if (xray->AddItem(other)) //add digit to xray items
             {
-                // Calculate the Xray's width and height
-                double xrayWidth = xray->GetWidth();
-                double xrayHeight = xray->GetHeight();
+                auto loc = find(begin(mItems), end(mItems), other);
+                if(loc != end(mItems))
+                {
+                    // Calculate the Xray's width and height
+                    double xrayWidth = xray->GetWidth();
+                    double xrayHeight = xray->GetHeight();
 
-                std::uniform_real_distribution<> distribution(0, xrayWidth);
-                std::uniform_real_distribution<> distribution2(550, 700);
-                mLocX = distribution(this->GetRandom());
-                mLocY = distribution2(this->GetRandom());
-                other->SetLocation(mLocX, mLocY);
-                //mItems.erase(loc);
-            }
+                    std::uniform_real_distribution<> distribution(0, xrayWidth);
+                    std::uniform_real_distribution<> distribution2(550, 700);
+                    mLocX = distribution(this->GetRandom());
+                    mLocY = distribution2(this->GetRandom());
+                    other->SetLocation(mLocX, mLocY);
+                    //mItems.erase(loc);
+                }
 
-            if (other) {
-                //Draw item in xray
+                if(other)
+                {
+                    //Draw item in xray
+                }
+                return true;
             }
-            return true;
         }
 
     }

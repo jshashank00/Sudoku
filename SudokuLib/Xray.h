@@ -49,7 +49,7 @@ public:
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitXray(this); }
 
-    void AddItem(std::shared_ptr<Item> item);
+    bool AddItem(std::shared_ptr<Item> item);
 
     std::vector<std::shared_ptr<Item>> GetXrayItems();
 };
