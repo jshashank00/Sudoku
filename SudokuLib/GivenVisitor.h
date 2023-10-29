@@ -14,7 +14,7 @@
 class GivenVisitor : public ItemVisitor
 {
 private:
-    bool GivenCheck;
+    bool GivenCheck = false;
 
     /// bool if the item is a digit
     bool mIsGiven = false;

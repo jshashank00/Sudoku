@@ -20,6 +20,7 @@
 #include "IsContainerVisitor.h"
 #include "GivenVisitor.h"
 #include "XrayFinder.h"
+#include <cstdlib>
 
 using namespace std;
 
@@ -28,14 +29,17 @@ using namespace std;
  */
 Sudoku::Sudoku()
 {
+    wxString level0 = "levels/level0.xml";
     wxString level1 = "levels/level1.xml";
+    wxString level2 = "levels/level2.xml";
+    wxString level3 = "levels/level3.xml";
     LevelLoad level(level1, this);
 
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
 
-    mColumn = level.Column();
-    mRow = level.Row();
+//    mColumn = level.Column();
+//    mRow = level.Row();
     mSolution = level.Solution();
 
     mMessageBoard = make_shared<MessageBoard>(this);
@@ -119,9 +123,13 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
 
     for(auto item : mItems)
     {
-        item->Draw(graphics, mPixelWidth, mPixelHeight);
+        if (!item->IsInContainer())
+        {
+            item->Draw(graphics, mPixelWidth, mPixelHeight);
+        }
     }
 
+    //wxString levelMessage;
     mMessageBoard->Draw(graphics, mPixelWidth, mPixelHeight);
     mScoreboard->Draw(graphics, mPixelWidth, mPixelHeight);
 
@@ -186,10 +194,10 @@ void Sudoku::SetSparty(shared_ptr<Item> sparty)
 {
     mSparty = sparty;
 }
-void Sudoku::SetXray(shared_ptr<Xray> xray)
-{
-    mXray = xray;
-}
+//void Sudoku::SetXray(shared_ptr<Item> xray)
+//{
+//    mXray = xray;
+//}
 
 void Sudoku::SetPixelHeight(int height)
 {
@@ -228,28 +236,29 @@ bool Sudoku::Eater(Item *eater)
         other->Accept(&visitor);
         if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && visitor.IsDigit() && !other->IsInContainer() && !other->IsInXray())
         {
-
-
-            mXray->AddItem(other); //add digit to xray items
-            auto loc = find(begin(mItems), end(mItems), other);
-            if (loc != end(mItems))
+            if (xray->AddItem(other)) //add digit to xray items
             {
-                // Calculate the Xray's width and height
-                double xrayWidth = mXray->GetWidth();
-                double xrayHeight = mXray->GetHeight();
+                auto loc = find(begin(mItems), end(mItems), other);
+                if(loc != end(mItems))
+                {
+                    // Calculate the Xray's width and height
+                    double xrayWidth = xray->GetWidth();
+                    double xrayHeight = xray->GetHeight();
 
-                std::uniform_real_distribution<> distribution(0, xrayWidth);
-                std::uniform_real_distribution<> distribution2(550, 700);
-                mLocX = distribution(this->GetRandom());
-                mLocY = distribution2(this->GetRandom());
-                other->SetLocation(mLocX, mLocY);
-                //mItems.erase(loc);
-            }
+                    std::uniform_real_distribution<> distribution(0, xrayWidth);
+                    std::uniform_real_distribution<> distribution2(550, 700);
+                    mLocX = distribution(this->GetRandom());
+                    mLocY = distribution2(this->GetRandom());
+                    other->SetLocation(mLocX, mLocY);
+                    //mItems.erase(loc);
+                }
 
-            if (other) {
-                //Draw item in xray
+                if(other)
+                {
+                    //Draw item in xray
+                }
+                return true;
             }
-            return true;
         }
 
     }
@@ -268,12 +277,12 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
 
         IsContainerVisitor visitor;
         other->Accept(&visitor);
-        if (visitor.IsContainer()) {
-            other->HitTest((int)sparty->GetX(), (int)sparty->GetY());
-        }
+//        if (visitor.IsContainer()) {
+//            other->ContainerHitTest((int)sparty->GetX(), (int)sparty->GetY());
+//        }
 
 
-        if (other->HitTest((int)sparty->GetX(), (int)sparty->GetY()) && visitor.IsContainer())
+        if (other->ContainerHitTest((int)sparty->GetX(), (int)sparty->GetY()) && visitor.IsContainer())
         {
             // find container
             // get container list of items
@@ -284,13 +293,19 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
             Container * container = visitor.GetContainer();
             for (auto item: container->GetContainedItems())
             {
-                int x, y;
+                int randomY = (rand() % 150 + 100);
+                int randomX = rand() % 201 + (-100);
+
+                int x = 0;
+                int y = 0;
                 item->SetInContainer(false);
-                x = item->GetX() + 10;
-                y = item->GetY() - 10;
+                x = item->GetX() + randomX;
+                y = item->GetY() - randomY;
                 item->SetLocation(x, y);
+
 //                container->GetContainedItems().erase(container->GetContainedItems().begin());
             }
+            container->Clear();
             return true;
         }
 
@@ -303,74 +318,92 @@ void Sudoku::Solve(wxString levelToSolve)
     std::vector<int> vector_solution;
     std::string solution = std::string(mSolution.ToStdString());
 
-    for(int i = 0; i < solution.length(); i++)
+    for (int i = 0; i < solution.length(); i++)
     {
-        if(isdigit(solution[i]))
+        if (isdigit(solution[i]))
         {
             int val = solution[i] - '0';  // Convert char to int
             vector_solution.push_back(val);
         }
     }
 
-    int x = 192;
-    int y = 144;
+    int x;
+    int y;
+    int original_x;
     int count = 0;
     int stop_count = 0;
-    for(int i = 0; i < vector_solution.size(); i++)
+
+    for (auto item : mItems)
     {
-        if(stop_count == 53)
+        GivenVisitor visitor2;
+        item->Accept(&visitor2);
+        if (visitor2.IsGiven())
+        {
+            x = item->GetX();
+            y = item->GetY();
+            original_x = x;
+            break;
+        }
+    }
+
+    for (int i = 0; i < vector_solution.size(); i++)
+    {
+        if (stop_count == 53)
         {
             break;
         }
-        if(!TakenSquare(x, y))
+        else
         {
-
-            for(auto item : mItems)
+            if (!TakenSquare(x, y))
             {
-                DigitVisitor visitor1;
-                item->Accept(&visitor1);
 
-//            GivenVisitor visitor2;
-//            item->Accept(&visitor2);
-
-                if(visitor1.IsDigit())
+                for (auto item : mItems)
                 {
-                    int value = visitor1.GetValue();
-                    //int find = vector_solution[i];
-                    if(visitor1.GetValue() == vector_solution[i])// && !(TakenSquare(item.get(), x, y)))
+                    DigitVisitor visitor1;
+                    item->Accept(&visitor1);
+
+                    if (visitor1.IsDigit())
                     {
-                        item->SetLocation(x, y);
-                        stop_count++;
-                        mItems.push_back(item);
-                        auto loc = find(begin(mItems), end(mItems), item);
-                        if(loc != end(mItems))
+                        if (visitor1.GetValue() == vector_solution[i])
                         {
-                            mItems.erase(loc);
+                            item->SetLocation(x, y);
+                            stop_count++;
+                            mItems.push_back(item);
+                            auto loc = find(begin(mItems), end(mItems), item);
+                            if(loc != end(mItems))
+                            {
+                                mItems.erase(loc);
+                            }
+                            x += 48;
+                            count += 1;
+                            if (count == 9)
+                            {
+                                count = 0;
+                                y += 48;
+                                x = original_x;
+                            }
+                            break;
                         }
-                        x = x + 48;
-                        count = count + 1;
-                        if(count == 9)
-                        {
-                            count = 0;
-                            y = y + 48;
-                            x = 192;
-                        }
-                        break;
                     }
                 }
             }
-        }
-        else{
-            x = x + 48;
-            count = count + 1;
-            if(count == 9)
+            else
             {
-                count = 0;
-                y = y + 48;
-                x = 192;
+                x += 48;
+                count += 1;
+                if (count == 9)
+                {
+                    count = 0;
+                    y += 48;
+                    x = original_x;
+                }
             }
         }
     }
+//    wxFont font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+//    std::shared_ptr<wxGraphicsContext> graphics;
+//    graphics->SetFont(font, *wxGREEN); // Set the text color to green
+//    wxString levelMessage = "Level Complete!";
 }
 
 

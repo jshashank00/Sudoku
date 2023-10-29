@@ -52,7 +52,32 @@ bool Item::HitTest(int x, int y)
     double testY = y - GetY() + hit / 2;
 
     // Test to see if x, y are in the image
-    if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+    if (testX < 0 || testY < 0 || testX >= wid + 1 || testY >= hit + 1)
+    {
+        // We are outside the image
+        return false;
+    }
+
+    // Test to see if x, y are in the drawn part of the image
+    // If the location is transparent, we are not in the drawn
+    // part of the image
+//    return !mItemImage->IsTransparent((int)testX, (int)testY);
+    return true;
+}
+
+bool Item::ContainerHitTest(int x, int y)
+{
+    double wid = mItemBitmap->GetWidth();
+    double hit = mItemBitmap->GetHeight();
+
+    // Make x and y relative to the top-left corner of the bitmap image
+    // Subtracting the center makes x, y relative to the image center
+    // Adding half the size makes x, y relative to the image top corner
+    double testX = x - GetX() + wid / 2;
+    double testY = (y - GetY() - 48) + hit / 2;
+
+    // Test to see if x, y are in the image
+    if (testX < 0 || testY < 0 || testX >= wid + 1 || testY >= hit + 1)
     {
         // We are outside the image
         return false;

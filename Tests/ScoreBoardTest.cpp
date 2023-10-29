@@ -3,9 +3,9 @@
  * @author Ishita Saripalle
  */
 
-#include "pch.h"
-#include "Scoreboard.h"
-#include "Sudoku.h"
+#include <pch.h>
+#include <Scoreboard.h>
+#include <Sudoku.h>
 #include <gtest/gtest.h>
 
 class ScoreboardTest : public ::testing::Test {

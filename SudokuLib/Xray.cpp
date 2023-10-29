@@ -48,15 +48,17 @@ void Xray::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//
 
 }
 
-void Xray::AddItem(std::shared_ptr<Item> item) {
+bool Xray::AddItem(std::shared_ptr<Item> item) {
     // only add if there is room
     if (mCapacity <= mTotalNumbers)
     {
         mXrayItems.push_back(item);
         item->SetInXray(true); // Mark the item as being in a container
         mTotalNumbers += 1; // update total numbers
+        return true;
     } else {
         // call message to say "I'm full" here
+        return false;
     }
 }
 

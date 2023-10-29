@@ -16,7 +16,7 @@
 class Given : public Item
 {
 private:
-    int mValue;
+    int mValue= 0;
 
 public:
     Given(Sudoku *sudoku, const wxString &filename);
