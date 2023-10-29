@@ -26,9 +26,25 @@ void Container::XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double heig
     Item::XmlLoad(itemNode, decNode, height);
     wxString image = decNode->GetAttribute(L"image",L"0");
     image = "images/" + image;
-    wxString frontImage = decNode->GetAttribute(L"front",L"0");
-    mFrontImage = "images/" + frontImage;
     Item::SetImage(image);
+    wxString front_image = decNode->GetAttribute(L"front",L"0");
+    front_image = "images/" + front_image;
+    mFrontImage = make_unique<wxImage> (front_image, wxBITMAP_TYPE_ANY);
+    mFrontBitmap = make_unique<wxBitmap>(*mFrontImage);
+}
+
+void Container::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
+{
+    Item::Draw(graphics, width, height);
+    for (auto item : mContainedItems)
+    {
+        item->Draw(graphics, width, height);
+    }
+    double wid = mFrontBitmap->GetWidth();
+    double hit = mFrontBitmap->GetHeight();
+    graphics->DrawBitmap(*mFrontBitmap,
+                         this->GetX(),
+                         this->GetY(), wid, hit);
 }
 
 /**
@@ -55,28 +71,4 @@ void Container::AddItem(std::shared_ptr<Item> item) {
 
 std::vector<std::shared_ptr<Item>> Container::GetContainedItems() const {
     return mContainedItems;
-}
-
-/**
- * Draw an container
- * @param dc Device context to draw on
- */
-void Container::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
-{
-    Item::Draw(graphics, 48, 48);
-    std::unique_ptr<wxImage> frontImage = make_unique<wxImage> (mFrontImage, wxBITMAP_TYPE_ANY);
-    std::unique_ptr<wxBitmap> frontBitmap = make_unique<wxBitmap>(*frontImage);
-    graphics->DrawBitmap(*frontBitmap,
-                         this->GetX(),
-                         this->GetY(), this->GetItemWid(), this->GetItemHit());
-}
-
-/**
-*  Clear the container data.
-*
-* Deletes all known items in the container
-*/
-void Container::Clear()
-{
-    mContainedItems.clear();
 }

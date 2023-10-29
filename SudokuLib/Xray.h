@@ -38,6 +38,8 @@ public:
     /// Assignment operator
     void operator=(const Xray &) = delete;
 
+    std::vector<std::shared_ptr<Item>>& GetItems() { return mXrayItems; }
+
     Xray(Sudoku* sudoku); // Add width and height parameters
 //    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight) override;
