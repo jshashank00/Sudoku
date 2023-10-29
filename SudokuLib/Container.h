@@ -33,7 +33,7 @@ public:
     * @param visitor The visitor we accept
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitContainer(this); }
-    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height) override;
+    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 };
 
 #endif //PROJECT1_SUDOKULIB_CONTAINER_H
