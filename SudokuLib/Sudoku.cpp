@@ -292,7 +292,8 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
                 int randomY = (rand() % 150 + 100);
                 int randomX = rand() % 201 + (-100);
 
-                int x, y;
+                int x = 0;
+                int y = 0;
                 item->SetInContainer(false);
                 x = item->GetX() + randomX;
                 y = item->GetY() - randomY;
