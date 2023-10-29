@@ -20,7 +20,7 @@
 class DigitVisitor : public ItemVisitor
 {
 private:
-    bool DigitCheck;
+    bool DigitCheck = false;
 
     /// bool if the item is a digit
     bool mIsDigit = false;

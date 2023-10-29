@@ -16,7 +16,7 @@
 class Digit : public Item
 {
 private:
-    int mValue;
+    int mValue = 0;
 
 public:
     int GetValue() { return mValue; }

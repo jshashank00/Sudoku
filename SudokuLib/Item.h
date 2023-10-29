@@ -33,17 +33,17 @@ private:
     double mY = 0;
     double mCol = 0;
     double mRow = 0;
-    double mWidth; ///<Width of the image
-    double mHeight; ///<Height of the image
+    double mWidth = 0; ///<Width of the image
+    double mHeight = 0; ///<Height of the image
 
     /// Item id
     //wxString mID;
 
     /// variable to show if item is in container
-    bool mIsInContainer;
+    bool mIsInContainer = false;
 
     /// variable to show if item is in xray
-    bool mIsInXray;
+    bool mIsInXray = false;
 
 //    /// Items currently in container
 //    std::vector<std::shared_ptr<Item>> mContainerItemsList;
