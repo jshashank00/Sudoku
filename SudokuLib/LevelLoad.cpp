@@ -30,7 +30,7 @@ LevelLoad::LevelLoad(const wxString &filename, Sudoku * sudoku) :mSudoku(sudoku)
     }
 
     // Once we know it is open, clear the existing data
-    //mSudoku->Clear();
+    mSudoku->Clear();
 
     // Get the XML document root node
     auto root = xmlDoc.GetRoot();
@@ -188,7 +188,7 @@ void LevelLoad::XmlContainerItem(wxXmlNode *node)
             decNode = mMap.find(digitID)->second;
             wxString image = "images/" + decNode->GetAttribute(L"image", L"0");
             item = make_shared<Digit>(mSudoku, image);
-//            mSudoku->Add(item);
+            mSudoku->Add(item);
             item->XmlLoad(childNode, decNode, mTileHeight);
             container->AddItem(item);
         }
