@@ -21,6 +21,8 @@ private:
 
     Given* mThisGiven;
 
+    int mGivenCounter = 0;
+
 public:
     GivenVisitor() : GivenCheck(false) {}
 
@@ -30,6 +32,7 @@ public:
         mThisGiven = given;
         GivenCheck = true;
         mIsGiven = true;
+        mGivenCounter++;
     }
 
     /**
@@ -44,6 +47,8 @@ public:
         return GivenCheck;
 
     }
+
+    int GetGivenCounter() { return mGivenCounter; }
 
 };
 

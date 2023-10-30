@@ -23,9 +23,9 @@ public:
 
     int mNumGivens = 0;
 
-    virtual void VisitDigit(Digit* digit) override  { mNumDigits++; }
+    //virtual void VisitDigit(Digit* digit) override  { mNumDigits++; }
 
-    int mNumDigits = 0;
+    //int mNumDigits = 0;
 
     virtual void VisitSparty(Sparty* sparty) override  { mNumSparty++; }
 
@@ -46,39 +46,41 @@ TEST(VisitorTest, Visitor)
     Sudoku sudoku;
     LevelLoad level("levels/level1.xml", &sudoku);
 
-    /**
+
     VisitorTest visitor;
     sudoku.Accept(&visitor);
-    std::cout<<visitor.mNumGivens;
+    //std::cout<<visitor.mNumGivens;
     ASSERT_EQ(28, visitor.mNumGivens) <<
                                         L"Visitor number";
-    std::cout<<visitor.mNumDigits;
-    ASSERT_EQ(53, visitor.mNumDigits) <<
+    DigitVisitor visitor1;
+    sudoku.Accept(&visitor1);
+    //std::cout<<visitor1.GetDigitCount();
+    ASSERT_EQ(53, visitor1.GetDigitCount()) <<
                                       L"Visitor number";
-    std::cout<<visitor.mNumSparty;
+    //std::cout<<visitor.mNumSparty;
     ASSERT_EQ(1, visitor.mNumSparty) <<
                                       L"Visitor number";
 
-    std::cout<<visitor.mNumContainer;
+    //std::cout<<visitor.mNumContainer;
     ASSERT_EQ(0, visitor.mNumContainer) <<
                                       L"Visitor number";
 
-    std::cout<<visitor.mNumXray;
+    //std::cout<<visitor.mNumXray;
     ASSERT_EQ(1, visitor.mNumXray) <<
                                       L"Visitor number";
-    */
 
-    for (auto item : sudoku.GetItems())
-    {
-        DigitVisitor visitor1;
-        item->Accept(&visitor1);
-        std::cout<<visitor1.IsDigit()<<std::endl;
-        if (visitor1.IsDigit())
-        {
-            std::cout<<visitor1.GetValue()<<std::endl;
-        }
 
-    }
+//    for (auto item : sudoku.GetItems())
+//    {
+//        DigitVisitor visitor1;
+//        item->Accept(&visitor1);
+//        std::cout<<visitor1.IsDigit()<<std::endl;
+//        if (visitor1.IsDigit())
+//        {
+//            std::cout<<visitor1.GetValue()<<std::endl;
+//        }
+//
+//    }
 
 
 }
