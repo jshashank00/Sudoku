@@ -236,8 +236,8 @@ bool Sudoku::Eater(Item *eater)
         other->Accept(&visitor);
         if (other->HitTest((int)eater->GetX(), (int)eater->GetY()) && visitor.IsDigit() && !other->IsInContainer() && !other->IsInXray())
         {
-            //if (xray->AddItem(other)) //add digit to xray items
-            //{
+            if (xray->AddItem(other)) //add digit to xray items
+            {
                 auto loc = find(begin(mItems), end(mItems), other);
                 if(loc != end(mItems))
                 {
@@ -267,7 +267,7 @@ bool Sudoku::Eater(Item *eater)
                     other->SetLocation(mLocX, mLocY);
 
                     //mItems.erase(loc);
-                //}
+                }
 
                 if(other)
                 {
