@@ -9,10 +9,11 @@
 #define PROJECT1_SUDOKULIB_MESSAGEBOARD_H
 
 //#include "Sudoku.h"
-#include "Item.h"
-
+//#include "Item.h"
+class Sudoku;
 class MessageBoard {
 private:
+    Sudoku *mSudoku;
     /// Current time
     time_t mStartTime;
     time_t mNow = time(0);

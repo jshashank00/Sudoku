@@ -7,7 +7,7 @@
 #include "Sudoku.h"
 #include "Sparty.h"
 #include "Scoreboard.h"
-#include "MessageBoard.h"
+//#include "MessageBoard.h"
 #include "Digit.h"
 #include "Given.h"
 #include "Xray.h"
@@ -35,6 +35,7 @@ Sudoku::Sudoku()
     wxString level3 = "levels/level3.xml";
     this->ChooseLevel(level1);
 
+    mMessageBoardVisible = true;
 }
 
 /**
@@ -506,4 +507,21 @@ void Sudoku::MoveDigit(int digit, int x, int y)
             }
         }
     }
+}
+/**
+ * Set message board flag to know if sparty can move or not
+ * @param isVisible
+ */
+void Sudoku::SetMessageBoardVisible(bool isVisible)
+{
+    mMessageBoardVisible = isVisible;
+}
+
+/**
+ * getter for mMessageBoardVisible
+ * @return
+ */
+bool Sudoku::IsMessageBoardVisible() const
+{
+    return mMessageBoardVisible;
 }
