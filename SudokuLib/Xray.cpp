@@ -47,7 +47,7 @@ void Xray::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//
     decNode->GetAttribute(L"capacity", L"0").ToInt(&mCapacity);
 
 }
-
+//write message
 bool Xray::AddItem(std::shared_ptr<Item> item) {
     // only add if there is room
     if (mCapacity > mTotalNumbers)
@@ -72,5 +72,6 @@ void Xray::RemoveDigit(std::shared_ptr<Item> item)
     if (loc != end(mXrayItems))
     {
         mXrayItems.erase(loc);
+        mTotalNumbers -= 1;
     }
 }

@@ -33,16 +33,16 @@ private:
     double mXOffset = 0.0;
     double mYOffset = 0.0;
 
-    double mLocX;
-    double mLocY;
+    double mLocX = 0;
+    double mLocY = 0;
     wxStopWatch mStopWatch;
     double mElapsedTime = 0.0; // To track the elapsed time
     double mTime = 0.0;
-    double mSpartyTargetX; // Store the target X coordinate for Sparty
-    double mSpartyTargetY; // Store the target Y coordinate for Sparty
+    double mSpartyTargetX = 0; // Store the target X coordinate for Sparty
+    double mSpartyTargetY = 0; // Store the target Y coordinate for Sparty
 
-    int mPixelWidth;
-    int mPixelHeight;
+    int mPixelWidth = 0;
+    int mPixelHeight = 0;
     int mColumn;
     int mRow;
     int mTileHeight;
