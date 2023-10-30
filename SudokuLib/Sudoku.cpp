@@ -265,7 +265,6 @@ bool Sudoku::Eater(Item *eater)
                         }
                     }
                     other->SetLocation(mLocX, mLocY);
-
                     //mItems.erase(loc);
                 }
 
