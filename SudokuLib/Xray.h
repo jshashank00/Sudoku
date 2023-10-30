@@ -9,6 +9,8 @@
 #define PROJECT1_SUDOKULIB_XRAY_H
 
 #include "Item.h"
+#include "MessageBoard.h"
+#include "FullMessage.h"
 
 class Xray : public Item
 {
@@ -28,6 +30,11 @@ private:
 
     ///List of items in the xray
     std::vector<std::shared_ptr<Item>> mXrayItems;
+
+
+    bool showMessage = false;
+
+
 
 public:
     Xray() = delete;
@@ -50,6 +57,11 @@ public:
     void Accept(ItemVisitor* visitor) override { visitor->VisitXray(this); }
 
     bool AddItem(std::shared_ptr<Item> item);
+    // A public function to check if showMessage is true
+    bool ShouldShowMessage() const {
+        return showMessage;
+    }
+
 
     std::vector<std::shared_ptr<Item>> GetXrayItems();
     void RemoveDigit(std::shared_ptr<Item> item);

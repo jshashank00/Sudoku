@@ -117,6 +117,7 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
     //wxString levelMessage;
     mMessageBoard->Draw(graphics, mPixelWidth, mPixelHeight);
     mScoreboard->Draw(graphics, mPixelWidth, mPixelHeight);
+    //mFullMessage->Draw(graphics, mPixelWidth, mPixelHeight);
 
     graphics->PopState();
 }

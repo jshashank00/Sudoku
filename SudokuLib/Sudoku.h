@@ -12,6 +12,7 @@
 #include "Sparty.h"
 #include "Scoreboard.h"
 #include "MessageBoard.h"
+#include "FullMessage.h"
 #include <random>
 
 class Sudoku {
@@ -28,6 +29,8 @@ private:
 
     /// Message Board pointer
     std::shared_ptr<MessageBoard> mMessageBoard;
+    /// Message Board pointer
+    std::shared_ptr<FullMessage> mFullMessage;
 
     double mScale = 0;
     double mXOffset = 0.0;
