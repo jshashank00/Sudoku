@@ -27,6 +27,8 @@ private:
 
     Digit* mThisDigit;
 
+    int mDigitCounter = 0;
+
 public:
     DigitVisitor() : DigitCheck(false) {}
 
@@ -36,6 +38,7 @@ public:
         mThisDigit = digit;
         DigitCheck = true;
         mIsDigit = true;
+        mDigitCounter++;
     }
 
     /**
@@ -44,6 +47,8 @@ public:
     bool IsDigit() { return mIsDigit; }
 
     int GetValue() { return mThisDigit->GetValue(); }
+
+    int GetDigitCount() { return mDigitCounter; }
 
 
 

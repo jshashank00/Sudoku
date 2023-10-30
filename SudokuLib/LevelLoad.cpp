@@ -70,7 +70,7 @@ LevelLoad::LevelLoad(const wxString &filename, Sudoku * sudoku) :mSudoku(sudoku)
 void LevelLoad::XmlGame(wxXmlNode *node)
 {
     node->GetAttribute(L"col").ToInt(&mCol);
-    node->GetAttribute(L"row").ToInt(&mCol);
+    node->GetAttribute(L"row").ToInt(&mRow);
     mSolution = node->GetNodeContent();
 }
 

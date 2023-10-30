@@ -38,8 +38,10 @@ Sudoku::Sudoku()
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
 
-//    mColumn = level.Column();
-//    mRow = level.Row();
+    mColumn = level.GetColumn();
+    mRow = level.GetRow();
+    mTileHeight = level.GetTileHeight();
+
     mSolution = level.Solution();
 
     mMessageBoard = make_shared<MessageBoard>(this);
@@ -327,28 +329,19 @@ void Sudoku::Solve(wxString levelToSolve)
         }
     }
 
-    int x;
-    int y;
-    int original_x;
+    int x = mColumn * mTileHeight;
+    int y = (mRow+1) * mTileHeight - mTileHeight;
+    int original_x = x;
     int count = 0;
-    int stop_count = 0;
 
-    for (auto item : mItems)
-    {
-        GivenVisitor visitor2;
-        item->Accept(&visitor2);
-        if (visitor2.IsGiven())
-        {
-            x = item->GetX();
-            y = item->GetY();
-            original_x = x;
-            break;
-        }
-    }
+    DigitVisitor digit_visitor;
+    this->Accept(&digit_visitor);
+    int stop_here = digit_visitor.GetDigitCount();
+    int stop_count = 0;
 
     for (int i = 0; i < vector_solution.size(); i++)
     {
-        if (stop_count == 53)
+        if (stop_count == stop_here)
         {
             break;
         }
@@ -374,12 +367,12 @@ void Sudoku::Solve(wxString levelToSolve)
                             {
                                 mItems.erase(loc);
                             }
-                            x += 48;
+                            x += mTileHeight;
                             count += 1;
                             if (count == 9)
                             {
                                 count = 0;
-                                y += 48;
+                                y += mTileHeight;
                                 x = original_x;
                             }
                             break;
@@ -389,12 +382,12 @@ void Sudoku::Solve(wxString levelToSolve)
             }
             else
             {
-                x += 48;
+                x += mTileHeight;
                 count += 1;
                 if (count == 9)
                 {
                     count = 0;
-                    y += 48;
+                    y += mTileHeight;
                     x = original_x;
                 }
             }
@@ -430,9 +423,11 @@ bool Sudoku::TakenSquare(int x, int y)
 {
     for (auto item : mItems)
     {
-        GivenVisitor visitor2;
-        item->Accept(&visitor2);
-        if (visitor2.IsGiven())
+        DigitVisitor digit_visitor;
+        item->Accept(&digit_visitor);
+        GivenVisitor given_visitor;
+        item->Accept(&given_visitor);
+        if (given_visitor.IsGiven() || digit_visitor.IsDigit())
         {
             if (item->GetX() == x && item->GetY() == y)
             {
