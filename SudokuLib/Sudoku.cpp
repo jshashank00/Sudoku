@@ -257,11 +257,11 @@ bool Sudoku::Eater(Item *eater)
                     xray->AddItem(other);
                     for (auto i: xray->GetItems()){
                        if  ((i->GetX()  - mLocX) <= 5){
-                           mLocX = mLocX + digitWidth;
+                           mLocX = mLocX + 5;
                        }
 
                         if  ((i->GetY()  - mLocY) <= 5){
-                            mLocY = mLocY + digitHeight;
+                            mLocY = mLocY + 5;
                         }
                     }
                     other->SetLocation(mLocX, mLocY);
