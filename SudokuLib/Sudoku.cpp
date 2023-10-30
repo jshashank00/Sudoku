@@ -33,25 +33,7 @@ Sudoku::Sudoku()
     wxString level1 = "levels/level1.xml";
     wxString level2 = "levels/level2.xml";
     wxString level3 = "levels/level3.xml";
-    LevelLoad level(level1, this);
-
-    mPixelWidth = level.PixelWidth();
-    mPixelHeight = level.PixelHeight();
-
-    mColumn = level.GetColumn();
-    mRow = level.GetRow();
-    mTileHeight = level.GetTileHeight();
-
-    mSolution = level.Solution();
-
-    mMessageBoard = make_shared<MessageBoard>(this);
-    mMessageBoard->MessageTimer();
-
-    mScoreboard = make_shared<Scoreboard>(this);
-    mScoreboard->StartClock();
-    // Seed the random number generator
-    std::random_device rd;
-    mRandom.seed(rd());
+    this->ChooseLevel(level1);
 
 }
 
@@ -214,6 +196,24 @@ void Sudoku::SetPixelWidth(int wid)
 void Sudoku::ChooseLevel(wxString levelToLoad)
 {
     LevelLoad level(levelToLoad, this);
+    mPixelWidth = level.PixelWidth();
+    mPixelHeight = level.PixelHeight();
+
+    mColumn = level.GetColumn();
+    mRow = level.GetRow();
+    mTileHeight = level.GetTileHeight();
+
+    mSolution = level.Solution();
+
+    mMessageBoard = make_shared<MessageBoard>(this);
+    //mMessageBoard->MessageTimer();
+
+    mScoreboard = make_shared<Scoreboard>(this);
+    //mScoreboard->StartClock();
+    // Seed the random number generator
+    std::random_device rd;
+    mRandom.seed(rd());
+
     mMessageBoard->MessageTimer();
     mScoreboard->StartClock();
 }
@@ -345,6 +345,10 @@ void Sudoku::Solve(wxString levelToSolve)
 
     int x = mColumn * mTileHeight;
     int y = (mRow+1) * mTileHeight - mTileHeight;
+
+    //x = 242;
+    //y = 48;
+
     int original_x = x;
     int count = 0;
 
@@ -371,7 +375,7 @@ void Sudoku::Solve(wxString levelToSolve)
 
                     if (visitor1.IsDigit())
                     {
-                        if (visitor1.GetValue() == vector_solution[i])
+                        if (visitor1.GetValue() == vector_solution[i] && !item->IsInContainer() && !item->IsInXray())
                         {
                             item->SetLocation(x, y);
                             stop_count++;
@@ -461,8 +465,8 @@ void Sudoku::MoveDigit(int digit, int x, int y)
 
     int row = (y - 120) / 48;
     int col = (x - 168) / 48;
-    int center_x = 168 + col * 48 + 24;
-    int center_y = 120 + row * 48 + 24;
+    int center_x = 168 + (col * 48) + 24;
+    int center_y = 120 + (row * 48) + 24;
 
     for (auto item : xray->GetItems())
     {
