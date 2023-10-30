@@ -72,5 +72,6 @@ void Xray::RemoveDigit(std::shared_ptr<Item> item)
     if (loc != end(mXrayItems))
     {
         mXrayItems.erase(loc);
+        mTotalNumbers -= 1;
     }
 }

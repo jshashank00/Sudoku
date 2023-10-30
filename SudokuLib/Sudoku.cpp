@@ -241,20 +241,19 @@ bool Sudoku::Eater(Item *eater)
                 auto loc = find(begin(mItems), end(mItems), other);
                 if(loc != end(mItems))
                 {
-                    double xrayXMin = xray->GetX();
-                    double xrayYMin = xray->GetY();
+                    double xrayXMin = xray->GetX() + 10;
+                    double xrayYMin = xray->GetY() + 10;
                     // Calculate the Xray's width and height
-                    double xrayWidth = xray->GetWidth();
-                    double xrayHeight = xray->GetHeight();
+                    double xrayWidth = xray->GetWidth() - 20;
+                    double xrayHeight = xray->GetHeight() - 20;
 
-                    double digitHeight = other->GetHeight();
-                    double digitWidth = other -> GetWidth();
+                    double digitHeight = other->GetHeight() / 2;
+                    double digitWidth = other -> GetWidth() / 2;
 
                     std::uniform_real_distribution<> distribution(xrayXMin, xrayWidth);
                     std::uniform_real_distribution<> distribution2(xrayYMin, (xrayHeight +xrayYMin - digitHeight));
                     mLocX = distribution(this->GetRandom());
                     mLocY = distribution2(this->GetRandom());
-                    xray->AddItem(other);
                     for (auto i: xray->GetItems()){
                        if  ((i->GetX()  - mLocX) <= 5){
                            mLocX = mLocX + 5;
