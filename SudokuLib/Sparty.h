@@ -43,17 +43,17 @@ private:
     /// eating animation time
     double mMouthElapsedTime = 0.0;
 
-    double mFront;  ///<
-    double mHeadPivotAngle; ///< for headbutting
-    double mHeadPivotX; ///< for headbutting
-    double mHeadPivotY; ///< for headbutting
+    double mFront = 0.0;  ///<
+    double mHeadPivotAngle = 0.0; ///< for headbutting
+    double mHeadPivotX = 0.0; ///< for headbutting
+    double mHeadPivotY = 0.0; ///< for headbutting
     wxString mImage1; ///< Sparty image 1
     wxString mImage2; ///< Sparty image 2
-    double mMouthPivotAngle; ///< for eating
-    double mMouthPivotX;  ///< for eating
-    double mMouthPivotY;  ///< for eating
-    double mTargetX;
-    double mTargetY;
+    double mMouthPivotAngle = 0.0; ///< for eating
+    double mMouthPivotX = 0.0;  ///< for eating
+    double mMouthPivotY = 0.0;  ///< for eating
+    double mTargetX = 0.0;
+    double mTargetY = 0.0;
 public:
     Sparty(Sudoku *sudoku);
 
