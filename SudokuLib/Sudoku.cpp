@@ -346,8 +346,10 @@ void Sudoku::Solve(wxString levelToSolve)
     int x = mColumn * mTileHeight;
     int y = (mRow+1) * mTileHeight - mTileHeight;
 
-    //x = 242;
-    //y = 48;
+    int grid_x_left = mColumn * mTileHeight - (mTileHeight/2);
+    int grid_x_right = mColumn * mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
+    int grid_y_top = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2);
+    int grid_y_bot = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
 
     int original_x = x;
     int count = 0;
@@ -373,27 +375,32 @@ void Sudoku::Solve(wxString levelToSolve)
                     DigitVisitor visitor1;
                     item->Accept(&visitor1);
 
-                    if (visitor1.IsDigit())
+                    if (!(item->GetX() > grid_x_left && item->GetX() < grid_x_right && item->GetY() > grid_y_top
+                        && item->GetY() < grid_y_bot))
                     {
-                        if (visitor1.GetValue() == vector_solution[i] && !item->IsInContainer() && !item->IsInXray())
+
+                        if(visitor1.IsDigit())
                         {
-                            item->SetLocation(x, y);
-                            stop_count++;
-                            mItems.push_back(item);
-                            auto loc = find(begin(mItems), end(mItems), item);
-                            if(loc != end(mItems))
+                            if(visitor1.GetValue() == vector_solution[i] && !item->IsInContainer() && !item->IsInXray())
                             {
-                                mItems.erase(loc);
+                                item->SetLocation(x, y);
+                                stop_count++;
+                                mItems.push_back(item);
+                                auto loc = find(begin(mItems), end(mItems), item);
+                                if(loc != end(mItems))
+                                {
+                                    mItems.erase(loc);
+                                }
+                                x += mTileHeight;
+                                count += 1;
+                                if(count == 9)
+                                {
+                                    count = 0;
+                                    y += mTileHeight;
+                                    x = original_x;
+                                }
+                                break;
                             }
-                            x += mTileHeight;
-                            count += 1;
-                            if (count == 9)
-                            {
-                                count = 0;
-                                y += mTileHeight;
-                                x = original_x;
-                            }
-                            break;
                         }
                     }
                 }
@@ -463,10 +470,22 @@ void Sudoku::MoveDigit(int digit, int x, int y)
     this->Accept(&xrayVisitor);
     Xray * xray = xrayVisitor.GetXray();
 
-    int row = (y - 120) / 48;
-    int col = (x - 168) / 48;
-    int center_x = 168 + (col * 48) + 24;
-    int center_y = 120 + (row * 48) + 24;
+    int center_x = x;
+    int center_y = y;
+
+
+    int grid_x_left = mColumn * mTileHeight - (mTileHeight/2);
+    int grid_x_right = mColumn * mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
+    int grid_y_top = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2);
+    int grid_y_bot = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
+
+    if (x > grid_x_left && x < grid_x_right && y > grid_y_top && y < grid_y_bot) //check if it's in the sudoku grid
+    {
+        int row = (y - grid_y_top) / mTileHeight;
+        int col = (x - grid_x_left) / mTileHeight;
+        center_x = (grid_x_left + (col * mTileHeight) + mTileHeight/2);
+        center_y = (grid_y_top + (row * mTileHeight) + mTileHeight/2);
+    }
 
     for (auto item : xray->GetItems())
     {
@@ -479,6 +498,7 @@ void Sudoku::MoveDigit(int digit, int x, int y)
                 if(!TakenSquare(center_x, center_y))
                 {
                     item->SetLocation(center_x, center_y);
+                    //item->SetLocation(1200, 528);
                     xray->RemoveDigit(item);
                     item->SetInXray(false);
                     break;
