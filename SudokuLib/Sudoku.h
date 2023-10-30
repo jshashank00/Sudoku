@@ -54,6 +54,10 @@ private:
     /// Random number generator
     std::mt19937 mRandom;
 
+
+    /// flag for message board displayed
+    bool mMessageBoardVisible;
+
 public:
     Sudoku();
     std::shared_ptr<Item> HitTest(int x, int y);
@@ -106,6 +110,8 @@ public:
     bool TakenSquare(int x, int y);
     void SetXray(std::shared_ptr<Xray> xray);
     void MoveDigit(int digit, int x, int y);
+    void SetMessageBoardVisible(bool isVisible);
+    bool IsMessageBoardVisible() const;
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

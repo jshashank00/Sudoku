@@ -91,6 +91,9 @@ void SudokuView::OnSize(wxSizeEvent& event) {
  */
 void SudokuView::OnLeftDown(wxMouseEvent &event)
 {
+    //Nothing happens while message board is visible
+    if (mSudoku.IsMessageBoardVisible()) return;
+
     double mXOffset = mSudoku.GetXOffset();
     double mYOffset = mSudoku.GetYOffset();
     double mScale = mSudoku.GetScale();

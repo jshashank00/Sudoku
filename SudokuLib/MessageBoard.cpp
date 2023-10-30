@@ -7,6 +7,7 @@
 #include "MessageBoard.h"
 #include <ctime>
 #include <time.h>
+#include "Sudoku.h"
 #include <wx/graphics.h>
 
 using namespace std;
@@ -15,7 +16,7 @@ using namespace std;
  * Constructor
  * @param sudoku The game the scoreboard is in
  */
-MessageBoard::MessageBoard(Sudoku *sudoku)
+MessageBoard::MessageBoard(Sudoku *sudoku) : mSudoku(sudoku)
 {
 }
 
@@ -36,6 +37,7 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
 
     if (elapsed <= 3 && !delayElapsed)
     {
+        mSudoku->SetMessageBoardVisible(true);
         // Set the font and color for the text
         wxFont font(wxSize(0, 24), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
         graphics->SetFont(font, *wxBLACK); // Set the text color to black
@@ -72,10 +74,16 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
             boardY += levelTextHeight;
         }
     }
+    if (elapsed > 3  && !delayElapsed)
+    {
+        mSudoku->SetMessageBoardVisible(false);
+    }
+
     if (elapsed > 3  && delayElapsed)
     {
         delayElapsed = true;
         mStartTime = current;
+
     }
 }
 
