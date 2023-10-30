@@ -21,10 +21,10 @@ private:
     std::unique_ptr<wxBitmap> mItemBitmap;
 
     /// capacity of numbers xray can hold
-    int mCapacity;
+    int mCapacity = 0;
 
     /// numbers added to xray
-    int mTotalNumbers;
+    int mTotalNumbers = 0;
 
     ///List of items in the xray
     std::vector<std::shared_ptr<Item>> mXrayItems;
