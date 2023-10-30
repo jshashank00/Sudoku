@@ -242,7 +242,7 @@ bool Sudoku::Eater(Item *eater)
                 if(loc != end(mItems))
                 {
                     double xrayXMin = xray->GetX() + 10;
-                    double xrayYMin = xray->GetY() + 10;
+                    double xrayYMin = xray->GetY() - 10;
                     // Calculate the Xray's width and height
                     double xrayWidth = xray->GetWidth() - 20;
                     double xrayHeight = xray->GetHeight() - 20;
