@@ -49,9 +49,11 @@ public:
     int PixelWidth() { return mWidth * mTileWidth; }
     int PixelHeight() { return mHeight * mTileHeight; }
 
-    int Column() {return mCol;}
-    int Row() {return mRow;}
+    int GetColumn() {return mCol;}
+    int GetRow() {return mRow;}
     wxString Solution() {return mSolution;}
+
+    double GetTileHeight() { return mTileHeight; }
 
     /**
     double GetWidth() { return mWidth; }

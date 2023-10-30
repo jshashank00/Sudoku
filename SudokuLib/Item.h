@@ -45,6 +45,7 @@ private:
     /// variable to show if item is in xray
     bool mIsInXray = false;
 
+
 //    /// Items currently in container
 //    std::vector<std::shared_ptr<Item>> mContainerItemsList;
 protected:

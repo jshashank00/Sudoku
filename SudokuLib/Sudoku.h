@@ -45,6 +45,7 @@ private:
     int mPixelHeight = 0;
     int mColumn;
     int mRow;
+    int mTileHeight;
     wxString mSolution;
 
 

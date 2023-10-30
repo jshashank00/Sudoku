@@ -33,23 +33,7 @@ Sudoku::Sudoku()
     wxString level1 = "levels/level1.xml";
     wxString level2 = "levels/level2.xml";
     wxString level3 = "levels/level3.xml";
-    LevelLoad level(level1, this);
-
-    mPixelWidth = level.PixelWidth();
-    mPixelHeight = level.PixelHeight();
-
-//    mColumn = level.Column();
-//    mRow = level.Row();
-    mSolution = level.Solution();
-
-    mMessageBoard = make_shared<MessageBoard>(this);
-    mMessageBoard->MessageTimer();
-
-    mScoreboard = make_shared<Scoreboard>(this);
-    mScoreboard->StartClock();
-    // Seed the random number generator
-    std::random_device rd;
-    mRandom.seed(rd());
+    this->ChooseLevel(level1);
 
     mMessageBoardVisible = true;
 }
@@ -213,6 +197,24 @@ void Sudoku::SetPixelWidth(int wid)
 void Sudoku::ChooseLevel(wxString levelToLoad)
 {
     LevelLoad level(levelToLoad, this);
+    mPixelWidth = level.PixelWidth();
+    mPixelHeight = level.PixelHeight();
+
+    mColumn = level.GetColumn();
+    mRow = level.GetRow();
+    mTileHeight = level.GetTileHeight();
+
+    mSolution = level.Solution();
+
+    mMessageBoard = make_shared<MessageBoard>(this);
+    //mMessageBoard->MessageTimer();
+
+    mScoreboard = make_shared<Scoreboard>(this);
+    //mScoreboard->StartClock();
+    // Seed the random number generator
+    std::random_device rd;
+    mRandom.seed(rd());
+
     mMessageBoard->MessageTimer();
     mScoreboard->StartClock();
 }
@@ -342,28 +344,23 @@ void Sudoku::Solve(wxString levelToSolve)
         }
     }
 
-    int x;
-    int y;
-    int original_x;
-    int count = 0;
-    int stop_count = 0;
+    int x = mColumn * mTileHeight;
+    int y = (mRow+1) * mTileHeight - mTileHeight;
 
-    for (auto item : mItems)
-    {
-        GivenVisitor visitor2;
-        item->Accept(&visitor2);
-        if (visitor2.IsGiven())
-        {
-            x = item->GetX();
-            y = item->GetY();
-            original_x = x;
-            break;
-        }
-    }
+    //x = 242;
+    //y = 48;
+
+    int original_x = x;
+    int count = 0;
+
+    DigitVisitor digit_visitor;
+    this->Accept(&digit_visitor);
+    int stop_here = digit_visitor.GetDigitCount();
+    int stop_count = 0;
 
     for (int i = 0; i < vector_solution.size(); i++)
     {
-        if (stop_count == 53)
+        if (stop_count == stop_here)
         {
             break;
         }
@@ -379,7 +376,7 @@ void Sudoku::Solve(wxString levelToSolve)
 
                     if (visitor1.IsDigit())
                     {
-                        if (visitor1.GetValue() == vector_solution[i])
+                        if (visitor1.GetValue() == vector_solution[i] && !item->IsInContainer() && !item->IsInXray())
                         {
                             item->SetLocation(x, y);
                             stop_count++;
@@ -389,12 +386,12 @@ void Sudoku::Solve(wxString levelToSolve)
                             {
                                 mItems.erase(loc);
                             }
-                            x += 48;
+                            x += mTileHeight;
                             count += 1;
                             if (count == 9)
                             {
                                 count = 0;
-                                y += 48;
+                                y += mTileHeight;
                                 x = original_x;
                             }
                             break;
@@ -404,12 +401,12 @@ void Sudoku::Solve(wxString levelToSolve)
             }
             else
             {
-                x += 48;
+                x += mTileHeight;
                 count += 1;
                 if (count == 9)
                 {
                     count = 0;
-                    y += 48;
+                    y += mTileHeight;
                     x = original_x;
                 }
             }
@@ -445,9 +442,11 @@ bool Sudoku::TakenSquare(int x, int y)
 {
     for (auto item : mItems)
     {
-        GivenVisitor visitor2;
-        item->Accept(&visitor2);
-        if (visitor2.IsGiven())
+        DigitVisitor digit_visitor;
+        item->Accept(&digit_visitor);
+        GivenVisitor given_visitor;
+        item->Accept(&given_visitor);
+        if (given_visitor.IsGiven() || digit_visitor.IsDigit())
         {
             if (item->GetX() == x && item->GetY() == y)
             {
@@ -467,8 +466,8 @@ void Sudoku::MoveDigit(int digit, int x, int y)
 
     int row = (y - 120) / 48;
     int col = (x - 168) / 48;
-    int center_x = 168 + col * 48 + 24;
-    int center_y = 120 + row * 48 + 24;
+    int center_x = 168 + (col * 48) + 24;
+    int center_y = 120 + (row * 48) + 24;
 
     for (auto item : xray->GetItems())
     {
