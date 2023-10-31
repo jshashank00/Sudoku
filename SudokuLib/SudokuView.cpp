@@ -120,6 +120,9 @@ void SudokuView::OnLeftDown(wxMouseEvent &event)
  */
 void SudokuView::OnKey(wxKeyEvent &event)
 {
+    //Nothing happens while message board is visible
+    if (mSudoku.IsMessageBoardVisible()) return;
+
     wxChar uc = event.GetUnicodeKey();
     if (uc == 98)
     {
