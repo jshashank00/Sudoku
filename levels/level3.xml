@@ -30,14 +30,14 @@
 		<background id="i246" col="0.0" row="19.0" />
 		<background id="i245" col="5.0" row="11.0" />
 		<xray id="i167" col="0.6042" row="11.0" />
-		<given id="i00" col="6" row="4"/>
-		<given id="i01" col="7" row="4"/>
-		<given id="i02" col="8" row="4"/>
-		<given id="i07" col="6" row="5"/>
-		<given id="i03" col="8" row="5"/>
-		<given id="i06" col="6" row="6"/>
-		<given id="i05" col="7" row="6"/>
-		<given id="i04" col="8" row="6"/>
+		<given id="i00" col="6" row="3"/>
+		<given id="i01" col="7" row="3"/>
+		<given id="i02" col="8" row="3"/>
+		<given id="i07" col="6" row="4"/>
+		<given id="i03" col="8" row="4"/>
+		<given id="i06" col="6" row="5"/>
+		<given id="i05" col="7" row="5"/>
+		<given id="i04" col="8" row="5"/>
 		<given id="i00" col="11" row="2"/>
 		<given id="i01" col="12" row="2"/>
 		<given id="i02" col="13" row="2"/>
@@ -73,7 +73,7 @@
 		<digit id="i14" col="22.279" row="3.1207" />
 		<digit id="i16" col="16.5483" row="6.6454" />
 		<digit id="i12" col="23.6298" row="4.8043" />
-		<digit id="i11" col="1.2341" row="13.4269" />
+		<digit id="i11" col="21" row="12" />
 		<digit id="i10" col="17.9276" row="8.1775" />
 		<digit id="i10" col="21.0344" row="10.0656" />
 		<digit id="i12" col="19.9532" row="8.4917" />
@@ -85,22 +85,44 @@
 		<digit id="i11" col="24.7488" row="10.1702" />
 		<digit id="i12" col="16.4262" row="10.0575" />
 		<digit id="i10" col="22.1088" row="5.0192" />
-		<digit id="i17" col="1.2055" row="15.4868" />
+<!--		<digit id="i17" col="1.2055" row="15.4868" />-->
 		<digit id="i18" col="16.3539" row="0.9247" />
 		<digit id="i13" col="22.3494" row="8.6772" />
 		<digit id="i14" col="18.4106" row="2.8709" />
 		<digit id="i16" col="25.1327" row="7.9336" />
 		<digit id="i15" col="19.3785" row="4.5921" />
 		<digit id="i18" col="19.7285" row="6.6082" />
+		<digit id="i17" col="19.54" row="10.18" />
 		<digit id="i13" col="28.379" row="4.137" />
 		<digit id="i17" col="28.1096" row="1.9467" />
+
+		<digit id="i14" col="8.4632" row="16.1667" />
+		<digit id="i10" col="8.0029" row="15.9729" />
+		<digit id="i18" col="8.7054" row="15.9002" />
+		<digit id="i12" col="8.9961" row="15.9971" />
+		<digit id="i13" col="9.7955" row="15.9002" />
+		<digit id="i14" col="7.7364" row="15.9729" />
+		<digit id="i15" col="9.5775" row="15.876" />
+
+		<digit id="i15" col="22.4408" row="17.5959" />
+		<digit id="i16" col="20.3818" row="17.8866" />
+		<digit id="i17" col="19.97" row="17.5233" />
+		<digit id="i18" col="21.5931" row="17.8866" />
+		<digit id="i11" col="21.0358" row="17.4506" />
+		<digit id="i18" col="20.4545" row="17.063" />
+		<digit id="i16" col="20.9631" row="18.1289" />
+		<digit id="i11" col="21.9565" row="17.0388" />
+		<digit id="i10" col="22.0048" row="17.7655" />
+
+		<digit id="i18" col="23" row="13" />
+		<digit id="i18" col="5" row="16" />
 <!--		<digit id="i148" col="5.9099" row="0.1763" />-->
 <!--		<digit id="i150" col="3.837" row="1.1466" />-->
 <!--		<digit id="i155" col="5.954" row="1.0584" />-->
 <!--		<digit id="i161" col="3.8958" row="1.9993" />-->
 <!--		<digit id="i153" col="4.969" row="1.9111" />-->
 <!--		<digit id="i146" col="5.954" row="1.9258" />-->
-		<drowen id="i248" col="19" row ="18"  />
+		<drowen id="i248" col="25" row ="19"  />
 		<sparty id="i165" col="1.9312" row="4.6996" />
 	</items>
 </level>
