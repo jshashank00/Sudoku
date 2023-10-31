@@ -9,6 +9,8 @@
 #define PROJECT1_SUDOKULIB_XRAY_H
 
 #include "Item.h"
+#include "Sudoku.h"
+
 //#include "MessageBoard.h"
 //#include "FullMessage.h"
 
@@ -21,6 +23,7 @@ private:
 
     /// The bitmap to display for the item
     std::unique_ptr<wxBitmap> mItemBitmap;
+    Sudoku *mSudoku;
 
     /// capacity of numbers xray can hold
     int mCapacity = 0;
@@ -58,8 +61,8 @@ public:
 
     bool AddItem(std::shared_ptr<Item> item);
     // A public function to check if showMessage is true
-    bool ShouldShowMessage() const {
-        return showMessage;
+    bool ShouldShowMessage() {
+         return showMessage;
     }
 
 

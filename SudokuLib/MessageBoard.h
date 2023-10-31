@@ -8,7 +8,7 @@
 #ifndef PROJECT1_SUDOKULIB_MESSAGEBOARD_H
 #define PROJECT1_SUDOKULIB_MESSAGEBOARD_H
 
-#include "Xray.h"
+//#include "Xray.h"
 //#include "Sudoku.h"
 //#include "Item.h"
 class Sudoku;
@@ -19,7 +19,7 @@ private:
     time_t mStartTime;
     time_t mNow = time(0);
     bool showMessage = false;
-    std::shared_ptr<Xray> mXray;
+    //std::shared_ptr<Xray> mXray;
     wxString mLevelToLoad;
 
 public:

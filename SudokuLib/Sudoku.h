@@ -71,6 +71,7 @@ private:
     int mGridXRight;
     int mGridYTop;
     int mGridYBot;
+    bool mGameOver = false;
 
     wxString mLevelMessage;
 
@@ -80,6 +81,7 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Add(std::shared_ptr<Item> item);
     void Clear();
+    void SetGameOver(bool over){mGameOver = over;}
 
     /**
      * getter for mItems
