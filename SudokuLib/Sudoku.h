@@ -13,6 +13,7 @@
 #include "Scoreboard.h"
 #include "MessageBoard.h"
 #include "FullMessage.h"
+#include "LevelCompleteMessage.h"
 #include <random>
 
 class Sudoku {
@@ -31,6 +32,9 @@ private:
     std::shared_ptr<MessageBoard> mMessageBoard;
     /// Message Board pointer
     std::shared_ptr<FullMessage> mFullMessage;
+
+    /// Level Complete pointer
+    std::shared_ptr<LevelCompleteMessage> mLevelCompleteMessage;
 
     double mScale = 0;
     double mXOffset = 0.0;
@@ -123,8 +127,9 @@ public:
     void MoveDigit(int digit);
     void SetMessageBoardVisible(bool isVisible);
     bool IsMessageBoardVisible() const;
-    bool CheckSolution();
+    void CheckSolution();
     void RevealSquare();
+    std::vector<int> GetAllDigitsInGrid();
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H
