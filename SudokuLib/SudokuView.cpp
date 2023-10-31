@@ -175,7 +175,6 @@ void SudokuView::OnLevel2(wxCommandEvent& event)
     wxString level2 = "levels/level2.xml";
     mSudoku.ChooseLevel(level2);
 //    LevelLoad level(level1, mSudoku);
-
 }
 
 void SudokuView::OnLevel3(wxCommandEvent& event)
