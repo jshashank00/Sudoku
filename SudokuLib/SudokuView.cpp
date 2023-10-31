@@ -137,6 +137,10 @@ void SudokuView::OnKey(wxKeyEvent &event)
         int digit = uc - 48;
         mSudoku.MoveDigit(digit, event.GetX(), event.GetY());
     }
+    else if (uc == 120)
+    {
+        mSudoku.RevealSquare(event.GetX(), event.GetY());
+    }
 }
 
 void SudokuView::OnLevel0(wxCommandEvent& event)
