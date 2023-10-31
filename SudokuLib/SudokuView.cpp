@@ -150,6 +150,10 @@ void SudokuView::OnKey(wxKeyEvent &event)
             sparty->MouthMove(false);
         }
     }
+    else if (uc == 120)
+    {
+        mSudoku.RevealSquare(event.GetX(), event.GetY());
+    }
 }
 
 void SudokuView::OnLevel0(wxCommandEvent& event)

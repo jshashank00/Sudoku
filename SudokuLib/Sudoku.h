@@ -58,9 +58,16 @@ private:
     /// Random number generator
     std::mt19937 mRandom;
 
+    /// Holds the solution
+    std::vector<int> mVectorSolution;
 
     /// flag for message board displayed
     bool mMessageBoardVisible;
+
+    int mGridXLeft;
+    int mGridXRight;
+    int mGridYTop;
+    int mGridYBot;
 
 public:
     Sudoku();
@@ -117,6 +124,7 @@ public:
     void SetMessageBoardVisible(bool isVisible);
     bool IsMessageBoardVisible() const;
     bool CheckSolution();
+    void RevealSquare(int x, int y);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

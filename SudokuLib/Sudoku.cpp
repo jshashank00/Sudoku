@@ -34,7 +34,6 @@ Sudoku::Sudoku()
     wxString level2 = "levels/level2.xml";
     wxString level3 = "levels/level3.xml";
     this->ChooseLevel(level1);
-
     mMessageBoardVisible = true;
 }
 
@@ -218,6 +217,24 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 
     mMessageBoard->MessageTimer();
     mScoreboard->StartClock();
+
+    mGridXLeft = mColumn * mTileHeight - (mTileHeight/2);
+    mGridXRight = mColumn * mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
+    mGridYTop = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2);
+    mGridYBot = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
+
+    std::string solution = std::string(mSolution.ToStdString());
+
+    mVectorSolution.clear();
+
+    for (int i = 0; i < solution.length(); i++)
+    {
+        if (isdigit(solution[i]))
+        {
+            int val = solution[i] - '0';  // Convert char to int
+            mVectorSolution.push_back(val);
+        }
+    }
 }
 
 bool Sudoku::Eater(Item *eater)
@@ -333,25 +350,11 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
 
 void Sudoku::Solve(wxString levelToSolve)
 {
-    std::vector<int> vector_solution;
-    std::string solution = std::string(mSolution.ToStdString());
 
-    for (int i = 0; i < solution.length(); i++)
-    {
-        if (isdigit(solution[i]))
-        {
-            int val = solution[i] - '0';  // Convert char to int
-            vector_solution.push_back(val);
-        }
-    }
 
     int x = mColumn * mTileHeight;
     int y = (mRow+1) * mTileHeight - mTileHeight;
 
-    int grid_x_left = mColumn * mTileHeight - (mTileHeight/2);
-    int grid_x_right = mColumn * mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
-    int grid_y_top = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2);
-    int grid_y_bot = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
 
     int original_x = x;
     int count = 0;
@@ -361,7 +364,7 @@ void Sudoku::Solve(wxString levelToSolve)
     int stop_here = digit_visitor.GetDigitCount();
     int stop_count = 0;
 
-    for (int i = 0; i < vector_solution.size(); i++)
+    for (int i = 0; i < mVectorSolution.size(); i++)
     {
         if (stop_count == stop_here)
         {
@@ -377,13 +380,13 @@ void Sudoku::Solve(wxString levelToSolve)
                     DigitVisitor visitor1;
                     item->Accept(&visitor1);
 
-                    if (!(item->GetX() > grid_x_left && item->GetX() < grid_x_right && item->GetY() > grid_y_top
-                        && item->GetY() < grid_y_bot))
+                    if (!(item->GetX() > mGridXLeft && item->GetX() < mGridXRight && item->GetY() > mGridYTop
+                        && item->GetY() < mGridYBot))
                     {
 
                         if(visitor1.IsDigit())
                         {
-                            if(visitor1.GetValue() == vector_solution[i] && !item->IsInContainer() && !item->IsInXray())
+                            if(visitor1.GetValue() == mVectorSolution[i] && !item->IsInContainer() && !item->IsInXray())
                             {
                                 item->SetLocation(x, y);
                                 stop_count++;
@@ -525,18 +528,12 @@ void Sudoku::MoveDigit(int digit, int x, int y)
     int center_x = x;
     int center_y = y;
 
-
-    int grid_x_left = mColumn * mTileHeight - (mTileHeight/2);
-    int grid_x_right = mColumn * mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
-    int grid_y_top = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2);
-    int grid_y_bot = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
-
-    if (x > grid_x_left && x < grid_x_right && y > grid_y_top && y < grid_y_bot) //check if it's in the sudoku grid
+    if (x > mGridXLeft && x < mGridXRight && y > mGridYTop && y < mGridYBot) //check if it's in the sudoku grid
     {
-        int row = (y - grid_y_top) / mTileHeight;
-        int col = (x - grid_x_left) / mTileHeight;
-        center_x = (grid_x_left + (col * mTileHeight) + mTileHeight/2);
-        center_y = (grid_y_top + (row * mTileHeight) + mTileHeight/2);
+        int row = (y - mGridYTop ) / mTileHeight;
+        int col = (x - mGridXLeft) / mTileHeight;
+        center_x = (mGridXLeft + (col * mTileHeight) + mTileHeight/2);
+        center_y = (mGridYTop  + (row * mTileHeight) + mTileHeight/2);
     }
 
     for (auto item : xray->GetItems())
@@ -575,4 +572,50 @@ void Sudoku::SetMessageBoardVisible(bool isVisible)
 bool Sudoku::IsMessageBoardVisible() const
 {
     return mMessageBoardVisible;
+}
+
+void Sudoku::RevealSquare(int x, int y)
+{
+    int top_left_center_x = mColumn * mTileHeight;
+    int top_left_center_y = (mRow+1) * mTileHeight - mTileHeight;
+    if (x > mGridXLeft && x < mGridXRight && y > mGridYTop && y < mGridYBot) //check if it's in the sudoku grid
+    {
+        int row = (y - mGridYTop ) / mTileHeight;
+        int col = (x - mGridXLeft) / mTileHeight;
+        int center_x = (mGridXLeft + (col * mTileHeight) + mTileHeight/2);
+        int center_y = (mGridYTop  + (row * mTileHeight) + mTileHeight/2);
+        int index = (((center_y - top_left_center_y)/mTileHeight) * 9) + ((center_x - top_left_center_x)/mTileHeight);
+        int find_value = mVectorSolution[index];
+
+        if (!TakenSquare(center_x, center_y))
+        {
+
+            for (auto item : mItems)
+            {
+                DigitVisitor visitor1;
+                item->Accept(&visitor1);
+
+                if (!(item->GetX() > mGridXLeft && item->GetX() < mGridXRight && item->GetY() > mGridYTop
+                    && item->GetY() < mGridYBot))
+                {
+
+                    if(visitor1.IsDigit())
+                    {
+                        if(visitor1.GetValue() == find_value && !item->IsInContainer() && !item->IsInXray())
+                        {
+                            item->SetLocation(center_x, center_y);
+                            mItems.push_back(item);
+                            auto loc = find(begin(mItems), end(mItems), item);
+                            if(loc != end(mItems))
+                            {
+                                mItems.erase(loc);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 }
