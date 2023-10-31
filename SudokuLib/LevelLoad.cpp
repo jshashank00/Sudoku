@@ -10,6 +10,7 @@
 #include "Sparty.h"
 #include "Xray.h"
 #include "Container.h"
+#include "TeamFeature.h"
 
 
 using namespace std;
@@ -112,6 +113,12 @@ void LevelLoad::XmlItem(wxXmlNode *node)
             mSudoku->SetSparty(item);
             item->XmlLoad(itemNode, decNode, mTileHeight);
         }
+        else if (itemNode->GetName() == L"drowen")
+        {
+            item = make_shared<TeamFeature>(mSudoku, image);
+            mSudoku->Add(item);
+            item->XmlLoad(itemNode, decNode, mTileHeight);
+        }
         else if (itemNode->GetName() == L"background")
         {
             if (!backgroundThere)
@@ -129,7 +136,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         else if (itemNode->GetName() == L"xray")
         {
             shared_ptr<Xray> xray;
-            xray = make_shared<Xray>(mSudoku);
+//            xray = make_shared<Xray>(mSudoku);
             item = make_shared<Xray>(mSudoku);
             mSudoku->Add(item);
             //mSudoku->SetXray(xray);
