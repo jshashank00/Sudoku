@@ -430,49 +430,60 @@ void Sudoku::Solve(wxString levelToSolve)
 //    wxString levelMessage = "Level Complete!";
 }
 
-bool Sudoku::CheckSolution()
+void Sudoku::CheckSolution()
 {
-    std::vector<int> vector_solution;
-    std::string solution = std::string(mSolution.ToStdString());
+    std::vector<int> currentBoard = GetAllDigitsInGrid();
 
-    for (int i = 0; i < solution.length(); i++)
+
+    if (mVectorSolution == currentBoard)
     {
-        if (isdigit(solution[i]))
+
+
+    }
+}
+
+
+std::vector<int> Sudoku::GetAllDigitsInGrid()
+{
+    std::vector<int> allDigits;
+
+    for(int row = 0; row < 9; row++) //9x9 Sudoku grid
+    {
+
+        for(int col = 0; col < 9; col++)
         {
-            int val = solution[i] - '0';  // Convert char to int
-            vector_solution.push_back(val);
+            int center_x = mGridXLeft + (col * mTileHeight) + (mTileHeight / 2);
+            int center_y = mGridYTop + (row * mTileHeight) + (mTileHeight / 2);
+
+            for(auto item : mItems)
+            {
+                DigitVisitor digitVisitor;
+                item->Accept(&digitVisitor);
+
+                GivenVisitor givenVisitor;
+                item->Accept(&givenVisitor);
+
+                if(item->GetX() > mGridXLeft && item->GetX() < mGridXRight
+                    && item->GetY() > mGridYTop && item->GetY() < mGridYBot)
+                {
+
+                    if(item->GetX() == center_x && item->GetY() == center_y)
+                    {
+                        if(digitVisitor.IsDigit())
+                        {
+                            allDigits.push_back(digitVisitor.GetValue());
+                        }
+                        else if(givenVisitor.IsGiven())
+                        {
+                            allDigits.push_back(givenVisitor.GetValue());
+                        }
+                    }
+                }
+            }
         }
     }
+    return allDigits;
 
-    int grid_x_left = mColumn * mTileHeight - (mTileHeight/2);
-    int grid_x_right = mColumn * mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
-    int grid_y_top = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2);
-    int grid_y_bot = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
-
-    std::vector<int> current_board_state(81, 0);
-
-    for (auto& item : mItems) {
-        DigitVisitor visitor;
-        item->Accept(&visitor);
-
-        if (visitor.IsDigit() && !item->IsInContainer() && !item->IsInXray()) {
-
-            int row = (item->GetY() - grid_y_top) / mTileHeight;
-            int col = (item->GetX() - grid_x_left) / mTileHeight;
-            int index = row * 9 + col;
-
-
-            current_board_state[index] = visitor.GetValue();
-        }
-    }
-
-    for (int i = 0; i < 81; i++) { // 81 for a 9x9 Sudoku grid
-        if (current_board_state[i] != vector_solution[i]) {
-
-            return false;
-        }
-    }
-    return true;
 }
 
 
