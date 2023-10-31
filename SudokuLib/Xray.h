@@ -9,8 +9,8 @@
 #define PROJECT1_SUDOKULIB_XRAY_H
 
 #include "Item.h"
-#include "MessageBoard.h"
-#include "FullMessage.h"
+//#include "MessageBoard.h"
+//#include "FullMessage.h"
 
 class Xray : public Item
 {

@@ -55,7 +55,6 @@ private:
     int mTileHeight;
     wxString mSolution;
 
-
     std::shared_ptr<wxGraphicsContext> mGraphics;
     int mWidth;
     int mHeight;
@@ -72,6 +71,8 @@ private:
     int mGridXRight;
     int mGridYTop;
     int mGridYBot;
+
+    wxString mLevelMessage;
 
 public:
     Sudoku();

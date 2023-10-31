@@ -61,7 +61,7 @@ LevelLoad::LevelLoad(const wxString &filename, Sudoku * sudoku) :mSudoku(sudoku)
             XmlGame(node);
         }
     }
-
+    mLevel = ExtractLevel(filename);
 }
 
 /**
@@ -91,60 +91,65 @@ void LevelLoad::XmlItem(wxXmlNode *node)
         wxString id = itemNode->GetAttribute(L"id");
         decNode = mMap.find(id)->second;
 
-        wxString image = "images/" + decNode->GetAttribute(L"image",L"0");
+        //wxString image = "images/" + decNode->GetAttribute(L"image",L"0");
 
-        if (itemNode->GetName() == L"given")
+        if(decNode != nullptr)
         {
-            item = make_shared<Given>(mSudoku, image);
-            mSudoku->Add(item);
-            item->XmlLoad(itemNode, decNode, mTileHeight);
-        }
-        else if (itemNode->GetName() == L"digit")
-        {
-            item = make_shared<Digit>(mSudoku, image);
-            mSudoku->Add(item);
-            item->XmlLoad(itemNode, decNode, mTileHeight);
+            wxString image = "images/" + decNode->GetAttribute(L"image", L"0");
 
-        }
-        else if (itemNode->GetName() == L"sparty")
-        {
-            item = make_shared<Sparty>(mSudoku);
-            mSudoku->Add(item);
-            mSudoku->SetSparty(item);
-            item->XmlLoad(itemNode, decNode, mTileHeight);
-        }
-        else if (itemNode->GetName() == L"drowen")
-        {
-            item = make_shared<TeamFeature>(mSudoku, image);
-            mSudoku->Add(item);
-            item->XmlLoad(itemNode, decNode, mTileHeight);
-        }
-        else if (itemNode->GetName() == L"background")
-        {
-            if (!backgroundThere)
+            if(itemNode->GetName() == L"given")
             {
+                item = make_shared<Given>(mSudoku, image);
+                mSudoku->Add(item);
+                item->XmlLoad(itemNode, decNode, mTileHeight);
+            }
+            else if(itemNode->GetName() == L"digit")
+            {
+                item = make_shared<Digit>(mSudoku, image);
+                mSudoku->Add(item);
+                item->XmlLoad(itemNode, decNode, mTileHeight);
+
+            }
+            else if(itemNode->GetName() == L"sparty")
+            {
+                item = make_shared<Sparty>(mSudoku);
+                mSudoku->Add(item);
+                mSudoku->SetSparty(item);
+                item->XmlLoad(itemNode, decNode, mTileHeight);
+            }
+            else if(itemNode->GetName() == L"drowen")
+            {
+                item = make_shared<TeamFeature>(mSudoku, image);
+                mSudoku->Add(item);
+                item->XmlLoad(itemNode, decNode, mTileHeight);
+            }
+            else if(itemNode->GetName() == L"background")
+            {
+                if(!backgroundThere)
+                {
 //                int * width;
 //                wxAtoi(decNode->GetAttribute(L"height", L"0"));
-                mSudoku->SetPixelHeight(wxAtoi(decNode->GetAttribute(L"height", L"0")));
-                mSudoku->SetPixelWidth(wxAtoi(decNode->GetAttribute(L"width", L"0")));
-                backgroundThere = true;
+                    mSudoku->SetPixelHeight(wxAtoi(decNode->GetAttribute(L"height", L"0")));
+                    mSudoku->SetPixelWidth(wxAtoi(decNode->GetAttribute(L"width", L"0")));
+                    backgroundThere = true;
+                }
+                item = make_shared<Item>(mSudoku, image);//, mPixelWidth, mPixelHeight );
+                mSudoku->Add(item);
+                item->XmlLoad(itemNode, decNode, mTileHeight);
             }
-            item = make_shared<Item>(mSudoku, image);//, mPixelWidth, mPixelHeight );
-            mSudoku->Add(item);
-            item->XmlLoad(itemNode, decNode, mTileHeight);
-        }
-        else if (itemNode->GetName() == L"xray")
-        {
-            shared_ptr<Xray> xray;
+            else if(itemNode->GetName() == L"xray")
+            {
+                shared_ptr<Xray> xray;
 //            xray = make_shared<Xray>(mSudoku);
-            item = make_shared<Xray>(mSudoku);
-            mSudoku->Add(item);
-            //mSudoku->SetXray(xray);
-            item->XmlLoad(itemNode, decNode, mTileHeight);
-        }
-        else if (itemNode->GetName() == L"container")
-        {
-            XmlContainerItem(itemNode);
+                item = make_shared<Xray>(mSudoku);
+                mSudoku->Add(item);
+                //mSudoku->SetXray(xray);
+                item->XmlLoad(itemNode, decNode, mTileHeight);
+            }
+            else if(itemNode->GetName() == L"container")
+            {
+                XmlContainerItem(itemNode);
+            }
         }
     }
     if (item != nullptr)
