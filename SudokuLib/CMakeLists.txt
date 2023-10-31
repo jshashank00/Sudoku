@@ -39,6 +39,8 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         TeamFeature.h
         FullMessage.cpp
         FullMessage.h
+        TakenSquareMessage.cpp
+        TakenSquareMessage.h
 )
 
 set(wxBUILD_PRECOMP OFF)

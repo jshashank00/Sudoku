@@ -120,11 +120,11 @@ public:
 
     bool TakenSquare(int x, int y);
     void SetXray(std::shared_ptr<Xray> xray);
-    void MoveDigit(int digit, int x, int y);
+    void MoveDigit(int digit);
     void SetMessageBoardVisible(bool isVisible);
     bool IsMessageBoardVisible() const;
     bool CheckSolution();
-    void RevealSquare(int x, int y);
+    void RevealSquare();
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

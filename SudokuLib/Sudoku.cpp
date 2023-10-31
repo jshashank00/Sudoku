@@ -518,18 +518,22 @@ bool Sudoku::TakenSquare(int x, int y)
     return false;
 }
 
-void Sudoku::MoveDigit(int digit, int x, int y)
+void Sudoku::MoveDigit(int digit)//, int x, int y)
 {
     // find the x ray
     XrayFinder xrayVisitor;
     this->Accept(&xrayVisitor);
     Xray * xray = xrayVisitor.GetXray();
 
-    int center_x = x;
-    int center_y = y;
+    int center_x = mSparty->GetX();
+    int center_y = mSparty->GetY();
+    int x = mSparty->GetX();
+    int y = mSparty->GetY();
+    bool in_grid = false;
 
     if (x > mGridXLeft && x < mGridXRight && y > mGridYTop && y < mGridYBot) //check if it's in the sudoku grid
     {
+        in_grid = true;
         int row = (y - mGridYTop ) / mTileHeight;
         int col = (x - mGridXLeft) / mTileHeight;
         center_x = (mGridXLeft + (col * mTileHeight) + mTileHeight/2);
@@ -540,20 +544,23 @@ void Sudoku::MoveDigit(int digit, int x, int y)
     {
         DigitVisitor visitor;
         item->Accept(&visitor);
-        if(visitor.IsDigit())
+        if(visitor.GetValue() == digit)
         {
-            if(visitor.GetValue() == digit)
+            if (in_grid && TakenSquare(center_x, center_y))
             {
-                if(!TakenSquare(center_x, center_y))
-                {
-                    item->SetLocation(center_x, center_y);
-                    //item->SetLocation(1200, 528);
-                    xray->RemoveDigit(item);
-                    item->SetInXray(false);
-                    break;
-                }
+                // Add message that
+                break;
+            }
+            else
+            {
+                item->SetLocation(center_x, center_y);
+                //item->SetLocation(1200, 528);
+                xray->RemoveDigit(item);
+                item->SetInXray(false);
+                break;
             }
         }
+
     }
 }
 /**
@@ -574,8 +581,10 @@ bool Sudoku::IsMessageBoardVisible() const
     return mMessageBoardVisible;
 }
 
-void Sudoku::RevealSquare(int x, int y)
+void Sudoku::RevealSquare()
 {
+    int x = mSparty->GetX();
+    int y = mSparty->GetY();
     int top_left_center_x = mColumn * mTileHeight;
     int top_left_center_y = (mRow+1) * mTileHeight - mTileHeight;
     if (x > mGridXLeft && x < mGridXRight && y > mGridYTop && y < mGridYBot) //check if it's in the sudoku grid
