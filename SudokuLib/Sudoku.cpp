@@ -426,6 +426,56 @@ void Sudoku::Solve(wxString levelToSolve)
 //    wxString levelMessage = "Level Complete!";
 }
 
+bool Sudoku::CheckSolution()
+{
+    std::vector<int> vector_solution;
+    std::string solution = std::string(mSolution.ToStdString());
+
+    for (int i = 0; i < solution.length(); i++)
+    {
+        if (isdigit(solution[i]))
+        {
+            int val = solution[i] - '0';  // Convert char to int
+            vector_solution.push_back(val);
+        }
+    }
+
+    int grid_x_left = mColumn * mTileHeight - (mTileHeight/2);
+    int grid_x_right = mColumn * mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
+    int grid_y_top = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2);
+    int grid_y_bot = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
+
+
+
+    std::vector<int> current_board_state(81, 0);
+
+
+    for (auto& item : mItems) {
+        DigitVisitor visitor;
+        item->Accept(&visitor);
+
+        if (visitor.IsDigit() && !item->IsInContainer() && !item->IsInXray()) {
+
+            int row = (item->GetY() - grid_y_top) / mTileHeight;
+            int col = (item->GetX() - grid_x_left) / mTileHeight;
+            int index = row * 9 + col;
+
+
+            current_board_state[index] = visitor.GetValue();
+        }
+    }
+
+
+    for (int i = 0; i < 81; i++) { // 81 for a 9x9 Sudoku grid
+        if (current_board_state[i] != vector_solution[i]) {
+
+            return false;
+        }
+    }
+
+
+    return true;
+}
 
 
 /**

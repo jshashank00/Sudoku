@@ -116,6 +116,7 @@ public:
     void MoveDigit(int digit, int x, int y);
     void SetMessageBoardVisible(bool isVisible);
     bool IsMessageBoardVisible() const;
+    bool CheckSolution();
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

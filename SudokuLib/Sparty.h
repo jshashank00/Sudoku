@@ -40,6 +40,9 @@ private:
     /// track if sparty is moving
     bool mIsMoving = false;
 
+    /// track if sparty is regurgitating
+    bool mIsRegurgitating = true;
+
     /// eating animation time
     double mMouthElapsedTime = 0.0;
 
@@ -62,7 +65,7 @@ public:
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight) override;
     void HeadButt() override;
     void Update(double deltaTime) override;
-    void MouthMove() override;
+    void MouthMove(bool moving) override;
     bool HitTest(int x, int y) override;
     void SetTargetLocation(int x, int y) override;
     /**
