@@ -36,6 +36,21 @@ private:
     ///List of containers
     std::vector<std::shared_ptr<Container>> mContainers;
 
+    wxString mLevel; /// > store the extracted level
+
+    wxString ExtractLevel(const wxString &filename)
+    {
+        if (!filename.IsEmpty())
+        {
+            wxChar lastChar = filename.GetChar(filename.Length() - 5);
+            wxString levelStr;
+            levelStr.Append(lastChar);
+            wxString level = "Level " + levelStr;
+            return level;
+        }
+        return wxString("Unknown");
+    }
+
 public:
     LevelLoad(const wxString &filename, Sudoku * sudoku);
     void XmlItem(wxXmlNode *node);
@@ -62,6 +77,12 @@ public:
     double GetTileHeight() { return mTileHeight; }
      */
     const std::vector<std::shared_ptr<Container>> &GetContainers() const;
+
+    wxString GetLevel() const
+    {
+        return mLevel;
+    }
+
 };
 
 #endif //PROJECT1_SUDOKULIB_LEVELLOAD_H

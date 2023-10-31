@@ -29,13 +29,13 @@ void MessageBoard::MessageTimer()
  * Draw the scoreboard
  * @param dc Device context to draw on
  */
-void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
+void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height, wxString levelMessage)
 {
     static bool delayElapsed = false;
     time_t current = time(0);
     time_t elapsed = current - mStartTime;
 
-    if (elapsed <= 3 && !delayElapsed)
+    if(elapsed <= 3 && !delayElapsed)
     {
         mSudoku->SetMessageBoardVisible(true);
         // Set the font and color for the text
@@ -55,7 +55,8 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         // Draw "Level 1" message in green
         font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
         graphics->SetFont(font, *wxGREEN); // Set the text color to green
-        wxString levelMessage = "Level 1";
+
+        //wxString levelMessage = "Level 1";
         double levelTextWidth, levelTextHeight;
         graphics->GetTextExtent(levelMessage, &levelTextWidth, &levelTextHeight);
         graphics->DrawText(levelMessage, boardX + (boardWidth - levelTextWidth) / 2, boardY);
@@ -64,27 +65,28 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         font = wxFont(wxSize(30, 30), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
         graphics->SetFont(font, *wxBLACK);
 
-        wxString messages[3] = { "space: Eat", "0-8: Regurgitate", "B: Headbutt" };
+        wxString messages[3] = {"space: Eat", "0-8: Regurgitate", "B: Headbutt"};
         boardY += levelTextHeight; // Move below "Level 1"
 
-        for (const wxString& msg : messages)
+        for(const wxString &msg : messages)
         {
             graphics->GetTextExtent(msg, &levelTextWidth, &levelTextHeight);
             graphics->DrawText(msg, boardX + (boardWidth - levelTextWidth) / 2, boardY);
             boardY += levelTextHeight;
         }
     }
-    if (elapsed > 3  && !delayElapsed)
+    if(elapsed > 3 && !delayElapsed)
     {
         mSudoku->SetMessageBoardVisible(false);
     }
 
-    if (elapsed > 3  && delayElapsed)
+    if(elapsed > 3 && delayElapsed)
     {
         delayElapsed = true;
         mStartTime = current;
 
     }
+}
     // Check if showMessage flag is set
 //    if (mXray->ShouldShowMessage())
 //    {
@@ -108,7 +110,7 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
 //        graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
 //        graphics->DrawText(fullMessage, boardX + (boardWidth - messageWidth) / 2, boardY + 5);
 //    }
-}
+
 
 
 

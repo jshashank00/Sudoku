@@ -114,7 +114,7 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
     }
 
     //wxString levelMessage;
-    mMessageBoard->Draw(graphics, mPixelWidth, mPixelHeight);
+    mMessageBoard->Draw(graphics, mPixelWidth, mPixelHeight, mLevelMessage);
     mScoreboard->Draw(graphics, mPixelWidth, mPixelHeight);
     //mFullMessage->Draw(graphics, mPixelWidth, mPixelHeight);
 
@@ -197,6 +197,7 @@ void Sudoku::SetPixelWidth(int wid)
 void Sudoku::ChooseLevel(wxString levelToLoad)
 {
     LevelLoad level(levelToLoad, this);
+
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
 
@@ -205,6 +206,8 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
     mTileHeight = level.GetTileHeight();
 
     mSolution = level.Solution();
+
+    mLevelMessage = level.GetLevel();
 
     mMessageBoard = make_shared<MessageBoard>(this);
     //mMessageBoard->MessageTimer();
@@ -351,7 +354,6 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
 void Sudoku::Solve(wxString levelToSolve)
 {
 
-
     int x = mColumn * mTileHeight;
     int y = (mRow+1) * mTileHeight - mTileHeight;
 
@@ -448,10 +450,7 @@ bool Sudoku::CheckSolution()
     int grid_y_top = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2);
     int grid_y_bot = (mRow + 1) * mTileHeight - mTileHeight - (mTileHeight/2) + (mTileHeight * 9);
 
-
-
     std::vector<int> current_board_state(81, 0);
-
 
     for (auto& item : mItems) {
         DigitVisitor visitor;
@@ -468,15 +467,12 @@ bool Sudoku::CheckSolution()
         }
     }
 
-
     for (int i = 0; i < 81; i++) { // 81 for a 9x9 Sudoku grid
         if (current_board_state[i] != vector_solution[i]) {
 
             return false;
         }
     }
-
-
     return true;
 }
 
@@ -563,6 +559,7 @@ void Sudoku::MoveDigit(int digit)//, int x, int y)
 
     }
 }
+
 /**
  * Set message board flag to know if sparty can move or not
  * @param isVisible

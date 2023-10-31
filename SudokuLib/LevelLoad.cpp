@@ -23,6 +23,7 @@ using namespace std;
 */
 LevelLoad::LevelLoad(const wxString &filename, Sudoku * sudoku) :mSudoku(sudoku)
 {
+    mLevel = ExtractLevel(filename);
     wxXmlDocument xmlDoc;
     if(!xmlDoc.Load(filename))
     {
