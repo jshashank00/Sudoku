@@ -55,11 +55,12 @@ bool Xray::AddItem(std::shared_ptr<Item> item) {
         mXrayItems.push_back(item);
         item->SetInXray(true); // Mark the item as being in a container
         mTotalNumbers += 1; // update total numbers
+        showMessage = false;
         return true;
     } else {
         // Access the MessageBoard and set the showMessage flag
 
-        //mMessageBoard->GetMessage();
+//        mMessageBoard->GetMessage();
         showMessage = true;
         // call message to say "I'm full" here
         return false;

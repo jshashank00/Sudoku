@@ -143,12 +143,12 @@ void SudokuView::OnKey(wxKeyEvent &event)
         sparty->MouthMove(false);
         this->Refresh();
         this->Update();
-        bool correct = mSudoku.CheckSolution();
-        if (correct)
-        {
-            std::shared_ptr<Item> sparty = mSudoku.GetSparty();
-            sparty->MouthMove(false);
-        }
+//        bool correct = mSudoku.CheckSolution();
+//        if (correct)
+//        {
+//            std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+//            sparty->MouthMove(false);
+//        }
     }
     else if (uc == 120)
     {
