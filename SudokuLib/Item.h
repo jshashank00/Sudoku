@@ -99,7 +99,7 @@ public:
     /**
      * Handle the Mouth movement
      */
-    virtual void MouthMove() {}
+    virtual void MouthMove(bool moving) {}
 
     virtual void SetTargetLocation(int xLoc, int yLoc) {}
 

@@ -57,13 +57,10 @@ bool Xray::AddItem(std::shared_ptr<Item> item) {
         mTotalNumbers += 1; // update total numbers
         return true;
     } else {
-        wxMessageDialog dialog(
-            NULL,
-            wxT("I'm full"), // Your message here
-            wxT("Container Full"),
-            wxOK | wxICON_WARNING
-        );
-        dialog.ShowModal();
+        // Access the MessageBoard and set the showMessage flag
+
+        //mMessageBoard->GetMessage();
+        showMessage = true;
         // call message to say "I'm full" here
         return false;
     }

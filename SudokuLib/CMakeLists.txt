@@ -37,6 +37,8 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         XrayFinder.h
         TeamFeature.cpp
         TeamFeature.h
+        FullMessage.cpp
+        FullMessage.h
 )
 
 set(wxBUILD_PRECOMP OFF)

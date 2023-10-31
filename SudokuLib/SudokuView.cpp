@@ -120,6 +120,9 @@ void SudokuView::OnLeftDown(wxMouseEvent &event)
  */
 void SudokuView::OnKey(wxKeyEvent &event)
 {
+    //Nothing happens while message board is visible
+    if (mSudoku.IsMessageBoardVisible()) return;
+
     wxChar uc = event.GetUnicodeKey();
     if (uc == 98)
     {
@@ -130,12 +133,22 @@ void SudokuView::OnKey(wxKeyEvent &event)
     else if (uc == 32)
     {
         std::shared_ptr<Item> sparty = mSudoku.GetSparty();
-        sparty->MouthMove();
+        sparty->MouthMove(true);
     }
     else if(uc > 47 && uc < 58)
     {
         int digit = uc - 48;
         mSudoku.MoveDigit(digit, event.GetX(), event.GetY());
+        std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+        sparty->MouthMove(false);
+        this->Refresh();
+        this->Update();
+        bool correct = mSudoku.CheckSolution();
+        if (correct)
+        {
+            std::shared_ptr<Item> sparty = mSudoku.GetSparty();
+            sparty->MouthMove(false);
+        }
     }
     else if (uc == 120)
     {

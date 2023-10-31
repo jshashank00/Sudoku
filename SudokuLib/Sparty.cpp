@@ -43,9 +43,10 @@ void Sparty::HeadButt()
 /**
  * Function for handling Eating motion
  */
-void Sparty::MouthMove()
+void Sparty::MouthMove(bool moving)
 {
     mIsMouthMoving = !mIsMouthMoving;
+    mIsRegurgitating = moving;
 }
 /**
  * Sparty Hit Test
@@ -187,7 +188,10 @@ void Sparty::Update(double elapsed)
             mIsMouthMoving = false;
             mMouthElapsedTime = 0.0;
         }
-        (GetSudoku()->Eater(this));
+        if (mIsRegurgitating)
+        {
+            (GetSudoku()->Eater(this));
+        }
     }
 
     if (mIsMoving)
