@@ -15,7 +15,8 @@ class Sudoku;
 class TeamFeature : public Item
 {
 private:
-    /// The item image
+    TeamFeature(Sudoku *sudoku);
+/// The item image
     std::unique_ptr<wxImage> mItemImage;
 
     /// The bitmap to display for the item
@@ -29,7 +30,15 @@ private:
 
 
 public:
+    TeamFeature() = delete;
 
+    /// Copy constructor (disabled)
+    TeamFeature(const TeamFeature &) = delete;
+
+    /// Assignment operator
+    void operator=(const TeamFeature &) = delete;
+
+    void XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
 };
 
 #endif //PROJECT1_SUDOKULIB_TEAMFEATURE_H

@@ -22,6 +22,7 @@
 		<sparty id="i165" width="96" height="96" front="2" head-pivot-angle="0.8" head-pivot-x="30" head-pivot-y="86" image1="sparty-1.png" image2="sparty-2.png" mouth-pivot-angle="1" mouth-pivot-x="39" mouth-pivot-y="86" target-x="72" target-y="24" />
 		<background id="i245" width="528" height="528" image="sudoku.png" />
 		<background id="i246" width="1440" height="960" image="background3.png" />
+		<drowen id="i248" width="220" height="215" image="drowen.png"  />
 		<xray id="i167" width="144" height="144" image="xray.png" capacity="7" />
 	</declarations>
 	<game col="6" row="2">5 4 6 8 3 0 1 2 7 0 1 2 5 4 7 8 3 6 7 8 3 1 2 6 5 4 0 6 5 4 0 1 2 3 7 8 1 2 0 7 8 3 4 6 5 8 3 7 6 5 4 0 1 2 4 0 1 2 6 5 7 8 3 2 7 8 3 0 1 6 5 4 3 6 5 4 7 8 2 0 1</game>
