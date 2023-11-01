@@ -16,6 +16,10 @@ class TeamFeature : public Item
 {
 private:
 
+    double mTargetX = 0.0; ///< x where dr owen needs to move
+    double mTargetY = 0.0; ///< y where dr owen needs to move
+    bool mIsMoving = false; ///< track if dr owen is moving
+
 public:
     TeamFeature(Sudoku *sudoku, const wxString &filename);
 
@@ -27,6 +31,11 @@ public:
 
     /// Assignment operator
     void operator=(const TeamFeature &) = delete;
+
+    void SetTargetLocation(int x, int y) override;
+
+    void Update(double deltaTime) override;
+
 
 };
 
