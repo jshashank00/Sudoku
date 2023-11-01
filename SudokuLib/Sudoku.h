@@ -78,6 +78,8 @@ private:
 
     wxString mLevelMessage;
 
+    wxString mNextLevel;
+
 public:
     Sudoku();
     std::shared_ptr<Item> HitTest(int x, int y);
@@ -86,6 +88,15 @@ public:
     void Clear();
     void SetGameOver(bool over){mGameOver = over;}
     void BoxFull(bool full){mBoxFull = full;}
+
+    /**
+     * getter for the next level in the game
+     * @return next level
+     */
+    wxString GetLevel() const
+    {
+        return mNextLevel;
+    }
 
     /**
      * getter for mItems
