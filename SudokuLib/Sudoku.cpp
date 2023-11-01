@@ -237,6 +237,7 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
     mComplete = false;
+    mGameOver = false;
     mColumn = level.GetColumn();
     mRow = level.GetRow();
     mTileHeight = level.GetTileHeight();
@@ -270,6 +271,7 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
     mRandom.seed(rd());
 
     mMessageBoard->MessageTimer();
+    //mFullMessage->MessageTimer();
     mScoreboard->StartClock();
 
     mGridXLeft = mColumn * mTileHeight - (mTileHeight/2);

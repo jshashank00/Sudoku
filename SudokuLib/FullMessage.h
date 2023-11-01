@@ -17,10 +17,15 @@ class FullMessage
 private:
     /// Game we are in
     Sudoku *mSudoku;
+    time_t mStartTime;  ///< Current time
+    time_t mNow = time(0); ///< time now
+    int messageY ;
+    int takenSquareMessageY;
 
 public:
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     FullMessage(Sudoku *sudoku);
+    void MessageTimer();
     void DrawTakenSquare(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 };
 
