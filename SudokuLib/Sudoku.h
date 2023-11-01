@@ -33,8 +33,6 @@ private:
     /// Message Board pointer
     std::shared_ptr<FullMessage> mFullMessage;
 
-    /// Level Complete pointer
-    std::shared_ptr<LevelCompleteMessage> mLevelCompleteMessage;
 
     double mScale = 0;
     double mXOffset = 0.0;
@@ -71,6 +69,8 @@ private:
     int mGridXRight;
     int mGridYTop;
     int mGridYBot;
+
+    bool mComplete;
 
     wxString mLevelMessage;
 

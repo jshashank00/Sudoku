@@ -85,7 +85,6 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
     mTime = newTime;
     mElapsedTime += elapsed;
 
-
     // Calculate the scaling factors
     double scaleX = double(width) / double(mPixelWidth);
     double scaleY = double(height) / double(mPixelHeight);
@@ -437,8 +436,7 @@ void Sudoku::CheckSolution()
 
     if (mVectorSolution == currentBoard)
     {
-
-
+        mComplete = true;
     }
 }
 
