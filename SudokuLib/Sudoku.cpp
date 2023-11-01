@@ -227,6 +227,17 @@ void Sudoku::SetPixelWidth(int wid)
 }
 
 /**
+     * setter for game over bool
+     * @param over true if game over
+     */
+void Sudoku::SetGameOver(bool over)
+{
+    mGameOver = over;
+    mFullMessage = make_shared<FullMessage>(this);
+    mFullMessage->MessageTimer();
+}
+
+/**
  * Choose the level to be loaded
  * @param levelToLoad level that needs to be loaded
  */
@@ -237,7 +248,7 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
     mComplete = false;
-    mGameOver = false;
+    //mGameOver = false;
     mColumn = level.GetColumn();
     mRow = level.GetRow();
     mTileHeight = level.GetTileHeight();
@@ -263,7 +274,7 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 
     mMessageBoard = make_shared<MessageBoard>(this);
     //mMessageBoard->MessageTimer();
-    mFullMessage = make_shared<FullMessage>(this);
+
     mScoreboard = make_shared<Scoreboard>(this);
     //mScoreboard->StartClock();
     // Seed the random number generator

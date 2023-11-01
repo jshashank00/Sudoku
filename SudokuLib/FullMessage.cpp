@@ -16,7 +16,8 @@ using namespace std;
  * Message Constructor
  * @param sudoku Game we are in
  */
-FullMessage::FullMessage(Sudoku *sudoku){
+FullMessage::FullMessage(Sudoku *sudoku) : mSudoku(sudoku)
+{
     // Initialize Y-coordinates for both messages
     messageY = 0;
     takenSquareMessageY = 0;
@@ -73,7 +74,8 @@ void FullMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, i
 
     else{
         //mSudoku->ChooseLevel(mSudoku->GetLevel());
-        MessageTimer();
+        //MessageTimer();
+        mSudoku->SetGameOver(false);
     }
 }
 

@@ -89,11 +89,7 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Add(std::shared_ptr<Item> item);
     void Clear();
-    /**
-     * setter for game over bool
-     * @param over true if game over
-     */
-    void SetGameOver(bool over){mGameOver = over;}
+
     /**
      * setter for box full bool
      * @param full true if game over
@@ -188,6 +184,7 @@ public:
     void CheckSolution();
     void RevealSquare(int x, int y);
     std::vector<int> GetAllDigitsInGrid();
+    void SetGameOver(bool over);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H
