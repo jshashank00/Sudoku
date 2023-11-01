@@ -30,12 +30,12 @@ void LevelCompleteMessage::MessageTimer()
  */
 void LevelCompleteMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    static bool delayElapsed = false;
     time_t current = time(0);
     time_t elapsed = current - mStartTime;
 
-    if (elapsed <= 3 && !delayElapsed)
+    if (elapsed <= 3)
     {
+        mSudoku->SetMessageBoardVisible(true);
         // Set the font and color for the text
         wxFont font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
         graphics->SetFont(font, *wxGREEN); // Set the text color to green
@@ -47,7 +47,8 @@ void LevelCompleteMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int
     }
     else
     {
-        delayElapsed = true;
-        mStartTime = current;
+        mSudoku->SetMessageBoardVisible(true);
+        mSudoku->ChooseLevel(mSudoku->GetLevel());
+        MessageTimer();
     }
 }

@@ -21,6 +21,7 @@
 #include "GivenVisitor.h"
 #include "XrayFinder.h"
 #include <cstdlib>
+#include <thread>
 
 using namespace std;
 
@@ -222,6 +223,21 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
     mSolution = level.Solution();
 
     mLevelMessage = level.GetLevel();
+
+    if (levelToLoad.IsSameAs(L"levels/level0.xml"))
+    {
+        mNextLevel = L"levels/level1.xml";
+    }
+
+    if (levelToLoad.IsSameAs(L"levels/level1.xml"))
+    {
+        mNextLevel = L"levels/level2.xml";
+    }
+
+    if (levelToLoad.IsSameAs(L"levels/level2.xml"))
+    {
+        mNextLevel = L"levels/level3.xml";
+    }
 
     mMessageBoard = make_shared<MessageBoard>(this);
     //mMessageBoard->MessageTimer();
