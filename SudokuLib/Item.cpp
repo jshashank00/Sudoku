@@ -10,16 +10,20 @@
 using namespace std;
 
 /**
- * Constructor
- * @param sudoku
+ * Item Constructor
+ * @param sudoku Game we are in
  * @param filename
  */
-
 Item::Item(Sudoku *sudoku) : mSudoku(sudoku)
 {
     mIsInContainer = false;
 }
 
+/**
+ * Item Constructor
+ * @param sudoku Game we are in
+ * @param filename image file name
+ */
 Item::Item(Sudoku *sudoku, const wxString &filename) : mSudoku(sudoku)
 {
     mItemImage = make_unique<wxImage> (filename, wxBITMAP_TYPE_ANY);
@@ -112,7 +116,7 @@ void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//
 
 /**
  * Draw an item
- * @param dc Device context to draw on
+ * @param graphics Device context to draw on
  */
 void Item::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {

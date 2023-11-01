@@ -9,6 +9,10 @@
 #define PROJECT1_SUDOKULIB_CONTAINER_H
 
 #include "Item.h"
+
+/**
+ * Class for a container in our game
+ */
 class Container : public Item
 {
 private:
