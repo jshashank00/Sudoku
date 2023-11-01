@@ -52,9 +52,19 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         graphics->SetBrush(*wxWHITE_BRUSH);
 
         int boardWidth = 400;
-        int boardHeight = 180;
+        int boardHeight = 200;
         int boardX = (width - boardWidth) / 2;
         int boardY = (height - boardHeight) / 2;
+
+        wxString messages[5] = {"space: Eat", "0-8: Regurgitate", "B: Headbutt"};
+
+        if (levelMessage == "Level 3")
+        {
+            messages[3] = {"Click on a square with Dr. Owen:"};
+            messages[4] = {"Reveal an answer"};
+            boardHeight = boardHeight + 20;
+            boardWidth = boardWidth + 100;
+        }
 
         graphics->DrawRectangle(boardX, boardY, boardWidth, boardHeight);
 
@@ -71,7 +81,6 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         font = wxFont(wxSize(30, 30), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
         graphics->SetFont(font, *wxBLACK);
 
-        wxString messages[3] = {"space: Eat", "0-8: Regurgitate", "B: Headbutt"};
         boardY += levelTextHeight; // Move below "Level 1"
 
         for(const wxString &msg : messages)

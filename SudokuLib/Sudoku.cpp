@@ -405,7 +405,6 @@ void Sudoku::Solve(wxString levelToSolve)
     int x = mColumn * mTileHeight;
     int y = (mRow+1) * mTileHeight - mTileHeight;
 
-
     int original_x = x;
     int count = 0;
 
@@ -424,7 +423,6 @@ void Sudoku::Solve(wxString levelToSolve)
         {
             if (!TakenSquare(x, y))
             {
-
                 for (auto item : mItems)
                 {
                     DigitVisitor visitor1;
@@ -433,7 +431,6 @@ void Sudoku::Solve(wxString levelToSolve)
                     if (!(item->GetX() > mGridXLeft && item->GetX() < mGridXRight && item->GetY() > mGridYTop
                         && item->GetY() < mGridYBot))
                     {
-
                         if(visitor1.IsDigit())
                         {
                             if(visitor1.GetValue() == mVectorSolution[i] && !item->IsInContainer() && !item->IsInXray())
@@ -446,18 +443,19 @@ void Sudoku::Solve(wxString levelToSolve)
                                 {
                                     mItems.erase(loc);
                                 }
-                                x += mTileHeight;
-                                count += 1;
-                                if(count == 9)
-                                {
-                                    count = 0;
-                                    y += mTileHeight;
-                                    x = original_x;
-                                }
                                 break;
                             }
+
                         }
                     }
+                }
+                x += mTileHeight;
+                count += 1;
+                if(count == 9)
+                {
+                    count = 0;
+                    y += mTileHeight;
+                    x = original_x;
                 }
             }
             else
