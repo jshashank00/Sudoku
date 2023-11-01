@@ -1,6 +1,6 @@
 /**
  * @file TakenSquareMessage.h
- * @author Lillian Yanke
+ * @author Shashank Jayaram
  *
  *
  */

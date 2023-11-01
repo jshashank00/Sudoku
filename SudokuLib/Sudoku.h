@@ -70,6 +70,7 @@ private:
     int mGridYTop;
     int mGridYBot;
     bool mGameOver = false;
+    bool mBoxFull = false;
 
     bool mComplete;
 
@@ -82,6 +83,7 @@ public:
     void Add(std::shared_ptr<Item> item);
     void Clear();
     void SetGameOver(bool over){mGameOver = over;}
+    void BoxFull(bool full){mBoxFull = full;}
 
     /**
      * getter for mItems

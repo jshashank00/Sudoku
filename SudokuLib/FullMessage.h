@@ -1,6 +1,6 @@
 /**
  * @file FullMessage.h
- * @author shash
+ * @author Shashank Jayaram
  *
  *
  */
@@ -21,6 +21,7 @@ public:
     FullMessage(Sudoku *sudoku);
    //void  SetXray(Xray *xray);
 
+    void DrawTakenSquare(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 };
 
 #endif //PROJECT1_SUDOKULIB_FULLMESSAGE_H

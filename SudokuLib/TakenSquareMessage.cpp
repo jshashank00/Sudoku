@@ -1,6 +1,6 @@
 /**
  * @file TakenSquareMessage.cpp
- * @author Lillian Yanke
+ * @author Shashank Jayaram
  */
 #include "pch.h"
 #include "TakenSquareMessage.h"
