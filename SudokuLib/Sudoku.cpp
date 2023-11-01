@@ -114,7 +114,10 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
 
     mMessageBoard->Draw(graphics, mPixelWidth, mPixelHeight, mLevelMessage);
     mScoreboard->Draw(graphics, mPixelWidth, mPixelHeight);
-    //mFullMessage->Draw(graphics, mPixelWidth, mPixelHeight);
+    if (mGameOver)
+    {
+        mFullMessage->Draw(graphics, mPixelWidth, mPixelHeight);
+    }
 
     graphics->PopState();
 }
@@ -177,6 +180,10 @@ void Sudoku::SetSparty(shared_ptr<Item> sparty)
 {
     mSparty = sparty;
 }
+//void Sudoku::SetFullMsg(shared_ptr<Item> FullMessage)
+//{
+//    mFullMessage = FullMessage;
+//}
 //void Sudoku::SetXray(shared_ptr<Item> xray)
 //{
 //    mXray = xray;
@@ -209,7 +216,7 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 
     mMessageBoard = make_shared<MessageBoard>(this);
     //mMessageBoard->MessageTimer();
-
+    mFullMessage = make_shared<FullMessage>(this);
     mScoreboard = make_shared<Scoreboard>(this);
     //mScoreboard->StartClock();
     // Seed the random number generator
@@ -528,6 +535,7 @@ void Sudoku::MoveDigit(int digit)//, int x, int y)
     XrayFinder xrayVisitor;
     this->Accept(&xrayVisitor);
     Xray * xray = xrayVisitor.GetXray();
+    //mFullMessage->SetXray(xray);
 
     int center_x = mSparty->GetX();
     int center_y = mSparty->GetY();

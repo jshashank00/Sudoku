@@ -8,7 +8,6 @@
 #include <ctime>
 #include <time.h>
 #include "Sudoku.h"
-#include "Xray.h"
 #include <wx/graphics.h>
 
 using namespace std;
@@ -17,6 +16,7 @@ FullMessage::FullMessage(Sudoku *sudoku){
 
 }
 
+
 /**
  * Draw the I'm full message
  * @param dc Device context to draw on
@@ -24,8 +24,9 @@ FullMessage::FullMessage(Sudoku *sudoku){
 void FullMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
     // Set the font and color for the text
-    if(mXray->ShouldShowMessage())
-    {
+    //mXray->ShouldShowMessage();
+    //if(mXray->ShouldShowMessage())
+
         wxFont font(wxSize(0, 26), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
         graphics->SetFont(font, *wxRED);  // Set the text color to red
 
@@ -44,5 +45,5 @@ void FullMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, i
         double messageWidth, messageHeight;
         graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
         graphics->DrawText(fullMessage, boardX + (boardWidth - messageWidth) / 2, boardY + 5);
-    }
+
 }

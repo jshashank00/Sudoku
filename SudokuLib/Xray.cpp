@@ -13,6 +13,8 @@ Xray::Xray(Sudoku* sudoku) : Item(sudoku)
 {
 //    mItemImage = make_unique<wxImage>(XrayImageName, wxBITMAP_TYPE_ANY);
 //    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+    //mSudoku = sudoku;
+
 }
 
 
@@ -63,6 +65,8 @@ bool Xray::AddItem(std::shared_ptr<Item> item) {
 //        mMessageBoard->GetMessage();
         showMessage = true;
         // call message to say "I'm full" here
+        auto game = GetSudoku();
+        GetSudoku()->SetGameOver(true);
         return false;
     }
 }
