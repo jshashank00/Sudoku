@@ -116,11 +116,11 @@ void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//
  */
 void Item::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    if (this->IsInXray())
+    if (mIsInXray)
     {
         graphics->DrawBitmap(*mItemBitmap,
                              mX,
-                             mY, mWidth / 2, mHeight / 2);
+                             mY, mWidth / 1.5, mHeight / 1.5);
     } else {
         graphics->DrawBitmap(*mItemBitmap,
                              mX,
