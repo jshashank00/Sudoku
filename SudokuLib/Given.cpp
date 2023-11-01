@@ -21,7 +21,6 @@ Given::Given(Sudoku *sudoku, const wxString &filename) : Item(sudoku, filename)
 
 /**
  * Load the attributes for a given node.
-
  * @param node The Xml node we are loading the item from
  * @param decNode the xml node we are loading the declaration from
  * @param height for item

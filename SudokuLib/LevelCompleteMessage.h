@@ -11,23 +11,27 @@
 //#include "Sudoku.h"
 //#include "Item.h"
 class Sudoku;
+/**
+ * Message for completing the level
+ */
 class LevelCompleteMessage
 {
 private:
+    /// Game we are in
     Sudoku *mSudoku;
     /// Current time
     time_t mStartTime;
-    time_t mNow = time(0);
+    /// false if message shouldn't show
     bool showMessage = false;
-    //std::shared_ptr<Xray> mXray;
 
 public:
+    /**
+    * @return show message bool
+    */
     bool GetMessage() {return showMessage;}
     LevelCompleteMessage(Sudoku *sudoku);
     void MessageTimer();
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
-
-public:
 
 };
 

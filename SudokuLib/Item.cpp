@@ -30,16 +30,18 @@ Item::Item(Sudoku *sudoku, const wxString &filename) : mSudoku(sudoku)
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
 
+/**
+ * Set image for an item
+ * @param filename image file name
+ */
 void Item::SetImage(const wxString &filename)
 {
     mItemImage = make_unique<wxImage> (filename, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
 
-
-
 /**
- * Test to see if we hit this object with a mouse.
+ * Test to see if we hit this object with spartu.
  * @param x X position to test
  * @param y Y position to test
  * @return true if hit.
@@ -69,6 +71,12 @@ bool Item::HitTest(int x, int y)
     return true;
 }
 
+/**
+ * Test to see if we hit this object with spartu.
+ * @param x X position to test
+ * @param y Y position to test
+ * @return true if hit.
+ */
 bool Item::ContainerHitTest(int x, int y)
 {
     double wid = mItemBitmap->GetWidth();
@@ -97,11 +105,9 @@ bool Item::ContainerHitTest(int x, int y)
 /**
  * Load the attributes for an item node.
  *
- * This is the  base class version that loads the attributes
- * common to all items. Override this to load custom battributes
- * for specific items.
- *
  * @param node The Xml node we are loading the item from
+ * @param decNode the xml node we are loading the declaration from
+ * @param height for item
  */
 void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {
@@ -117,6 +123,8 @@ void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//
 /**
  * Draw an item
  * @param graphics Device context to draw on
+ * @param width of image
+ * @param height of image
  */
 void Item::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {

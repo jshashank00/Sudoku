@@ -19,14 +19,19 @@ LevelCompleteMessage::LevelCompleteMessage(Sudoku *sudoku) : mSudoku(sudoku)
 {
 }
 
+/**
+ * Timer for message
+ */
 void LevelCompleteMessage::MessageTimer()
 {
     mStartTime = time(0);
 }
 
 /**
- * Draw the scoreboard
- * @param dc Device context to draw on
+ * Draw the level complete message
+ * @param graphics Device context to draw on
+ * @param width of image
+ * @param height of image
  */
 void LevelCompleteMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {

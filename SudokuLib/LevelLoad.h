@@ -12,7 +12,9 @@
 #include "Container.h"
 #include <map>
 #include <string>
-
+/**
+ * Class for loading xml file
+ */
 class LevelLoad
 {
 private:
@@ -33,11 +35,12 @@ private:
     ///Initialize the map id->DeclarationObject
     std::map <wxString, wxXmlNode*> mMap;
 
-    ///List of containers
-    std::vector<std::shared_ptr<Container>> mContainers;
+    wxString mLevel; ///< store the extracted level
 
-    wxString mLevel; /// > store the extracted level
-
+    /**
+     * get number of level from level string
+     * @return level + number
+     */
     wxString ExtractLevel(const wxString &filename)
     {
         if (!filename.IsEmpty())
@@ -59,25 +62,34 @@ public:
     void XmlContainerItem(wxXmlNode *node);
     void XmlContainerDec(wxXmlNode *node);
 
-    //wxString GetBackgroundImage() { return mBackgroundImage; }
-
+    /**
+     * @return width in pixels
+     */
     int PixelWidth() { return mWidth * mTileWidth; }
+    /**
+     * @return height in pixels
+     */
     int PixelHeight() { return mHeight * mTileHeight; }
-
+    /**
+     * @return column
+     */
     int GetColumn() {return mCol;}
+    /**
+     * @return row
+     */
     int GetRow() {return mRow;}
+    /**
+     * @return solution
+     */
     wxString Solution() {return mSolution;}
-
+    /**
+     * @return tilewidth
+     */
     double GetTileHeight() { return mTileHeight; }
 
     /**
-    double GetWidth() { return mWidth; }
-    double GetHeight() { return mHeight; }
-    double GetTileWidth() { return mTileWidth; }
-    double GetTileHeight() { return mTileHeight; }
+     * @return level
      */
-    const std::vector<std::shared_ptr<Container>> &GetContainers() const;
-
     wxString GetLevel() const
     {
         return mLevel;

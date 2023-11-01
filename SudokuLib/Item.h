@@ -29,27 +29,18 @@ private:
     Sudoku *mSudoku;
 
     /// Item location
-    double mX = 0;
-    double mY = 0;
-    double mCol = 0;
-    double mRow = 0;
+    double mX = 0; ///< x location of item
+    double mY = 0; ///< y location of item
+    double mCol = 0; ///< col location of item
+    double mRow = 0; ///< row location of item
     double mWidth = 0; ///<Width of the image
     double mHeight = 0; ///<Height of the image
-
-    /// Item id
-    //wxString mID;
 
     /// variable to show if item is in container
     bool mIsInContainer = false;
 
     /// variable to show if item is in xray
     bool mIsInXray = false;
-
-
-//    /// Items currently in container
-//    std::vector<std::shared_ptr<Item>> mContainerItemsList;
-protected:
-
 
 public:
     void SetImage(const wxString &filename);
@@ -107,10 +98,6 @@ public:
      * Handle the headbutt movement
      */
     virtual void HeadButt() {}
-    //void XmlLoad(wxXmlNode *node, std::shared_ptr<Declaration> decNode);
-//    virtual bool IsDigit() const {
-//        return false;
-//    }
 
     ///Easy way to tell if sparty can eat a number or not
     void SetInContainer(bool isInContainer) { mIsInContainer = isInContainer; }
@@ -126,19 +113,28 @@ public:
       */
     virtual void Accept(ItemVisitor* visitor) {}
 
+    /**
+     * @return column
+     */
     double GetCol() {return mCol;}
-    double GetRow() {return mRow;}
 
-    double GetItemWid() {return mWidth;}
-    double GetItemHit() {return mHeight;}
+    /**
+     * @return row
+     */
+    double GetRow() {return mRow;}
 
     bool ContainerHitTest(int x, int y);
 
+    /**
+     * @return width
+     */
     double GetWidth() const {
 
         return mWidth;
     }
-
+    /**
+     * @return height
+     */
     double GetHeight() const {
 
         return mHeight;

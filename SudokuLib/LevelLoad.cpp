@@ -127,8 +127,6 @@ void LevelLoad::XmlItem(wxXmlNode *node)
             {
                 if(!backgroundThere)
                 {
-//                int * width;
-//                wxAtoi(decNode->GetAttribute(L"height", L"0"));
                     mSudoku->SetPixelHeight(wxAtoi(decNode->GetAttribute(L"height", L"0")));
                     mSudoku->SetPixelWidth(wxAtoi(decNode->GetAttribute(L"width", L"0")));
                     backgroundThere = true;
@@ -140,10 +138,8 @@ void LevelLoad::XmlItem(wxXmlNode *node)
             else if(itemNode->GetName() == L"xray")
             {
                 shared_ptr<Xray> xray;
-//            xray = make_shared<Xray>(mSudoku);
                 item = make_shared<Xray>(mSudoku);
                 mSudoku->Add(item);
-                //mSudoku->SetXray(xray);
                 item->XmlLoad(itemNode, decNode, mTileHeight);
             }
             else if(itemNode->GetName() == L"container")
@@ -151,11 +147,6 @@ void LevelLoad::XmlItem(wxXmlNode *node)
                 XmlContainerItem(itemNode);
             }
         }
-    }
-    if (item != nullptr)
-    {
-//        mSudoku->Add(item);
-//        item->XmlLoad(itemNode, decNode);
     }
 }
 
@@ -192,8 +183,6 @@ void LevelLoad::XmlContainerItem(wxXmlNode *node)
     decNode = mMap.find(id)->second;
     container->XmlLoadBack(node, decNode, mTileHeight);
 
-//    node->GetAttribute(L"image");
-    mContainers.push_back(container);
     auto childNode = node->GetChildren();
     for( ; childNode; childNode=childNode->GetNext())
     {
@@ -210,6 +199,3 @@ void LevelLoad::XmlContainerItem(wxXmlNode *node)
     }
 }
 
-const std::vector<std::shared_ptr<Container>>& LevelLoad::GetContainers() const {
-    return mContainers;
-}
