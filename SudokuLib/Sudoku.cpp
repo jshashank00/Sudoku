@@ -124,6 +124,10 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
         mLevelCompleteMessage->Draw(graphics, mPixelWidth, mPixelHeight);
     }
 
+    if (mBoxFull)
+    {
+        mFullMessage->DrawTakenSquare(graphics, mPixelWidth, mPixelHeight);
+    }
     graphics->PopState();
 }
 
@@ -568,6 +572,7 @@ void Sudoku::MoveDigit(int digit)//, int x, int y)
             if (in_grid && TakenSquare(center_x, center_y))
             {
                 // Add message that
+                mBoxFull = true;
                 break;
             }
             else
