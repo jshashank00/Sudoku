@@ -13,6 +13,9 @@ using namespace std;
 const int ScoreboardTextSize = 64;
 
 /// Top left corner of the scoreboard in virtual pixels
+/**
+ * @return top left x,y of scoreboard
+ */
 const wxPoint ScoreboardTopLeft(10, 10);
 
 /**
@@ -79,7 +82,7 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, in
 
 /**
  * Get current clock time
- * return string of clock time
+ * @return string of clock time
  */
 std::string GetTime() {
     time_t rawTime;

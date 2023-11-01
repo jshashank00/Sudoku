@@ -92,6 +92,11 @@ public:
      */
     virtual void MouthMove(bool moving) {}
 
+    /**
+     * set target location x and y
+     * @param xLoc x location
+     * @param yLoc y location
+     */
     virtual void SetTargetLocation(int xLoc, int yLoc) {}
 
     /**
@@ -99,12 +104,26 @@ public:
      */
     virtual void HeadButt() {}
 
-    ///Easy way to tell if sparty can eat a number or not
+    /**
+     * Set in container to true or false
+     * @param isInContainer true if item in container
+     */
     void SetInContainer(bool isInContainer) { mIsInContainer = isInContainer; }
+    /**
+     * InContainer getter
+     * @return true if in container
+     */
     bool IsInContainer() const { return mIsInContainer; }
 
-    ///Easy way to tell if sparty can eat a number or not
+    /**
+     * Set in xray to true or false
+     * @param isInContainer true if item in xray
+     */
     void SetInXray(bool isInXray) { mIsInXray = isInXray; }
+    /**
+     * InXray getter
+     * @return true if in xray
+     */
     bool IsInXray() const { return mIsInXray; }
 
     /**

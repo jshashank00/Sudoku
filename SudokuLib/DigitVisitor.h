@@ -32,6 +32,7 @@ private:
 public:
     /**
      * Digit visitor
+     * @param digit Digit pointer
      */
     void VisitDigit(Digit* digit) override
     {

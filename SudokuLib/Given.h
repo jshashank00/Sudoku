@@ -20,6 +20,10 @@ private:
 
 public:
     Given(Sudoku *sudoku, const wxString &filename);
+    /**
+    * Given value getter
+    * @return value of given
+    */
     int GetValue() { return mValue; }
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight) override;
     /**

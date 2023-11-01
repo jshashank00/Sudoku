@@ -21,9 +21,9 @@ Digit::Digit(Sudoku *sudoku, const wxString &filename) : Item(sudoku, filename)
 /**
  * Load the attributes for a digit node.
 
- * @param node The Xml node we are loading the item from
+ * @param itemNode The Xml node we are loading the item from
  * @param decNode the xml node we are loading the declaration from
- * @param height for item
+ * @param tileHeight for item
  */
 void Digit::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {

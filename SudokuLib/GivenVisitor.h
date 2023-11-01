@@ -29,7 +29,10 @@ private:
 public:
 //    GivenVisitor() : mGivenCheck(false) {}
 
-
+    /**
+    * Given visitor
+    * @param given we are visiting
+    */
     void VisitGiven(Given* given)
     {
         mThisGiven = given;

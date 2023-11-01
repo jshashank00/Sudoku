@@ -9,7 +9,9 @@
 #define PROJECT1_CSE335__SUDOKUAPP_H
 
 #include <wx/wx.h>
-
+/**
+ * Sudoku app class
+ */
 class SudokuApp : public wxApp {
 private:
 

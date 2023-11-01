@@ -38,6 +38,8 @@ void Container::XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double heig
 /**
  * Draw an item
  * @param graphics Device context to draw on
+ * @param height of image
+ * @param width of image
  */
 void Container::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
@@ -63,8 +65,8 @@ void Container::AddItem(std::shared_ptr<Item> item) {
 }
 
 /**
- * Add an item to the container list
- * @param item Item to be added to the list
+ * Getter for contained items
+ * @return contained items list
  */
 std::vector<std::shared_ptr<Item>> Container::GetContainedItems() const {
     return mContainedItems;

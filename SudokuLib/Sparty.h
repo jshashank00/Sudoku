@@ -8,11 +8,11 @@
 #ifndef PROJECT1_SUDOKULIB_SPARTY_H
 #define PROJECT1_SUDOKULIB_SPARTY_H
 
+#include "Item.h"
+class Sudoku;
 /**
  * Class for sparty
  */
-#include "Item.h"
-class Sudoku;
 class Sparty : public Item
 {
 private:
