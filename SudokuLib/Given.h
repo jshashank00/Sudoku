@@ -2,7 +2,6 @@
  * @file Given.h
  * @author Tess Murphy
  *
- * Class to represent a given number
  */
 
 #ifndef PROJECT1_SUDOKULIB_GIVEN_H
@@ -16,6 +15,7 @@
 class Given : public Item
 {
 private:
+    /// number value of a given
     int mValue= 0;
 
 public:

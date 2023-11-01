@@ -16,8 +16,6 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Sparty.h
         Scoreboard.cpp
         Scoreboard.h
-        GridTile.cpp
-        GridTile.h
         Xray.h
         Xray.cpp
         LevelLoad.cpp
@@ -32,7 +30,6 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         DigitVisitor.h
         IsContainerVisitor.h
         XrayVisitor.h
-        GivenVisitor.cpp
         GivenVisitor.h
         XrayFinder.h
         TeamFeature.cpp

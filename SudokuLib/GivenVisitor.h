@@ -10,27 +10,30 @@
 
 #include "ItemVisitor.h"
 #include "Given.h"
-
+/**
+ * Visits Givens
+ *
+ */
 class GivenVisitor : public ItemVisitor
 {
 private:
-    bool GivenCheck = false;
 
-    /// bool if the item is a digit
+//    bool mGivenCheck = false;
+    /// bool if the item is a given
     bool mIsGiven = false;
-
+    /// given we are currently at
     Given* mThisGiven;
-
+    /// given count
     int mGivenCounter = 0;
 
 public:
-    GivenVisitor() : GivenCheck(false) {}
+//    GivenVisitor() : mGivenCheck(false) {}
 
 
     void VisitGiven(Given* given)
     {
         mThisGiven = given;
-        GivenCheck = true;
+//        mGivenCheck = true;
         mIsGiven = true;
         mGivenCounter++;
     }
@@ -39,15 +42,19 @@ public:
      * @return bool member variable
      */
     bool IsGiven() { return mIsGiven; }
-
+    /**
+     * @return value of given
+     */
     int GetValue() { return mThisGiven->GetValue(); }
 
-    bool GivenChecker() const
-    {
-        return GivenCheck;
-
-    }
-
+//    bool GivenChecker() const
+//    {
+//        return mGivenCheck;
+//
+//    }
+    /**
+     * @return given count
+     */
     int GetGivenCounter() { return mGivenCounter; }
 
 };
