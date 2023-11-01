@@ -11,7 +11,7 @@
  * Class for TeamFeature
  */
 #include "Item.h"
-//class Sudoku;
+
 class TeamFeature : public Item
 {
 private:
@@ -19,6 +19,7 @@ private:
 public:
     TeamFeature(Sudoku *sudoku, const wxString &filename);
 
+    /// destructor
     TeamFeature() = delete;
 
     /// Copy constructor (disabled)
@@ -27,7 +28,6 @@ public:
     /// Assignment operator
     void operator=(const TeamFeature &) = delete;
 
-//    void XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double height);
 };
 
 #endif //PROJECT1_SUDOKULIB_TEAMFEATURE_H

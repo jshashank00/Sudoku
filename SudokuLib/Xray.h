@@ -11,9 +11,9 @@
 #include "Item.h"
 #include "Sudoku.h"
 
-//#include "MessageBoard.h"
-//#include "FullMessage.h"
-
+/**
+ * Class for Xray item
+ */
 class Xray : public Item
 {
 private:
@@ -34,10 +34,8 @@ private:
     ///List of items in the xray
     std::vector<std::shared_ptr<Item>> mXrayItems;
 
-
+    /// show message bool
     bool showMessage = false;
-
-
 
 public:
     Xray() = delete;
@@ -48,24 +46,26 @@ public:
     /// Assignment operator
     void operator=(const Xray &) = delete;
 
+    /**
+     * Getter for xray items
+     * @return xray items
+     */
     std::vector<std::shared_ptr<Item>>& GetItems() { return mXrayItems; }
-
     Xray(Sudoku* sudoku); // Add width and height parameters
-//    void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight) override;
     /**
     * Accept a visitor
     * @param visitor The visitor we accept
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitXray(this); }
-
     bool AddItem(std::shared_ptr<Item> item);
-    // A public function to check if showMessage is true
+    /**
+     * getter for should show message
+     * @return should show message bool
+     */
     bool ShouldShowMessage() {
          return showMessage;
     }
-
-
     std::vector<std::shared_ptr<Item>> GetXrayItems();
     void RemoveDigit(std::shared_ptr<Item> item);
 };

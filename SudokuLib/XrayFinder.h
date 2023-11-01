@@ -10,6 +10,9 @@
 
 #include "ItemVisitor.h"
 
+/**
+ * Class to find the xray with a visitor
+ */
 class XrayFinder : public ItemVisitor
 {
 private:

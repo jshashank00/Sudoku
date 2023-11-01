@@ -7,13 +7,16 @@
 
 #ifndef PROJECT1_SUDOKULIB_SUDOKUVIEW_H
 #define PROJECT1_SUDOKULIB_SUDOKUVIEW_H
-
+/**
+ * View class for our sudoku game
+ */
 #include "Sudoku.h"
 #include "Sparty.h"
 #include "Scoreboard.h"
 
 class SudokuView: public wxWindow {
 private:
+    /// sudoku game we are in
     Sudoku mSudoku;
 
     /// Timer for the scoreboard
@@ -34,6 +37,9 @@ public:
     void OnSize(wxSizeEvent& event);
 
     void OnKey(wxKeyEvent &event);
+    /**
+     * Stop the timer
+     */
     void Stop(){mTimer.Stop();}
 
     void OnLevel0(wxCommandEvent& event);

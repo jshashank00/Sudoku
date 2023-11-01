@@ -80,6 +80,10 @@ void SudokuView::OnPaint(wxPaintEvent& event)
     mSudoku.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
 }
 
+/**
+ * Virtual pixels resize
+ * @param event resize
+ */
 void SudokuView::OnSize(wxSizeEvent& event) {
     Refresh();
     event.Skip();
@@ -87,7 +91,7 @@ void SudokuView::OnSize(wxSizeEvent& event) {
 
 /**
  * Handle the left mouse button down event
- * @param event
+ * @param event left down click
  */
 void SudokuView::OnLeftDown(wxMouseEvent &event)
 {
@@ -116,7 +120,7 @@ void SudokuView::OnLeftDown(wxMouseEvent &event)
 
 /**
  * Sparty Headbutt
- * @param event
+ * @param event key click
  */
 void SudokuView::OnKey(wxKeyEvent &event)
 {
@@ -151,34 +155,48 @@ void SudokuView::OnKey(wxKeyEvent &event)
     }
 }
 
+/**
+ * Load level 0
+ * @param event level load in menu
+ */
 void SudokuView::OnLevel0(wxCommandEvent& event)
 {
     wxString level0 = "levels/level0.xml";
     mSudoku.ChooseLevel(level0);
-//    LevelLoad level(level1, mSudoku);
 }
 
+/**
+ * Load level 1
+ * @param event level load in menu
+ */
 void SudokuView::OnLevel1(wxCommandEvent& event)
 {
     wxString level1 = "levels/level1.xml";
     mSudoku.ChooseLevel(level1);
-//    LevelLoad level(level1, mSudoku);
 }
-
+/**
+ * Load level 2
+ * @param event level load in menu
+ */
 void SudokuView::OnLevel2(wxCommandEvent& event)
 {
     wxString level2 = "levels/level2.xml";
     mSudoku.ChooseLevel(level2);
-//    LevelLoad level(level1, mSudoku);
 }
-
+/**
+ * Load level 3
+ * @param event level load in menu
+ */
 void SudokuView::OnLevel3(wxCommandEvent& event)
 {
     wxString level3 = "levels/level3.xml";
     mSudoku.ChooseLevel(level3);
-//    LevelLoad level(level1, mSudoku);
 }
 
+/**
+ * When solve button is clicked in menu
+ * @param event solve in menu
+ */
 void SudokuView::OnSolve(wxCommandEvent& event)
 {
     wxString level0 = "levels/level0.xml";
