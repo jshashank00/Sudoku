@@ -271,7 +271,7 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 
     mMessageBoard = make_shared<MessageBoard>(this);
     //mMessageBoard->MessageTimer();
-    mFullMessage = make_shared<FullMessage>(this);
+    //mFullMessage = make_shared<FullMessage>(this);
     mScoreboard = make_shared<Scoreboard>(this);
     //mScoreboard->StartClock();
     // Seed the random number generator
@@ -501,6 +501,18 @@ void Sudoku::CheckSolution()
         mIncorrectMessage->MessageTimer();
     }
 }
+
+/**
+     * setter for game over bool
+     * @param over true if game over
+     */
+void Sudoku::SetGameOver(bool over)
+{
+    mGameOver = over;
+    mFullMessage = make_shared<FullMessage>(this);
+    mFullMessage->MessageTimer();
+}
+
 
 /**
  * Get the digits in the grid currently

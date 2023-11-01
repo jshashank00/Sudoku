@@ -199,7 +199,7 @@ public:
     void CheckSolution();
     void RevealSquare(int x, int y);
     std::vector<int> GetAllDigitsInGrid();
-    void SetGameOver(bool over) {};
+    void SetGameOver(bool over);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H
