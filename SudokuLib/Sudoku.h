@@ -14,7 +14,9 @@
 #include "MessageBoard.h"
 #include "FullMessage.h"
 #include "LevelCompleteMessage.h"
+#include "IncorrectMessage.h"
 #include <random>
+
 /**
  * Class for sudoku game
  */
@@ -33,10 +35,15 @@ private:
 
     /// Message Board pointer
     std::shared_ptr<MessageBoard> mMessageBoard;
+
     /// Message Board pointer
     std::shared_ptr<FullMessage> mFullMessage;
+
     /// Message Board pointer
     std::shared_ptr<LevelCompleteMessage> mLevelCompleteMessage;
+
+    /// Message Board pointer
+    std::shared_ptr<IncorrectMessage> mIncorrectMessage;
 
 
     double mScale = 0; ///< scale for the game
@@ -61,6 +68,7 @@ private:
     std::shared_ptr<wxGraphicsContext> mGraphics; ///< graphics context of the game
     int mWidth = 0; ///< width
     int mHeight = 0; ///< height
+
     /// Random number generator
     std::mt19937 mRandom;
 
@@ -76,12 +84,14 @@ private:
     int mGridYBot; ///< Y location of the bottom of the grid
     bool mGameOver = false; ///< true if game is over
     bool mBoxFull = false; ///< true if grid square has a number
-
     bool mComplete = false; ///< true if grid is full
+    bool mCompleteIncorrectly = false; ///< true if grid is full and wrong
 
     wxString mLevelMessage; ///< message before each level
 
     wxString mNextLevel; ///< next level to load
+    wxString mSameLevel; ///< next level to load
+
 
 public:
     Sudoku();
@@ -107,6 +117,11 @@ public:
     wxString GetLevel() const
     {
         return mNextLevel;
+    }
+
+    wxString GetSameLevel() const
+    {
+        return mSameLevel;
     }
 
     /**

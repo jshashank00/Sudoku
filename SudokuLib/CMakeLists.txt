@@ -38,6 +38,8 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         TakenSquareMessage.h
         LevelCompleteMessage.cpp
         LevelCompleteMessage.h
+        IncorrectMessage.cpp
+        IncorrectMessage.h
 )
 
 set(wxBUILD_PRECOMP OFF)

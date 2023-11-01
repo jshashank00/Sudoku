@@ -127,6 +127,11 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
         mLevelCompleteMessage->Draw(graphics, mPixelWidth, mPixelHeight);
     }
 
+    if (mCompleteIncorrectly)
+    {
+        mIncorrectMessage->Draw(graphics, mPixelWidth, mPixelHeight);
+    }
+
     if (mBoxFull)
     {
         mFullMessage->DrawTakenSquare(graphics, mPixelWidth, mPixelHeight);
@@ -237,6 +242,7 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
     mComplete = false;
+    mCompleteIncorrectly = false;
     mColumn = level.GetColumn();
     mRow = level.GetRow();
     mTileHeight = level.GetTileHeight();
@@ -248,16 +254,19 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
     if (levelToLoad.IsSameAs(L"levels/level0.xml"))
     {
         mNextLevel = L"levels/level1.xml";
+        mSameLevel = L"levels/level0.xml";
     }
 
     if (levelToLoad.IsSameAs(L"levels/level1.xml"))
     {
         mNextLevel = L"levels/level2.xml";
+        mSameLevel = L"levels/level1.xml";
     }
 
     if (levelToLoad.IsSameAs(L"levels/level2.xml"))
     {
         mNextLevel = L"levels/level3.xml";
+        mSameLevel = L"levels/level2.xml";
     }
 
     mMessageBoard = make_shared<MessageBoard>(this);
@@ -405,7 +414,6 @@ void Sudoku::Solve(wxString levelToSolve)
     int x = mColumn * mTileHeight;
     int y = (mRow+1) * mTileHeight - mTileHeight;
 
-
     int original_x = x;
     int count = 0;
 
@@ -473,10 +481,6 @@ void Sudoku::Solve(wxString levelToSolve)
             }
         }
     }
-//    wxFont font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-//    std::shared_ptr<wxGraphicsContext> graphics;
-//    graphics->SetFont(font, *wxGREEN); // Set the text color to green
-//    wxString levelMessage = "Level Complete!";
 }
 
 /**
@@ -490,6 +494,12 @@ void Sudoku::CheckSolution()
         mComplete = true;
         mLevelCompleteMessage = make_shared<LevelCompleteMessage>(this);
         mLevelCompleteMessage->MessageTimer();
+    }
+    if (mVectorSolution != currentBoard && mVectorSolution.size() == currentBoard.size())
+    {
+        mCompleteIncorrectly = true;
+        mIncorrectMessage = make_shared<IncorrectMessage>(this);
+        mIncorrectMessage->MessageTimer();
     }
 }
 
