@@ -11,6 +11,7 @@
 #include "Scoreboard.h"
 #include <wx/graphics.h>
 #include "LevelLoad.h"
+#include "TeamFeatureVisitor.h"
 
 /// Frame duration
 const int FrameDuration = 30;
@@ -151,9 +152,18 @@ void SudokuView::OnKey(wxKeyEvent &event)
     }
     else if (uc == 120)
     {
+        TeamFeatureVisitor visitor;
+        mSudoku.Accept(&visitor);
+        TeamFeature * drOwen = visitor.GetTeamFeature();
+        
         const wxPoint pt = wxGetMousePosition();
-        int mouseX = pt.x - this->GetScreenPosition().x;
-        int mouseY = pt.y - this->GetScreenPosition().y;
+        int mouseX = pt.x;// - this->GetScreenPosition().x;
+        int mouseY = pt.y;// - this->GetScreenPosition().y;
+
+//        drOwen->SetTargetLocation(mouseX, mouseY);
+
+//        visitor.GetTeamFeature()->SetTargetLocation(mouseX, mouseY);
+
         mSudoku.RevealSquare(mouseX, mouseY);
     }
 }

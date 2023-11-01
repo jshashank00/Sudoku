@@ -11,7 +11,6 @@
 #include "ItemVisitor.h"
 #include "Digit.h"
 
-
 /**
  * Visits Digits
  *

@@ -446,12 +446,6 @@ void Sudoku::Solve(wxString levelToSolve)
                             {
                                 item->SetLocation(x, y);
                                 stop_count++;
-                                mItems.push_back(item);
-                                auto loc = find(begin(mItems), end(mItems), item);
-                                if(loc != end(mItems))
-                                {
-                                    mItems.erase(loc);
-                                }
                                 break;
                             }
 

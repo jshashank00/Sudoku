@@ -13,6 +13,7 @@ class Digit;
 class Sparty;
 class Container;
 class Xray;
+class TeamFeature;
 
 /**
  * Item visitor base class
@@ -56,6 +57,12 @@ public:
      * @param xray Xray we are visiting
      */
     virtual void VisitXray(Xray* xray) {}
+
+    /**
+     * Visit Xray
+     * @param xray Xray we are visiting
+     */
+    virtual void VisitTeamFeature(TeamFeature* teamFeature) {}
 
  };
 
