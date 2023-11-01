@@ -14,7 +14,9 @@
 #include "MessageBoard.h"
 #include "FullMessage.h"
 #include "LevelCompleteMessage.h"
+#include "IncorrectMessage.h"
 #include <random>
+
 /**
  * Class for sudoku game
  */
@@ -33,10 +35,15 @@ private:
 
     /// Message Board pointer
     std::shared_ptr<MessageBoard> mMessageBoard;
+
     /// Message Board pointer
     std::shared_ptr<FullMessage> mFullMessage;
+
     /// Message Board pointer
     std::shared_ptr<LevelCompleteMessage> mLevelCompleteMessage;
+
+    /// Message Board pointer
+    std::shared_ptr<IncorrectMessage> mIncorrectMessage;
 
 
     double mScale = 0; ///< scale for the game
@@ -61,6 +68,7 @@ private:
     std::shared_ptr<wxGraphicsContext> mGraphics; ///< graphics context of the game
     int mWidth = 0; ///< width
     int mHeight = 0; ///< height
+
     /// Random number generator
     std::mt19937 mRandom;
 
@@ -76,12 +84,14 @@ private:
     int mGridYBot; ///< Y location of the bottom of the grid
     bool mGameOver = false; ///< true if game is over
     bool mBoxFull = false; ///< true if grid square has a number
-
     bool mComplete = false; ///< true if grid is full
+    bool mCompleteIncorrectly = false; ///< true if grid is full and wrong
 
     wxString mLevelMessage; ///< message before each level
 
     wxString mNextLevel; ///< next level to load
+    wxString mSameLevel; ///< next level to load
+
 
 public:
     Sudoku();
@@ -89,11 +99,7 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Add(std::shared_ptr<Item> item);
     void Clear();
-    /**
-     * setter for game over bool
-     * @param over true if game over
-     */
-    void SetGameOver(bool over){mGameOver = over;}
+
     /**
      * setter for box full bool
      * @param full true if game over
@@ -107,6 +113,11 @@ public:
     wxString GetLevel() const
     {
         return mNextLevel;
+    }
+
+    wxString GetSameLevel() const
+    {
+        return mSameLevel;
     }
 
     /**
@@ -186,8 +197,9 @@ public:
     void SetMessageBoardVisible(bool isVisible);
     bool IsMessageBoardVisible() const;
     void CheckSolution();
-    void RevealSquare();
+    void RevealSquare(int x, int y);
     std::vector<int> GetAllDigitsInGrid();
+    void SetGameOver(bool over);
 };
 
 #endif //PROJECT1_SUDOKULIB_SUDOKU_H

@@ -151,7 +151,10 @@ void SudokuView::OnKey(wxKeyEvent &event)
     }
     else if (uc == 120)
     {
-        mSudoku.RevealSquare();
+        const wxPoint pt = wxGetMousePosition();
+        int mouseX = pt.x - this->GetScreenPosition().x;
+        int mouseY = pt.y - this->GetScreenPosition().y;
+        mSudoku.RevealSquare(mouseX, mouseY);
     }
 }
 

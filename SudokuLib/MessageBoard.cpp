@@ -90,12 +90,12 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
             boardY += levelTextHeight;
         }
     }
-    if(elapsed > 3 && !delayElapsed)
+    if (elapsed > 3 && !delayElapsed)
     {
         mSudoku->SetMessageBoardVisible(false);
     }
 
-    if(elapsed > 3 && delayElapsed)
+    if (elapsed > 3 && delayElapsed)
     {
         delayElapsed = true;
         mStartTime = current;
