@@ -119,6 +119,11 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
         mFullMessage->Draw(graphics, mPixelWidth, mPixelHeight);
     }
 
+    if (mComplete)
+    {
+        mLevelCompleteMessage->Draw(graphics, mPixelWidth, mPixelHeight);
+    }
+
     graphics->PopState();
 }
 
@@ -205,7 +210,7 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
 
     mPixelWidth = level.PixelWidth();
     mPixelHeight = level.PixelHeight();
-
+    mComplete = false;
     mColumn = level.GetColumn();
     mRow = level.GetRow();
     mTileHeight = level.GetTileHeight();
@@ -444,6 +449,8 @@ void Sudoku::CheckSolution()
     if (mVectorSolution == currentBoard)
     {
         mComplete = true;
+        mLevelCompleteMessage = make_shared<LevelCompleteMessage>(this);
+        mLevelCompleteMessage->MessageTimer();
     }
 }
 

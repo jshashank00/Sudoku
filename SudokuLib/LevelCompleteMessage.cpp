@@ -30,11 +30,24 @@ void LevelCompleteMessage::MessageTimer()
  */
 void LevelCompleteMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    wxFont font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-    graphics->SetFont(font, *wxGREEN); // Set the text color to green
-    wxString levelMessage = "Level Complete!";
+    static bool delayElapsed = false;
+    time_t current = time(0);
+    time_t elapsed = current - mStartTime;
 
-    double levelTextWidth, levelTextHeight;
-    graphics->GetTextExtent(levelMessage, &levelTextWidth, &levelTextHeight);
-    graphics->DrawText(levelMessage, (width - levelTextWidth) / 2, (height - levelTextHeight) / 2);
+    if (elapsed <= 3 && !delayElapsed)
+    {
+        // Set the font and color for the text
+        wxFont font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+        graphics->SetFont(font, *wxGREEN); // Set the text color to green
+        wxString levelMessage = "Level Complete!";
+
+        double levelTextWidth, levelTextHeight;
+        graphics->GetTextExtent(levelMessage, &levelTextWidth, &levelTextHeight);
+        graphics->DrawText(levelMessage, (width - levelTextWidth) / 2, (height - levelTextHeight) / 2);
+    }
+    else
+    {
+        delayElapsed = true;
+        mStartTime = current;
+    }
 }

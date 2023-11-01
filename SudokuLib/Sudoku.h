@@ -32,6 +32,8 @@ private:
     std::shared_ptr<MessageBoard> mMessageBoard;
     /// Message Board pointer
     std::shared_ptr<FullMessage> mFullMessage;
+    /// Message Board pointer
+    std::shared_ptr<LevelCompleteMessage> mLevelCompleteMessage;
 
 
     double mScale = 0;
@@ -71,7 +73,7 @@ private:
     int mGridYBot;
     bool mGameOver = false;
 
-    bool mComplete;
+    bool mComplete = false;
 
     wxString mLevelMessage;
 

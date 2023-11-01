@@ -114,12 +114,6 @@
 		<digit id="i10" col="18.0048" row="17.7655" />
 		<digit id="i18" col="23" row="13" />
 		<digit id="i18" col="5" row="16" />
-<!--		<digit id="i148" col="5.9099" row="0.1763" />-->
-<!--		<digit id="i150" col="3.837" row="1.1466" />-->
-<!--		<digit id="i155" col="5.954" row="1.0584" />-->
-<!--		<digit id="i161" col="3.8958" row="1.9993" />-->
-<!--		<digit id="i153" col="4.969" row="1.9111" />-->
-<!--		<digit id="i146" col="5.954" row="1.9258" />-->
 		<drowen id="i248" col="25" row ="19"  />
 		<sparty id="i165" col="1.9312" row="4.6996" />
 	</items>
