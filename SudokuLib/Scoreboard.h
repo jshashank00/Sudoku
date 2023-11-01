@@ -17,6 +17,9 @@ private:
 
     time_t mStartTime; ///< Member variable to store the level start time
 
+    bool mPaused = false; ///< Paused variable
+
+    std::string mTimerString;
 public:
     Scoreboard(Sudoku *sudoku);
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
@@ -26,6 +29,7 @@ public:
      */
     std::string GetTime();
     void StartClock();
+    void StopClock();
 };
 
 #endif //PROJECT1_SUDOKULIB_SCOREBOARD_H

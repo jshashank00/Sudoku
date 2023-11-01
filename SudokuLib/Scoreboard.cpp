@@ -32,6 +32,15 @@ Scoreboard::Scoreboard(Sudoku *sudoku) //: Item(sudoku)
 void Scoreboard::StartClock()
 {
     mStartTime = time(0);
+    mPaused = false;
+};
+
+/**
+ * Restart the clock for each level
+ */
+void Scoreboard::StopClock()
+{
+    mPaused = true;
 };
 
 /**
@@ -74,9 +83,13 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, in
             minutes--;
         }
 
-        std::string timeStr = std::to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + std::to_string(seconds);
+        if (!mPaused)
+        {
+            std::string timeStr = std::to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + std::to_string(seconds);
+            mTimerString = timeStr;
+        }
 
-        graphics->DrawText(timeStr, ScoreboardTopLeft.x, ScoreboardTopLeft.y);
+        graphics->DrawText(mTimerString, ScoreboardTopLeft.x, ScoreboardTopLeft.y);
     }
 }
 

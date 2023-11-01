@@ -487,6 +487,7 @@ void Sudoku::CheckSolution()
         mComplete = true;
         mLevelCompleteMessage = make_shared<LevelCompleteMessage>(this);
         mLevelCompleteMessage->MessageTimer();
+        mScoreboard->StopClock();
     }
     if (mVectorSolution != currentBoard && mVectorSolution.size() == currentBoard.size())
     {
