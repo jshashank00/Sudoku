@@ -16,15 +16,15 @@
 class Digit : public Item
 {
 private:
+    /// number value of a digit
     int mValue = 0;
 
 public:
+    /**
+     * Digit Value Getter
+     */
     int GetValue() { return mValue; }
     Digit(Sudoku *sudoku, const wxString &filename);
-    // Override IsDigit to return true for digit items
-//    bool IsDigit() const override {
-//        return true;
-//    }
     void XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight) override;
 
     /**

@@ -9,7 +9,7 @@
 using namespace std;
 
 /**
- * Item Constructor
+ * Container Constructor
  * @param sudoku Game we are in
  */
 Container::Container(Sudoku *sudoku) : Item(sudoku)
@@ -17,15 +17,13 @@ Container::Container(Sudoku *sudoku) : Item(sudoku)
 }
 
 /**
- * Load the attributes for an item node.
+ * Load the attributes for a container node.
  *
- * This is the  base class version that loads the attributes
- * common to all items. Override this to load custom attributes
- * for specific items.
- *
- * @param node The Xml node we are loading the item from
+ * @param itemNode The Xml node we are loading the item from
+ * @param decNode the xml node we are loading the declaration from
+ * @param height for item
  */
-void Container::XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double height)//, shared_ptr<Declaration> decNode)
+void Container::XmlLoadBack(wxXmlNode *itemNode, wxXmlNode *decNode, double height)
 {
     Item::XmlLoad(itemNode, decNode, height);
     wxString image = decNode->GetAttribute(L"image",L"0");
