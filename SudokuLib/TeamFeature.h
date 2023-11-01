@@ -36,6 +36,12 @@ public:
 
     void Update(double deltaTime) override;
 
+    /**
+    * Accept a visitor
+    * @param visitor The visitor we accept
+    */
+    void Accept(ItemVisitor* visitor) override { visitor->VisitTeamFeature(this); }
+
 
 };
 

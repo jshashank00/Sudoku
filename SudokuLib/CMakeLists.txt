@@ -40,6 +40,7 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         LevelCompleteMessage.h
         IncorrectMessage.cpp
         IncorrectMessage.h
+        TeamFeatureVisitor.h
 )
 
 set(wxBUILD_PRECOMP OFF)

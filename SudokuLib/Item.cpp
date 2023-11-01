@@ -116,7 +116,7 @@ void Item::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//
     decNode->GetAttribute(L"width", L"0").ToDouble(&mWidth);
     decNode->GetAttribute(L"height", L"0").ToDouble(&mHeight);
     mX = (mCol) * tileHeight;
-    mY = ((mRow+1) * tileHeight) - mHeight;
+    mY = ((mRow+1) * tileHeight)- mHeight;
 }
 
 /**
