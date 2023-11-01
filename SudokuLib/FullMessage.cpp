@@ -68,7 +68,7 @@ void FullMessage::DrawTakenSquare(std::shared_ptr<wxGraphicsContext> graphics, i
     graphics->SetBrush(*wxWHITE_BRUSH);
     graphics->DrawRectangle(boardX, boardY, boardWidth, boardHeight);
 
-    // Draw "I'm Full!" message in red
+    // Draw "Something is already there!" message in red
     wxString fullMessage = "Something is already there!";
     double messageWidth, messageHeight;
     graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
