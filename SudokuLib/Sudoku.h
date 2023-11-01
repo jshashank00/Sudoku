@@ -186,7 +186,7 @@ public:
     void SetMessageBoardVisible(bool isVisible);
     bool IsMessageBoardVisible() const;
     void CheckSolution();
-    void RevealSquare();
+    void RevealSquare(int x, int y);
     std::vector<int> GetAllDigitsInGrid();
 };
 

@@ -650,10 +650,10 @@ bool Sudoku::IsMessageBoardVisible() const
 /**
  * Reveal a square on the grid
  */
-void Sudoku::RevealSquare()
+void Sudoku::RevealSquare(int x, int y)
 {
-    int x = mSparty->GetX();
-    int y = mSparty->GetY();
+//    int x = mSparty->GetX();
+//    int y = mSparty->GetY();
     int top_left_center_x = mColumn * mTileHeight;
     int top_left_center_y = (mRow+1) * mTileHeight - mTileHeight;
     if (x > mGridXLeft && x < mGridXRight && y > mGridYTop && y < mGridYBot) //check if it's in the sudoku grid
