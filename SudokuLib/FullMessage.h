@@ -9,18 +9,18 @@
 #define PROJECT1_SUDOKULIB_FULLMESSAGE_H
 //#include "Xray.h"
 class Sudoku;
+/**
+ * Class to display "I'm full" message
+ */
 class FullMessage
 {
 private:
+    /// Game we are in
     Sudoku *mSudoku;
-    /// Message Board pointer
-    //Xray *mXray;
 
 public:
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     FullMessage(Sudoku *sudoku);
-   //void  SetXray(Xray *xray);
-
     void DrawTakenSquare(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 };
 

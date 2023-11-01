@@ -12,6 +12,10 @@
 
 using namespace std;
 
+/**
+ * Message Constructor
+ * @param sudoku Game we are in
+ */
 FullMessage::FullMessage(Sudoku *sudoku){
 
 }
@@ -19,7 +23,9 @@ FullMessage::FullMessage(Sudoku *sudoku){
 
 /**
  * Draw the I'm full message
- * @param dc Device context to draw on
+ * @param graphics Device context to draw on
+ * @param width of message
+ * @param height of message
  */
 void FullMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
@@ -50,7 +56,9 @@ void FullMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, i
 
 /**
  * Draw the square is taken message
- * @param dc Device context to draw on
+ * @param graphics Device context to draw on
+ * @param height of message
+ * @param width of message
  */
 void FullMessage::DrawTakenSquare(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {

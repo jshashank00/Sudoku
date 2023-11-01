@@ -22,6 +22,7 @@ private:
 public:
     /**
      * Digit Value Getter
+     * @return digit value
      */
     int GetValue() { return mValue; }
     Digit(Sudoku *sudoku, const wxString &filename);

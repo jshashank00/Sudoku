@@ -16,7 +16,6 @@
  * Visits Digits
  *
  */
-///
 class DigitVisitor : public ItemVisitor
 {
 private:
@@ -24,26 +23,37 @@ private:
     /// bool if the item is a digit
     bool mIsDigit = false;
 
+    /// digit we are currently at
     Digit* mThisDigit;
 
+    /// digit count
     int mDigitCounter = 0;
 
 public:
-void VisitDigit(Digit* digit) override
+    /**
+     * Digit visitor
+     */
+    void VisitDigit(Digit* digit) override
     {
         mThisDigit = digit;
         mIsDigit = true;
         mDigitCounter++;
     }
-
     /**
      * @return bool member variable
      */
     bool IsDigit() { return mIsDigit; }
-
+    /**
+     * @return digit value
+     */
     int GetValue() { return mThisDigit->GetValue(); }
-
+    /**
+     * @return the current digit
+     */
     Digit* GetDigit() {return mThisDigit;}
+    /**
+     * @return number of digits
+     */
     int GetDigitCount() { return mDigitCounter; }
 
 };
