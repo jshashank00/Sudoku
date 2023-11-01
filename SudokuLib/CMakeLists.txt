@@ -24,8 +24,6 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         Container.h
         MessageBoard.cpp
         MessageBoard.h
-        LevelVisitor.cpp
-        LevelVisitor.h
         ItemVisitor.h
         DigitVisitor.h
         IsContainerVisitor.h

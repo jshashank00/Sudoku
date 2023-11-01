@@ -8,8 +8,10 @@
 #ifndef PROJECT1_SUDOKULIB_SCOREBOARD_H
 #define PROJECT1_SUDOKULIB_SCOREBOARD_H
 #include "Item.h"
-
-class Scoreboard //: public Item
+/**
+ * Scoreboard class
+ */
+class Scoreboard
 {
 private:
 

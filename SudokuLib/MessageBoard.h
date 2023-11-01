@@ -8,22 +8,24 @@
 #ifndef PROJECT1_SUDOKULIB_MESSAGEBOARD_H
 #define PROJECT1_SUDOKULIB_MESSAGEBOARD_H
 
-//#include "Xray.h"
-//#include "Sudoku.h"
-//#include "Item.h"
 class Sudoku;
+/**
+ * Message for starting the level
+ */
 class MessageBoard {
 private:
-    Sudoku *mSudoku;
-    /// Current time
-    time_t mStartTime;
-    time_t mNow = time(0);
-    bool showMessage = false;
-    //std::shared_ptr<Xray> mXray;
-    wxString mLevelToLoad;
+    Sudoku *mSudoku; ///< Sudoku game we are in
+    time_t mStartTime;  ///< Current time
+    time_t mNow = time(0); ///< time now
+    bool mShowMessage = false; ///< true if message should show
+    wxString mLevelToLoad; ///< level that is going to be loaded
 
 public:
-    bool GetMessage() {return showMessage;}
+    /**
+     * Getter for show message bool
+     * @return show message bool
+     */
+    bool GetMessage() {return mShowMessage;}
     MessageBoard(Sudoku *sudoku);
     void MessageTimer();
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height, wxString levelMessage);

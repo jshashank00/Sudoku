@@ -70,6 +70,10 @@ void MainFrame::OnExit(wxCommandEvent& event)
     Close(true);
 }
 
+/**
+ * About menu option handlers
+ * @param event
+ */
 void MainFrame::OnAbout(wxCommandEvent& event)
 {
     wxMessageBox(L"Welcome to Sudoku!",
@@ -78,9 +82,12 @@ void MainFrame::OnAbout(wxCommandEvent& event)
                  this);
 }
 
+/**
+ * OnClose menu option handlers
+ * @param event
+ */
 void MainFrame::OnClose(wxCloseEvent& event){
     mSudokuView -> Stop();
     Destroy();
-
 }
 

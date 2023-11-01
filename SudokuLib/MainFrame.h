@@ -9,11 +9,12 @@
 #define PROJECT1_SUDOKULIB_MAINFRAME_H
 
 class SudokuView;
-
-
+/**
+ * Class for main frame
+ */
 class MainFrame : public wxFrame {
 private:
-    SudokuView *mSudokuView;
+    SudokuView *mSudokuView; ///< Game we are in
 public:
     void Initialize();
 

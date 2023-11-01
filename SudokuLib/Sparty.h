@@ -46,7 +46,7 @@ private:
     /// eating animation time
     double mMouthElapsedTime = 0.0;
 
-    double mFront = 0.0;  ///<
+    double mFront = 0.0;  ///< front
     double mHeadPivotAngle = 0.0; ///< for headbutting
     double mHeadPivotX = 0.0; ///< for headbutting
     double mHeadPivotY = 0.0; ///< for headbutting
@@ -55,8 +55,8 @@ private:
     double mMouthPivotAngle = 0.0; ///< for eating
     double mMouthPivotX = 0.0;  ///< for eating
     double mMouthPivotY = 0.0;  ///< for eating
-    double mTargetX = 0.0;
-    double mTargetY = 0.0;
+    double mTargetX = 0.0; ///< x where sparty needs to move
+    double mTargetY = 0.0; ///< y where sparty needs to move
 public:
     Sparty(Sudoku *sudoku);
 

@@ -77,7 +77,9 @@ std::shared_ptr<Item> Sudoku::HitTest(int x, int y)
 
 /**
  * Draw the game
- * @param dc The device context to draw on
+ * @param graphics Device context to draw on
+ * @param width of image
+ * @param height of image
  */
 void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
@@ -132,6 +134,10 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
     graphics->PopState();
 }
 
+/**
+ * Set the location of sparty
+ * @param event mouse event
+ */
 void Sudoku::SetLocation(wxMouseEvent &event)
 {
 
@@ -166,8 +172,7 @@ void Sudoku::AddFront(std::shared_ptr<Item> item)
 
 /**
 *  Clear the level data.
-*
-* Deletes all known items in the game.
+*  Deletes all known items in the game.
 */
 void Sudoku::Clear()
 {
@@ -186,6 +191,10 @@ void Sudoku::Update(double elapsed)
     }
 }
 
+/**
+ * Set the game sparty
+ * @param sparty Game sparty
+ */
 void Sudoku::SetSparty(shared_ptr<Item> sparty)
 {
     mSparty = sparty;
@@ -199,16 +208,28 @@ void Sudoku::SetSparty(shared_ptr<Item> sparty)
 //    mXray = xray;
 //}
 
+
+/**
+ * Set the pixel height
+ * @param height pixel height
+ */
 void Sudoku::SetPixelHeight(int height)
 {
     mPixelHeight = height;
 }
-
+/**
+ * Set the pixel width
+ * @param height pixel width
+ */
 void Sudoku::SetPixelWidth(int wid)
 {
     mPixelWidth = wid;
 }
 
+/**
+ * Choose the level to be loaded
+ * @param levelToLoad level that needs to be loaded
+ */
 void Sudoku::ChooseLevel(wxString levelToLoad)
 {
     LevelLoad level(levelToLoad, this);
@@ -270,7 +291,11 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
     }
 }
 
-bool Sudoku::Eater(Item *eater)
+/**
+ * Eat a number
+ * @param eater Sparty
+ */
+void Sudoku::Eater(Item *eater)
 {
 
     // find the x ray
@@ -318,22 +343,19 @@ bool Sudoku::Eater(Item *eater)
                         }
                     }
                     other->SetLocation(mLocX, mLocY);
-                    //mItems.erase(loc);
-                }
 
-                if(other)
-                {
-                    //Draw item in xray
                 }
-                return true;
             }
         }
 
     }
-    return false;
 }
 
-bool Sudoku::HeadbuttContainer(Item *sparty)
+/**
+ * Headbutt a container
+ * @param sparty Sparty
+ */
+void Sudoku::HeadbuttContainer(Item *sparty)
 {
     for(auto other : mItems)
     {
@@ -345,11 +367,6 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
 
         IsContainerVisitor visitor;
         other->Accept(&visitor);
-//        if (visitor.IsContainer()) {
-//            other->ContainerHitTest((int)sparty->GetX(), (int)sparty->GetY());
-//        }
-
-
         if (other->ContainerHitTest((int)sparty->GetX(), (int)sparty->GetY()) && visitor.IsContainer())
         {
             // find container
@@ -371,16 +388,17 @@ bool Sudoku::HeadbuttContainer(Item *sparty)
                 y = item->GetY() - randomY;
                 item->SetLocation(x, y);
 
-//                container->GetContainedItems().erase(container->GetContainedItems().begin());
             }
             container->Clear();
-            return true;
         }
 
     }
-    return false;
 }
 
+/**
+ * Solve a level
+ * @param levelToSolve the level we are solving
+ */
 void Sudoku::Solve(wxString levelToSolve)
 {
 
@@ -461,11 +479,12 @@ void Sudoku::Solve(wxString levelToSolve)
 //    wxString levelMessage = "Level Complete!";
 }
 
+/**
+ * Check the grid for the solution
+ */
 void Sudoku::CheckSolution()
 {
     std::vector<int> currentBoard = GetAllDigitsInGrid();
-
-
     if (mVectorSolution == currentBoard)
     {
         mComplete = true;
@@ -474,7 +493,9 @@ void Sudoku::CheckSolution()
     }
 }
 
-
+/**
+ * Get the digits in the grid currently
+ */
 std::vector<int> Sudoku::GetAllDigitsInGrid()
 {
     std::vector<int> allDigits;
@@ -515,7 +536,6 @@ std::vector<int> Sudoku::GetAllDigitsInGrid()
         }
     }
     return allDigits;
-
 }
 
 
@@ -556,7 +576,11 @@ bool Sudoku::TakenSquare(int x, int y)
     return false;
 }
 
-void Sudoku::MoveDigit(int digit)//, int x, int y)
+/**
+ * Move a digit from the xray
+ * @param digit digit to be moved
+ */
+void Sudoku::MoveDigit(int digit)
 {
     // find the x ray
     XrayFinder xrayVisitor;
@@ -622,6 +646,9 @@ bool Sudoku::IsMessageBoardVisible() const
     return mMessageBoardVisible;
 }
 
+/**
+ * Reveal a square on the grid
+ */
 void Sudoku::RevealSquare()
 {
     int x = mSparty->GetX();
@@ -666,6 +693,5 @@ void Sudoku::RevealSquare()
                 }
             }
         }
-
     }
 }

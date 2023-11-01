@@ -18,7 +18,7 @@ using namespace std;
 /**  Load the level from a level XML file.
 *
 * Opens the XML file and reads the nodes, creating items as appropriate.
-*
+* @param sudoku sudoku game we are in
 * @param filename The filename of the file to load the city from.
 */
 LevelLoad::LevelLoad(const wxString &filename, Sudoku * sudoku) :mSudoku(sudoku)

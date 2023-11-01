@@ -48,15 +48,16 @@ void Sparty::MouthMove(bool moving)
     mIsMouthMoving = !mIsMouthMoving;
     mIsRegurgitating = moving;
 }
+
 /**
  * Sparty Hit Test
+ * @param x item location
+ * @param y item location
  */
-
 bool Sparty::HitTest(int x, int y)
 {
     double wid = 96;
     double hit = 96;
-
 
     double testX = x - GetX() + wid / 2;
     double testY = y - GetY() + hit / 2;
@@ -67,11 +68,14 @@ bool Sparty::HitTest(int x, int y)
         // Outside Image
         return false;
     }
-
-
     return !mHeadImage->IsTransparent((int)testX, (int)testY);
 }
 
+/**
+ * Set sparty location
+ * @param x sparty new location
+ * @param y sparty new location
+ */
 void Sparty::SetTargetLocation(int x, int y)
 {
     mTargetX = x;
@@ -216,13 +220,11 @@ void Sparty::Update(double elapsed)
 }
 
 /**
- * Load the attributes for an item node.
- *
- * This is the  base class version that loads the attributes
- * common to all items. Override this to load custom attributes
- * for specific items.
+ * Load the attributes for a sparty node.
  *
  * @param node The Xml node we are loading the item from
+ * @param decNode the xml node we are loading the declaration from
+ * @param height for tile
  */
 void Sparty::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {

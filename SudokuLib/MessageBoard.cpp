@@ -20,6 +20,9 @@ MessageBoard::MessageBoard(Sudoku *sudoku) : mSudoku(sudoku)
 {
 }
 
+/**
+ * Timer for message board
+ */
 void MessageBoard::MessageTimer()
 {
     mStartTime = time(0);
@@ -27,7 +30,9 @@ void MessageBoard::MessageTimer()
 
 /**
  * Draw the scoreboard
- * @param dc Device context to draw on
+ * @param graphics Device context to draw on
+ * @param width of message board
+ * @param height of message board
  */
 void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height, wxString levelMessage)
 {

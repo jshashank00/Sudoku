@@ -33,7 +33,9 @@ void Scoreboard::StartClock()
 
 /**
  * Draw the scoreboard
- * @param dc Device context to draw on
+ * @param graphics Device context to draw on
+ * @param height of message
+ * @param width of message
  */
 void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
@@ -75,6 +77,10 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, in
     }
 }
 
+/**
+ * Get current clock time
+ * return string of clock time
+ */
 std::string GetTime() {
     time_t rawTime;
     struct tm* timeInfo;
