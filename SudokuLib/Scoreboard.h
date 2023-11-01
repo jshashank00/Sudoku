@@ -15,12 +15,15 @@ class Scoreboard
 {
 private:
 
-    time_t mStartTime; /// >Member variable to store the level start time
+    time_t mStartTime; ///< Member variable to store the level start time
 
 public:
     Scoreboard(Sudoku *sudoku);
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
-
+    /**
+     * Get current clock time
+     * @return string of clock time
+     */
     std::string GetTime();
     void StartClock();
 };

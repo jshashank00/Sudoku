@@ -89,6 +89,7 @@ public:
 
     /**
      * Handle the Mouth movement
+     * @param moving true if moving, false otherwise
      */
     virtual void MouthMove(bool moving) {}
 
@@ -117,7 +118,7 @@ public:
 
     /**
      * Set in xray to true or false
-     * @param isInContainer true if item in xray
+     * @param isInXray true if item in xray
      */
     void SetInXray(bool isInXray) { mIsInXray = isInXray; }
     /**

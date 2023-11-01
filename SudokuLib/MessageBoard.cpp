@@ -33,6 +33,7 @@ void MessageBoard::MessageTimer()
  * @param graphics Device context to draw on
  * @param width of message board
  * @param height of message board
+ * @param levelMessage level message to display
  */
 void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height, wxString levelMessage)
 {

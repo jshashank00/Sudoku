@@ -89,7 +89,15 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Add(std::shared_ptr<Item> item);
     void Clear();
+    /**
+     * setter for game over bool
+     * @param over true if game over
+     */
     void SetGameOver(bool over){mGameOver = over;}
+    /**
+     * setter for box full bool
+     * @param full true if game over
+     */
     void BoxFull(bool full){mBoxFull = full;}
 
     /**
@@ -173,7 +181,7 @@ public:
     std::mt19937 &GetRandom() {return mRandom;}
 
     bool TakenSquare(int x, int y);
-    void SetXray(std::shared_ptr<Xray> xray);
+
     void MoveDigit(int digit);
     void SetMessageBoardVisible(bool isVisible);
     bool IsMessageBoardVisible() const;

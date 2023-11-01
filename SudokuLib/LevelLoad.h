@@ -29,8 +29,8 @@ private:
 
     wxString mBackgroundImage; ///<background file image name
 
-    double mPixelWidth;
-    double mPixelHeight;
+    double mPixelWidth; ///< pixel height
+    double mPixelHeight; ///< pixel width
 
     ///Initialize the map id->DeclarationObject
     std::map <wxString, wxXmlNode*> mMap;
@@ -39,6 +39,7 @@ private:
 
     /**
      * get number of level from level string
+     * @param filename level filename
      * @return level + number
      */
     wxString ExtractLevel(const wxString &filename)
@@ -60,7 +61,6 @@ public:
     void XmlDeclaration(wxXmlNode *node);
     void XmlGame(wxXmlNode *node);
     void XmlContainerItem(wxXmlNode *node);
-    void XmlContainerDec(wxXmlNode *node);
 
     /**
      * @return width in pixels

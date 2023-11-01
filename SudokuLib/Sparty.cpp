@@ -24,7 +24,6 @@ const double HeadbuttTime = 0.5;
 /**
  * Constructor
  * @param sudoku The sudoku game we are in
- * @param filename Filename for the image we use
  */
 Sparty::Sparty(Sudoku *sudoku) :
     Item(sudoku)
@@ -42,6 +41,7 @@ void Sparty::HeadButt()
 
 /**
  * Function for handling Eating motion
+ * @param moving true if moving
  */
 void Sparty::MouthMove(bool moving)
 {
@@ -53,6 +53,7 @@ void Sparty::MouthMove(bool moving)
  * Sparty Hit Test
  * @param x item location
  * @param y item location
+ * @return true if hit
  */
 bool Sparty::HitTest(int x, int y)
 {
@@ -222,9 +223,9 @@ void Sparty::Update(double elapsed)
 /**
  * Load the attributes for a sparty node.
  *
- * @param node The Xml node we are loading the item from
+ * @param itemNode The Xml node we are loading the item from
  * @param decNode the xml node we are loading the declaration from
- * @param height for tile
+ * @param tileHeight for tile
  */
 void Sparty::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {

@@ -219,7 +219,7 @@ void Sudoku::SetPixelHeight(int height)
 }
 /**
  * Set the pixel width
- * @param height pixel width
+ * @param wid pixel width
  */
 void Sudoku::SetPixelWidth(int wid)
 {
@@ -495,6 +495,7 @@ void Sudoku::CheckSolution()
 
 /**
  * Get the digits in the grid currently
+ * @return all the digits currently in the grid
  */
 std::vector<int> Sudoku::GetAllDigitsInGrid()
 {
@@ -553,9 +554,9 @@ void Sudoku::Accept(ItemVisitor* visitor)
 
 /**
  * Test if a square is already taken
- * @param item digit we want to place
  * @param x location of where we want to put it
  * @param y location of where we want to put it
+ * @return true if taken
  */
 bool Sudoku::TakenSquare(int x, int y)
 {

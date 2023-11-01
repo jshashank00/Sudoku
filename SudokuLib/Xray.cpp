@@ -13,15 +13,14 @@ using namespace std;
  */
 Xray::Xray(Sudoku* sudoku) : Item(sudoku)
 {
-
 }
 
 /**
  * Load the attributes for an xray node.
  *
- * @param node The Xml node we are loading the item from
+ * @param itemNode The Xml node we are loading the item from
  * @param decNode the xml node we are loading the declaration from
- * @param height for tile
+ * @param tileHeight for tile
  */
 void Xray::XmlLoad(wxXmlNode *itemNode, wxXmlNode *decNode, double tileHeight)//, shared_ptr<Declaration> decNode)
 {

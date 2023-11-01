@@ -23,6 +23,8 @@ private:
 
     /// The bitmap to display for the item
     std::unique_ptr<wxBitmap> mItemBitmap;
+
+    /// Game we are in
     Sudoku *mSudoku;
 
     /// capacity of numbers xray can hold
