@@ -43,6 +43,7 @@ void VisitDigit(Digit* digit) override
 
     int GetValue() { return mThisDigit->GetValue(); }
 
+    Digit* GetDigit() {return mThisDigit;}
     int GetDigitCount() { return mDigitCounter; }
 
 };
