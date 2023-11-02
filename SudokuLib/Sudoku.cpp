@@ -269,6 +269,12 @@ void Sudoku::ChooseLevel(wxString levelToLoad)
         mSameLevel = L"levels/level2.xml";
     }
 
+    if (levelToLoad.IsSameAs(L"levels/level3.xml"))
+    {
+        mNextLevel = L"levels/level1.xml";
+        mSameLevel = L"levels/level3.xml";
+    }
+
     mMessageBoard = make_shared<MessageBoard>(this);
     //mMessageBoard->MessageTimer();
     //mFullMessage = make_shared<FullMessage>(this);

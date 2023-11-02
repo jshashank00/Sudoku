@@ -32,9 +32,9 @@ TEST_F(ScoreboardTest, ScoreboardExists) {
 }
 
 TEST_F(ScoreboardTest, ScoreboardTimeIsCorrect) {
-    //wxString timeStr = scoreboard->GetTime();
+    wxString timeStr = scoreboard->GetTime();
 
-    //EXPECT_FALSE(timeStr.IsEmpty());
+    EXPECT_FALSE(timeStr.IsEmpty());
 }
 
 
