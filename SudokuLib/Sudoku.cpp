@@ -691,43 +691,45 @@ bool Sudoku::IsMessageBoardVisible() const
  */
 void Sudoku::RevealSquare(int x, int y)
 {
-//    int x = mSparty->GetX();
-//    int y = mSparty->GetY();
-    int top_left_center_x = mColumn * mTileHeight;
-    int top_left_center_y = (mRow+1) * mTileHeight - mTileHeight;
-    if (x > mGridXLeft && x < mGridXRight && y > mGridYTop && y < mGridYBot) //check if it's in the sudoku grid
+    if (mSameLevel == L"levels/level3.xml")
     {
-        int row = (y - mGridYTop ) / mTileHeight;
-        int col = (x - mGridXLeft) / mTileHeight;
-        int center_x = (mGridXLeft + (col * mTileHeight) + mTileHeight/2);
-        int center_y = (mGridYTop  + (row * mTileHeight) + mTileHeight/2);
-        int index = (((center_y - top_left_center_y)/mTileHeight) * 9) + ((center_x - top_left_center_x)/mTileHeight);
-        int find_value = mVectorSolution[index];
-
-        if (!TakenSquare(center_x, center_y))
+        int top_left_center_x = mColumn * mTileHeight;
+        int top_left_center_y = (mRow + 1) * mTileHeight - mTileHeight;
+        if(x > mGridXLeft && x < mGridXRight && y > mGridYTop && y < mGridYBot) //check if it's in the sudoku grid
         {
+            int row = (y - mGridYTop) / mTileHeight;
+            int col = (x - mGridXLeft) / mTileHeight;
+            int center_x = (mGridXLeft + (col * mTileHeight) + mTileHeight / 2);
+            int center_y = (mGridYTop + (row * mTileHeight) + mTileHeight / 2);
+            int index =
+                (((center_y - top_left_center_y) / mTileHeight) * 9) + ((center_x - top_left_center_x) / mTileHeight);
+            int find_value = mVectorSolution[index];
 
-            for (auto item : mItems)
+            if(!TakenSquare(center_x, center_y))
             {
-                DigitVisitor visitor1;
-                item->Accept(&visitor1);
 
-                if (!(item->GetX() > mGridXLeft && item->GetX() < mGridXRight && item->GetY() > mGridYTop
-                    && item->GetY() < mGridYBot))
+                for(auto item : mItems)
                 {
+                    DigitVisitor visitor1;
+                    item->Accept(&visitor1);
 
-                    if(visitor1.IsDigit())
+                    if(!(item->GetX() > mGridXLeft && item->GetX() < mGridXRight && item->GetY() > mGridYTop
+                        && item->GetY() < mGridYBot))
                     {
-                        if(visitor1.GetValue() == find_value && !item->IsInContainer() && !item->IsInXray())
+
+                        if(visitor1.IsDigit())
                         {
-                            item->SetLocation(center_x, center_y);
-                            mItems.push_back(item);
-                            auto loc = find(begin(mItems), end(mItems), item);
-                            if(loc != end(mItems))
+                            if(visitor1.GetValue() == find_value && !item->IsInContainer() && !item->IsInXray())
                             {
-                                mItems.erase(loc);
+                                item->SetLocation(center_x, center_y);
+                                mItems.push_back(item);
+                                auto loc = find(begin(mItems), end(mItems), item);
+                                if(loc != end(mItems))
+                                {
+                                    mItems.erase(loc);
+                                }
+                                break;
                             }
-                            break;
                         }
                     }
                 }

@@ -155,16 +155,17 @@ void SudokuView::OnKey(wxKeyEvent &event)
         TeamFeatureVisitor visitor;
         mSudoku.Accept(&visitor);
         TeamFeature * drOwen = visitor.GetTeamFeature();
-        
+        std::shared_ptr<Item> sparty = mSudoku.GetSparty();
         const wxPoint pt = wxGetMousePosition();
-        int mouseX = pt.x;// - this->GetScreenPosition().x;
-        int mouseY = pt.y;// - this->GetScreenPosition().y;
+        mSudoku.RevealSquare(sparty->GetX(), sparty->GetY());
+        //       int mouseX = pt.x;// - this->GetScreenPosition().x;
+//        int mouseY = pt.y;// - this->GetScreenPosition().y;
 
 //        drOwen->SetTargetLocation(mouseX, mouseY);
 
 //        visitor.GetTeamFeature()->SetTargetLocation(mouseX, mouseY);
 
-        mSudoku.RevealSquare(mouseX, mouseY);
+//        mSudoku.RevealSquare(mouseX, mouseY);
     }
 }
 
