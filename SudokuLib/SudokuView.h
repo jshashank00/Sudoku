@@ -30,6 +30,8 @@ private:
 
     void OnPaint(wxPaintEvent& event);
 
+    std::shared_ptr<wxGraphicsContext> mGc;
+
 public:
     void Initialize(wxFrame* parent);
     void OnLeftDown(wxMouseEvent &event);
