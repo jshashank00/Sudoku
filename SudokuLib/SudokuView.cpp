@@ -154,11 +154,13 @@ void SudokuView::OnKey(wxKeyEvent &event)
     }
     else if (uc == 120)
     {
-        if(mSudoku.GetSameLevel() == L"levels/level3.xml")
+
+        TeamFeatureVisitor visitor;
+        mSudoku.Accept(&visitor);
+        TeamFeature *witchHat = visitor.GetTeamFeature();
+
+        if (witchHat != nullptr)
         {
-            TeamFeatureVisitor visitor;
-            mSudoku.Accept(&visitor);
-            TeamFeature *witchHat = visitor.GetTeamFeature();
 
             witchHat->SetTargetLocation(witchHat->GetX(), witchHat->GetY() - 100);
 
@@ -167,7 +169,6 @@ void SudokuView::OnKey(wxKeyEvent &event)
             mSudoku.RevealSquare();
 
             witchHat->SetTargetLocation(witchHat->GetX(), witchHat->GetY() + 100);
-
         }
     }
 }
