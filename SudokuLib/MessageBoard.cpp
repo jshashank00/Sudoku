@@ -52,7 +52,7 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         graphics->SetBrush(*wxWHITE_BRUSH);
 
         int boardWidth = 400;
-        int boardHeight = 300;
+        int boardHeight = 200;
         int boardX = (width - boardWidth) / 2;
         int boardY = (height - boardHeight) / 2;
 

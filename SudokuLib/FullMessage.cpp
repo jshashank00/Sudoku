@@ -102,5 +102,4 @@ void FullMessage::DrawTakenSquare(std::shared_ptr<wxGraphicsContext> graphics, i
     graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
     graphics->DrawText(fullMessage, boardX + (boardWidth - messageWidth) / 2, mPosY + 5);
 
-
 }

@@ -7,6 +7,7 @@
 #include "Scoreboard.h"
 #include <ctime>
 #include <wx/graphics.h>
+
 using namespace std;
 
 /// Size of the scoreboard text in virtual pixels
@@ -22,7 +23,7 @@ const wxPoint ScoreboardTopLeft(10, 10);
  * Constructor
  * @param sudoku The game the scoreboard is in
  */
-Scoreboard::Scoreboard(Sudoku *sudoku) //: Item(sudoku)
+Scoreboard::Scoreboard(Sudoku *sudoku)
 {
 }
 
@@ -94,10 +95,11 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, in
 }
 
 /**
- * Get current clock time
+ * Get current clock time for testing
  * @return string of clock time
  */
-std::string GetTime() {
+wxString Scoreboard::GetTime()
+{
     time_t rawTime;
     struct tm* timeInfo;
 
@@ -110,7 +112,11 @@ std::string GetTime() {
 
     std::string timeStr = std::to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + std::to_string(seconds);
 
-    return timeStr;
+    // Convert the std::string to a wxString
+    wxString wxTimeStr(timeStr);
+
+    return wxTimeStr;
 }
+
 
 

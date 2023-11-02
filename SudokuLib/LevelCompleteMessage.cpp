@@ -42,7 +42,7 @@ void LevelCompleteMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int
     {
         mSudoku->SetMessageBoardVisible(true);
         // Set the font and color for the text
-        wxFont font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+        wxFont font = wxFont(wxSize(80, 80), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
         graphics->SetFont(font, *wxGREEN); // Set the text color to green
         wxString levelMessage = "Level Complete!";
 

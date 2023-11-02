@@ -27,7 +27,7 @@ public:
      * Get current clock time
      * @return string of clock time
      */
-    std::string GetTime();
+    wxString GetTime();
     void StartClock();
     void StopClock();
 };

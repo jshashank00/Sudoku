@@ -46,7 +46,9 @@ bool Xray::AddItem(std::shared_ptr<Item> item) {
         mTotalNumbers += 1; // update total numbers
         showMessage = false;
         return true;
-    } else {
+    }
+    else
+    {
         // Access the MessageBoard and set the showMessage flag
 
 //        mMessageBoard->GetMessage();
