@@ -494,6 +494,7 @@ void Sudoku::CheckSolution()
         mCompleteIncorrectly = true;
         mIncorrectMessage = make_shared<IncorrectMessage>(this);
         mIncorrectMessage->MessageTimer();
+        mScoreboard->StopClock();
     }
 }
 
