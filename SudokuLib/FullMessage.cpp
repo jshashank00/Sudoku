@@ -49,27 +49,30 @@ void FullMessage::Update(double elapsed)
  */
 void FullMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
+    if (mPosY > 0)
+    {
+        wxFont font(wxSize(0, 26), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        graphics->SetFont(font, *wxRED);  // Set the text color to red
 
-    wxFont font(wxSize(0, 26), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
-    graphics->SetFont(font, *wxRED);  // Set the text color to red
+        // Calculate message board dimensions
+        int boardWidth = 200;
+        int boardHeight = 40;
+        int boardX = (width - boardWidth) / 2;
+        int boardY = height / 4;
 
-    // Calculate message board dimensions
-    int boardWidth = 200;
-    int boardHeight = 40;
-    int boardX = (width - boardWidth) / 2;
-    int boardY = height / 4;
+        // Draw the black border
+        graphics->SetPen(wxPen(*wxBLACK, 5)); // 1 is the width of the black border
+        graphics->SetBrush(*wxWHITE_BRUSH);
+        graphics->DrawRectangle(boardX, mPosY, boardWidth, boardHeight);
 
-    // Draw the black border
-    graphics->SetPen(wxPen(*wxBLACK, 5)); // 1 is the width of the black border
-    graphics->SetBrush(*wxWHITE_BRUSH);
-    graphics->DrawRectangle(boardX, mPosY, boardWidth, boardHeight);
-
-    // Draw "I'm Full!" message in red
-    wxString fullMessage = "I'm Full!";
-    double messageWidth, messageHeight;
-    graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
-    graphics->DrawText(fullMessage, boardX + (boardWidth - messageWidth) / 2, mPosY + 5);
+        // Draw "I'm Full!" message in red
+        wxString fullMessage = "I'm Full!";
+        double messageWidth, messageHeight;
+        graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
+        graphics->DrawText(fullMessage, boardX + (boardWidth - messageWidth) / 2, mPosY + 5);
+    }
 }
+
 
 
 /**
@@ -80,26 +83,26 @@ void FullMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, i
  */
 void FullMessage::DrawTakenSquare(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
+    if (mPosY > 0)
+    {
+        wxFont font(wxSize(0, 26), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        graphics->SetFont(font, *wxRED);  // Set the text color to red
 
+        // Calculate message board dimensions
+        int boardWidth = 400;
+        int boardHeight = 40;
+        int boardX = (width - boardWidth) / 2;
+        int boardY = height / 4;
 
-    wxFont font(wxSize(0, 26), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
-    graphics->SetFont(font, *wxRED);  // Set the text color to red
+        // Draw the black border
+        graphics->SetPen(wxPen(*wxBLACK, 5)); // 5 is the width of the black border
+        graphics->SetBrush(*wxWHITE_BRUSH);
+        graphics->DrawRectangle(boardX, mPosY, boardWidth, boardHeight);
 
-    // Calculate message board dimensions
-    int boardWidth = 400;
-    int boardHeight = 40;
-    int boardX = (width - boardWidth) / 2;
-    int boardY = height / 4;
-
-    // Draw the black border
-    graphics->SetPen(wxPen(*wxBLACK, 5)); // 5 is the width of the black border
-    graphics->SetBrush(*wxWHITE_BRUSH);
-    graphics->DrawRectangle(boardX, mPosY, boardWidth, boardHeight);
-
-    // Draw "Something is already there!" message in red
-    wxString fullMessage = "Something is already there!";
-    double messageWidth, messageHeight;
-    graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
-    graphics->DrawText(fullMessage, boardX + (boardWidth - messageWidth) / 2, mPosY + 5);
-
+        // Draw "Something is already there!" message in red
+        wxString fullMessage = "Something is already there!";
+        double messageWidth, messageHeight;
+        graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
+        graphics->DrawText(fullMessage, boardX + (boardWidth - messageWidth) / 2, mPosY + 5);
+    }
 }
