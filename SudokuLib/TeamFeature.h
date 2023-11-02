@@ -19,6 +19,8 @@ private:
     double mTargetX = 0.0; ///< x where dr owen needs to move
     double mTargetY = 0.0; ///< y where dr owen needs to move
     bool mIsMoving = false; ///< track if dr owen is moving
+    double mOriginalX = 0.0; ///< original x location
+    double mOriginalY = 0.0; ///< original y location
 
 public:
     TeamFeature(Sudoku *sudoku, const wxString &filename);

@@ -119,7 +119,7 @@ void LevelLoad::XmlItem(wxXmlNode *node)
             }
             else if(itemNode->GetName() == L"drowen")
             {
-                item = make_shared<TeamFeature>(mSudoku, image);
+                item = make_shared<Item>(mSudoku, image);
                 mSudoku->Add(item);
                 item->XmlLoad(itemNode, decNode, mTileHeight);
             }
@@ -145,6 +145,12 @@ void LevelLoad::XmlItem(wxXmlNode *node)
             else if(itemNode->GetName() == L"container")
             {
                 XmlContainerItem(itemNode);
+            }
+            else if(itemNode->GetName() == L"witch")
+            {
+                item = make_shared<TeamFeature>(mSudoku, image);
+                mSudoku->Add(item);
+                item->XmlLoad(itemNode, decNode, mTileHeight);
             }
         }
     }

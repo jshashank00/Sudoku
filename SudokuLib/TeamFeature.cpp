@@ -8,7 +8,7 @@
 using namespace std;
 
 /// Character speed in pixels per second
-const double MaxSpeed = 500.00;
+const double MaxSpeed = 100.00;
 
 /**
  * Constructor for team feature
@@ -17,6 +17,7 @@ const double MaxSpeed = 500.00;
  */
 TeamFeature::TeamFeature(Sudoku *sudoku, const wxString &filename) : Item(sudoku, filename)
 {
+
 }
 
 /**

@@ -28,6 +28,8 @@ private:
     /// The last stopwatch time
     long mTime = 0;
 
+    std::shared_ptr<wxGraphicsContext> mGc; ///< graphics context
+
     void OnPaint(wxPaintEvent& event);
 
 public:
@@ -37,6 +39,7 @@ public:
     void OnSize(wxSizeEvent& event);
 
     void OnKey(wxKeyEvent &event);
+    void OnKeyUp(wxKeyEvent &event);
     /**
      * Stop the timer
      */

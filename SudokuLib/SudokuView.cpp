@@ -33,6 +33,7 @@ void SudokuView::Initialize(wxFrame* parent)
     Bind(wxEVT_LEFT_DOWN, &SudokuView::OnLeftDown, this);
     Bind(wxEVT_TIMER, &SudokuView::OnTimer, this);
     Bind(wxEVT_CHAR, &SudokuView::OnKey, this);
+    Bind(wxEVT_KEY_UP, &SudokuView::OnKeyUp, this);
 
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnLevel0, this, IDM_LEVELO);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SudokuView::OnLevel1, this, IDM_LEVEL1);
@@ -75,6 +76,8 @@ void SudokuView::OnPaint(wxPaintEvent& event)
     // Create a graphics context
     auto gc =
         std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
+
+    mGc = gc;
 
     // Tell the game class to draw
     wxRect rect = GetRect();
@@ -152,19 +155,45 @@ void SudokuView::OnKey(wxKeyEvent &event)
     }
     else if (uc == 120)
     {
-//        TeamFeatureVisitor visitor;
-//        mSudoku.Accept(&visitor);
-//        TeamFeature * drOwen = visitor.GetTeamFeature();
+        if(mSudoku.GetSameLevel() == L"levels/level3.xml")
+        {
+            TeamFeatureVisitor visitor;
+            mSudoku.Accept(&visitor);
+            TeamFeature *witchHat = visitor.GetTeamFeature();
+
+            witchHat->SetTargetLocation(witchHat->GetX(), witchHat->GetY() - 100);
+
+            witchHat->Update(mTime);
+
+            mSudoku.RevealSquare();
+
+            witchHat->SetTargetLocation(witchHat->GetX(), witchHat->GetY() + 100);
+
+        }
+    }
+}
+
+void SudokuView::OnKeyUp(wxKeyEvent &event)
+{
+    wxChar uc = event.GetKeyCode();
+    if (uc == wxKeyCode::WXK_ESCAPE)
+    {
+        if(mSudoku.GetSameLevel() == L"levels/level3.xml")
+        {
+            TeamFeatureVisitor visitor;
+            mSudoku.Accept(&visitor);
+            TeamFeature *witchHat = visitor.GetTeamFeature();
 //
 //        const wxPoint pt = ScreenToClient(wxGetMousePosition());
 //        int mouseX = pt.x; // - this->GetScreenPosition().x;
 //        int mouseY = pt.y; // - this->GetScreenPosition().y;
 //
-//        drOwen->SetTargetLocation(mouseX, mouseY);
+            witchHat->SetTargetLocation(witchHat->GetX(), witchHat->GetY() + 100);
 
 //        visitor.GetTeamFeature()->SetTargetLocation(mouseX, mouseY);
 
-        mSudoku.RevealSquare();
+//            mSudoku.RevealSquare();
+        }
     }
 }
 

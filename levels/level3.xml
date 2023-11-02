@@ -23,13 +23,16 @@
 		<background id="i245" width="528" height="528" image="sudoku.png" />
 		<background id="i246" width="1440" height="960" image="background3.png" />
 		<drowen id="i248" width="220" height="300" image="drowen.png" />
+		<witch id="i249" width="96" height="96" image="witch_hat.png" />
 		<xray id="i167" width="144" height="144" image="xray.png" capacity="7" />
 	</declarations>
 	<game col="6" row="2">5 4 6 8 3 0 1 2 7 0 1 2 5 4 7 8 3 6 7 8 3 1 2 6 5 4 0 6 5 4 0 1 2 3 7 8 1 2 0 7 8 3 4 6 5 8 3 7 6 5 4 0 1 2 4 0 1 2 6 5 7 8 3 2 7 8 3 0 1 6 5 4 3 6 5 4 7 8 2 0 1</game>
 	<items>
 		<background id="i246" col="0.0" row="19.0" />
 		<background id="i245" col="5.0" row="11.0" />
-		<xray id="i167" col="0.6042" row="11.0" />
+		<drowen id="i248" col="25" row ="19"  />
+		<witch id="i249" col="26.09" row="13.3" />
+		<xray id="i167" col="0.6042" row="10.0" />
 		<given id="i00" col="6" row="3"/>
 		<given id="i01" col="7" row="3"/>
 		<given id="i02" col="8" row="3"/>
@@ -114,7 +117,7 @@
 		<digit id="i10" col="19.0048" row="13.7655" />
 		<digit id="i18" col="23" row="13" />
 		<digit id="i18" col="5" row="16" />
-		<drowen id="i248" col="25" row ="19"  />
+
 		<sparty id="i165" col="1.9312" row="4.6996" />
 	</items>
 </level>
