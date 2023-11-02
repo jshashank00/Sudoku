@@ -90,7 +90,7 @@ private:
     wxString mLevelMessage; ///< message before each level
 
     wxString mNextLevel; ///< next level to load
-    wxString mSameLevel; ///< next level to load
+    wxString mSameLevel; ///< level to load
 
 
 public:
@@ -197,7 +197,7 @@ public:
     void SetMessageBoardVisible(bool isVisible);
     bool IsMessageBoardVisible() const;
     void CheckSolution();
-    void RevealSquare(int x, int y);
+    void RevealSquare();
     std::vector<int> GetAllDigitsInGrid();
     void SetGameOver(bool over);
 };

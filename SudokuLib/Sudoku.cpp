@@ -689,10 +689,13 @@ bool Sudoku::IsMessageBoardVisible() const
 /**
  * Reveal a square on the grid
  */
-void Sudoku::RevealSquare(int x, int y)
+void Sudoku::RevealSquare()
 {
+    // only works  on level 3
     if (mSameLevel == L"levels/level3.xml")
     {
+        int x = mSparty->GetX();
+        int y = mSparty->GetY();
         int top_left_center_x = mColumn * mTileHeight;
         int top_left_center_y = (mRow + 1) * mTileHeight - mTileHeight;
         if(x > mGridXLeft && x < mGridXRight && y > mGridYTop && y < mGridYBot) //check if it's in the sudoku grid
@@ -722,12 +725,6 @@ void Sudoku::RevealSquare(int x, int y)
                             if(visitor1.GetValue() == find_value && !item->IsInContainer() && !item->IsInXray())
                             {
                                 item->SetLocation(center_x, center_y);
-                                mItems.push_back(item);
-                                auto loc = find(begin(mItems), end(mItems), item);
-                                if(loc != end(mItems))
-                                {
-                                    mItems.erase(loc);
-                                }
                                 break;
                             }
                         }

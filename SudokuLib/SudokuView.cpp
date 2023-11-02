@@ -75,6 +75,7 @@ void SudokuView::OnPaint(wxPaintEvent& event)
     // Create a graphics context
     auto gc =
         std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
+    mGc = gc;
 
     // Tell the game class to draw
     wxRect rect = GetRect();
@@ -152,20 +153,19 @@ void SudokuView::OnKey(wxKeyEvent &event)
     }
     else if (uc == 120)
     {
-        TeamFeatureVisitor visitor;
-        mSudoku.Accept(&visitor);
-        TeamFeature * drOwen = visitor.GetTeamFeature();
-        std::shared_ptr<Item> sparty = mSudoku.GetSparty();
-        const wxPoint pt = wxGetMousePosition();
-        mSudoku.RevealSquare(sparty->GetX(), sparty->GetY());
-        //       int mouseX = pt.x;// - this->GetScreenPosition().x;
-//        int mouseY = pt.y;// - this->GetScreenPosition().y;
-
+//        TeamFeatureVisitor visitor;
+//        mSudoku.Accept(&visitor);
+//        TeamFeature * drOwen = visitor.GetTeamFeature();
+//
+//        const wxPoint pt = ScreenToClient(wxGetMousePosition());
+//        int mouseX = pt.x; // - this->GetScreenPosition().x;
+//        int mouseY = pt.y; // - this->GetScreenPosition().y;
+//
 //        drOwen->SetTargetLocation(mouseX, mouseY);
 
 //        visitor.GetTeamFeature()->SetTargetLocation(mouseX, mouseY);
 
-//        mSudoku.RevealSquare(mouseX, mouseY);
+        mSudoku.RevealSquare();
     }
 }
 
