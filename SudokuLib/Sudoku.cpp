@@ -194,6 +194,13 @@ void Sudoku::Update(double elapsed)
     {
         item->Update(elapsed);
     }
+    if (mGameOver)
+    {
+        mFullMessage->Update(elapsed);
+    }
+    if (mBoxFull){
+        mFullMessage->Update(elapsed);
+    }
 }
 
 /**
@@ -510,10 +517,20 @@ void Sudoku::CheckSolution()
 void Sudoku::SetGameOver(bool over)
 {
     mGameOver = over;
-    mFullMessage = make_shared<FullMessage>(this);
+    mFullMessage = make_shared<FullMessage>(this, mPixelWidth, mPixelHeight);
     mFullMessage->MessageTimer();
 }
 
+/**
+     * setter for game over bool
+     * @param over true if game over
+     */
+void Sudoku::BoxFull(bool full)
+{
+    mBoxFull = full;
+    mFullMessage = make_shared<FullMessage>(this, mPixelWidth, mPixelHeight);
+    mFullMessage->MessageTimer();
+}
 
 /**
  * Get the digits in the grid currently
@@ -635,7 +652,7 @@ void Sudoku::MoveDigit(int digit)
             if (in_grid && TakenSquare(center_x, center_y))
             {
                 // Add message that
-                mBoxFull = true;
+                BoxFull(true);
                 break;
             }
             else

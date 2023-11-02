@@ -104,7 +104,7 @@ public:
      * setter for box full bool
      * @param full true if game over
      */
-    void BoxFull(bool full){mBoxFull = full;}
+    void BoxFull(bool full);
 
     /**
      * getter for the next level in the game

@@ -24,9 +24,10 @@ private:
 
 public:
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
-    FullMessage(Sudoku *sudoku);
+    FullMessage(Sudoku *sudoku, double x, double y);
     void MessageTimer();
     void DrawTakenSquare(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
+    void Update(double elapsed);
 };
 
 #endif //PROJECT1_SUDOKULIB_FULLMESSAGE_H

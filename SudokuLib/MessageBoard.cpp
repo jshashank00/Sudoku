@@ -62,7 +62,7 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         {
             messages[3] = "Click on a square with Dr. Owen:";
             messages[4] = "Reveal an answer";
-            boardHeight = boardHeight + 20;
+            boardHeight = boardHeight + 50;
             boardWidth = boardWidth + 100;
         }
 
