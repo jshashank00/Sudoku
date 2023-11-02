@@ -73,7 +73,6 @@ void SudokuView::OnPaint(wxPaintEvent& event)
     dc.Clear();
 
     // Create a graphics context
-
     auto gc =
         std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
 
