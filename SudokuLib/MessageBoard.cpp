@@ -44,18 +44,17 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
     if (elapsed <= 3 && !delayElapsed)
     {
         mSudoku->SetMessageBoardVisible(true);
-        // Set the font and color for the text
 
         // Set the dark green color
         wxColour darkGreen = wxColour(0, 128, 0);
 
         // Set the font and color for the text
-        wxFont font(wxSize(0, 24), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        wxFont font(wxSize(0, 36), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
         graphics->SetFont(font, darkGreen); // Set the text color to dark green
 
         // Calculate message board dimensions
-        int boardWidth = 400;
-        int boardHeight = 200;
+        int boardWidth = 500;  // Increase the width
+        int boardHeight = 250; // Increase the height
         int boardX = (width - boardWidth) / 2;
         int boardY = (height - boardHeight) / 2;
 
@@ -65,7 +64,7 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         {
             messages[3] = "Click on a square and press X:";
             messages[4] = "Dr. Owen reveals an answer";
-            boardHeight = boardHeight + 50;
+            boardHeight = boardHeight + 70;
             boardWidth = boardWidth + 100;
         }
 
@@ -75,7 +74,7 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         graphics->DrawRectangle(boardX, boardY, boardWidth, boardHeight);
 
         // Draw "Level 1" message in dark green and bold
-        font = wxFont(wxSize(60, 60), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        font = wxFont(wxSize(80, 80), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD); // Increase font size
         graphics->SetFont(font, darkGreen);
 
         double levelTextWidth, levelTextHeight;
@@ -83,7 +82,7 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         graphics->DrawText(levelMessage, boardX + (boardWidth - levelTextWidth) / 2, boardY);
 
         // Draw the additional messages in black
-        font = wxFont(wxSize(30, 30), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+        font = wxFont(wxSize(40, 40), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL); // Increase font size
         graphics->SetFont(font, *wxBLACK);
 
         boardY += levelTextHeight; // Move below "Level 1"
