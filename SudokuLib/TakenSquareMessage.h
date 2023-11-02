@@ -8,6 +8,9 @@
 #ifndef PROJECT1_SUDOKULIB_TAKENSQUAREMESSAGE_H
 #define PROJECT1_SUDOKULIB_TAKENSQUAREMESSAGE_H
 class Sudoku;
+/**
+ * Message class for taken square
+ */
 class TakenSquareMessage
 {
 private:

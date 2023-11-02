@@ -37,7 +37,7 @@ void TakenSquareMessage::MessageTimer()
  */
 void TakenSquareMessage::Update(double elapsed)
 {
-    mPosY = mPosY - 250*elapsed;
+    mPosY = mPosY - 300*elapsed;
 }
 
 
@@ -51,25 +51,27 @@ void TakenSquareMessage::Update(double elapsed)
 void TakenSquareMessage::DrawTakenSquare(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
 
-    wxFont font(wxSize(0, 26), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
-    graphics->SetFont(font, *wxRED);  // Set the text color to red
+    if (mPosY > 0)
+    {
+        wxFont font(wxSize(0, 26), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        graphics->SetFont(font, *wxRED);  // Set the text color to red
 
-    // Calculate message board dimensions
-    int boardWidth = 400;
-    int boardHeight = 40;
-    int boardX = (width - boardWidth) / 2;
-    int boardY = height / 4;
+        // Calculate message board dimensions
+        int boardWidth = 400;
+        int boardHeight = 40;
+        int boardX = (width - boardWidth) / 2;
+        int boardY = height / 4;
 
-    // Draw the black border
-    graphics->SetPen(wxPen(*wxBLACK, 5)); // 5 is the width of the black border
-    graphics->SetBrush(*wxWHITE_BRUSH);
-    graphics->DrawRectangle(boardX, mPosY, boardWidth, boardHeight);
+        // Draw the black border
+        graphics->SetPen(wxPen(*wxBLACK, 5)); // 5 is the width of the black border
+        graphics->SetBrush(*wxWHITE_BRUSH);
+        graphics->DrawRectangle(boardX, mPosY, boardWidth, boardHeight);
 
-    // Draw "Something is already there!" message in red
-    wxString fullMessage = "Something is already there!";
-    double messageWidth, messageHeight;
-    graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
-    graphics->DrawText(fullMessage, boardX + (boardWidth - messageWidth) / 2, mPosY + 5);
-
+        // Draw "Something is already there!" message in red
+        wxString fullMessage = "Something is already there!";
+        double messageWidth, messageHeight;
+        graphics->GetTextExtent(fullMessage, &messageWidth, &messageHeight);
+        graphics->DrawText(fullMessage, boardX + (boardWidth - messageWidth) / 2, mPosY + 5);
+    }
 
 }

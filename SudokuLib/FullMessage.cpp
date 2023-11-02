@@ -38,7 +38,7 @@ void FullMessage::MessageTimer()
  */
 void FullMessage::Update(double elapsed)
 {
-    mPosY = mPosY - 375*elapsed;
+    mPosY = mPosY - 300*elapsed;
 }
 
 /**
