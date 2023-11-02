@@ -522,8 +522,8 @@ void Sudoku::SetGameOver(bool over)
 }
 
 /**
-     * setter for game over bool
-     * @param over true if game over
+     * setter for box full bool
+     * @param full true if box full
      */
 void Sudoku::BoxFull(bool full)
 {
