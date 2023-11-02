@@ -20,6 +20,7 @@
 #include "IsContainerVisitor.h"
 #include "GivenVisitor.h"
 #include "XrayFinder.h"
+#include "TakenSquareMessage.h"
 #include <cstdlib>
 #include <thread>
 
@@ -129,7 +130,7 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
 
     if (mBoxFull)
     {
-        mFullMessage->DrawTakenSquare(graphics, mPixelWidth, mPixelHeight);
+        mTakenMessage->DrawTakenSquare(graphics, mPixelWidth, mPixelHeight);
     }
     graphics->PopState();
 }
@@ -194,7 +195,7 @@ void Sudoku::Update(double elapsed)
         mFullMessage->Update(elapsed);
     }
     if (mBoxFull){
-        mFullMessage->Update(elapsed);
+        mTakenMessage->Update(elapsed);
     }
 }
 
@@ -514,8 +515,8 @@ void Sudoku::SetGameOver(bool over)
 void Sudoku::BoxFull(bool full)
 {
     mBoxFull = full;
-    mFullMessage = make_shared<FullMessage>(this, mPixelWidth, mPixelHeight);
-    mFullMessage->MessageTimer();
+    mTakenMessage = make_shared<TakenSquareMessage>(this, mPixelWidth, mPixelHeight);
+    mTakenMessage->MessageTimer();
 }
 
 /**

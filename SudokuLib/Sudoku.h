@@ -15,6 +15,7 @@
 #include "FullMessage.h"
 #include "LevelCompleteMessage.h"
 #include "IncorrectMessage.h"
+#include "TakenSquareMessage.h"
 #include <random>
 
 /**
@@ -38,6 +39,8 @@ private:
 
     /// Message Board pointer
     std::shared_ptr<FullMessage> mFullMessage;
+    /// Message Board pointer
+    std::shared_ptr<TakenSquareMessage> mTakenMessage;
 
     /// Message Board pointer
     std::shared_ptr<LevelCompleteMessage> mLevelCompleteMessage;
