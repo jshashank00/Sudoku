@@ -61,7 +61,7 @@ void MessageBoard::Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, 
         if (levelMessage == "Level 3")
         {
             messages[3] = "Click on a square and press X:";
-            messages[4] = "Reveal an answer";
+            messages[4] = "Dr. Owen reveals an answer";
             boardHeight = boardHeight + 50;
             boardWidth = boardWidth + 100;
         }
