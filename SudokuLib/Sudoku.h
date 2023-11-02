@@ -99,11 +99,6 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Add(std::shared_ptr<Item> item);
     void Clear();
-
-    /**
-     * setter for box full bool
-     * @param full true if game over
-     */
     void BoxFull(bool full);
 
     /**
@@ -114,7 +109,10 @@ public:
     {
         return mNextLevel;
     }
-
+    /**
+     * getter for the same level in the game
+     * @return same level
+     */
     wxString GetSameLevel() const
     {
         return mSameLevel;

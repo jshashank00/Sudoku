@@ -76,7 +76,6 @@ void SudokuView::OnPaint(wxPaintEvent& event)
 
     auto gc =
         std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
-    mGc = gc;
 
     // Tell the game class to draw
     wxRect rect = GetRect();

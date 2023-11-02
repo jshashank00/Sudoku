@@ -15,6 +15,8 @@ using namespace std;
 /**
  * Message Constructor
  * @param sudoku Game we are in
+ * @param x x coords of message
+ * @param y y coords of message
  */
 FullMessage::FullMessage(Sudoku *sudoku, double x, double y) : mSudoku(sudoku)
 {

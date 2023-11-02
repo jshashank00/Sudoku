@@ -19,7 +19,7 @@ private:
 
     bool mPaused = false; ///< Paused variable
 
-    std::string mTimerString;
+    std::string mTimerString; ///< time as a string
 public:
     Scoreboard(Sudoku *sudoku);
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);

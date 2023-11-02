@@ -19,7 +19,7 @@ private:
     Sudoku *mSudoku;
     time_t mStartTime;  ///< Current time
     time_t mNow = time(0); ///< time now
-    double mPosY ;
+    double mPosY ; ///< Y position of message
 
 public:
     void Draw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);

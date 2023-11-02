@@ -102,11 +102,6 @@ void Sudoku::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int 
     graphics->Translate(mXOffset, mYOffset);
     graphics->Scale(mScale, mScale);
 
-    // Draw the background image
-    //if (mBackground) {
-    //    graphics->DrawBitmap(*mBackground, 0, 0 ,mPixelWidth, mPixelHeight);
-    //}
-
     for(auto item : mItems)
     {
         if (!item->IsInContainer())
@@ -211,15 +206,6 @@ void Sudoku::SetSparty(shared_ptr<Item> sparty)
 {
     mSparty = sparty;
 }
-//void Sudoku::SetFullMsg(shared_ptr<Item> FullMessage)
-//{
-//    mFullMessage = FullMessage;
-//}
-//void Sudoku::SetXray(shared_ptr<Item> xray)
-//{
-//    mXray = xray;
-//}
-
 
 /**
  * Set the pixel height
@@ -522,9 +508,9 @@ void Sudoku::SetGameOver(bool over)
 }
 
 /**
-     * setter for box full bool
-     * @param full true if box full
-     */
+ * setter for box full bool
+ * @param full true if box full
+ */
 void Sudoku::BoxFull(bool full)
 {
     mBoxFull = full;

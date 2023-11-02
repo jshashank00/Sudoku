@@ -60,7 +60,7 @@ public:
 
     /**
      * Visit Xray
-     * @param xray Xray we are visiting
+     * @param teamFeature teamfeature we are visiting
      */
     virtual void VisitTeamFeature(TeamFeature* teamFeature) {}
 
