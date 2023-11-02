@@ -27,7 +27,6 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h
         ItemVisitor.h
         DigitVisitor.h
         IsContainerVisitor.h
-        XrayVisitor.h
         GivenVisitor.h
         XrayFinder.h
         TeamFeature.cpp
