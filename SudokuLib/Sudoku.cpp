@@ -678,9 +678,7 @@ bool Sudoku::IsMessageBoardVisible() const
  */
 void Sudoku::RevealSquare()
 {
-    // only works  on level 3
-    if (mSameLevel == L"levels/level3.xml")
-    {
+
         int x = mSparty->GetX();
         int y = mSparty->GetY();
         int top_left_center_x = mColumn * mTileHeight;
@@ -719,5 +717,4 @@ void Sudoku::RevealSquare()
                 }
             }
         }
-    }
 }
