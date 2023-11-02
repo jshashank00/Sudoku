@@ -2,7 +2,7 @@
  * @file FullMessage.h
  * @author Shashank Jayaram
  *
- *
+ * Declaration for sparty 'I'm full' message
  */
 
 #ifndef PROJECT1_SUDOKULIB_FULLMESSAGE_H

@@ -2,7 +2,7 @@
  * @file GivenVisitor.h
  * @author Ishita Saripalle
  *
- *
+ * Declaration for given visitors
  */
 
 #ifndef PROJECT1_SUDOKULIB_GIVENVISITOR_H

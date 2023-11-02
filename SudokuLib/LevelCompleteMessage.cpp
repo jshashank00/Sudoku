@@ -1,6 +1,9 @@
 /**
  * @file LevelCompleteMessage.cpp
  * @author jbrown
+ *
+ * Class for correct sudoku
+ * solution message
  */
 #include "pch.h"
 #include "LevelCompleteMessage.h"

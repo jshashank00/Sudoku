@@ -2,7 +2,7 @@
  * @file SudokuView.h
  * @author Ishita Saripalle
  *
- *
+ * Declaraton of view
  */
 
 #ifndef PROJECT1_SUDOKULIB_SUDOKUVIEW_H

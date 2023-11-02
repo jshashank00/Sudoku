@@ -2,7 +2,7 @@
  * @file TeamFeatureVisitor.h
  * @author Tess Murphy
  *
- *
+ * Declaration for level 3 team featire
  */
 
 #ifndef PROJECT1_SUDOKULIB_TEAMFEATUREVISITOR_H

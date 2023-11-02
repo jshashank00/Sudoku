@@ -2,7 +2,7 @@
  * @file TeamFeature.h
  * @author Shashank Jayaram
  *
- *
+ * Declaration for level 3 team feature
  */
 
 #ifndef PROJECT1_SUDOKULIB_TEAMFEATURE_H

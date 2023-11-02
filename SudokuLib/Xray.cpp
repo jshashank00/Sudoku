@@ -1,6 +1,8 @@
 /**
  * @file Xray.cpp
  * @author Shashank Jayaram
+ *
+ * Class for xray
  */
 #include "pch.h"
 #include "Xray.h"

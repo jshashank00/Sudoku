@@ -2,7 +2,7 @@
  * @file ids.h
  * @author Shashank Jayaram
  *
- *
+ * class for ids
  */
 
 #ifndef PROJECT1_SUDOKULIB_IDS_H

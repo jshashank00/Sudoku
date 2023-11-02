@@ -1,6 +1,8 @@
 /**
  * @file Sparty.cpp
  * @author Tess Murphy
+ *
+ * Class for sparty
  */
 
 #include "pch.h"

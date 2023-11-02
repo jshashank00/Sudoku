@@ -2,7 +2,8 @@
  * @file IncorrectMessage.h
  * @author Ishita Saripalle
  *
- *
+ * Declaration for incorrect sudoku
+ * solution message
  */
 
 #ifndef PROJECT1_SUDOKULIB_INCORRECTMESSAGE_H

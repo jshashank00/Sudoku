@@ -1,6 +1,8 @@
 /**
  * @file MainFrame.cpp
  * @author Shashank Jayaram
+ *
+ * Class for mainframe
  */
 
 #include "pch.h"

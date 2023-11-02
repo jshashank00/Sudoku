@@ -2,7 +2,7 @@
  * @file Sudoku.h
  * @author Ishita Saripalle
  *
- *
+ * Declaration of sudoku
  */
 
 #ifndef PROJECT1_SUDOKULIB_SUDOKU_H

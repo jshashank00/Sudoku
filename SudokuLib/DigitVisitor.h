@@ -2,7 +2,7 @@
  * @file DigitVisitor.h
  * @author Shashank Jayaram
  *
- *
+ * Declaration for digit visitors
  */
 
 #ifndef PROJECT1_SUDOKULIB_DIGITVISITOR_H

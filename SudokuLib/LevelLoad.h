@@ -2,7 +2,7 @@
  * @file LevelLoad.h
  * @author Tess Murphy
  *
- *
+ * Declaration of xml info
  */
 
 #ifndef PROJECT1_SUDOKULIB_LEVELLOAD_H

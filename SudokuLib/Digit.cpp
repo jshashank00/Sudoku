@@ -1,6 +1,8 @@
 /**
  * @file Digit.cpp
  * @author Tess Murphy
+ *
+ * Class for Digits
  */
 
 #include "pch.h"

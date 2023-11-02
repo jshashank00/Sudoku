@@ -2,7 +2,7 @@
  * @file MessageBoard.h
  * @author Ishita Saripalle
  *
- *
+ * Declaration for message board
  */
 
 #ifndef PROJECT1_SUDOKULIB_MESSAGEBOARD_H

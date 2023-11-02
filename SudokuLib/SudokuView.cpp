@@ -1,6 +1,8 @@
 /**
  * @file SudokuView.cpp
  * @author Ishita Saripalle
+ *
+ * Class for view of sudoku
  */
 
 #include "pch.h"

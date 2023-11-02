@@ -1,6 +1,9 @@
 /**
  * @file IncorrectMessage.cpp
  * @author Ishita Saripalle
+ *
+ * Class for incorrect sudoku
+ * solution message
  */
 
 #include "pch.h"
@@ -43,8 +46,9 @@ void IncorrectMessage::Draw(std::shared_ptr<wxGraphicsContext> graphics, int wid
     {
         mSudoku->SetMessageBoardVisible(true);
         // Set the font and color for the text
-        wxFont font = wxFont(wxSize(80, 80), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-        graphics->SetFont(font, *wxGREEN); // Set the text color to green
+        wxColour darkGreen = wxColour(8, 190, 90);
+        wxFont font = wxFont(wxSize(100, 100), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        graphics->SetFont(font, darkGreen); // Set the text color to green
         wxString levelMessage = "Incorrect!";
 
         double levelTextWidth, levelTextHeight;

@@ -1,6 +1,8 @@
 /**
  * @file TakenSquareMessage.cpp
  * @author Shashank Jayaram
+ *
+ * Class for sudoku board 'Something is already there' message
  */
 #include "pch.h"
 #include "TakenSquareMessage.h"

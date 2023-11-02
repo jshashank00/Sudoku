@@ -2,7 +2,7 @@
  * @file XrayFinder.h
  * @author Tess Murphy
  *
- *
+ * xray locator class
  */
 
 #ifndef PROJECT1_SUDOKULIB_XRAYFINDER_H

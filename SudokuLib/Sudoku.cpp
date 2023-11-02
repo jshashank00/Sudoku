@@ -1,6 +1,8 @@
 /**
  * @file Sudoku.cpp
  * @author Ishita Saripalle
+ *
+ * Class for adding all features to sudoku
  */
 
 #include "pch.h"

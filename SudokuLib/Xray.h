@@ -2,7 +2,7 @@
  * @file Xray.h
  * @author Shashank Jayaram
  *
- *
+ * Declaration for xray
  */
 
 #ifndef PROJECT1_SUDOKULIB_XRAY_H

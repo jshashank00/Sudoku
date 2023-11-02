@@ -2,7 +2,7 @@
  * @file Scoreboard.h
  * @author Lillian Yanke
  *
- *
+ * Declaration for scoreboard
  */
 
 #ifndef PROJECT1_SUDOKULIB_SCOREBOARD_H

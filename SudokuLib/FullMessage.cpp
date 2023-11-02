@@ -1,6 +1,8 @@
 /**
  * @file FullMessage.cpp
  * @author Shashank Jayaram
+ *
+ * Class for sparty 'I'm full' message
  */
 #include "pch.h"
 #include "FullMessage.h"

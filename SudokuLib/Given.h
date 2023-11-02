@@ -2,6 +2,7 @@
  * @file Given.h
  * @author Tess Murphy
  *
+ * Declaration for givens
  */
 
 #ifndef PROJECT1_SUDOKULIB_GIVEN_H

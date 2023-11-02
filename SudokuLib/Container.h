@@ -2,7 +2,7 @@
  * @file Container.h
  * @author jbrown
  *
- *
+ * Declaration for container
  */
 
 #ifndef PROJECT1_SUDOKULIB_CONTAINER_H

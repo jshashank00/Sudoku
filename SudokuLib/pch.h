@@ -2,7 +2,7 @@
  * @file pch.h
  * @author Ishita Saripalle
  *
- *
+ * pre-complied headers for wx usage
  */
 
 #ifndef PROJECT1_SUDOKULIB_PCH_H

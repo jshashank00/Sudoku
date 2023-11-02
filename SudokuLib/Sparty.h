@@ -2,7 +2,7 @@
  * @file Sparty.h
  * @author Tess Murphy
  *
- *
+ * Declaration of sparty
  */
 
 #ifndef PROJECT1_SUDOKULIB_SPARTY_H

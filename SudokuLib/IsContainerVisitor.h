@@ -2,7 +2,7 @@
  * @file IsContainerVisitor.h
  * @author Tess Murphy
  *
- *
+ * Declaration for container visitor
  */
 
 #ifndef PROJECT1_SUDOKULIB_ISCONTAINERVISITOR_H

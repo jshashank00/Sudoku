@@ -2,7 +2,7 @@
  * @file TakenSquareMessage.h
  * @author Shashank Jayaram
  *
- *
+ * Declaration for sudoku board 'Something is already there' message
  */
 
 #ifndef PROJECT1_SUDOKULIB_TAKENSQUAREMESSAGE_H

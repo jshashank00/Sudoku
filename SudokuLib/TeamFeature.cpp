@@ -1,6 +1,8 @@
 /**
  * @file TeamFeature.cpp
  * @author Shashank Jayaram
+ *
+ * Class for level 3 team feature
  */
 #include "pch.h"
 #include "TeamFeature.h"

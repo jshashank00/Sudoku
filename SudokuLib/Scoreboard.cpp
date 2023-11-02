@@ -1,6 +1,8 @@
 /**
  * @file Scoreboard.cpp
  * @author Lillian Yanke
+ *
+ * Class for scoreboard
  */
 
 #include "pch.h"

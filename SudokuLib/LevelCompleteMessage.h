@@ -2,7 +2,8 @@
  * @file LevelCompleteMessage.h
  * @author jbrown
  *
- *
+ * Declaration for incorrect sudoku
+ * solution message
  */
 
 #ifndef PROJECT1_SUDOKULIB_LEVELCOMPLETEMESSAGE_H

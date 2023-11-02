@@ -1,6 +1,8 @@
 /**
  * @file Item.cpp
  * @author Lillian Yanke
+ *
+ * Class for items
  */
 
 #include "pch.h"

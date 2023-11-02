@@ -1,6 +1,8 @@
 /**
  * @file Given.cpp
  * @author Tess Murphy
+ *
+ * Class for givens
  */
 
 #include "pch.h"
